@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,7 +19,19 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				serif: ['Playfair Display', 'Georgia', 'serif'],
+				sans: ['Crimson Text', 'system-ui', 'sans-serif'],
+			},
 			colors: {
+				book: {
+					dark: '#1A0F00',
+					brown: '#2A1A0A',
+					medium: '#3C2A1A',
+					gold: '#B8860B',
+					amber: '#FFBF00',
+					light: '#F5F5DC',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -84,12 +97,21 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'fade-in': {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 1.5s ease-out',
+			},
+			backgroundImage: {
+				'hero-pattern': "url('/lovable-uploads/15e53108-74da-4f2a-9970-a84ae327b6cf.png')",
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

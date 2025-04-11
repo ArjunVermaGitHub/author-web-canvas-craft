@@ -1,0 +1,50 @@
+
+import React from 'react';
+import BookButton from './BookButton';
+
+const HeroSection = () => {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center py-20 px-4">
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/lovable-uploads/15e53108-74da-4f2a-9970-a84ae327b6cf.png')" }}
+      >
+        <div className="absolute inset-0 bg-book-dark/70"></div>
+      </div>
+      
+      <div className="container mx-auto relative z-1 flex flex-col lg:flex-row items-center">
+        <div className="w-full lg:w-1/2 text-center lg:text-left animate-fade-in">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl text-book-gold font-serif mb-4">
+            About the Book
+          </h1>
+          <div className="text-book-light text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8">
+            <p className="mb-4">What if your dreams were ancient memories?</p>
+            <p className="mb-6">What if destiny called you back to a forgotten civilization?</p>
+            <div className="text-book-amber">
+              <span>Mythological Fantasy</span> <span className="mx-2">|</span> 
+              <span>Coming of Age</span> <span className="mx-2">|</span> 
+              <span>Adventure</span>
+            </div>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <BookButton>Order Now</BookButton>
+            <BookButton variant="outline">Read Excerpt</BookButton>
+          </div>
+        </div>
+        
+        <div className="w-full lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
+          <div className="relative w-64 h-96 md:w-80 md:h-[480px] rounded-lg overflow-hidden shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-b from-book-gold/20 to-book-amber/40"></div>
+            <img 
+              src="/lovable-uploads/15e53108-74da-4f2a-9970-a84ae327b6cf.png" 
+              alt="Book Cover" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;

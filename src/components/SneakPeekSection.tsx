@@ -1,0 +1,26 @@
+
+import React from 'react';
+import BookButton from './BookButton';
+
+const SneakPeekSection = () => {
+  return (
+    <section className="book-section bg-book-dark">
+      <div className="container mx-auto">
+        <h2 className="section-heading">Sneak Peek</h2>
+        
+        <div className="max-w-3xl mx-auto text-center">
+          <blockquote className="text-xl md:text-2xl text-book-light italic mb-6">
+            "There will come a boy who remembers what othe rave forgotten.
+            A boy who carries the flame of Dharma in his bones..."
+          </blockquote>
+          
+          <BookButton className="mt-8">
+            Read Chapter One: Echoes of the Past
+          </BookButton>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SneakPeekSection;
