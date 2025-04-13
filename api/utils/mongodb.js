@@ -13,7 +13,7 @@ async function connectToDatabase(uri) {
   const client = new MongoClient(uri);
   await client.connect();
   
-  const db = client.db('reading_club_db');
+  const db = client.db('test');
   cachedDb = db;
   
   return db;
