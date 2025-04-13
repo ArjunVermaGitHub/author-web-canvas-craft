@@ -37,6 +37,8 @@ const EmailSignupModal = ({ open, onOpenChange }: EmailSignupModalProps) => {
     setIsSubmitting(true);
     
     try {
+      console.log("Submitting email:", email);
+      
       // API call to Vercel serverless function
       const response = await fetch('/api/email-signup', {
         method: 'POST',
@@ -46,7 +48,10 @@ const EmailSignupModal = ({ open, onOpenChange }: EmailSignupModalProps) => {
         body: JSON.stringify({ email }),
       });
       
+      console.log("Response status:", response.status);
+      
       const data = await response.json();
+      console.log("Response data:", data);
       
       if (!response.ok) {
         throw new Error(data.error || 'Something went wrong');
