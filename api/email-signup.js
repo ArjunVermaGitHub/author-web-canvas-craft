@@ -32,19 +32,19 @@ module.exports = async (req, res) => {
     }
 
     // Connect to MongoDB
-    const MONGODB_URI = process.env.MONGODB_URI;
-    if (!MONGODB_URI) {
-      throw new Error('Please define the MONGODB_URI environment variable');
-    }
+    // const MONGODB_URI = process.env.MONGODB_URI;
+    // if (!MONGODB_URI) {
+    //   throw new Error('Please define the MONGODB_URI environment variable');
+    // }
 
-    const db = await connectToDatabase(MONGODB_URI);
-    const collection = db.collection('rituraj-subscribers');
+    // const db = await connectToDatabase(MONGODB_URI);
+    // const collection = db.collection('rituraj-subscribers');
 
-    // Check if email already exists
-    const existingEmail = await collection.findOne({ email });
-    if (existingEmail) {
+    // // Check if email already exists
+    // const existingEmail = await collection.findOne({ email });
+    // if (existingEmail) {
       return res.status(200).json({ message: 'Email already registered', status: 'exists' });
-    }
+    // }
 
     // Insert new subscriber
     await collection.insertOne({
