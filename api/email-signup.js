@@ -19,12 +19,25 @@ module.exports = async (req, res) => {
   }
 
   // Only allow POST for this endpoint
-  // if (req.method !== 'POST') {
-  //   return res.status(405).json({ error: 'Method not allowed' });
-  // }
+  if (req.method !== 'POST') {
+    console.log(`Method not allowed: ${req.method}`);
+    return res.status(405).json({ error: 'Method not allowed', requestMethod: req.method });
+  }
 
   try {
-    const { email } = req.body;
+    // Parse the request body
+    let email;
+    
+    if (typeof req.body === 'string') {
+      try {
+        const parsedBody = JSON.parse(req.body);
+        email = parsedBody.email;
+      } catch (e) {
+        console.error('Error parsing JSON body:', e);
+      }
+    } else if (req.body && typeof req.body === 'object') {
+      email = req.body.email;
+    }
 
     // Basic validation
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
