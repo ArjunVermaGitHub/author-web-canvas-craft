@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
 
   // Only allow POST for this endpoint
   if (req.method !== 'POST') {
-    return res.status(405).json({ req, error: 'Method not allowed' });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
