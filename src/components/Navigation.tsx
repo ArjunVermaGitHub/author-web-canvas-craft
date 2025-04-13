@@ -26,7 +26,7 @@ const Navigation = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {["Home", "About", "Books", "Events", "Contact"].map((item) => (
+            {/* {["Home", "About", "Books", "Events", "Contact"].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`}
@@ -34,7 +34,7 @@ const Navigation = () => {
               >
                 {item}
               </a>
-            ))}
+            ))} */}
           </nav>
         </div>
         
@@ -42,7 +42,7 @@ const Navigation = () => {
         {isMenuOpen && (
           <nav className="mt-4 pb-4 md:hidden animate-fade-in">
             <ul className="flex flex-col space-y-4">
-              {["Home", "About", "Books", "Events", "Contact"].map((item) => (
+              {/* {["Home", "About", "Books", "Events", "Contact"].map((item) => (
                 <li key={item}>
                   <a 
                     href={`#${item.toLowerCase()}`}
@@ -52,7 +52,7 @@ const Navigation = () => {
                     {item}
                   </a>
                 </li>
-              ))}
+              ))} */}
             </ul>
           </nav>
         )}

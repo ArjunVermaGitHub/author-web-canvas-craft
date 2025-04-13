@@ -10,11 +10,11 @@ const SneakPeekSection = () => {
         
         <div className="max-w-3xl mx-auto text-center">
           <blockquote className="text-xl md:text-2xl text-book-light italic mb-6">
-            "There will come a boy who remembers what othe rave forgotten.
+            "There will come a boy who remembers what others have forgotten.
             A boy who carries the flame of Dharma in his bones..."
           </blockquote>
           
-          <BookButton className="mt-8">
+          <BookButton className="mt-8" onClick={()=> window.open('https://drive.google.com/file/d/1hlAr8fCXXe6wFlNuTPWB-VRfQJ_o1xYE/view?usp=sharing', '_blank', 'noopener,noreferrer')}>
             Read Chapter One: Echoes of the Past
           </BookButton>
         </div>

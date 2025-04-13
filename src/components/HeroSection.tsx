@@ -7,7 +7,7 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center justify-center py-20 px-4">
       <div 
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/lovable-uploads/15e53108-74da-4f2a-9970-a84ae327b6cf.png')" }}
+        style={{ backgroundColor: "#2d1a0b" }}
       >
         <div className="absolute inset-0 bg-book-dark/70"></div>
       </div>
@@ -36,7 +36,7 @@ const HeroSection = () => {
           <div className="relative w-64 h-96 md:w-80 md:h-[480px] rounded-lg overflow-hidden shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-b from-book-gold/20 to-book-amber/40"></div>
             <img 
-              src="/lovable-uploads/15e53108-74da-4f2a-9970-a84ae327b6cf.png" 
+              src="/rituraj-site-boy.png" 
               alt="Book Cover" 
               className="w-full h-full object-cover"
             />

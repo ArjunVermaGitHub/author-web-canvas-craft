@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
     }
 
     const db = await connectToDatabase(MONGODB_URI);
-    const collection = db.collection('subscribers');
+    const collection = db.collection('rituraj-subscribers');
 
     // Check if email already exists
     const existingEmail = await collection.findOne({ email });

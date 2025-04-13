@@ -12,10 +12,11 @@ const Footer = () => {
           </div>
           
           <div className="flex space-x-6">
-            {['Twitter', 'Instagram', 'Facebook', 'Goodreads'].map((social) => (
+            {[['Instagram','https://www.instagram.com/raghav.kartikeya.series/'], ['Facebook','https://www.facebook.com/profile.php?id=61574944773635'], ['YouTube','https://www.youtube.com/@RaghavKartikeya']].map(([social,link]) => (
               <a 
                 key={social}
-                href="#" 
+                href={link} 
+                target='_blank'
                 className="text-book-light hover:text-book-gold transition-colors"
               >
                 {social}

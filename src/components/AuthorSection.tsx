@@ -11,7 +11,7 @@ const AuthorSection = () => {
           <div className="w-full md:w-1/3 flex justify-center">
             <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-book-gold">
               <img 
-                src="/lovable-uploads/15e53108-74da-4f2a-9970-a84ae327b6cf.png" 
+                src="/dad.jpeg" 
                 alt="Rituraj - Author" 
                 className="w-full h-full object-cover"
               />
