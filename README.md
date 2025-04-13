@@ -1,73 +1,39 @@
-# Welcome to your Lovable project
 
-## Project info
+# Book Landing Page with Vercel API Integration
 
-**URL**: https://lovable.dev/projects/faae4f96-94af-4b50-8a41-c8813d097e98
+This project is a book landing page with an email signup feature for a reading club, using:
+- React for the frontend
+- Vercel Serverless Functions for API endpoints
+- MongoDB for data storage
 
-## How can I edit this code?
+## Deployment Instructions
 
-There are several ways of editing your application.
+### Prerequisites
+1. A [Vercel](https://vercel.com) account
+2. A [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account (or other MongoDB provider)
 
-**Use Lovable**
+### Setup MongoDB
+1. Create a MongoDB database (e.g., `reading_club_db`)
+2. Create a collection named `subscribers`
+3. Get your MongoDB connection string
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/faae4f96-94af-4b50-8a41-c8813d097e98) and start prompting.
+### Deploy to Vercel
+1. Push your code to a GitHub repository
+2. Import the repository to Vercel
+3. In the Vercel project settings, add an environment variable:
+   - MONGODB_URI = your_mongodb_connection_string
+4. Deploy the project
 
-Changes made via Lovable will be committed automatically to this repo.
+Vercel will automatically recognize the `api` directory and deploy the serverless functions.
 
-**Use your preferred IDE**
+### Local Development
+For local development with API access:
+1. Install the Vercel CLI: `npm i -g vercel`
+2. Run `vercel dev` in the project root
+3. The API endpoints will be available at `http://localhost:3000/api/email-signup`
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/faae4f96-94af-4b50-8a41-c8813d097e98) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Project Structure
+- `/api`: Vercel serverless functions
+  - `/utils`: Utilities for the API
+  - `email-signup.js`: Email signup endpoint
+- `/src`: React application code

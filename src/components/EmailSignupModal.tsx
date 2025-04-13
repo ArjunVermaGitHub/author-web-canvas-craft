@@ -37,23 +37,43 @@ const EmailSignupModal = ({ open, onOpenChange }: EmailSignupModalProps) => {
     setIsSubmitting(true);
     
     try {
-      // Mock API call - in a real app, this would connect to your backend
-      // Simulating API latency
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Success handling
-      toast({
-        title: "Success!",
-        description: "You've been added to our reading club mailing list.",
+      // API call to Vercel serverless function
+      const response = await fetch('/api/email-signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
       });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong');
+      }
+      
+      // Handle already registered email case
+      if (data.status === 'exists') {
+        toast({
+          title: "Already Registered",
+          description: "This email is already in our reading club.",
+        });
+      } else {
+        // Success handling
+        toast({
+          title: "Success!",
+          description: "You've been added to our reading club mailing list.",
+        });
+      }
       
       // Reset form and close modal
       setEmail('');
       onOpenChange(false);
     } catch (error) {
+      console.error('Error signing up:', error);
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again later.",
+        description: error instanceof Error ? error.message : "Something went wrong. Please try again later.",
         variant: "destructive",
       });
     } finally {
