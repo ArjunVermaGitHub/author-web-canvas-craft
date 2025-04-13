@@ -5,7 +5,7 @@ import { MongoClient } from 'mongodb';
 // Cache the MongoDB connection to reuse it across function invocations
 let cachedDb = null;
 
-async function connectToDatabase(uri) {
+export async function connectToDatabase(uri) {
   if (cachedDb) {
     return cachedDb;
   }
@@ -18,5 +18,3 @@ async function connectToDatabase(uri) {
   
   return db;
 }
-
-module.exports = { connectToDatabase };
