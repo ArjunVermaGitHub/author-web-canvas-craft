@@ -1,6 +1,6 @@
 
 // MongoDB connection utility
-const { MongoClient } = require('mongodb');
+import { MongoClient } from 'mongodb';
 
 // Cache the MongoDB connection to reuse it across function invocations
 let cachedDb = null;
