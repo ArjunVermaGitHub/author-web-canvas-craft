@@ -13,11 +13,11 @@ interface EmailSignupModalProps {
 
 const EmailSignupModal = ({ open, onOpenChange }: EmailSignupModalProps) => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const validateEmail = (email: string): boolean => {
-    // Simple email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -34,45 +34,46 @@ const EmailSignupModal = ({ open, onOpenChange }: EmailSignupModalProps) => {
       return;
     }
 
+    if (!name.trim()) {
+      toast({
+        title: "Name required",
+        description: "Please enter your name.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
-      console.log("Submitting email:", email);
-      
-      // API call to Vercel serverless function
       const response = await fetch('/api/email-signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, name }),
       });
       
-      console.log("Response status:", response.status);
-      
       const data = await response.json();
-      console.log("Response data:", data);
       
       if (!response.ok) {
         throw new Error(data.error || 'Something went wrong');
       }
       
-      // Handle already registered email case
       if (data.status === 'exists') {
         toast({
           title: "Already Registered",
           description: "This email is already in our reading club.",
         });
       } else {
-        // Success handling
         toast({
           title: "Success!",
           description: "You've been added to our reading club mailing list.",
         });
       }
       
-      // Reset form and close modal
       setEmail('');
+      setName('');
       onOpenChange(false);
     } catch (error) {
       console.error('Error signing up:', error);
@@ -92,11 +93,24 @@ const EmailSignupModal = ({ open, onOpenChange }: EmailSignupModalProps) => {
         <DialogHeader>
           <DialogTitle className="text-book-gold font-serif text-2xl">Join Our Reading Club</DialogTitle>
           <DialogDescription className="text-book-light/80">
-            Enter your email to receive updates about new releases, author events, and exclusive content.
+            Enter your details to receive updates about new releases, author events, and exclusive content.
           </DialogDescription>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4 pt-4">
+          <div className="space-y-2">
+            <Label htmlFor="name" className="text-book-light">Name</Label>
+            <Input 
+              id="name" 
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name"
+              className="bg-book-medium/50 border-book-gold/30 text-book-light focus-visible:ring-book-gold"
+              required
+            />
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="email" className="text-book-light">Email Address</Label>
             <Input 

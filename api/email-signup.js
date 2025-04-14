@@ -1,6 +1,6 @@
-// api/email-signup.js
 
-import { connectToDatabase } from './utils/mongodb.js'; // Don't forget the .js extension!
+// api/email-signup.js
+import { connectToDatabase } from './utils/mongodb.js';
 import { buffer } from 'micro';
 
 export default async function handler(req, res) {
@@ -22,11 +22,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const rawBody = await buffer(req); // Add `micro` as a dep
-    const { email } = JSON.parse(rawBody.toString());
+    const rawBody = await buffer(req);
+    const { email, name } = JSON.parse(rawBody.toString());
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return res.status(400).json({ error: 'Valid email is required' });
+    }
+
+    if (!name || name.trim().length === 0) {
+      return res.status(400).json({ error: 'Name is required' });
     }
 
     const MONGODB_URI = process.env.MONGODB_URI;
@@ -40,6 +44,7 @@ export default async function handler(req, res) {
 
     await collection.insertOne({
       email,
+      name,
       subscribedAt: new Date(),
     });
 
