@@ -12,11 +12,11 @@ const TestimonialsSection = () => {
       author: "Fantasy Reader"
     },
     {
-      quote: "Be the inclusive capther prev deo",
+      quote: "Lord Parashuram is thrilling",
       author: "Literary Review"
     },
     {
-      quote: "Watch behind-the-scenes videos",
+      quote: "I like T’Rak the Terrible the most.",
       author: "Digital Content Reviewer"
     }
   ];

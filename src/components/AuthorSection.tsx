@@ -20,7 +20,7 @@ const AuthorSection = () => {
           
           <div className="w-full md:w-2/3 text-book-light">
             <p className="text-lg leading-relaxed">
-              Rituraj is a dreamer, creator, and storyteller who weaves ancient symbols, scientific speculation, 
+              Rituraj Verma is a dreamer, creator, and storyteller who weaves ancient symbols, scientific speculation, 
               and myth into a thrilling adventure. Passionate about the hidden patterns of the universe 
               and the mysteries of human consciousness, Rituraj invites readers to imagine a world 
               beyond what we see.

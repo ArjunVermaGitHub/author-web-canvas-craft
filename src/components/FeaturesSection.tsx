@@ -5,19 +5,19 @@ const FeaturesSection = () => {
   const features = [
     {
       title: "A Myth-Reality Mashup",
-      description: "Dive into a world where Indualley secrets intertwine with cosmic forces."
+      description: "Dive into a world where Indus Valley secrets intertwine with cosmic forces."
     },
     {
       title: "Cryptic Dreams and Divine Whispers",
-      description: "Guided by Shiva, Journey's daring blurs the lines between past, present, and the future."
+      description: "Guided by Lord Shiva, Raghav's daring journey blurs the lines between past, present, and the future."
     },
     {
-      title: "A Myth-Reality Mashinop",
-      description: "Guided by Shiva, Raghav's jurny wars blurs the lines between the past."
+      title: "A Journey to a secret school guided by Lord Parashuram",
+      description: "Guided by Lord Shiva, Raghav's transformation to Kalki, the 10th avatar of Vishnu, blurs the lines between the past."
     },
     {
       title: "For Fans of",
-      description: "Percy Jackson, Shiva Trilogy, and His Dark Materials."
+      description: "Harry Potter, Percy Jackson, Shiva Trilogy, and Star Wars."
     }
   ];
 
