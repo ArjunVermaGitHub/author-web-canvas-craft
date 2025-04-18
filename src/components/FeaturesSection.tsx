@@ -13,7 +13,7 @@ const FeaturesSection = () => {
     },
     {
       title: "A Journey to a secret school guided by Lord Parashuram",
-      description: "Guided by Lord Shiva, Raghav's transformation to Kalki, the 10th avatar of Vishnu, blurs the lines between the past."
+      description: "Raghav transforms into Kalki, the 10th avatar of Vishnu to end all evil on this planet."
     },
     {
       title: "For Fans of",
