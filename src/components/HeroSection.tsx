@@ -1,8 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import BookButton from './BookButton';
+import EmailSignupModal from './EmailSignupModal';
 
 const HeroSection = () => {
+
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center py-20 px-4">
       <div 
@@ -29,6 +33,12 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <BookButton>Order Now</BookButton>
             <BookButton variant="outline">Read Excerpt</BookButton>
+            <BookButton
+              variant="outline" 
+              onClick={() => setShowModal(true)}
+            >
+              Join Mailing List
+            </BookButton>
           </div>
         </div>
         
@@ -43,6 +53,11 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+            
+      <EmailSignupModal
+        open={showModal}
+        onOpenChange={setShowModal}
+      />
     </section>
   );
 };

@@ -1,10 +1,8 @@
 
 import React, { useState } from 'react';
 import BookButton from './BookButton';
-import EmailSignupModal from './EmailSignupModal';
 
 const CtaSection = () => {
-  const [showModal, setShowModal] = useState(false);
   
   return (
     <section className="book-section bg-gradient-to-b from-book-medium to-book-dark p-8 md:p-12">
@@ -17,19 +15,9 @@ const CtaSection = () => {
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <BookButton>Order Now</BookButton>
-          <BookButton 
-            variant="outline" 
-            onClick={() => setShowModal(true)}
-          >
-            Join Reading Club
-          </BookButton>
         </div>
       </div>
-      
-      <EmailSignupModal 
-        open={showModal}
-        onOpenChange={setShowModal}
-      />
+
     </section>
   );
 };

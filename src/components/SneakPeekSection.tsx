@@ -14,7 +14,7 @@ const SneakPeekSection = () => {
             A boy who carries the flame of Dharma in his bones..."
           </blockquote>
           
-          <BookButton className="mt-8" onClick={()=> window.open('https://drive.google.com/file/d/1hlAr8fCXXe6wFlNuTPWB-VRfQJ_o1xYE/view?usp=sharing', '_blank', 'noopener,noreferrer')}>
+          <BookButton className="mt-8" onClick={()=> window.open('http://drive.google.com/file/d/1quyhjYBFfm1ujANFThp5G79g2OTWCMP8/view', '_blank', 'noopener,noreferrer')}>
             Read Chapter One: Echoes of the Past
           </BookButton>
         </div>
