@@ -91,7 +91,7 @@ const EmailSignupModal = ({ open, onOpenChange }: EmailSignupModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md bg-book-dark border border-book-gold/20">
         <DialogHeader>
-          <DialogTitle className="text-book-gold font-serif text-2xl">Join Our Reading Club</DialogTitle>
+          <DialogTitle className="text-book-gold font-serif text-2xl">Join Our Mailing List</DialogTitle>
           <DialogDescription className="text-book-light/80">
             Enter your details to receive updates about new releases, author events, and exclusive content.
           </DialogDescription>
@@ -105,7 +105,7 @@ const EmailSignupModal = ({ open, onOpenChange }: EmailSignupModalProps) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Your name"
+              placeholder="John Doe"
               className="bg-book-medium/50 border-book-gold/30 text-book-light focus-visible:ring-book-gold"
               required
             />
@@ -126,7 +126,7 @@ const EmailSignupModal = ({ open, onOpenChange }: EmailSignupModalProps) => {
           
           <div className="flex justify-center pt-2">
             <BookButton type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Signing up..." : "Join Reading Club"}
+              {isSubmitting ? "Signing up..." : "Join Now"}
             </BookButton>
           </div>
         </form>

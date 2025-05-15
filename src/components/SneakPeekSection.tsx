@@ -15,7 +15,7 @@ const SneakPeekSection = () => {
           </blockquote>
           
           <BookButton className="mt-8" onClick={()=> window.open('http://drive.google.com/file/d/1quyhjYBFfm1ujANFThp5G79g2OTWCMP8/view', '_blank', 'noopener,noreferrer')}>
-            Read Chapter One: Echoes of the Past
+          Read Chapter One: Little Yama
           </BookButton>
         </div>
       </div>

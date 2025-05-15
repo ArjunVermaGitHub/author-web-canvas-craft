@@ -32,7 +32,9 @@ const HeroSection = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             {/* <BookButton>Order Now</BookButton> */}
-            <BookButton variant="outline">Read Excerpt</BookButton>
+            <BookButton  variant="outline"
+            onClick={()=> window.open('http://drive.google.com/file/d/1quyhjYBFfm1ujANFThp5G79g2OTWCMP8/view', '_blank', 'noopener,noreferrer')}
+            >Read Excerpt</BookButton>
             <BookButton
               variant="outline" 
               onClick={() => setShowModal(true)}
