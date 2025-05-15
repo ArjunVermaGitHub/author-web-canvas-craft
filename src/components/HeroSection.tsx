@@ -31,7 +31,7 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <BookButton>Order Now</BookButton>
+            {/* <BookButton>Order Now</BookButton> */}
             <BookButton variant="outline">Read Excerpt</BookButton>
             <BookButton
               variant="outline" 

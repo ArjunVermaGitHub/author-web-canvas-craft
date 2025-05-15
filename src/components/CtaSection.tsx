@@ -13,9 +13,9 @@ const CtaSection = () => {
           and destiny calls you to a forgotten civilization.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <BookButton>Order Now</BookButton>
-        </div>
+        </div> */}
       </div>
 
     </section>
