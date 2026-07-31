@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -17,6 +18,7 @@ const Footer = () => {
                 key={social}
                 href={link} 
                 target='_blank'
+                rel="noopener noreferrer"
                 className="text-book-light hover:text-book-gold transition-colors"
               >
                 {social}
@@ -25,7 +27,15 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="mt-8 pt-6 border-t border-book-medium text-center">
+        <div className="mt-8 pt-6 border-t border-book-medium text-center space-y-2">
+          <p>
+            <Link
+              to="/privacy"
+              className="text-book-light/80 hover:text-book-gold transition-colors text-sm underline underline-offset-2"
+            >
+              Privacy Policy
+            </Link>
+          </p>
           <p className="text-book-light text-sm">
             © {new Date().getFullYear()} Rituraj. All rights reserved.
           </p>

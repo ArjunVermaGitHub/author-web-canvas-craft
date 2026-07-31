@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import SneakPeekSection from '@/components/SneakPeekSection';
+import InstagramSection from '@/components/InstagramSection';
 import AuthorSection from '@/components/AuthorSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import CtaSection from '@/components/CtaSection';
@@ -18,6 +19,7 @@ const Index = () => {
         <HeroSection />
         <FeaturesSection />
         <SneakPeekSection />
+        <InstagramSection />
         <AuthorSection />
         <TestimonialsSection />
         <CtaSection />
