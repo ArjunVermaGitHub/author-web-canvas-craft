@@ -39,8 +39,8 @@ const PrivacyPolicy = () => {
               </p>
               <p className="mb-2">
                 <span className="text-book-amber">Contact for privacy matters:</span>{' '}
-                <a href="mailto:riturajverma200@gmail.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
-                  riturajverma200@gmail.com
+                <a href="mailto:privacy@riturajverma.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
+                  privacy@riturajverma.com
                 </a>
               </p>
               <p className="mb-4">
@@ -278,8 +278,8 @@ const PrivacyPolicy = () => {
                 </li>
                 <li>
                   Email us at{' '}
-                  <a href="mailto:riturajverma200@gmail.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
-                    riturajverma200@gmail.com
+                  <a href="mailto:privacy@riturajverma.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
+                    privacy@riturajverma.com
                   </a>{' '}
                   to be removed from our marketing audiences.
                 </li>
@@ -363,15 +363,15 @@ const PrivacyPolicy = () => {
               </p>
               <p className="mb-4">
                 To exercise any of these, email{' '}
-                <a href="mailto:riturajverma200@gmail.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
-                  riturajverma200@gmail.com
+                <a href="mailto:privacy@riturajverma.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
+                  privacy@riturajverma.com
                 </a>
                 . We will respond within the timeframe required by applicable law.
               </p>
               <p>
                 <span className="text-book-amber">Grievance Officer (India):</span> Rituraj Verma,{' '}
-                <a href="mailto:riturajverma200@gmail.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
-                  riturajverma200@gmail.com
+                <a href="mailto:privacy@riturajverma.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
+                  privacy@riturajverma.com
                 </a>
                 , A-202, Zeon building, Ajmera I-Land, Wadala, Mumbai. If you are not satisfied with our
                 response, you may escalate to the Data Protection Board of India. If you are in the EU or
@@ -387,8 +387,8 @@ const PrivacyPolicy = () => {
                 knowingly collect personal data from children under 18 without verifiable parental consent,
                 and our Meta ad audiences are configured to exclude users under 18. If you believe a child
                 has provided us personal data, contact us at{' '}
-                <a href="mailto:riturajverma200@gmail.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
-                  riturajverma200@gmail.com
+                <a href="mailto:privacy@riturajverma.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
+                  privacy@riturajverma.com
                 </a>{' '}
                 and we will delete it promptly.
               </p>
@@ -428,8 +428,8 @@ const PrivacyPolicy = () => {
                 <br />
                 A-202, Zeon building, Ajmera I-Land, Wadala, Mumbai
                 <br />
-                <a href="mailto:riturajverma200@gmail.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
-                  riturajverma200@gmail.com
+                <a href="mailto:privacy@riturajverma.com" className="text-book-gold hover:text-book-amber underline underline-offset-2">
+                  privacy@riturajverma.com
                 </a>
               </p>
             </section>
