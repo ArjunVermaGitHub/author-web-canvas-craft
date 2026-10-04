@@ -140,7 +140,7 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
                 </div>
               </div>
               <div className="flex justify-center">
-                <img src={phonepeQr.url} alt="PhonePe QR code" className="w-56 rounded-lg border border-book-gold/30 bg-white p-2" />
+                <img src="/phonepe-qr.png" alt="PhonePe QR code" className="w-56 rounded-lg border border-book-gold/30 bg-white p-2" />
               </div>
               <p className="text-book-light/70 text-sm text-center">
                 After paying, tap the button below so we can save your order and ship your book.
