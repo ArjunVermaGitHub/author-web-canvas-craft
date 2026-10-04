@@ -18,6 +18,7 @@ const orderSchema = z.object({
   phone: z.string().trim().regex(/^[6-9]\d{9}$/, 'Enter a valid 10-digit mobile number'),
   address: z.string().trim().min(10, 'Please enter your full address').max(300, 'Address is too long'),
   pincode: z.string().trim().regex(/^[1-9]\d{5}$/, 'Enter a valid 6-digit pincode'),
+  message: z.string().trim().max(200, 'Message is too long (max 200 characters)').optional(),
 });
 
 type Step = 'details' | 'payment' | 'done';
@@ -28,6 +29,7 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [pincode, setPincode] = useState('');
+  const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderId, setOrderId] = useState('');
   const { toast } = useToast();
@@ -38,6 +40,7 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
     setPhone('');
     setAddress('');
     setPincode('');
+    setMessage('');
     setOrderId('');
   };
 
@@ -48,7 +51,7 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
 
   const handleDetailsSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const result = orderSchema.safeParse({ name, phone, address, pincode });
+    const result = orderSchema.safeParse({ name, phone, address, pincode, message: message || undefined });
     if (!result.success) {
       toast({
         title: 'Please check your details',
@@ -66,7 +69,7 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
       const response = await fetch('/api/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, address, pincode, amount: TOTAL_PRICE }),
+        body: JSON.stringify({ name, phone, address, pincode, message: message.trim() || undefined, amount: TOTAL_PRICE }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Something went wrong');
@@ -96,7 +99,7 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
             <DialogHeader>
               <DialogTitle className="text-book-gold font-serif text-2xl">Order Your Copy</DialogTitle>
               <DialogDescription className="text-book-light/80">
-                {BOOK_TITLE} — ₹{BOOK_PRICE} + ₹{SHIPPING_PRICE} shipping
+                {BOOK_TITLE} — ₹{TOTAL_PRICE} (shipping & handling included)
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleDetailsSubmit} className="space-y-4 pt-4">
@@ -115,6 +118,13 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
               <div className="space-y-2">
                 <Label htmlFor="buyer-pincode" className="text-book-light">Pincode</Label>
                 <Input id="buyer-pincode" value={pincode} onChange={(e) => setPincode(e.target.value)} placeholder="6-digit pincode" className={inputClass} required maxLength={6} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="buyer-message" className="text-book-light">
+                  Personalised Message <span className="text-book-light/60 text-xs">(optional)</span>
+                </Label>
+                <Textarea id="buyer-message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="A short note the author will handwrite on your copy" className={inputClass} maxLength={200} rows={2} />
+                <p className="text-book-light/50 text-xs">The author will write this message on your book before shipping.</p>
               </div>
               <div className="flex justify-center pt-2">
                 <BookButton type="submit">Continue to Payment</BookButton>
@@ -138,6 +148,7 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
                 <div className="flex justify-between border-t border-book-gold/30 pt-2 font-serif text-book-gold text-base">
                   <span>Total</span><span>₹{TOTAL_PRICE}</span>
                 </div>
+                <p className="text-book-light/60 text-xs pt-1">Shipping & handling included in the total.</p>
               </div>
               <div className="flex justify-center">
                 <img src="/phonepe-qr.png" alt="PhonePe QR code" className="w-56 rounded-lg border border-book-gold/30 bg-white p-2" />
