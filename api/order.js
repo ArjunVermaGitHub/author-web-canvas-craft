@@ -27,7 +27,7 @@ export default async function handler(req, res) {
 
   try {
     const rawBody = await buffer(req);
-    const { name, phone, address, pincode, amount } = JSON.parse(rawBody.toString());
+    const { name, phone, address, pincode, message, amount } = JSON.parse(rawBody.toString());
 
     if (!name || !NAME_RE.test(name.trim())) {
       return res.status(400).json({ error: 'Please provide a valid name' });
@@ -44,6 +44,9 @@ export default async function handler(req, res) {
     if (typeof amount !== 'number' || amount <= 0 || amount > 100000) {
       return res.status(400).json({ error: 'Invalid order amount' });
     }
+    if (message !== undefined && message !== null && (typeof message !== 'string' || message.trim().length > 200)) {
+      return res.status(400).json({ error: 'Message must be 200 characters or fewer' });
+    }
 
     const MONGODB_URI = process.env.MONGODB_URI;
     const db = await connectToDatabase(MONGODB_URI);
@@ -54,6 +57,7 @@ export default async function handler(req, res) {
       phone: String(phone).trim(),
       address: address.trim(),
       pincode: String(pincode).trim(),
+      message: typeof message === 'string' && message.trim() ? message.trim() : null, // handwritten note for the author to write on the book
       amount,
       status: 'payment_confirmed_by_buyer', // verify in PhonePe app before shipping
       orderedAt: new Date(),
