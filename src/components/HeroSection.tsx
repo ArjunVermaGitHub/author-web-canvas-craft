@@ -3,6 +3,7 @@ import BookButton from './BookButton';
 import EmailSignupModal from './EmailSignupModal';
 import BuyModal from './BuyModal';
 import { BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE } from '@/config/book';
+import bookCoverAsset from '@/assets/raghav-ebook-cover.jpg.asset.json';
 
 const HeroSection = () => {
 
