@@ -3,7 +3,6 @@ import BookButton from './BookButton';
 import EmailSignupModal from './EmailSignupModal';
 import BuyModal from './BuyModal';
 import { BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE } from '@/config/book';
-import bookCoverAsset from '@/assets/raghav-ebook-cover.jpg.asset.json';
 
 const HeroSection = () => {
 
@@ -55,7 +54,7 @@ const HeroSection = () => {
         <div className="w-full lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
           <div className="relative w-64 md:w-80 rounded-lg overflow-hidden shadow-2xl">
             <img
-              src={bookCoverAsset.url}
+              src="/raghav-ebook-cover.jpg"
               alt="Raghav Kartikeya and the Tablets of Dharma — Book Cover"
               className="w-full h-auto object-cover"
             />
