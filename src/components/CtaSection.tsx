@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import BookButton from './BookButton';
-import OrderModal, { TOTAL_AMOUNT } from './OrderModal';
+import BuyModal from './BuyModal';
+import { TOTAL_PRICE } from '@/config/book';
 
 const CtaSection = () => {
-  const [showOrderModal, setShowOrderModal] = useState(false);
+  const [showBuyModal, setShowBuyModal] = useState(false);
 
   return (
     <section className="book-section bg-gradient-to-b from-book-medium to-book-dark p-8 md:p-12">
@@ -15,15 +16,18 @@ const CtaSection = () => {
           Discover the world where dreams and ancient memories intertwine, and
           destiny calls you to a forgotten civilization.
         </p>
-
+        
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <BookButton onClick={() => setShowOrderModal(true)}>
-            Order Your Copy — ₹{TOTAL_AMOUNT}
+          <BookButton onClick={() => setShowBuyModal(true)}>
+            Order Your Copy — ₹{TOTAL_PRICE}
           </BookButton>
         </div>
       </div>
 
-      <OrderModal open={showOrderModal} onOpenChange={setShowOrderModal} />
+      <BuyModal
+        open={showBuyModal}
+        onOpenChange={setShowBuyModal}
+      />
     </section>
   );
 };

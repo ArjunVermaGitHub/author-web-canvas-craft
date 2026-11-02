@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import BookButton from './BookButton';
 import EmailSignupModal from './EmailSignupModal';
-import OrderModal, {
-  BOOK_PRICE,
-  SHIPPING_PRICE,
-  TOTAL_AMOUNT,
-} from './OrderModal';
+import BuyModal from './BuyModal';
+import { BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE } from '@/config/book';
 
 const HeroSection = () => {
   const [showMailingModal, setShowMailingModal] = useState(false);
-  const [showOrderModal, setShowOrderModal] = useState(false);
+  const [showBuyModal, setShowBuyModal] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center py-20 px-4">
@@ -37,8 +34,8 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <BookButton onClick={() => setShowOrderModal(true)}>
-              Buy Now — ₹{TOTAL_AMOUNT}
+            <BookButton onClick={() => setShowBuyModal(true)}>
+              Buy Now — ₹{TOTAL_PRICE}
             </BookButton>
             <BookButton
               variant="outline"
@@ -60,8 +57,7 @@ const HeroSection = () => {
             </BookButton>
           </div>
           <p className="text-book-light/70 text-sm mt-4">
-            ₹{BOOK_PRICE} + ₹{SHIPPING_PRICE} shipping · Pay securely with
-            PhonePe
+            ₹{BOOK_PRICE} + ₹{SHIPPING_PRICE} shipping · Pay securely with PhonePe
           </p>
         </div>
 
@@ -80,7 +76,10 @@ const HeroSection = () => {
         open={showMailingModal}
         onOpenChange={setShowMailingModal}
       />
-      <OrderModal open={showOrderModal} onOpenChange={setShowOrderModal} />
+      <BuyModal
+        open={showBuyModal}
+        onOpenChange={setShowBuyModal}
+      />
     </section>
   );
 };
