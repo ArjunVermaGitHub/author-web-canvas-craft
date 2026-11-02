@@ -8,8 +8,9 @@ export const config = {
   },
 };
 
-const phoneRegex = /^[6-9]\d{9}$/;
-const pincodeRegex = /^[1-9]\d{5}$/;
+const NAME_RE = /^[\p{L} .'-]{2,100}$/u;
+const PHONE_RE = /^[6-9]\d{9}$/;
+const PINCODE_RE = /^[1-9]\d{5}$/;
 
 function makeOrderId() {
   return `RK-${randomBytes(3).toString('hex').toUpperCase()}`;
@@ -46,23 +47,23 @@ export default async function handler(req, res) {
         : undefined;
     const amount = Number(body.amount);
 
-    if (!name || name.length < 2 || name.length > 100) {
-      return res.status(400).json({ error: 'Valid name is required' });
+    if (!name || !NAME_RE.test(name)) {
+      return res.status(400).json({ error: 'Please provide a valid name' });
     }
-    if (!phoneRegex.test(phone)) {
-      return res.status(400).json({ error: 'Enter a valid 10-digit mobile number' });
+    if (!PHONE_RE.test(phone)) {
+      return res.status(400).json({ error: 'Please provide a valid 10-digit mobile number' });
     }
     if (!address || address.length < 10 || address.length > 300) {
-      return res.status(400).json({ error: 'Please enter your full address' });
+      return res.status(400).json({ error: 'Please provide a full address (10–300 characters)' });
     }
-    if (!pincodeRegex.test(pincode)) {
-      return res.status(400).json({ error: 'Enter a valid 6-digit pincode' });
+    if (!PINCODE_RE.test(pincode)) {
+      return res.status(400).json({ error: 'Please provide a valid 6-digit pincode' });
     }
     if (message && message.length > 200) {
-      return res.status(400).json({ error: 'Message is too long' });
+      return res.status(400).json({ error: 'Message must be 200 characters or fewer' });
     }
-    if (!Number.isFinite(amount) || amount <= 0) {
-      return res.status(400).json({ error: 'Valid amount is required' });
+    if (!Number.isFinite(amount) || amount <= 0 || amount > 100000) {
+      return res.status(400).json({ error: 'Invalid order amount' });
     }
 
     const MONGODB_URI = process.env.MONGODB_URI;
@@ -80,7 +81,7 @@ export default async function handler(req, res) {
       phone,
       address,
       pincode,
-      message,
+      message: message ?? null,
       amount,
       paymentMethod: 'phonepe',
       status: 'pending_verification',
