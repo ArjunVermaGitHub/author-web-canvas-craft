@@ -20,10 +20,15 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				serif: ['Playfair Display', 'Georgia', 'serif'],
-				sans: ['Crimson Text', 'system-ui', 'sans-serif'],
+				serif: ['Rozha One', 'Georgia', 'serif'],
+				display: ['Rozha One', 'Georgia', 'serif'],
+				sans: ['Hind', 'system-ui', 'sans-serif'],
 			},
 			colors: {
+				stonepage: '#D8D5CA',
+				lapis: '#0E1A3A',
+				carnelian: '#C2411B',
+				ember: '#EE7A52',
 				book: {
 					dark: '#1A0F00',
 					brown: '#2A1A0A',

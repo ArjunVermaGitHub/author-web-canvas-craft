@@ -1,85 +1,72 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BookButton from './BookButton';
-import EmailSignupModal from './EmailSignupModal';
-import BuyModal from './BuyModal';
 import { BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE } from '@/config/book';
 
+const facts = [
+  ['Genre', 'Mythological fantasy, teens and young adults'],
+  ['Series', 'Book 1'],
+  ['Publisher', 'Qurate Books, August 2026'],
+  ['ISBN', '9789358987447'],
+];
+
 const HeroSection = () => {
-  const [showMailingModal, setShowMailingModal] = useState(false);
-  const [showBuyModal, setShowBuyModal] = useState(false);
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center py-20 px-4">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundColor: '#2d1a0b' }}
-      >
-        <div className="absolute inset-0 bg-book-dark/70"></div>
-      </div>
-
-      <div className="container mx-auto relative z-1 flex flex-col lg:flex-row items-center">
-        <div className="w-full lg:w-1/2 text-center lg:text-left animate-fade-in">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl text-book-gold font-serif mb-4">
-            About the Book
-          </h1>
-          <div className="text-book-light text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-8">
-            <p className="mb-4">What if your dreams were ancient memories?</p>
-            <p className="mb-6">
-              What if destiny called you back to a forgotten civilization?
+    <section id="top" className="scroll-mt-20 bg-stonepage">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 py-12 md:py-20">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+          <div className="w-full lg:w-3/5">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl text-lapis font-serif leading-tight mb-6">
+              Raghav Kartikeya and the Tablets of Dharma
+            </h1>
+            <p className="text-lg md:text-xl text-lapis leading-relaxed mb-8 max-w-2xl">
+              A nine-year-old from Mumbai finds he can read the Indus Valley
+              script, a language no scholar has ever deciphered. It leads him
+              to a hidden school in the Himalayas, and to an immortal warlord
+              who wants humanity gone.
             </p>
-            <div className="text-book-amber">
-              <span>Mythological Fantasy</span> <span className="mx-2">|</span>
-              <span>Coming of Age</span> <span className="mx-2">|</span>
-              <span>Adventure</span>
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <BookButton onClick={() => setShowBuyModal(true)}>
-              Buy Now — ₹{TOTAL_PRICE}
-            </BookButton>
-            <BookButton
-              variant="outline"
-              onClick={() =>
-                window.open(
-                  'http://drive.google.com/file/d/1quyhjYBFfm1ujANFThp5G79g2OTWCMP8/view',
-                  '_blank',
-                  'noopener,noreferrer'
-                )
-              }
-            >
-              Read Excerpt
-            </BookButton>
-            <BookButton
-              variant="outline"
-              onClick={() => setShowMailingModal(true)}
-            >
-              Join Mailing List
-            </BookButton>
-          </div>
-          <p className="text-book-light/70 text-sm mt-4">
-            ₹{BOOK_PRICE} + ₹{SHIPPING_PRICE} shipping · Pay securely with PhonePe
-          </p>
-        </div>
 
-        <div className="w-full lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
-          <div className="relative w-64 md:w-80 rounded-lg overflow-hidden shadow-2xl">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-6">
+              <BookButton href="#buy" className="sm:w-auto">
+                Order a signed copy — ₹{TOTAL_PRICE}
+              </BookButton>
+              <a
+                href="#sample"
+                className="text-carnelian font-semibold underline underline-offset-4 hover:text-lapis transition-colors min-h-[44px] flex items-center"
+              >
+                Read Chapter One free
+              </a>
+            </div>
+
+            <p className="text-lapis/80 text-sm max-w-xl leading-relaxed mb-10">
+              ₹{BOOK_PRICE} for the book and ₹{SHIPPING_PRICE} for shipping
+              within India. The author handwrites your message inside the
+              cover. Pay securely with PhonePe.
+            </p>
+
+            <dl className="border-t-2 border-lapis max-w-xl">
+              {facts.map(([term, detail]) => (
+                <div
+                  key={term}
+                  className="flex gap-4 py-3 border-b border-lapis/20"
+                >
+                  <dt className="font-semibold text-lapis w-28 shrink-0">
+                    {term}
+                  </dt>
+                  <dd className="text-lapis/90">{detail}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="w-full lg:w-2/5 flex justify-center lg:justify-end">
             <img
               src="/raghav-ebook-cover.jpg"
-              alt="Raghav Kartikeya and the Tablets of Dharma — Book Cover"
-              className="w-full h-auto object-cover"
+              alt="Raghav Kartikeya and the Tablets of Dharma — book cover"
+              className="w-full max-w-xs md:max-w-sm h-auto"
             />
           </div>
         </div>
       </div>
-
-      <EmailSignupModal
-        open={showMailingModal}
-        onOpenChange={setShowMailingModal}
-      />
-      <BuyModal
-        open={showBuyModal}
-        onOpenChange={setShowBuyModal}
-      />
     </section>
   );
 };
