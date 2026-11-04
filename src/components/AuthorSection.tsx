@@ -1,30 +1,47 @@
-
 import React from 'react';
+
+const socials = [
+  ['Instagram', 'https://www.instagram.com/raghav.kartikeya.series/'],
+  ['Facebook', 'https://www.facebook.com/profile.php?id=61574944773635'],
+  ['YouTube', 'https://www.youtube.com/@RaghavKartikeya'],
+] as const;
 
 const AuthorSection = () => {
   return (
-    <section className="book-section bg-book-brown">
-      <div className="container mx-auto">
-        <h2 className="section-heading">Meet the Author</h2>
-        
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10">
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-book-gold">
-              <img 
-                src="/dad.jpeg" 
-                alt="Rituraj - Author" 
-                className="w-full h-full object-cover"
-              />
-            </div>
+    <section id="author" className="scroll-mt-20 bg-lapis text-stonepage band-section">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+          <div className="shrink-0">
+            <img
+              src="/dad.jpeg"
+              alt="Rituraj Verma"
+              className="w-56 h-56 md:w-72 md:h-72 object-cover border-4 border-ember"
+            />
           </div>
-          
-          <div className="w-full md:w-2/3 text-book-light">
-            <p className="text-lg leading-relaxed">
-              Rituraj Verma is a dreamer, creator, and storyteller who weaves ancient symbols, scientific speculation, 
-              and myth into a thrilling adventure. Passionate about the hidden patterns of the universe 
-              and the mysteries of human consciousness, Rituraj invites readers to imagine a world 
-              beyond what we see.
+
+          <div className="max-w-2xl">
+            <h2 className="band-heading">Rituraj Verma</h2>
+            <p className="text-lg md:text-xl leading-relaxed text-stonepage/90 mb-8">
+              Rituraj spent nearly ten years writing Book 1. He trained as an
+              engineer in India, holds an MBA from the United States, and built
+              a career in corporate strategy. He wrote the series because he
+              wanted Indian children to have heroes who come from their own
+              stories.
             </p>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              {socials.map(([label, href]) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center min-h-[44px] text-ember font-semibold underline underline-offset-4 hover:text-stonepage transition-colors"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
