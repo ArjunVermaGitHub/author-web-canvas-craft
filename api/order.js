@@ -11,6 +11,7 @@ export const config = {
 const NAME_RE = /^[\p{L} .'-]{2,100}$/u;
 const PHONE_RE = /^[6-9]\d{9}$/;
 const PINCODE_RE = /^[1-9]\d{5}$/;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function makeOrderId() {
   return `RK-${randomBytes(3).toString('hex').toUpperCase()}`;
@@ -38,6 +39,7 @@ export default async function handler(req, res) {
     const rawBody = await buffer(req);
     const body = JSON.parse(rawBody.toString());
     const name = typeof body.name === 'string' ? body.name.trim() : '';
+    const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
     const phone = typeof body.phone === 'string' ? body.phone.trim() : '';
     const address = typeof body.address === 'string' ? body.address.trim() : '';
     const pincode = typeof body.pincode === 'string' ? body.pincode.trim() : '';
@@ -49,6 +51,9 @@ export default async function handler(req, res) {
 
     if (!name || !NAME_RE.test(name)) {
       return res.status(400).json({ error: 'Please provide a valid name' });
+    }
+    if (!EMAIL_RE.test(email) || email.length > 254) {
+      return res.status(400).json({ error: 'Please provide a valid email address' });
     }
     if (!PHONE_RE.test(phone)) {
       return res.status(400).json({ error: 'Please provide a valid 10-digit mobile number' });
@@ -78,6 +83,7 @@ export default async function handler(req, res) {
     await collection.insertOne({
       orderId,
       name,
+      email,
       phone,
       address,
       pincode,

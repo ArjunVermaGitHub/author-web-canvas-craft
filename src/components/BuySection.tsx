@@ -7,8 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
 import { BOOK_TITLE, BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, PAYEE_NAME } from '@/config/book';
 
-// TODO: replace with the Amazon product link for the book.
-const AMAZON_URL = '';
+const AMAZON_URL = 'https://amzn.in/d/0bB3vi0p';
 
 const orderSchema = z.object({
   name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
@@ -105,7 +104,7 @@ const BuySection = () => {
                   <Input id="buyer-name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your full name" className={inputClass} required maxLength={100} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="buyer-email" className="text-stonepage">Email <span className="text-stonepage/60 text-sm">(for order updates)</span></Label>
+                  <Label htmlFor="buyer-email" className="text-stonepage">Email <span className="text-stonepage/60 text-base">(for order updates)</span></Label>
                   <Input id="buyer-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className={inputClass} required />
                 </div>
                 <div className="space-y-2">
@@ -122,17 +121,14 @@ const BuySection = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="buyer-message" className="text-stonepage">
-                    Message for the author <span className="text-stonepage/60 text-sm">(optional)</span>
+                    Message for the author <span className="text-stonepage/60 text-base">(optional)</span>
                   </Label>
                   <Textarea id="buyer-message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="A short note the author will handwrite inside your copy" className={inputClass} maxLength={200} rows={2} />
                 </div>
                 <div className="pt-2">
                   <BookButton type="submit" className="w-full sm:w-auto">
-                    Continue to PhonePe — ₹{TOTAL_PRICE}
+                    Continue to payment — ₹{TOTAL_PRICE}
                   </BookButton>
-                  <p className="text-stonepage/70 text-sm mt-3">
-                    You pay on PhonePe's secure page.
-                  </p>
                 </div>
               </form>
             )}
@@ -151,7 +147,7 @@ const BuySection = () => {
                 </div>
                 <p className="text-stonepage/80 text-center">
                   Scan the QR with your PhonePe app and pay ₹{TOTAL_PRICE} to {PAYEE_NAME}.
-                  You pay on PhonePe's secure page.
+                  Then tap the button below so we can save your order and ship your copy.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <BookButton variant="outline-ember" onClick={() => setStep('details')} disabled={isSubmitting} className="flex-1">
@@ -172,7 +168,7 @@ const BuySection = () => {
                   PhonePe and ship your signed copy of {BOOK_TITLE} to your address.
                 </p>
                 {orderId && (
-                  <p className="text-stonepage/80 text-sm">
+                  <p className="text-stonepage/80 text-base">
                     Order reference: <span className="text-ember font-semibold">{orderId}</span>
                   </p>
                 )}
@@ -198,10 +194,11 @@ const BuySection = () => {
             </p>
             <BookButton
               variant="outline-ember"
-              href={AMAZON_URL || '#buy'}
-              aria-label="Order the book on Amazon"
+              href={AMAZON_URL}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Order on Amazon
+              Order from Amazon
             </BookButton>
           </div>
         </div>

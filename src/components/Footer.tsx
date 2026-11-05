@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between gap-6">
           <div>
             <p className="font-serif text-xl text-ember mb-1">Rituraj Verma</p>
-            <p className="text-stonepage/70 text-sm">
+            <p className="text-stonepage/70 text-base">
               Author of the Raghav Kartikeya series
             </p>
           </div>
@@ -19,7 +19,7 @@ const Footer = () => {
             Privacy policy
           </Link>
         </div>
-        <p className="text-stonepage/60 text-sm mt-10 pt-6 border-t border-stonepage/20">
+        <p className="text-stonepage/60 text-base mt-10 pt-6 border-t border-stonepage/20">
           © 2026 Rituraj Verma. All rights reserved.
         </p>
       </div>

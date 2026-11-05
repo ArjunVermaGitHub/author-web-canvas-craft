@@ -4,6 +4,8 @@ import { cn } from '@/lib/utils';
 interface BookButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'outline' | 'outline-ember';
   href?: string;
+  target?: string;
+  rel?: string;
   children: React.ReactNode;
 }
 
@@ -19,22 +21,31 @@ const variantStyles: Record<NonNullable<BookButtonProps['variant']>, string> = {
 const BookButton = ({
   variant = 'primary',
   href,
+  target,
+  rel,
   className,
   children,
+  onClick,
   ...props
 }: BookButtonProps) => {
   const classes = cn(buttonStyles, variantStyles[variant], className);
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a
+        href={href}
+        target={target}
+        rel={rel}
+        className={classes}
+        onClick={onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
+      >
         {children}
       </a>
     );
   }
 
   return (
-    <button className={classes} {...props}>
+    <button className={classes} onClick={onClick} {...props}>
       {children}
     </button>
   );
