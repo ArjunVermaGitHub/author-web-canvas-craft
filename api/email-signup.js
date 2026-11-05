@@ -91,7 +91,7 @@ export default async function handler(req, res) {
     await collection.insertOne({
       email,
       name: typeof name === 'string' && name.trim() ? name.trim() : null,
-      source: 'chapter-one',
+      source: "sample-chapters",
       subscribedAt: new Date(),
     });
 
