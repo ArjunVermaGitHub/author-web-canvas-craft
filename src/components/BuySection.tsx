@@ -104,7 +104,7 @@ const BuySection = () => {
                   <Input id="buyer-name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your full name" className={inputClass} required maxLength={100} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="buyer-email" className="text-stonepage">Email <span className="text-stonepage/60 text-sm">(for order updates)</span></Label>
+                  <Label htmlFor="buyer-email" className="text-stonepage">Email <span className="text-stonepage/60 text-base">(for order updates)</span></Label>
                   <Input id="buyer-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className={inputClass} required />
                 </div>
                 <div className="space-y-2">
@@ -121,7 +121,7 @@ const BuySection = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="buyer-message" className="text-stonepage">
-                    Message for the author <span className="text-stonepage/60 text-sm">(optional)</span>
+                    Message for the author <span className="text-stonepage/60 text-base">(optional)</span>
                   </Label>
                   <Textarea id="buyer-message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="A short note the author will handwrite inside your copy" className={inputClass} maxLength={200} rows={2} />
                 </div>
@@ -168,7 +168,7 @@ const BuySection = () => {
                   PhonePe and ship your signed copy of {BOOK_TITLE} to your address.
                 </p>
                 {orderId && (
-                  <p className="text-stonepage/80 text-sm">
+                  <p className="text-stonepage/80 text-base">
                     Order reference: <span className="text-ember font-semibold">{orderId}</span>
                   </p>
                 )}

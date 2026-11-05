@@ -37,7 +37,7 @@ const HeroSection = () => {
               </a>
             </div>
 
-            <p className="text-lapis/80 text-sm max-w-xl leading-relaxed mb-10">
+            <p className="text-lapis/80 text-base max-w-xl leading-relaxed mb-10">
               ₹{BOOK_PRICE} for the book and ₹{SHIPPING_PRICE} for shipping
               within India. The author handwrites your message inside the
               cover. Pay by PhonePe QR.

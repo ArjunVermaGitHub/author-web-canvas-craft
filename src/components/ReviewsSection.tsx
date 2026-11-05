@@ -14,7 +14,7 @@ const ReviewsSection = () => {
           <p className="text-lapis/70 text-lg">
             No reader reviews published yet.
           </p>
-          <p className="text-lapis/50 text-sm mt-2">
+          <p className="text-lapis/50 text-base mt-2">
             Verified reviews will appear here as readers share them.
           </p>
         </div>
