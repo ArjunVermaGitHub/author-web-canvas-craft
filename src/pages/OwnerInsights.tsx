@@ -1,0 +1,108 @@
+import React, { useRef, useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import BookButton from '@/components/BookButton';
+
+const MAX_CHARS = 200_000;
+
+const OwnerInsights = () => {
+  const [code, setCode] = useState('');
+  const [data, setData] = useState('');
+  const [question, setQuestion] = useState('');
+  const [output, setOutput] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const abortRef = useRef<AbortController | null>(null);
+
+  const onFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setData(await file.text());
+  };
+
+  const analyse = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setOutput('');
+    if (!code.trim()) return setError('Enter your access code.');
+    if (data.trim().length < 20) return setError('Paste or upload your event data first.');
+    if (data.length > MAX_CHARS) return setError('That export is too large. Choose a shorter date range.');
+
+    const controller = new AbortController();
+    abortRef.current = controller;
+    setLoading(true);
+    try {
+      const res = await fetch('/api/insights', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, data, question }),
+        signal: controller.signal,
+      });
+      if (!res.ok || !res.body) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || `Request failed (${res.status})`);
+      }
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        setOutput((prev) => prev + decoder.decode(value, { stream: true }));
+      }
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') setError((err as Error).message);
+    } finally {
+      setLoading(false);
+      abortRef.current = null;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-stonepage text-lapis px-4 py-10 md:px-8">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="font-serif text-3xl md:text-4xl mb-2">Sales insights</h1>
+        <p className="mb-8 text-lapis/80">
+          Paste or upload a Google Tag Manager / GA4 events export. The AI looks for patterns behind
+          signed-copy orders and Amazon clicks.
+        </p>
+
+        <form onSubmit={analyse} className="space-y-5 border-t-4 border-lapis pt-6">
+          <div className="space-y-2">
+            <Label htmlFor="owner-code">Access code</Label>
+            <Input id="owner-code" type="password" value={code} onChange={(e) => setCode(e.target.value)} className="min-h-[44px] rounded-none bg-white/60" autoComplete="current-password" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="owner-file">Upload export (CSV, JSON or text)</Label>
+            <Input id="owner-file" type="file" accept=".csv,.json,.txt,.tsv" onChange={onFile} className="min-h-[44px] rounded-none bg-white/60" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="owner-data">Event data</Label>
+            <Textarea id="owner-data" value={data} onChange={(e) => setData(e.target.value)} rows={10} placeholder="event_name,page,source,device,count..." className="rounded-none bg-white/60 font-mono text-base" />
+            <p className="text-base text-lapis/70">{data.length.toLocaleString()} / {MAX_CHARS.toLocaleString()} characters</p>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="owner-question">Specific question (optional)</Label>
+            <Input id="owner-question" value={question} maxLength={500} onChange={(e) => setQuestion(e.target.value)} placeholder="e.g. Why do mobile visitors pick Amazon?" className="min-h-[44px] rounded-none bg-white/60" />
+          </div>
+          <div className="flex gap-3">
+            <BookButton type="submit" disabled={loading}>{loading ? 'Analysing…' : 'Find patterns'}</BookButton>
+            {loading && (
+              <BookButton type="button" variant="outline" onClick={() => abortRef.current?.abort()}>Stop</BookButton>
+            )}
+          </div>
+        </form>
+
+        {error && <p role="alert" className="mt-6 border-l-4 border-carnelian pl-4">{error}</p>}
+        {output && (
+          <section className="mt-8 border-t-4 border-lapis pt-6">
+            <h2 className="font-serif text-2xl mb-4">Findings</h2>
+            <div className="whitespace-pre-wrap break-words leading-relaxed">{output}</div>
+          </section>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default OwnerInsights;
