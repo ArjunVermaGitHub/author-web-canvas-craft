@@ -14,6 +14,28 @@ const OwnerInsights = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
+  const [stats, setStats] = useState<Record<string, number> | null>(null);
+  const [statsLoading, setStatsLoading] = useState(false);
+
+  const loadStats = async () => {
+    setError('');
+    if (!code.trim()) return setError('Enter your access code.');
+    setStatsLoading(true);
+    try {
+      const res = await fetch('/api/visits', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || `Request failed (${res.status})`);
+      setStats(body);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setStatsLoading(false);
+    }
+  };
 
   const onFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -71,6 +93,27 @@ const OwnerInsights = () => {
           <div className="space-y-2">
             <Label htmlFor="owner-code">Access code</Label>
             <Input id="owner-code" type="password" value={code} onChange={(e) => setCode(e.target.value)} className="min-h-[44px] rounded-none bg-white/60" autoComplete="current-password" />
+          </div>
+          <div className="space-y-3">
+            <BookButton type="button" variant="outline" onClick={loadStats} disabled={statsLoading}>
+              {statsLoading ? 'Loading…' : 'Show visitors and orders'}
+            </BookButton>
+            {stats && (
+              <dl className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {[
+                  ['Visitors, last 24 hours', stats.last24h],
+                  ['Visitors, all time', stats.total],
+                  ['Signed copies, last 7 days', stats.ordersThisWeek],
+                  ['Signed copies, previous 7 days', stats.ordersLastWeek],
+                  ['Signed copies, all time', stats.ordersTotal],
+                ].map(([label, value]) => (
+                  <div key={label} className="border-t-4 border-lapis pt-2">
+                    <dt className="text-base text-lapis/70">{label}</dt>
+                    <dd className="font-serif text-3xl">{Number(value).toLocaleString('en-IN')}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="owner-file">Upload export (CSV, JSON or text)</Label>
