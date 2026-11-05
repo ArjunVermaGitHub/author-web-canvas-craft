@@ -1,4 +1,5 @@
 import React from 'react';
+import { READER_REVIEWS } from '@/data/readerReviews';
 
 // Real, verified reader reviews only. Never add invented reviews.
 const SHOW_REVIEWS = true;
@@ -51,6 +52,37 @@ const ReviewsSection = () => {
             </article>
           ))}
         </div>
+
+        <h3 className="font-serif text-2xl text-lapis mt-14 mb-6 border-t-4 border-lapis pt-6">
+          More reader reviews
+        </h3>
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 divide-y divide-lapis/15 sm:divide-y-0">
+          {READER_REVIEWS.map((r) => (
+            <li key={r.insta} className="py-3 sm:border-b sm:border-lapis/15">
+              <p className="font-semibold text-lapis break-words">{r.name}</p>
+              <p className="flex flex-wrap gap-x-4">
+                {[
+                  { label: 'Instagram', href: r.insta },
+                  { label: 'Amazon', href: r.amazon },
+                  { label: 'Goodreads', href: r.goodreads },
+                ]
+                  .filter((l) => l.href)
+                  .map((l) => (
+                    <a
+                      key={l.label}
+                      href={l.href!}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${r.name}'s review on ${l.label}`}
+                      className="text-carnelian underline underline-offset-4 hover:text-lapis min-h-[44px] inline-flex items-center"
+                    >
+                      {l.label}
+                    </a>
+                  ))}
+              </p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
