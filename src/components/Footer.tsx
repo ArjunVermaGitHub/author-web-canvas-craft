@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import VisitorCounter from './VisitorCounter';
 
 const Footer = () => {
   return (
@@ -19,6 +20,7 @@ const Footer = () => {
             Privacy policy
           </Link>
         </div>
+        <VisitorCounter />
         <p className="text-stonepage/60 text-base mt-10 pt-6 border-t border-stonepage/20">
           © 2026 Rituraj Verma. All rights reserved.
         </p>
