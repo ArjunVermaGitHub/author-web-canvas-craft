@@ -7,6 +7,7 @@ const SampleSection = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,17 +31,24 @@ const SampleSection = () => {
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Something went wrong');
+      const delivered = data.emailSent === true;
+      setEmailSent(delivered);
       setSent(true);
       setEmail('');
       if (data.status === 'exists') {
         toast({
           title: 'Already registered',
-          description: 'Chapter One is on its way to this email.',
+          description: "You're on the list. The sample link is also available above.",
+        });
+      } else if (delivered) {
+        toast({
+          title: 'Check your inbox',
+          description: 'The first two chapters are on their way.',
         });
       } else {
         toast({
-          title: 'Check your inbox',
-          description: 'Chapter One, Little Yama, is on its way.',
+          title: "You're on the list",
+          description: 'The sample link is also available above.',
         });
       }
     } catch (error) {
@@ -57,18 +65,30 @@ const SampleSection = () => {
   return (
     <section id="sample" className="scroll-mt-20 bg-stonepage band-section">
       <div className="max-w-6xl mx-auto">
-        <h2 className="page-heading">Read Chapter One before you buy</h2>
+        <h2 className="page-heading">Read the first two chapters before you buy</h2>
         <p className="text-lg text-lapis/90 max-w-2xl mb-8">
-          Enter your email and we will send Chapter One, “Little Yama”, today.
+          Enter your email and we will send the first two chapters today.
           We will also tell you when Book 2 is ready.
+        </p>
+        <p className="mb-8">
+          <a
+            href="/Raghav-Kartikeya-Sample-Chapters.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-carnelian font-semibold underline underline-offset-4 hover:text-lapis transition-colors min-h-[44px] inline-flex items-center"
+          >
+            Read the first two chapters free
+          </a>
         </p>
 
         {sent ? (
           <p className="text-lg text-lapis border-l-4 border-carnelian pl-5 max-w-2xl">
-            It's on its way — check your inbox for Chapter One. If it doesn't
-            arrive in a few minutes, look in spam or try again.
+            {emailSent
+              ? "Check your inbox for the first two chapters. If they don't arrive in a few minutes, look in spam."
+              : "You're on the list. The sample link is also available above."}
           </p>
         ) : (
+          <>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-xl">
             <label htmlFor="sample-email" className="sr-only">
               Email address
@@ -83,9 +103,14 @@ const SampleSection = () => {
               className="min-h-[44px] bg-white/60 border-2 border-lapis/40 text-lapis placeholder:text-lapis/50"
             />
             <BookButton type="submit" disabled={isSubmitting} className="sm:shrink-0">
-              {isSubmitting ? 'Sending…' : 'Send me Chapter One'}
+              {isSubmitting ? 'Sending…' : 'Send me the first two chapters'}
             </BookButton>
           </form>
+          <p className="text-base text-lapis/80 max-w-xl mt-4">
+            By signing up you agree to get the sample and occasional news about
+            the books. Reply to any email to unsubscribe.
+          </p>
+          </>
         )}
       </div>
     </section>

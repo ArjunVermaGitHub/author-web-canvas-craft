@@ -14,8 +14,8 @@ const SneakPeekSection = () => {
             A boy who carries the flame of Dharma in his bones..."
           </blockquote>
           
-          <BookButton className="mt-8" onClick={()=> window.open('http://drive.google.com/file/d/1quyhjYBFfm1ujANFThp5G79g2OTWCMP8/view', '_blank', 'noopener,noreferrer')}>
-          Read Chapter One: Little Yama
+          <BookButton className="mt-8" onClick={()=> window.open('/Raghav-Kartikeya-Sample-Chapters.pdf', '_blank', 'noopener,noreferrer')}>
+          Read the first two chapters free
           </BookButton>
         </div>
       </div>

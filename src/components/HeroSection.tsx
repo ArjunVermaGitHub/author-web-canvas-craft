@@ -30,10 +30,12 @@ const HeroSection = () => {
                 Order a signed copy — ₹{TOTAL_PRICE}
               </BookButton>
               <a
-                href="#sample"
+                href="/Raghav-Kartikeya-Sample-Chapters.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-carnelian font-semibold underline underline-offset-4 hover:text-lapis transition-colors min-h-[44px] flex items-center"
               >
-                Read Chapter One free
+                Read the first two chapters free
               </a>
             </div>
 
