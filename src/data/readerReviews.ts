@@ -173,5 +173,25 @@ export const READER_REVIEWS: { name: string; insta: string; amazon: string | nul
     "insta": "https://www.instagram.com/reel/DfSJREoTfJ3/?xtok=enI5Y2lwM3o3aTN6",
     "amazon": "https://amazon.in/gp/customer-reviews/RVAIDLLH8FW0F?ref=pf_ov_at_pdctrvw_srp",
     "goodreads": "https://www.goodreads.com/review/show/9075578103"
-  }
+  },
+  {"name": "Rohit", "insta": "https://www.instagram.com/p/Dd9e6Vzk8i0/?stkn=OGcwN3NzNGZhZmM=", "amazon": "https://www.amazon.in/gp/customer-reviews/R27EVQGT3CVLKL?ref=pf_vv_at_pdctrvw_srp", "goodreads": null},
+  {"name": "Richa", "insta": "https://www.instagram.com/p/DePj7q0EokR/?cplk=azV2M242NzN0cnR3", "amazon": "https://www.amazon.in/gp/customer-reviews/R7P4SGFGMZ16J?ref=pf_ov_at_pdctrvw_srp", "goodreads": null},
+  {"name": "Jajoo Niral", "insta": "https://www.instagram.com/p/DeMryUuykAW/?stkn=MWE0bTVkeWt3emFyeQ==", "amazon": "https://www.amazon.in/review/RC49QLFNHXMQW/ref=pe_111985011_1111544691_SRTC_02_04_BT_99_cm_rv_eml_rv0_rv", "goodreads": null},
+  {"name": "Abhishek", "insta": "https://www.instagram.com/p/DeMrafgGPzm/?stkn=Mjc4YXV1OWdpYzBm", "amazon": "https://amazon.in/gp/customer-reviews/RZFLG5KBZ49QP?ref=pf_ov_at_pdctrvw_srp", "goodreads": null},
+  {"name": "Arunima", "insta": "https://www.instagram.com/reel/Dd9a7q6z_NE/?stkn=MXQzYXI4N3o1ZWl6Mg==", "amazon": "https://www.amazon.in/review/ROZ2MZHE2WVKX/ref=pe_111985011_1111544691_SRTC_02_04_BT_99_cm_rv_eml_rv0_rv", "goodreads": null},
+  {"name": "Drishti", "insta": "https://www.instagram.com/p/DeCpG_jHTpy/?stkn=MTcxZGFua3ZtcTQ0Yw==", "amazon": "https://www.amazon.in/review/RD5HGEVFOI9HO/ref=pe_111985011_1111544691_SRTC_02_04_BT_99_cm_rv_eml_rv0_rv", "goodreads": null},
+  {"name": "Srishti", "insta": "https://www.instagram.com/p/DeKJAmeB0ae/?stkn=MTEwYW1sdDRsbHdjdw==", "amazon": "https://amazon.in/gp/customer-reviews/RYRZBJ2CQHTZ9?ref=pf_ov_at_pdctrvw_srp", "goodreads": null},
+  {"name": "Riya", "insta": "https://www.instagram.com/p/Dd9Q7H6ElU4/?stkn=dGczZWx4ZGU2N3Rx", "amazon": "https://www.amazon.in/gp/customer-reviews/RJNV7LS0PDPIQ?ref=pf_vv_at_pdctrvw_srp", "goodreads": null},
+  {"name": "Udoti", "insta": "https://www.instagram.com/p/DeFJ2-uhMlS/?stkn=MTJ4OXIweHRtaXkxeA==", "amazon": "https://www.amazon.in/review/R1H9LIGLA0FTC2/ref=pe_111985011_1111544691_SRTC_02_04_BT_99_cm_rv_eml_rv0_rv", "goodreads": null},
+  {"name": "Piyal", "insta": "https://www.instagram.com/p/DeJlWx5lNAu/?stkn=MTdsZTRoazM4dGU3bg==", "amazon": "https://amazon.in/gp/customer-reviews/R3OZI2K2PIX7ZL?ref=pf_ov_at_pdctrvw_srp", "goodreads": null},
+  {"name": "Satya Sushmita", "insta": "https://www.instagram.com/p/DeFJK3Ak_AD/?img_index=2&stkn=MW04OHA2ZjZsa3BxOQ==", "amazon": "https://www.amazon.in/review/R23F169T3S99GL/ref=pe_111985011_1111544691_SRTC_02_04_BT_99_cm_rv_eml_rv0_rv", "goodreads": null},
+  {"name": "Srija", "insta": "https://www.instagram.com/p/DeGfBduAJG9/?stkn=MXhyMmNhbmRobXN0MQ==", "amazon": "https://www.amazon.in/review/RBB830LZ4WR4E/ref=pe_111985011_1111544691_SRTC_02_04_BT_99_cm_rv_eml_rv0_rv", "goodreads": null},
+  {"name": "Nidhi", "insta": "https://www.instagram.com/p/DeFTP2QkpmS/?stkn=aG1xM3p4ejI3cWlz", "amazon": "https://www.amazon.in/gp/customer-reviews/RHXNDAX84ZUJ?ref_=cm_sw_r_mwn_dprv_X7WCK8NKSNH0EEP98B4F&language=en-US", "goodreads": null},
+  {"name": "Anita", "insta": "https://www.instagram.com/p/DeClsd6yEIO/?stkn=MTNleHY5bDRhb2RhOQ==", "amazon": "https://www.amazon.in/review/R34EA77MI5PW6P/ref=pe_111985011_1111544691_SRTC_02_04_BT_99_cm_rv_eml_rv0_rv", "goodreads": null},
+  {"name": "Sagar Naskar", "insta": "https://www.instagram.com/p/DeCo5T_D75J/?stkn=MWx0MnoyYXZ1YWY5OQ==", "amazon": "https://www.amazon.in/gp/customer-reviews/R1UPEEG25POPXP?ref=pf_ov_at_pdctrvw_srp", "goodreads": null},
+  {"name": "Khushi", "insta": "https://www.instagram.com/p/DeGewAIuo6h/?stkn=MTgzMmJieTZibXpraA==", "amazon": "https://www.amazon.in/gp/customer-reviews/R2AGNRUF451G8T?ref=pf_vv_at_pdctrvw_srp", "goodreads": null},
+  {"name": "Sayanti Dey", "insta": "https://www.instagram.com/p/DeMojy7hEHt/?stkn=dmNzYnc1ZnBmc3A4", "amazon": "https://amazon.in/gp/customer-reviews/R3ONDSOY7S9NBF?ref=pf_ov_at_pdctrvw_srp", "goodreads": null},
+  {"name": "Jaagruthi", "insta": "https://www.instagram.com/p/DeKM8gWTxjV/?stkn=MXZkMDV3cW03cGd1Mg==", "amazon": "https://amazon.in/gp/customer-reviews/R1RVT80LCXV1TY?ref=pf_ov_at_pdctrvw_srp", "goodreads": null},
+  {"name": "Nitin", "insta": "https://www.instagram.com/p/DeFGt8MEvJF/?stkn=MXgza2phN3NzNGx2dQ==", "amazon": "https://www.amazon.in/review/R347IPOMI5SUPO/ref=pe_111985011_1111544691_SRTC_02_04_BT_99_cm_rv_eml_rv0_rv", "goodreads": null},
+  {"name": "Aachal", "insta": "https://www.instagram.com/p/DeHb9xOtuMR/?stkn=MWJmaXI5d2tnOXJndA==", "amazon": "https://www.amazon.in/gp/customer-reviews/R2PT4IGS6RDKT8?ref_=cm_sw_r_apann_dprv_29EJK0XSE6487PZ3FTG2&language=en-US", "goodreads": null}
 ];
