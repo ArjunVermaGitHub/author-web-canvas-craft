@@ -7,7 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
 import { BOOK_TITLE, BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, PAYEE_NAME } from '@/config/book';
 
-const AMAZON_URL = 'https://amzn.in/d/0bB3vi0p';
+const AMAZON_URL = 'https://www.amazon.in/dp/9358984015';
 
 const orderSchema = z.object({
   name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
@@ -198,7 +198,7 @@ const BuySection = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Order from Amazon
+              Order from Amazon India
             </BookButton>
           </div>
         </div>

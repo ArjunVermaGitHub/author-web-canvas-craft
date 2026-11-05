@@ -6,7 +6,7 @@ const PressSection = () => {
       <div className="max-w-6xl mx-auto">
         <h2 className="page-heading">In the press</h2>
 
-        <div className="grid md:grid-cols-3 gap-x-8 gap-y-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
           <article className="border-t-4 border-lapis pt-6">
             <h3 className="text-xl font-serif text-lapis mb-3 leading-snug">
               <a
@@ -21,6 +21,22 @@ const PressSection = () => {
             <p className="text-lapis/90 leading-relaxed">
               Press release from Qurate Books, distributed by ANI and published
               on ThePrint, 25 August 2026.
+            </p>
+          </article>
+
+          <article className="border-t-4 border-lapis pt-6">
+            <h3 className="text-xl font-serif text-lapis mb-3 leading-snug">
+              <a
+                href="https://theliteraturemag.com/raghav-kartikeya-and-the-tablets-of-dharma-by-rituraj-verma-an-epic-mythological-science-fiction-thriller-of-ancient-civilisations-immortal-enemies-and-humanitys-survival/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-carnelian transition-colors"
+              >
+                Featured in The Literature Mag
+              </a>
+            </h3>
+            <p className="text-lapis/90 leading-relaxed">
+              Feature article, 27 October 2026
             </p>
           </article>
 
