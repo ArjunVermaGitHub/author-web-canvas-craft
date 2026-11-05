@@ -29,9 +29,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Valid email is required' });
     }
 
-    if (!name || name.trim().length === 0) {
-      return res.status(400).json({ error: 'Name is required' });
-    }
+    // Name is optional: the Chapter One form only collects an email.
 
     const MONGODB_URI = process.env.MONGODB_URI;
     const db = await connectToDatabase(MONGODB_URI);
@@ -44,7 +42,8 @@ export default async function handler(req, res) {
 
     await collection.insertOne({
       email,
-      name,
+      name: typeof name === 'string' && name.trim() ? name.trim() : null,
+      source: 'chapter-one',
       subscribedAt: new Date(),
     });
 

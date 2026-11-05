@@ -40,7 +40,7 @@ const HeroSection = () => {
             <p className="text-lapis/80 text-sm max-w-xl leading-relaxed mb-10">
               ₹{BOOK_PRICE} for the book and ₹{SHIPPING_PRICE} for shipping
               within India. The author handwrites your message inside the
-              cover. Pay securely with PhonePe.
+              cover. Pay by PhonePe QR.
             </p>
 
             <dl className="border-t-2 border-lapis max-w-xl">
