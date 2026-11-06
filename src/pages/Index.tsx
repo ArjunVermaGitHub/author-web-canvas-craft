@@ -10,6 +10,8 @@ import ReviewsSection from '@/components/ReviewsSection';
 import AuthorSection from '@/components/AuthorSection';
 import FinalCta from '@/components/FinalCta';
 import Footer from '@/components/Footer';
+import IndusQuiz from '@/components/IndusQuiz';
+import AuthorVideoSection from '@/components/AuthorVideoSection';
 
 const Index = () => {
   return (
@@ -18,7 +20,9 @@ const Index = () => {
       <main>
         <HeroSection />
         <ScriptBand />
+        <IndusQuiz />
         <StorySection />
+        <AuthorVideoSection />
         <BuySection />
         <SampleSection />
         <PressSection />
