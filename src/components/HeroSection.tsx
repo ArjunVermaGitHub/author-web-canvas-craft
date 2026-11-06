@@ -1,5 +1,6 @@
 import React from 'react';
 import BookButton from './BookButton';
+import PinterestSaveButton from './PinterestSaveButton';
 import { BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE } from '@/config/book';
 
 const facts = [
