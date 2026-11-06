@@ -138,7 +138,7 @@ const BuySection = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="buyer-message" className="text-stonepage">
-                    Message for the author <span className="text-stonepage/60 text-base">(optional)</span>
+                    Message from the author <span className="text-stonepage/60 text-base">(optional)</span>
                   </Label>
                   <Textarea id="buyer-message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="A short note the author will handwrite inside your copy" className={inputClass} maxLength={200} rows={2} />
                 </div>
