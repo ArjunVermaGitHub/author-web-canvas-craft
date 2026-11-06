@@ -17,7 +17,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16 md:h-20">
           <a
             href="#top"
-            className="text-lapis font-serif text-xl md:text-2xl py-2"
+            className="text-lapis font-serif text-xl md:text-2xl py-2 min-w-0"
           >
             Rituraj Verma
           </a>
@@ -37,6 +37,10 @@ const Header = () => {
             </BookButton>
           </nav>
 
+          <div className="flex items-center gap-2 md:hidden">
+            <BookButton href="#buy" className="px-2 py-2 text-base leading-tight max-w-[148px]" onClick={() => setIsMenuOpen(false)}>
+              Order a signed copy
+            </BookButton>
           <button
             className="md:hidden text-lapis p-2 -mr-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -45,6 +49,7 @@ const Header = () => {
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
+          </div>
         </div>
 
         {isMenuOpen && (
@@ -61,15 +66,6 @@ const Header = () => {
                   </a>
                 </li>
               ))}
-              <li className="pt-3">
-                <BookButton
-                  href="#buy"
-                  className="w-full"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Order a signed copy
-                </BookButton>
-              </li>
             </ul>
           </nav>
         )}
