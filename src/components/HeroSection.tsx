@@ -60,12 +60,13 @@ const HeroSection = () => {
             </dl>
           </div>
 
-          <div className="w-full lg:w-2/5 flex justify-center lg:justify-end">
+          <div className="w-full lg:w-2/5 flex flex-col items-center gap-5 lg:items-end">
             <img
               src="/raghav-ebook-cover.jpg"
               alt="Raghav Kartikeya and the Tablets of Dharma — book cover"
               className="w-full max-w-xs md:max-w-sm h-auto"
             />
+            <PinterestSaveButton />
           </div>
         </div>
       </div>
