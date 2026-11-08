@@ -7,3 +7,4 @@
 - Keep quiz question data separate from its interactive component and build share links (author video embed, Pinterest pin) with pure URL helpers in `src/lib`; colocated Bun tests cover these rules. Why: scoring, embed visibility and share destinations remain independently verifiable.
 - Store the sample PDF via Lovable Assets; preserve its existing public address with matching Vite-preview and Vercel redirects to the hosted asset. Why: existing reading links and welcome emails must continue to work without committing binary media.
 - Use VideoFacade for trailer embeds, mounting third-party iframes only after activation without embed scripts. Why: video providers must not slow the initial page load.
+- Use OrderBar at all homepage widths with shared PurchaseButtons and IntersectionObserver visibility; reserve bottom space at every width. Why: consistent ordering access must not cover the footer.

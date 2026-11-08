@@ -80,6 +80,9 @@ const HeroSection = () => {
             <img
               src="/raghav-ebook-cover.jpg"
               alt="Raghav Kartikeya and the Tablets of Dharma — book cover"
+              width={1200}
+              height={1920}
+              decoding="async"
               className="w-full max-w-xs md:max-w-sm h-auto"
             />
             <PinterestSaveButton />

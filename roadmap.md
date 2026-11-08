@@ -1,10 +1,12 @@
 # Roadmap
 
+- [x] Extend the fixed order bar to desktop and resolve reproduced desktop scrolling/anchor issues; verified 48px buttons, sticky_bar tracking, buy-section hiding, footer clearance, wheel scrolling and no horizontal overflow at 1280×800, 1920×1080 and 390×844 without publishing
+
 - [x] Correct trailer shapes (Instagram and Drive 1 tall, Drive 2 wide), use an Instagram link instead of embed; verified uncropped posters, no initial provider requests, correct Drive iframe activation and no overflow at 390px and 1280px
 
 - [x] Add the owner-supplied sample PDF at the existing free-sample address and verify it opens without publishing
 
-- [x] Mobile conversion step 1: sticky bar, shared country-aware Amazon links, paired purchase buttons and optional Meta click tracking; verified without publishing
+- [x] Conversion step 1: shared OrderBar (mobile and desktop), country-aware Amazon links, paired purchase buttons and optional Meta click tracking; verified without publishing
 - [x] Mobile conversion step 2: UPI tap-to-pay button on the payment step (mobile only), copy-UPI fallback, PayClick tracking; verified without publishing
 
 - [x] Add compact header and post-review buy links without duplicating the existing desktop link

@@ -14,7 +14,7 @@ import IndusQuiz from '@/components/IndusQuiz';
 import InternetAbbreviations from '@/components/InternetAbbreviations';
 import AuthorVideoSection from '@/components/AuthorVideoSection';
 import VideoSection from '@/components/VideoSection';
-import MobileOrderBar from '@/components/MobileOrderBar';
+import OrderBar from '@/components/OrderBar';
 
 const Index = () => {
   return (
@@ -36,7 +36,7 @@ const Index = () => {
         <FinalCta />
       </main>
       <Footer />
-      <MobileOrderBar />
+      <OrderBar />
     </div>
   );
 };
