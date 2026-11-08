@@ -17,7 +17,7 @@ export default function MobileOrderBar() {
   if (buyVisible) return null;
   return (
     <aside aria-label="Mobile book ordering" className="mobile-order-bar fixed inset-x-0 bottom-0 z-50 md:hidden bg-lapis border-t-2 border-ember px-3 pt-2">
-      <PurchaseButtons placement="sticky_bar" className="!flex-row" signedClassName="flex-1 min-w-0 px-2" amazonClassName="flex-1 min-w-0 px-2" amazonVariant="outline-ember">
+      <PurchaseButtons placement="sticky_bar" className="!grid grid-cols-2" signedClassName="min-w-0 px-2" amazonClassName="min-w-0 px-2" amazonVariant="outline-ember">
         Signed copy ₹{TOTAL_PRICE}
       </PurchaseButtons>
     </aside>
