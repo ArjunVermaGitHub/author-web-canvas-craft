@@ -11,6 +11,7 @@ import AuthorSection from '@/components/AuthorSection';
 import FinalCta from '@/components/FinalCta';
 import Footer from '@/components/Footer';
 import IndusQuiz from '@/components/IndusQuiz';
+import NewsSection from '@/components/NewsSection';
 import AuthorVideoSection from '@/components/AuthorVideoSection';
 import VideoSection from '@/components/VideoSection';
 import OrderBar from '@/components/OrderBar';
@@ -23,6 +24,7 @@ const Index = () => {
         <HeroSection />
         <ScriptBand />
         <IndusQuiz />
+        <NewsSection />
         <StorySection />
         <VideoSection />
         <AuthorVideoSection />

@@ -8,3 +8,4 @@
 - Store the sample PDF via Lovable Assets; preserve its existing public address with matching Vite-preview and Vercel redirects to the hosted asset. Why: existing reading links and welcome emails must continue to work without committing binary media.
 - Use VideoFacade for trailer embeds, mounting third-party iframes only after activation without embed scripts. Why: video providers must not slow the initial page load.
 - Use OrderBar at all homepage widths with shared PurchaseButtons and IntersectionObserver visibility; reserve bottom space at every width. Why: consistent ordering access must not cover the footer.
+- News items live in `src/data/indusNews.ts` and render as plain page-flow link cards in NewsSection — no inner scroll containers, carousels, max-height/overflow, images, iframes or click tracking. Why: inner scroll traps broke desktop wheel scrolling and news clicks must stay pixel-free.
