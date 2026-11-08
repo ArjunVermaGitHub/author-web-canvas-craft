@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
 import { BOOK_TITLE, BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, PAYEE_NAME, UPI_ID } from '@/config/book';
-import { AMAZON_STORES } from '@/config/amazon';
+import { AMAZON_STORES, AMAZON_EBOOK_URL } from '@/config/amazon';
 import { getBrowserAmazonStore, trackPurchaseClick, trackOrderSaved } from '@/lib/purchase';
 import { buildUpiPayLink } from '@/lib/upi';
 

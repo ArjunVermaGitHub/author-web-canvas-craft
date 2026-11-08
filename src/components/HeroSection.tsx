@@ -2,6 +2,8 @@ import React from 'react';
 import PurchaseButtons from './PurchaseButtons';
 import PinterestSaveButton from './PinterestSaveButton';
 import { BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, SAMPLE_CHAPTERS_URL } from '@/config/book';
+import { AMAZON_EBOOK_URL } from '@/config/amazon';
+import { trackPurchaseClick } from '@/lib/purchase';
 
 const facts = [
   ['Genre', 'Mythological fantasy, teens and young adults'],
