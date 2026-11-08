@@ -3,20 +3,48 @@ import { Play } from 'lucide-react';
 import BookButton from './BookButton';
 
 interface VideoFacadeProps {
-  embedUrl: string;
+  embedUrl?: string;
   title: string;
   label: string;
   postUrl?: string;
-  featured?: boolean;
+  shape: 'tall' | 'wide';
 }
 
-const VideoFacade = ({ embedUrl, title, label, postUrl, featured = false }: VideoFacadeProps) => {
+const VideoFacade = ({ embedUrl, title, label, postUrl, shape }: VideoFacadeProps) => {
   const [loaded, setLoaded] = useState(false);
+  const boxClassName = `relative mx-auto overflow-hidden bg-book-dark ${shape === 'tall' ? 'aspect-[9/16] w-[min(100%,calc(75svh*9/16))]' : 'aspect-video w-full'}`;
+  const poster = (
+    <img
+      src="/raghav-ebook-cover.jpg"
+      alt="Raghav Kartikeya and the Tablets of Dharma book cover"
+      loading="lazy"
+      decoding="async"
+      width={800}
+      height={1000}
+      className="absolute inset-0 h-full w-full object-contain"
+    />
+  );
+
+  if (postUrl) {
+    return (
+      <a href={postUrl} target="_blank" rel="noopener noreferrer"
+        aria-label="Watch the 2-minute trailer on Instagram, opens in a new tab"
+        className="block min-h-[44px]">
+        <div className={boxClassName}>
+          {poster}
+          <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground">
+            <Play className="h-7 w-7" aria-hidden="true" />
+          </span>
+        </div>
+        <p className="bg-book-dark px-4 py-3 text-center text-base text-book-light">{label}</p>
+      </a>
+    );
+  }
 
   return (
     <div>
-      <div className={`relative mx-auto overflow-hidden bg-book-dark ${featured ? 'aspect-[4/5] w-full max-w-[56svh] md:max-w-none' : 'aspect-video w-full'}`}>
-        {loaded ? (
+      <div className={boxClassName}>
+        {loaded && embedUrl ? (
           <iframe
             src={embedUrl}
             title={title}
@@ -26,18 +54,10 @@ const VideoFacade = ({ embedUrl, title, label, postUrl, featured = false }: Vide
           />
         ) : (
           <>
-            <img
-              src="/raghav-ebook-cover.jpg"
-              alt="Raghav Kartikeya and the Tablets of Dharma book cover"
-              loading="lazy"
-              decoding="async"
-              width={800}
-              height={1000}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+            {poster}
             <BookButton
               type="button"
-              aria-label={featured ? 'Play trailer' : `Play ${title}`}
+              aria-label={`Play ${title}`}
               onClick={() => setLoaded(true)}
               className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full p-0"
             >
@@ -49,11 +69,6 @@ const VideoFacade = ({ embedUrl, title, label, postUrl, featured = false }: Vide
       <p className="bg-book-dark px-4 py-3 text-center text-base text-book-light">
         {label}
       </p>
-      {postUrl && (
-        <a href={postUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-[44px] items-center text-base text-book-light underline underline-offset-4">
-          Watch on Instagram
-        </a>
-      )}
     </div>
   );
 };
