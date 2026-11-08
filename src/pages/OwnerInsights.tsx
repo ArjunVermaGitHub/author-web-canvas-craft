@@ -6,6 +6,12 @@ import BookButton from '@/components/BookButton';
 
 const MAX_CHARS = 200_000;
 
+type Compare = { opens24h: number; opensTotal: number; uniq24h: number; uniqTotal: number; since: string | null };
+type Stats = { last24h: number; total: number; ordersThisWeek: number; ordersLastWeek: number; ordersTotal: number; compare?: Compare };
+
+const fmt = (n: number) => Number(n || 0).toLocaleString('en-IN');
+const ratio = (opens: number, uniq: number) => (uniq ? (opens / uniq).toFixed(1) : '–');
+
 const OwnerInsights = () => {
   const [code, setCode] = useState('');
   const [data, setData] = useState('');
@@ -14,7 +20,7 @@ const OwnerInsights = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
-  const [stats, setStats] = useState<Record<string, number> | null>(null);
+  const [stats, setStats] = useState<Stats | null>(null);
   const [statsLoading, setStatsLoading] = useState(false);
 
   const loadStats = async () => {
@@ -113,6 +119,41 @@ const OwnerInsights = () => {
                   </div>
                 ))}
               </dl>
+            )}
+            {stats?.compare && (
+              <section className="border-t-4 border-lapis pt-4 mt-2" aria-labelledby="compare-heading">
+                <h2 id="compare-heading" className="font-serif text-2xl mb-1">Page opens vs unique visitors</h2>
+                <p className="text-base text-lapis/70 mb-4">
+                  {stats.compare.since
+                    ? `All time means since page-open counting began on ${new Date(stats.compare.since).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}.`
+                    : 'No page opens recorded yet.'}
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-base">
+                    <thead>
+                      <tr className="border-b-2 border-lapis">
+                        <th className="py-2 pr-4">Period</th>
+                        <th className="py-2 pr-4">Page opens</th>
+                        <th className="py-2 pr-4">Unique visitors</th>
+                        <th className="py-2">Opens per visitor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {([
+                        ['Last 24 hours', stats.compare.opens24h, stats.compare.uniq24h],
+                        ['All time', stats.compare.opensTotal, stats.compare.uniqTotal],
+                      ] as const).map(([label, o, u]) => (
+                        <tr key={label} className="border-b border-lapis/30">
+                          <td className="py-2 pr-4">{label}</td>
+                          <td className="py-2 pr-4 font-serif text-xl">{fmt(o)}</td>
+                          <td className="py-2 pr-4 font-serif text-xl">{fmt(u)}</td>
+                          <td className="py-2 font-serif text-xl">{ratio(o, u)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
             )}
           </div>
           <div className="space-y-2">
