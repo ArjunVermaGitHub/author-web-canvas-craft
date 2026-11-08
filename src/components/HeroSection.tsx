@@ -32,6 +32,15 @@ const HeroSection = () => {
               <PurchaseButtons placement="hero" className="sm:flex-wrap sm:self-start" signedClassName="sm:w-auto">
                 Order a signed copy — ₹{TOTAL_PRICE}
               </PurchaseButtons>
+              <a
+                href={AMAZON_EBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                onClick={() => trackPurchaseClick('EbookClick', 'hero')}
+                className="text-lapis font-semibold underline underline-offset-4 hover:text-carnelian transition-colors min-h-[44px] flex items-center"
+              >
+                Buy the ebook
+              </a>
               <p className="text-lapis/60 text-base">
                 As an Amazon Associate I earn from qualifying purchases.
               </p>

@@ -246,6 +246,15 @@ const BuySection = () => {
             >
               Order from Amazon India
             </BookButton>
+            <a
+              href={AMAZON_EBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              onClick={() => trackPurchaseClick('EbookClick', 'buy')}
+              className="mt-3 inline-flex items-center min-h-[44px] text-ember underline underline-offset-4 hover:text-stonepage focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember"
+            >
+              Buy the ebook
+            </a>
             <p className="mt-3 text-stonepage/60 text-base">
               As an Amazon Associate I earn from qualifying purchases.
             </p>
