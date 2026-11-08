@@ -59,6 +59,14 @@
 
   html {
     scroll-behavior: smooth;
+    /* Existing sections reserve 80px; add breathing room for the header border. */
+    scroll-padding-top: 16px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
@@ -78,13 +86,19 @@
 }
 
 @layer components {
-  .mobile-order-bar {
+  .order-bar {
     padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
   }
 
-  @media (max-width: 767px) {
-    .homepage-order-space {
-      padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+  .homepage-order-space {
+    padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+  }
+
+  @media (min-width: 768px) {
+    /* Let desktop wheel scrolling continue through the abbreviation list. */
+    #slang ul {
+      max-height: none;
+      overflow-y: visible;
     }
   }
 
