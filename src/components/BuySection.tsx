@@ -251,7 +251,7 @@ const BuySection = () => {
               target="_blank"
               rel="noopener noreferrer sponsored"
               onClick={() => trackPurchaseClick('EbookClick', 'buy')}
-              className="mt-3 inline-flex items-center min-h-[44px] text-ember underline underline-offset-4 hover:text-stonepage focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember"
+              className="mt-3 flex w-fit items-center min-h-[44px] text-ember underline underline-offset-4 hover:text-stonepage focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember"
             >
               Buy the ebook
             </a>
