@@ -3,7 +3,7 @@ import { INTERNET_ABBREVIATIONS } from './internetAbbreviations';
 
 const REQUIRED = {
   ftfy: 'Fixed that for you',
-  wb: 'Would bang',
+  brb: 'Be right back',
   gtg: 'Got to go',
   loml: 'Love of my life',
 };

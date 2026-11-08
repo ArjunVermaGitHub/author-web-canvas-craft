@@ -28,7 +28,7 @@ const InternetAbbreviations = () => {
         <p className="text-lg text-lapis/90 max-w-3xl mb-8 leading-relaxed">
           Ancient seals still stump scholars. Group chats do not. Here is a
           field guide to common internet, texting, Tumblr, Reddit and Gen Z
-          abbreviations — including ftfy, wb, gtg and loml.
+          abbreviations — including ftfy, brb, gtg and loml.
         </p>
 
         <div className="max-w-3xl mb-8">
@@ -39,7 +39,7 @@ const InternetAbbreviations = () => {
             id="abbr-search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search abbr or meaning (e.g. ftfy, would bang, gtg)"
+            placeholder="Search abbr or meaning (e.g. ftfy, brb, gtg)"
             className="bg-stonepage border-lapis/40 text-lapis placeholder:text-lapis/50"
           />
           <p className="text-sm text-lapis/70 mt-2" aria-live="polite">
