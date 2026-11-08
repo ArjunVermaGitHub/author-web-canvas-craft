@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PurchaseButtons from './PurchaseButtons';
 import PinterestSaveButton from './PinterestSaveButton';
-import { BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, SAMPLE_CHAPTERS_URL } from '@/config/book';
+import { TOTAL_PRICE, SAMPLE_CHAPTERS_URL } from '@/config/book';
 import { getBrowserAmazonStore, selectEbookUrl, trackPurchaseClick } from '@/lib/purchase';
 
 const facts = [
@@ -56,9 +56,8 @@ const HeroSection = () => {
             </div>
 
             <p className="text-lapis/80 text-base max-w-xl leading-relaxed mb-10">
-              ₹{BOOK_PRICE} for the book and ₹{SHIPPING_PRICE} for shipping
-              within India. The author handwrites your message inside the
-              cover. Pay by PhonePe QR.
+              The author handwrites your message inside the cover. Pay by
+              PhonePe QR.
             </p>
 
             <dl className="border-t-2 border-lapis max-w-xl">
