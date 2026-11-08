@@ -1,4 +1,4 @@
-import { AMAZON_URL, AMAZON_STORES, AMAZON_REGION_CODES } from '@/config/amazon';
+import { AMAZON_URL, AMAZON_STORES, AMAZON_REGION_CODES, AMAZON_EBOOK_URL, AMAZON_EBOOK_INTL_URL } from '@/config/amazon';
 
 const TIMEZONE_REGIONS: Record<string, string> = {
   'Asia/Kolkata': 'IN', 'Asia/Calcutta': 'IN',
@@ -28,6 +28,11 @@ export function getBrowserAmazonStore() {
   let timezone = '';
   try { timezone = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch { /* India is the default. */ }
   return selectAmazonStore(navigator.language, timezone);
+}
+
+// India readers get the Indian-edition ebook; every other visitor gets the international edition.
+export function selectEbookUrl(store?: string) {
+  return store && store !== 'India' ? AMAZON_EBOOK_INTL_URL : AMAZON_EBOOK_URL;
 }
 
 type Pixel = (command: 'trackCustom', event: string, data: { placement: string; store?: string }) => void;

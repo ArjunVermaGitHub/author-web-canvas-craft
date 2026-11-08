@@ -2,6 +2,8 @@ export const AMAZON_URL = 'https://www.amazon.in/Raghav-Kartikeya-Tablets-Dharma
 
 export const AMAZON_EBOOK_URL = 'https://www.amazon.in/dp/B0HF7RJB8C?_encoding=UTF8&qid=1794154527&sr=8-1&th=1&linkCode=ll2&tag=raghavlink1-21&linkId=8fe7dba8f47533a344149305503415b6&ref_=as_li_ss_tl';
 
+export const AMAZON_EBOOK_INTL_URL = 'https://a.co/d/09GqaP4f';
+
 export const AMAZON_STORES: [string, string][] = [
   ['United States', 'https://www.amazon.com/dp/9358987448'],
   ['United Kingdom', 'https://www.amazon.co.uk/dp/9358987448'],
