@@ -3,9 +3,7 @@ import sampleChapters from '@/assets/sample-chapters.pdf.asset.json';
 
 export const SAMPLE_CHAPTERS_URL = `https://author-web-canvas-craft.lovable.app${sampleChapters.url}`;
 export const BOOK_TITLE = "Raghav Kartikeya and the Tablets of Dharma";
-export const TOTAL_PRICE = 335; // ₹ — shipping & handling included
-export const BOOK_PRICE = 215; // ₹ — book portion of the total
-export const SHIPPING_PRICE = TOTAL_PRICE - BOOK_PRICE; // ₹120 — shipping & handling, included in total
+export const TOTAL_PRICE = 335; // ₹ — total the buyer pays
 export const PAYEE_NAME = "Rituraj Narayan Verma";
 export const UPI_ID = "riturajverma2005@ybl";
 
