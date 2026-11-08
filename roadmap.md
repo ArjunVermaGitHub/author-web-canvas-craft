@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Correct trailer shapes (Instagram and Drive 1 tall, Drive 2 wide), use an Instagram link instead of embed, and verify uncropped posters and click-to-load Drive videos at 390px and 1280px
+- [x] Correct trailer shapes (Instagram and Drive 1 tall, Drive 2 wide), use an Instagram link instead of embed; verified uncropped posters, no initial provider requests, correct Drive iframe activation and no overflow at 390px and 1280px
 
 - [x] Add the owner-supplied sample PDF at the existing free-sample address and verify it opens without publishing
 
