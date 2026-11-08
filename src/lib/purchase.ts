@@ -37,3 +37,14 @@ export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'PayCli
   if (typeof fbq !== 'function') return;
   try { fbq('trackCustom', event, store ? { placement, store } : { placement }); } catch { /* Tracking must not interrupt navigation. */ }
 }
+
+type OrderPixel = (command: 'trackCustom', event: string, data: { placement: string; value: number; currency: 'INR'; order_id?: string }) => void;
+
+// Fires once when an order is saved; named OrderSaved (not Purchase) to avoid clashing with other sites' Purchase events.
+export function trackOrderSaved(placement: string, value: number, orderId?: string, pixel?: OrderPixel) {
+  const fbq = pixel ?? (typeof window === 'undefined' ? undefined : (window as Window & { fbq?: OrderPixel }).fbq);
+  if (typeof fbq !== 'function') return;
+  const data: { placement: string; value: number; currency: 'INR'; order_id?: string } = { placement, value, currency: 'INR' };
+  if (orderId) data.order_id = orderId;
+  try { fbq('trackCustom', 'OrderSaved', data); } catch { /* Tracking must not interrupt the order flow. */ }
+}

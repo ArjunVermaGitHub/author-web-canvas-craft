@@ -7,7 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
 import { BOOK_TITLE, BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, PAYEE_NAME, UPI_ID } from '@/config/book';
 import { AMAZON_STORES } from '@/config/amazon';
-import { getBrowserAmazonStore, trackPurchaseClick } from '@/lib/purchase';
+import { getBrowserAmazonStore, trackPurchaseClick, trackOrderSaved } from '@/lib/purchase';
 import { buildUpiPayLink } from '@/lib/upi';
 
 const orderSchema = z.object({
@@ -97,6 +97,7 @@ const BuySection = () => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Something went wrong');
       setOrderId(data.orderId || '');
+      trackOrderSaved('buy', TOTAL_PRICE, data.orderId || undefined);
       setStep('done');
     } catch (error) {
       toast({
