@@ -1,5 +1,5 @@
 // api/visits.js — records unique visitors (one per browser per day).
-// POST {visitorId} records a visit. POST {code} with OWNER_ACCESS_CODE returns owner stats.
+// GET returns public visitor counts (no order data). POST {visitorId} records a visit. POST {code} with OWNER_ACCESS_CODE returns owner stats.
 import { connectToDatabase } from './utils/mongodb.js';
 import { buffer } from 'micro';
 import { timingSafeEqual } from 'crypto';
@@ -17,10 +17,24 @@ function codeMatches(given, expected) {
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Cache-Control', 'no-store');
   if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method === 'GET') {
+    try {
+      const db = await connectToDatabase(process.env.MONGODB_URI);
+      const visits = db.collection('rituraj-visits');
+      const [last24h, total] = await Promise.all([
+        visits.distinct('visitorId', { createdAt: { $gte: new Date(Date.now() - DAY_MS) } }).then((a) => a.length),
+        visits.distinct('visitorId').then((a) => a.length),
+      ]);
+      return res.status(200).json({ last24h, total });
+    } catch (err) {
+      console.error('Visit counter error:', err);
+      return res.status(500).json({ error: 'Could not load stats' });
+    }
+  }
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   let body = {};
