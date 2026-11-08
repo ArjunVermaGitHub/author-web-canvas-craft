@@ -245,6 +245,9 @@ const BuySection = () => {
             >
               Order from Amazon India
             </BookButton>
+            <p className="mt-3 text-stonepage/60 text-base">
+              As an Amazon Associate I earn from qualifying purchases.
+            </p>
             <ul className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-x-6 border-t-2 border-ember/40 pt-4">
               {AMAZON_STORES.map(([country, url]) => (
                 <li key={country}>
