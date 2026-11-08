@@ -1,5 +1,6 @@
 import React from 'react';
 import BookButton from './BookButton';
+import VideoFacade from './VideoFacade';
 
 const VIDEOS = [
   {
@@ -23,21 +24,28 @@ const VideoSection = () => {
           Trailers and glimpses from Raghav Kartikeya and the Tablets of Dharma.
         </p>
 
+        <div className="max-w-3xl mx-auto mb-10">
+          <h3 className="text-2xl text-book-light text-center mb-4">The 2-minute trailer</h3>
+          <VideoFacade
+            embedUrl="https://www.instagram.com/p/DcEaSWwtv3x/embed/"
+            postUrl="https://www.instagram.com/p/DcEaSWwtv3x/"
+            title="Raghav Kartikeya and the Tablets of Dharma — The 2-minute trailer"
+            label="The 2-minute trailer"
+            featured
+          />
+        </div>
+
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {VIDEOS.map((video) => (
             <div
               key={video.id}
               className="rounded-lg overflow-hidden border border-book-gold/40 bg-book-dark shadow-lg"
             >
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-                <iframe
-                  src={`https://drive.google.com/file/d/${video.id}/preview`}
-                  title={video.title}
-                  className="absolute inset-0 w-full h-full border-0"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                />
-              </div>
+              <VideoFacade
+                embedUrl={`https://drive.google.com/file/d/${video.id}/preview`}
+                title={video.title}
+                label={video.title}
+              />
             </div>
           ))}
         </div>
