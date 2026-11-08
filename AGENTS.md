@@ -9,3 +9,4 @@
 - Use VideoFacade for trailer embeds, mounting third-party iframes only after activation without embed scripts. Why: video providers must not slow the initial page load.
 - Use OrderBar at all homepage widths with shared PurchaseButtons and IntersectionObserver visibility; reserve bottom space at every width. Why: consistent ordering access must not cover the footer.
 - Curated news lives in `src/data/indusNews.ts`; NewsSection loads live RSS results only on demand through the cached Vercel `api/news.js` endpoint, falling back to curated picks on failure. Keep plain page-flow link cards without inner scrolling, carousels, images, iframes or tracking. Why: preserve fast initial loading, safe external links and uninterrupted scrolling.
+- Term explainers live in `src/data/wikiTerms.ts` and render as a plain page-flow list in WikiSection; the author extends the list by adding entries. Why: reader reference links stay data-only, testable and free of extra scripts.

@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ScriptBand from '@/components/ScriptBand';
 import StorySection from '@/components/StorySection';
+import WikiSection from '@/components/WikiSection';
 import BuySection from '@/components/BuySection';
 import SampleSection from '@/components/SampleSection';
 import PressSection from '@/components/PressSection';
@@ -26,6 +27,7 @@ const Index = () => {
         <IndusQuiz />
         <NewsSection />
         <StorySection />
+        <WikiSection />
         <VideoSection />
         <AuthorVideoSection />
         <BuySection />
