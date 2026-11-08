@@ -15,7 +15,7 @@ const PressSection = () => {
                 rel="noopener noreferrer"
                 className="hover:text-carnelian transition-colors"
               >
-                Debut author launches an Indus Valley mythology-fantasy novel
+                Debut novelist launches an Indus Valley mythology-fantasy novel
               </a>
             </h3>
             <p className="text-lapis/90 leading-relaxed">
