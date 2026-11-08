@@ -12,7 +12,6 @@ export const INTERNET_ABBREVIATIONS = [
   { abbr: 'a/s/l', meaning: 'Age / sex / location' },
   { abbr: 'abt', meaning: 'About' },
   { abbr: 'acct', meaning: 'Account' },
-  { abbr: 'af', meaning: 'As fuck (intensifier)' },
   { abbr: 'afaik', meaning: 'As far as I know' },
   { abbr: 'afk', meaning: 'Away from keyboard' },
   { abbr: 'aight', meaning: 'Alright' },
