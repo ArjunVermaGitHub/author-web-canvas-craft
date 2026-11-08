@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Extend the fixed order bar to desktop and resolve reproduced desktop scrolling/anchor issues; verify at 1280×800, 1920×1080 and mobile without publishing
+- [x] Extend the fixed order bar to desktop and resolve reproduced desktop scrolling/anchor issues; verified 48px buttons, sticky_bar tracking, buy-section hiding, footer clearance, wheel scrolling and no horizontal overflow at 1280×800, 1920×1080 and 390×844 without publishing
 
 - [x] Correct trailer shapes (Instagram and Drive 1 tall, Drive 2 wide), use an Instagram link instead of embed; verified uncropped posters, no initial provider requests, correct Drive iframe activation and no overflow at 390px and 1280px
 
