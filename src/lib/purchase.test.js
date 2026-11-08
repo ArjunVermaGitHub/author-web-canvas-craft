@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
-import { selectAmazonStore, trackPurchaseClick, trackOrderSaved } from './purchase';
-import { AMAZON_STORES, AMAZON_URL, AMAZON_EBOOK_URL } from '../config/amazon';
+import { selectAmazonStore, selectEbookUrl, trackPurchaseClick, trackOrderSaved } from './purchase';
+import { AMAZON_STORES, AMAZON_URL, AMAZON_EBOOK_URL, AMAZON_EBOOK_INTL_URL } from '../config/amazon';
 import { TOTAL_PRICE } from '../config/book';
 
 describe('purchase destinations', () => {

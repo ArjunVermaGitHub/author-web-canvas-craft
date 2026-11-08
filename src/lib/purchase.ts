@@ -1,4 +1,4 @@
-import { AMAZON_URL, AMAZON_STORES, AMAZON_REGION_CODES } from '@/config/amazon';
+import { AMAZON_URL, AMAZON_STORES, AMAZON_REGION_CODES, AMAZON_EBOOK_URL, AMAZON_EBOOK_INTL_URL } from '@/config/amazon';
 
 const TIMEZONE_REGIONS: Record<string, string> = {
   'Asia/Kolkata': 'IN', 'Asia/Calcutta': 'IN',
