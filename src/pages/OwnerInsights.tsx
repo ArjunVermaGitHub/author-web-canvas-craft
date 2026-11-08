@@ -7,7 +7,7 @@ import BookButton from '@/components/BookButton';
 const MAX_CHARS = 200_000;
 
 type Compare = { opens24h: number; opensTotal: number; uniq24h: number; uniqTotal: number; since: string | null };
-type Stats = Record<string, number> & { compare?: Compare };
+type Stats = { last24h: number; total: number; ordersThisWeek: number; ordersLastWeek: number; ordersTotal: number; compare?: Compare };
 
 const fmt = (n: number) => Number(n || 0).toLocaleString('en-IN');
 const ratio = (opens: number, uniq: number) => (uniq ? (opens / uniq).toFixed(1) : '–');
