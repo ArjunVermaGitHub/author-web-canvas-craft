@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
 import { BOOK_TITLE, BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, PAYEE_NAME } from '@/config/book';
+import { trackOrderSaved } from '@/lib/purchase';
 
 interface BuyModalProps {
   open: boolean;
@@ -74,6 +75,7 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Something went wrong');
       setOrderId(data.orderId || '');
+      trackOrderSaved('modal', TOTAL_PRICE, data.orderId || undefined);
       setStep('done');
     } catch (error) {
       toast({

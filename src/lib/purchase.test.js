@@ -1,12 +1,12 @@
 import { describe, expect, test } from 'bun:test';
-import { selectAmazonStore, trackPurchaseClick } from './purchase';
-import { AMAZON_STORES } from '../config/amazon';
+import { selectAmazonStore, trackPurchaseClick, trackOrderSaved } from './purchase';
+import { AMAZON_STORES, AMAZON_URL } from '../config/amazon';
 import { TOTAL_PRICE } from '../config/book';
 
 describe('purchase destinations', () => {
   test('uses the configured ₹335 total', () => { expect(TOTAL_PRICE).toBe(335); });
   test('uses India for India and unknown regions', () => {
-    expect(selectAmazonStore('en-IN', 'America/New_York')).toEqual({ store: 'India', url: 'https://amzn.in/d/0igsWonn' });
+    expect(selectAmazonStore('en-IN', 'America/New_York')).toEqual({ store: 'India', url: AMAZON_URL });
     expect(selectAmazonStore('en-ZA', 'Europe/London').store).toBe('India');
     expect(selectAmazonStore('', 'Etc/UTC').store).toBe('India');
   });
@@ -37,5 +37,24 @@ describe('optional Meta click tracking', () => {
   test('does not interrupt navigation without a pixel or when it fails', () => {
     expect(() => trackPurchaseClick('OrderClick', 'header')).not.toThrow();
     expect(() => trackPurchaseClick('AmazonClick', 'hero', 'India', () => { throw new Error('blocked'); })).not.toThrow();
+  });
+});
+
+describe('OrderSaved tracking', () => {
+  test('sends placement, INR value and order id', () => {
+    const calls = [];
+    trackOrderSaved('buy', TOTAL_PRICE, 'RK-ABC123', (...args) => calls.push(args));
+    expect(calls).toEqual([
+      ['trackCustom', 'OrderSaved', { placement: 'buy', value: 335, currency: 'INR', order_id: 'RK-ABC123' }],
+    ]);
+  });
+  test('omits order_id when absent and never throws', () => {
+    const calls = [];
+    trackOrderSaved('modal', TOTAL_PRICE, undefined, (...args) => calls.push(args));
+    expect(calls).toEqual([
+      ['trackCustom', 'OrderSaved', { placement: 'modal', value: 335, currency: 'INR' }],
+    ]);
+    expect(() => trackOrderSaved('buy', TOTAL_PRICE)).not.toThrow();
+    expect(() => trackOrderSaved('buy', TOTAL_PRICE, 'RK-X', () => { throw new Error('blocked'); })).not.toThrow();
   });
 });
