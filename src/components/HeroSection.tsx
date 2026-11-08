@@ -12,6 +12,8 @@ const facts = [
 ];
 
 const HeroSection = () => {
+  const [amazon] = useState(getBrowserAmazonStore);
+
   return (
     <section id="top" className="scroll-mt-20 bg-stonepage">
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-12 md:py-20">
@@ -32,10 +34,10 @@ const HeroSection = () => {
                 Order a signed copy — ₹{TOTAL_PRICE}
               </PurchaseButtons>
               <a
-                href={AMAZON_EBOOK_URL}
+                href={selectEbookUrl(amazon.store)}
                 target="_blank"
                 rel="noopener noreferrer sponsored"
-                onClick={() => trackPurchaseClick('EbookClick', 'hero')}
+                onClick={() => trackPurchaseClick('EbookClick', 'hero', amazon.store === 'India' ? undefined : amazon.store)}
                 className="text-lapis font-semibold underline underline-offset-4 hover:text-carnelian transition-colors min-h-[44px] flex items-center"
               >
                 Buy the ebook

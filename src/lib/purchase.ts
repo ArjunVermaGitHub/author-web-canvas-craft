@@ -30,6 +30,11 @@ export function getBrowserAmazonStore() {
   return selectAmazonStore(navigator.language, timezone);
 }
 
+// India readers get the Indian-edition ebook; every other visitor gets the international edition.
+export function selectEbookUrl(store?: string) {
+  return store && store !== 'India' ? AMAZON_EBOOK_INTL_URL : AMAZON_EBOOK_URL;
+}
+
 type Pixel = (command: 'trackCustom', event: string, data: { placement: string; store?: string }) => void;
 
 export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'PayClick' | 'EbookClick', placement: string, store?: string, pixel?: Pixel) {
