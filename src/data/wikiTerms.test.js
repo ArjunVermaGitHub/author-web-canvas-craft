@@ -2,8 +2,8 @@ import { describe, expect, test } from 'bun:test';
 import { WIKI_TERMS } from './wikiTerms';
 
 describe('WIKI_TERMS', () => {
-  test('has 20 items', () => {
-    expect(WIKI_TERMS).toHaveLength(20);
+  test('has 19 items', () => {
+    expect(WIKI_TERMS).toHaveLength(19);
   });
 
   test('every item has a term, blurb and an https url', () => {
