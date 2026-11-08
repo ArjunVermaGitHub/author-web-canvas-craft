@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Mobile conversion step 1: sticky bar, shared country-aware Amazon links, paired purchase buttons and optional Meta click tracking; verify without publishing
+- [x] Mobile conversion step 1: sticky bar, shared country-aware Amazon links, paired purchase buttons and optional Meta click tracking; verified without publishing
 
 - [x] Add compact header and post-review buy links without duplicating the existing desktop link
 - [x] Add hidden author video slot and four-question Indus quiz
