@@ -14,12 +14,6 @@ export const INDUS_NEWS: IndusNewsItem[] = [
     url: 'https://arkeonews.net/new-radiocarbon-dates-push-mohenjo-daro-back-to-3300-bc-rivaling-the-earliest-cities-of-egypt-and-mesopotamia/',
   },
   {
-    title: "Fresh excavation at Mohenjo-daro's great wall led by Jonathan Mark Kenoyer",
-    outlet: 'Dawn',
-    year: 2026,
-    url: 'https://www.dawn.com/news/1967378',
-  },
-  {
     title: 'Bhirrana evidence suggests the civilisation is far older, and survived a weakening monsoon',
     outlet: 'Indian Defence Review',
     year: 2026,
@@ -36,6 +30,12 @@ export const INDUS_NEWS: IndusNewsItem[] = [
     outlet: 'The Tribune',
     year: 2025,
     url: 'https://www.tribuneindia.com/news/india/asi-finds-at-rakhigarhi-will-help-understand-harappan-demographics',
+  },
+  {
+    title: "Rakhigarhi excavations: a timeline of India's largest Harappan site",
+    outlet: 'Outlook India',
+    year: 2025,
+    url: 'https://www.outlookindia.com/national/rakhigarhi-excavations-a-timeline',
   },
   {
     title: 'Tamil Nadu announces a $1 million prize for deciphering the Indus script',
@@ -92,9 +92,9 @@ export const INDUS_NEWS: IndusNewsItem[] = [
     url: 'https://www.whoi.edu/press-room/news-release/climate-change-likely-caused-migration-demise-of-ancient-indus-valley-civilization/',
   },
   {
-    title: 'Indus Valley civilisation may be much older than thought',
-    outlet: 'Dawn (via Times of India)',
+    title: 'What did the Harappans in? Not a simple drought',
+    outlet: 'The Wire',
     year: 2016,
-    url: 'https://dawn.com/news/1261513',
+    url: 'https://thewire.in/environment/what-quelled-the-harappans-not-a-simple-drought',
   },
 ];
