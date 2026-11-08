@@ -9,6 +9,7 @@ const FAILURE_MESSAGE = 'Could not load the latest articles right now. Showing o
 function isNewsItem(item: unknown): item is NewsItem {
   if (!item || typeof item !== 'object') return false;
   const candidate = item as Partial<NewsItem>;
+  if (candidate.date !== undefined && typeof candidate.date !== 'string') return false;
   if (typeof candidate.title !== 'string' || !candidate.title.trim() || typeof candidate.outlet !== 'string' || !candidate.outlet.trim() || !Number.isInteger(candidate.year) || typeof candidate.url !== 'string' || !candidate.url.startsWith('https://')) return false;
   try { return new URL(candidate.url).protocol === 'https:'; } catch { return false; }
 }
@@ -61,7 +62,7 @@ const NewsSection = () => {
         </p>
 
         <div className="mb-8">
-          <BookButton variant="outline" onClick={showLatest} disabled={loading} aria-busy={loading} className="gap-2">
+          <BookButton variant="outline" onClick={showLatest} disabled={loading} aria-busy={loading} className="gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-carnelian">
             <RefreshCw size={18} aria-hidden="true" className={loading ? 'animate-spin motion-reduce:animate-none' : ''} />
             Show latest articles
           </BookButton>
@@ -69,7 +70,7 @@ const NewsSection = () => {
           {updatedAt && (
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-base text-lapis/60">
               <p>Updated just now from live news search · <time dateTime={updatedAt}>{new Date(updatedAt).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</time></p>
-              <BookButton variant="outline" onClick={restorePicks} disabled={loading} className="border-0 px-0 underline underline-offset-4 hover:bg-transparent hover:text-lapis">Back to editor's picks</BookButton>
+              <BookButton variant="outline" onClick={restorePicks} disabled={loading} className="border-0 px-0 underline underline-offset-4 hover:bg-transparent hover:text-lapis focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-carnelian">Back to editor's picks</BookButton>
             </div>
           )}
         </div>
