@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
-import { BOOK_TITLE, BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, PAYEE_NAME, UPI_ID } from '@/config/book';
+import { BOOK_TITLE, TOTAL_PRICE, PAYEE_NAME, UPI_ID } from '@/config/book';
 import { AMAZON_STORES } from '@/config/amazon';
 import { getBrowserAmazonStore, selectEbookUrl, trackPurchaseClick, trackOrderSaved } from '@/lib/purchase';
 import { buildUpiPayLink } from '@/lib/upi';
@@ -158,10 +158,8 @@ const BuySection = () => {
 
             {step === 'payment' && (
               <div className="space-y-5">
-                <div className="border border-ember/40 p-4 text-stonepage space-y-1">
-                  <div className="flex justify-between"><span>Book</span><span>₹{BOOK_PRICE}</span></div>
-                  <div className="flex justify-between"><span>Shipping within India</span><span>₹{SHIPPING_PRICE}</span></div>
-                  <div className="flex justify-between border-t border-ember/40 pt-2 font-serif text-ember text-lg">
+                <div className="border border-ember/40 p-4 text-stonepage">
+                  <div className="flex justify-between font-serif text-ember text-lg">
                     <span>Total</span><span>₹{TOTAL_PRICE}</span>
                   </div>
                 </div>
