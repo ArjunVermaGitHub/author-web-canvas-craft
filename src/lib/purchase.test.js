@@ -1,12 +1,12 @@
 import { describe, expect, test } from 'bun:test';
 import { selectAmazonStore, trackPurchaseClick, trackOrderSaved } from './purchase';
-import { AMAZON_STORES } from '../config/amazon';
+import { AMAZON_STORES, AMAZON_URL } from '../config/amazon';
 import { TOTAL_PRICE } from '../config/book';
 
 describe('purchase destinations', () => {
   test('uses the configured ₹335 total', () => { expect(TOTAL_PRICE).toBe(335); });
   test('uses India for India and unknown regions', () => {
-    expect(selectAmazonStore('en-IN', 'America/New_York')).toEqual({ store: 'India', url: 'https://amzn.in/d/0igsWonn' });
+    expect(selectAmazonStore('en-IN', 'America/New_York')).toEqual({ store: 'India', url: AMAZON_URL });
     expect(selectAmazonStore('en-ZA', 'Europe/London').store).toBe('India');
     expect(selectAmazonStore('', 'Etc/UTC').store).toBe('India');
   });
