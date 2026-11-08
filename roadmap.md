@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Add on-demand latest news with cached Vercel RSS endpoint, editor-picks fallback and parser tests; verify success/empty/error at desktop and mobile widths without publishing.
+- [x] Add on-demand latest news with cached Vercel RSS endpoint and editor-picks fallback; 40 tests pass, success/empty/error/refetch/restore verified at 1280×800 and 390×844 with no initial news request or overflow. Direct handler returned 15 live results; Vite does not execute serverless endpoints. Not published.
 
 - [x] Add "The Indus Valley in the news" section (15 external link cards, newest first, no scroll trap or tracking) between the quiz and story sections; verified at 1280×800 and 390×844 without publishing
 
