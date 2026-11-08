@@ -63,7 +63,7 @@ export const WIKI_TERMS: WikiTerm[] = [
   },
   {
     term: 'Gondrani',
-    blurb: 'A legendary lover of Sindhi folklore, remembered in Sufi verse.',
+    blurb: 'An ancient cave city carved into rock in Balochistan.',
     url: 'https://en.wikipedia.org/wiki/Gondrani',
   },
   {
