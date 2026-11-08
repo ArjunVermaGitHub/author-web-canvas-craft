@@ -6,10 +6,12 @@ const VIDEOS = [
   {
     id: '1el4cdaDdFHWeobG2nMiUi8dp5RF_4V8i',
     title: 'Raghav Kartikeya and the Tablets of Dharma',
+    shape: 'tall',
   },
   {
     id: '1wQ9LNjDf2gEaur_fgoOfsk1d7DFKjQoD',
     title: 'Raghav Kartikeya and the Tablets of Dharma — Preview',
+    shape: 'wide',
   },
 ] as const;
 
@@ -27,15 +29,14 @@ const VideoSection = () => {
         <div className="max-w-3xl mx-auto mb-10">
           <h3 className="text-2xl text-book-light text-center mb-4">The 2-minute trailer</h3>
           <VideoFacade
-            embedUrl="https://www.instagram.com/p/DcEaSWwtv3x/embed/"
             postUrl="https://www.instagram.com/p/DcEaSWwtv3x/"
             title="Raghav Kartikeya and the Tablets of Dharma — The 2-minute trailer"
-            label="The 2-minute trailer"
-            featured
+            label="Watch the 2-minute trailer on Instagram"
+            shape="tall"
           />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 items-start gap-6 max-w-5xl mx-auto">
           {VIDEOS.map((video) => (
             <div
               key={video.id}
@@ -45,6 +46,7 @@ const VideoSection = () => {
                 embedUrl={`https://drive.google.com/file/d/${video.id}/preview`}
                 title={video.title}
                 label={video.title}
+                shape={video.shape}
               />
             </div>
           ))}
