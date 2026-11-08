@@ -1,4 +1,7 @@
 // Book purchase configuration — change these values in one place.
+import sampleChapters from '@/assets/sample-chapters.pdf.asset.json';
+
+export const SAMPLE_CHAPTERS_URL = `https://author-web-canvas-craft.lovable.app${sampleChapters.url}`;
 export const BOOK_TITLE = "Raghav Kartikeya and the Tablets of Dharma";
 export const TOTAL_PRICE = 335; // ₹ — shipping & handling included
 export const BOOK_PRICE = 215; // ₹ — book portion of the total

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
+import { SAMPLE_CHAPTERS_URL } from '@/config/book';
 
 const SampleSection = () => {
   const [email, setEmail] = useState('');
@@ -72,7 +73,7 @@ const SampleSection = () => {
         </p>
         <p className="mb-8">
           <a
-            href="/Raghav-Kartikeya-Sample-Chapters.pdf"
+            href={SAMPLE_CHAPTERS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-carnelian font-semibold underline underline-offset-4 hover:text-lapis transition-colors min-h-[44px] inline-flex items-center"

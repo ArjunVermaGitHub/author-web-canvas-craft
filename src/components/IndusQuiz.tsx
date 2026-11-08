@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import BookButton from './BookButton';
 import PurchaseButtons from './PurchaseButtons';
 import { INDUS_QUIZ } from '@/data/indusQuiz';
+import { SAMPLE_CHAPTERS_URL } from '@/config/book';
 
 const IndusQuiz = () => {
   const [step, setStep] = useState(0);
@@ -69,7 +70,7 @@ const IndusQuiz = () => {
                 Your score: {score} out of {INDUS_QUIZ.length}
               </h3>
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
-                <BookButton variant="outline" href="/Raghav-Kartikeya-Sample-Chapters.pdf" target="_blank" rel="noopener noreferrer">
+                <BookButton variant="outline" href={SAMPLE_CHAPTERS_URL} target="_blank" rel="noopener noreferrer">
                   Read the first two chapters free
                 </BookButton>
                 <PurchaseButtons placement="quiz">Order a signed copy</PurchaseButtons>

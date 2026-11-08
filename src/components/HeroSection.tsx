@@ -1,7 +1,7 @@
 import React from 'react';
 import PurchaseButtons from './PurchaseButtons';
 import PinterestSaveButton from './PinterestSaveButton';
-import { BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE } from '@/config/book';
+import { BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, SAMPLE_CHAPTERS_URL } from '@/config/book';
 
 const facts = [
   ['Genre', 'Mythological fantasy, teens and young adults'],
@@ -31,7 +31,7 @@ const HeroSection = () => {
                 Order a signed copy — ₹{TOTAL_PRICE}
               </PurchaseButtons>
               <a
-                href="/Raghav-Kartikeya-Sample-Chapters.pdf"
+                href={SAMPLE_CHAPTERS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-carnelian font-semibold underline underline-offset-4 hover:text-lapis transition-colors min-h-[44px] flex items-center"
