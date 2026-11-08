@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
-import { BOOK_TITLE, BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, PAYEE_NAME } from '@/config/book';
+import { BOOK_TITLE, TOTAL_PRICE, PAYEE_NAME } from '@/config/book';
 import { trackOrderSaved } from '@/lib/purchase';
 
 interface BuyModalProps {
@@ -101,7 +101,7 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
             <DialogHeader>
               <DialogTitle className="text-book-gold font-serif text-2xl">Order Your Copy</DialogTitle>
               <DialogDescription className="text-book-light/80">
-                {BOOK_TITLE} — ₹{TOTAL_PRICE} (shipping & handling included)
+                {BOOK_TITLE} — ₹{TOTAL_PRICE}
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleDetailsSubmit} className="space-y-4 pt-4">
@@ -144,13 +144,10 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 pt-4">
-              <div className="bg-book-medium/40 rounded-lg p-4 text-book-light text-sm space-y-1">
-                <div className="flex justify-between"><span>Book</span><span>₹{BOOK_PRICE}</span></div>
-                <div className="flex justify-between"><span>Shipping</span><span>₹{SHIPPING_PRICE}</span></div>
-                <div className="flex justify-between border-t border-book-gold/30 pt-2 font-serif text-book-gold text-base">
+              <div className="bg-book-medium/40 rounded-lg p-4 text-book-light text-sm">
+                <div className="flex justify-between font-serif text-book-gold text-base">
                   <span>Total</span><span>₹{TOTAL_PRICE}</span>
                 </div>
-                <p className="text-book-light/60 text-xs pt-1">Shipping & handling included in the total.</p>
               </div>
               <div className="flex justify-center">
                 <img src="/phonepe-qr.png" alt="PhonePe QR code" className="w-56 rounded-lg border border-book-gold/30 bg-white p-2" />
