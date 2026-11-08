@@ -9,9 +9,9 @@ export interface IndusNewsItem {
 export const INDUS_NEWS: IndusNewsItem[] = [
   {
     title: "New radiocarbon dates push Mohenjo-daro's urban roots back to 3300 BC",
-    outlet: 'Arab News',
+    outlet: 'Arkeonews',
     year: 2026,
-    url: 'https://www.arabnews.pk/node/2637253',
+    url: 'https://arkeonews.net/new-radiocarbon-dates-push-mohenjo-daro-back-to-3300-bc-rivaling-the-earliest-cities-of-egypt-and-mesopotamia/',
   },
   {
     title: "Fresh excavation at Mohenjo-daro's great wall led by Jonathan Mark Kenoyer",
