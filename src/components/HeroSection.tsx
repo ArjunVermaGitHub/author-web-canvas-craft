@@ -30,6 +30,9 @@ const HeroSection = () => {
               <PurchaseButtons placement="hero" className="sm:flex-wrap sm:self-start" signedClassName="sm:w-auto">
                 Order a signed copy — ₹{TOTAL_PRICE}
               </PurchaseButtons>
+              <p className="text-lapis/60 text-base">
+                As an Amazon Associate I earn from qualifying purchases.
+              </p>
               <a
                 href={SAMPLE_CHAPTERS_URL}
                 target="_blank"
