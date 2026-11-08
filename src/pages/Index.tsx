@@ -13,10 +13,11 @@ import Footer from '@/components/Footer';
 import IndusQuiz from '@/components/IndusQuiz';
 import InternetAbbreviations from '@/components/InternetAbbreviations';
 import AuthorVideoSection from '@/components/AuthorVideoSection';
+import MobileOrderBar from '@/components/MobileOrderBar';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-stonepage text-lapis">
+    <div className="homepage-order-space min-h-screen bg-stonepage text-lapis">
       <Header />
       <main>
         <HeroSection />
@@ -33,6 +34,7 @@ const Index = () => {
         <FinalCta />
       </main>
       <Footer />
+      <MobileOrderBar />
     </div>
   );
 };

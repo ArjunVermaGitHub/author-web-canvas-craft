@@ -6,25 +6,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
 import { BOOK_TITLE, BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, PAYEE_NAME } from '@/config/book';
-
-const AMAZON_URL = 'https://amzn.in/d/0igsWonn';
-
-const AMAZON_STORES: [string, string][] = [
-  ['United States', 'https://www.amazon.com/dp/9358987448'],
-  ['United Kingdom', 'https://www.amazon.co.uk/dp/9358987448'],
-  ['Canada', 'https://www.amazon.ca/dp/9358987448'],
-  ['Australia', 'https://www.amazon.com.au/dp/9358987448'],
-  ['Germany', 'https://www.amazon.de/dp/9358987448'],
-  ['France', 'https://www.amazon.fr/dp/9358987448'],
-  ['Italy', 'https://www.amazon.it/dp/9358987448'],
-  ['Spain', 'https://www.amazon.es/dp/9358987448'],
-  ['Japan', 'https://www.amazon.co.jp/dp/9358987448'],
-  ['Singapore', 'https://www.amazon.sg/dp/9358987448'],
-  ['Netherlands', 'https://www.amazon.nl/dp/9358987448'],
-  ['Sweden', 'https://www.amazon.se/dp/9358987448'],
-  ['Poland', 'https://www.amazon.pl/dp/9358987448'],
-  ['Belgium', 'https://www.amazon.com.be/dp/9358987448'],
-];
+import { AMAZON_STORES } from '@/config/amazon';
+import { getBrowserAmazonStore, trackPurchaseClick } from '@/lib/purchase';
 
 const orderSchema = z.object({
   name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
@@ -41,6 +24,7 @@ const inputClass =
   'bg-white/5 border border-ember/40 text-stonepage placeholder:text-stonepage/50 focus-visible:ring-ember min-h-[44px]';
 
 const BuySection = () => {
+  const [amazon] = useState(getBrowserAmazonStore);
   const [step, setStep] = useState<Step>('details');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -211,9 +195,10 @@ const BuySection = () => {
             </p>
             <BookButton
               variant="outline-ember"
-              href={AMAZON_URL}
+              href={amazon.url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackPurchaseClick('AmazonClick', 'buy', amazon.store)}
             >
               Order from Amazon India
             </BookButton>
@@ -224,6 +209,7 @@ const BuySection = () => {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackPurchaseClick('AmazonClick', 'country_list', country)}
                     className="inline-flex items-center min-h-[44px] text-ember underline underline-offset-4 hover:text-stonepage focus-visible:outline focus-visible:outline-2 focus-visible:outline-ember"
                   >
                     {country}

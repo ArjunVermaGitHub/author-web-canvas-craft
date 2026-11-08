@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import BookButton from './BookButton';
+import PurchaseButtons from './PurchaseButtons';
 
 const links = [
   { label: 'The story', href: '#story' },
@@ -22,7 +22,7 @@ const Header = () => {
             Rituraj Verma
           </a>
 
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main">
+          <nav className="hidden md:flex items-center gap-4 xl:gap-8" aria-label="Main">
             {links.map((link) => (
               <a
                 key={link.href}
@@ -32,15 +32,15 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
-            <BookButton href="#buy" className="min-h-[44px]">
+            <PurchaseButtons placement="header" signedClassName="min-h-[44px] px-4 xl:px-6" amazonClassName="hidden xl:inline-flex">
               Order a signed copy
-            </BookButton>
+            </PurchaseButtons>
           </nav>
 
           <div className="flex items-center gap-2 md:hidden">
-            <BookButton href="#buy" className="px-2 py-2 text-base leading-tight max-w-[148px]" onClick={() => setIsMenuOpen(false)}>
+            <PurchaseButtons placement="header" signedClassName="px-2 py-2 text-base leading-tight max-w-[148px]" amazonClassName="hidden" onOrderClick={() => setIsMenuOpen(false)}>
               Order a signed copy
-            </BookButton>
+            </PurchaseButtons>
           <button
             className="md:hidden text-lapis p-2 -mr-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
