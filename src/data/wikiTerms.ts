@@ -32,11 +32,6 @@ export const WIKI_TERMS: WikiTerm[] = [
     url: 'https://en.wikipedia.org/wiki/Neanderthal',
   },
   {
-    term: 'One-horned animal on Indus seals',
-    blurb: 'A seal creature read as a bull, a unicorn or a myth.',
-    url: 'https://en.wikipedia.org/wiki/Unicorn',
-  },
-  {
     term: 'Architecture of Mohenjo-daro',
     blurb: 'Baked-brick streets, drains and granaries set in grids.',
     url: 'https://en.wikipedia.org/wiki/Mohenjo-daro#Architecture_and_urban_infrastructure',
