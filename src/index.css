@@ -94,14 +94,6 @@
     padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
   }
 
-  @media (min-width: 768px) {
-    /* Let desktop wheel scrolling continue through the abbreviation list. */
-    #slang ul {
-      max-height: none;
-      overflow-y: visible;
-    }
-  }
-
   /* Kept for the privacy policy page's dark theme */
   .book-section {
     @apply py-16 px-6 md:px-12;
