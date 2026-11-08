@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Add the owner-supplied sample PDF at the existing free-sample address and verify it opens without publishing
+
 - [x] Mobile conversion step 1: sticky bar, shared country-aware Amazon links, paired purchase buttons and optional Meta click tracking; verified without publishing
 - [x] Mobile conversion step 2: UPI tap-to-pay button on the payment step (mobile only), copy-UPI fallback, PayClick tracking; verified without publishing
 
