@@ -1,4 +1,4 @@
-export const AMAZON_URL = 'https://amzn.in/d/0igsWonn';
+export const AMAZON_URL = 'https://link.amazon/B0iQRk2aT';
 
 export const AMAZON_STORES: [string, string][] = [
   ['United States', 'https://www.amazon.com/dp/9358987448'],

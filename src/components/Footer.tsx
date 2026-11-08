@@ -21,6 +21,9 @@ const Footer = () => {
           </Link>
         </div>
         <VisitorCounter />
+        <p className="text-stonepage/60 text-base mt-6">
+          As an Amazon Associate I earn from qualifying purchases.
+        </p>
         <p className="text-stonepage/60 text-base mt-10 pt-6 border-t border-stonepage/20">
           © 2026 Rituraj Verma. All rights reserved.
         </p>
