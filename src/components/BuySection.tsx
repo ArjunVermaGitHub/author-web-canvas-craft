@@ -5,9 +5,10 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
-import { BOOK_TITLE, BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, PAYEE_NAME } from '@/config/book';
+import { BOOK_TITLE, BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE, PAYEE_NAME, UPI_ID } from '@/config/book';
 import { AMAZON_STORES } from '@/config/amazon';
 import { getBrowserAmazonStore, trackPurchaseClick } from '@/lib/purchase';
+import { buildUpiPayLink } from '@/lib/upi';
 
 const orderSchema = z.object({
   name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
@@ -34,7 +35,27 @@ const BuySection = () => {
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderId, setOrderId] = useState('');
+  const [payTapped, setPayTapped] = useState(false);
+  const [isTouchDevice] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+  );
   const { toast } = useToast();
+
+  const upiLink = buildUpiPayLink(UPI_ID, PAYEE_NAME, TOTAL_PRICE, name.split(' ')[0] || '');
+
+  const handlePayTap = () => {
+    setPayTapped(true);
+    trackPurchaseClick('PayClick', 'upi_deeplink');
+  };
+
+  const handleCopyUpiId = async () => {
+    try {
+      await navigator.clipboard.writeText(UPI_ID);
+      toast({ title: 'UPI ID copied', description: UPI_ID });
+    } catch {
+      toast({ title: 'Could not copy', description: `Please note the UPI ID: ${UPI_ID}`, variant: 'destructive' });
+    }
+  };
 
   const handleDetailsSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -143,6 +164,18 @@ const BuySection = () => {
                     <span>Total</span><span>₹{TOTAL_PRICE}</span>
                   </div>
                 </div>
+                {isTouchDevice && (
+                  <div className="space-y-2">
+                    <BookButton href={upiLink} onClick={handlePayTap} className="w-full">
+                      Pay ₹{TOTAL_PRICE} with PhonePe / UPI
+                    </BookButton>
+                    {payTapped && (
+                      <p className="text-stonepage/80 text-center">
+                        After paying in your UPI app, come back here and tap 'I've paid on PhonePe'.
+                      </p>
+                    )}
+                  </div>
+                )}
                 <div className="flex justify-center">
                   <img src="/phonepe-qr.png" alt={`PhonePe QR code for ${PAYEE_NAME}`} className="w-56 bg-stonepage p-2" />
                 </div>
@@ -150,6 +183,16 @@ const BuySection = () => {
                   Scan the QR with your PhonePe app and pay ₹{TOTAL_PRICE} to {PAYEE_NAME}.
                   Then tap the button below so we can save your order and ship your copy.
                 </p>
+                {isTouchDevice && (
+                  <div className="space-y-2 text-center">
+                    <p className="text-stonepage/80">
+                      No UPI app opens? Scan this QR from another device, or pay ₹{TOTAL_PRICE} to {UPI_ID}.
+                    </p>
+                    <BookButton variant="outline-ember" onClick={handleCopyUpiId} className="min-h-[44px]">
+                      Copy UPI ID
+                    </BookButton>
+                  </div>
+                )}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <BookButton variant="outline-ember" onClick={() => setStep('details')} disabled={isSubmitting} className="flex-1">
                     Back
