@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Add on-demand latest news with cached Vercel RSS endpoint, editor-picks fallback and parser tests; verify success/empty/error at desktop and mobile widths without publishing.
+
 - [x] Add "The Indus Valley in the news" section (15 external link cards, newest first, no scroll trap or tracking) between the quiz and story sections; verified at 1280×800 and 390×844 without publishing
 
 - [x] Extend the fixed order bar to desktop and resolve reproduced desktop scrolling/anchor issues; verified 48px buttons, sticky_bar tracking, buy-section hiding, footer clearance, wheel scrolling and no horizontal overflow at 1280×800, 1920×1080 and 390×844 without publishing
