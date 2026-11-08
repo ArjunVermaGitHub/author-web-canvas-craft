@@ -1,6 +1,7 @@
 # Roadmap
 
 - [x] Mobile conversion step 1: sticky bar, shared country-aware Amazon links, paired purchase buttons and optional Meta click tracking; verified without publishing
+- [x] Mobile conversion step 2: UPI tap-to-pay button on the payment step (mobile only), copy-UPI fallback, PayClick tracking; verified without publishing
 
 - [x] Add compact header and post-review buy links without duplicating the existing desktop link
 - [x] Add hidden author video slot and four-question Indus quiz
