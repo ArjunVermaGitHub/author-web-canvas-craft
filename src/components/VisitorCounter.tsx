@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 
 const ID_KEY = 'rv-visitor-id';
-const DAY_KEY = 'rv-visit-day';
 
 type Counts = { last24h: number; total: number };
 
-// Records one visit per browser per day, then shows public visitor counts.
+// Records every page open, then shows public page-view counts.
 // Hidden until the Vercel API responds (e.g. in the Lovable preview).
 const VisitorCounter = () => {
   const [counts, setCounts] = useState<Counts | null>(null);
@@ -24,14 +23,11 @@ const VisitorCounter = () => {
         id = crypto.randomUUID();
         localStorage.setItem(ID_KEY, id);
       }
-      const today = new Date().toISOString().slice(0, 10);
-      if (localStorage.getItem(DAY_KEY) === today) return void load();
       fetch('/api/visits', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ visitorId: id }),
       })
-        .then((r) => { if (r.ok) localStorage.setItem(DAY_KEY, today); })
         .catch(() => {})
         .finally(load);
     } catch {
@@ -43,7 +39,7 @@ const VisitorCounter = () => {
   const fmt = (n: number) => n.toLocaleString('en-IN');
   return (
     <p className="text-stonepage/80 text-base mt-6" aria-live="polite">
-      {fmt(counts.last24h)} visitors in the last 24 hours · {fmt(counts.total)} visitors in total
+      {fmt(counts.last24h)} visits in the last 24 hours · {fmt(counts.total)} visits in total
     </p>
   );
 };

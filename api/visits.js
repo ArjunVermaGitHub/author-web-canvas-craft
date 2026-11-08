@@ -1,5 +1,5 @@
 // api/visits.js — records unique visitors (one per browser per day).
-// GET returns public visitor counts (no order data). POST {visitorId} records a visit. POST {code} with OWNER_ACCESS_CODE returns owner stats.
+// GET returns public page-view counts (every page open) (no order data). POST {visitorId} records a visit. POST {code} with OWNER_ACCESS_CODE returns owner stats.
 import { connectToDatabase } from './utils/mongodb.js';
 import { buffer } from 'micro';
 import { timingSafeEqual } from 'crypto';
@@ -24,10 +24,10 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       const db = await connectToDatabase(process.env.MONGODB_URI);
-      const visits = db.collection('rituraj-visits');
+      const views = db.collection('rituraj-pageviews');
       const [last24h, total] = await Promise.all([
-        visits.distinct('visitorId', { createdAt: { $gte: new Date(Date.now() - DAY_MS) } }).then((a) => a.length),
-        visits.distinct('visitorId').then((a) => a.length),
+        views.countDocuments({ createdAt: { $gte: new Date(Date.now() - DAY_MS) } }),
+        views.countDocuments({}),
       ]);
       return res.status(200).json({ last24h, total });
     } catch (err) {
@@ -68,6 +68,7 @@ export default async function handler(req, res) {
 
     const visitorId = String(body.visitorId || '');
     if (!ID_RE.test(visitorId)) return res.status(400).json({ error: 'Invalid visitor' });
+    await db.collection('rituraj-pageviews').insertOne({ visitorId, createdAt: new Date() });
     const day = new Date().toISOString().slice(0, 10);
     await visits.updateOne(
       { visitorId, day },
