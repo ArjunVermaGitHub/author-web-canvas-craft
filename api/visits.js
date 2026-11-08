@@ -63,7 +63,20 @@ export default async function handler(req, res) {
         orders.countDocuments({ createdAt: { $gte: new Date(now - 14 * DAY_MS), $lt: new Date(now - 7 * DAY_MS) } }),
         orders.countDocuments({}),
       ]);
-      return res.status(200).json({ last24h, total, ordersThisWeek, ordersLastWeek, ordersTotal });
+      // Page opens vs unique visitors, both from the page-view log so the period matches exactly.
+      const views = db.collection('rituraj-pageviews');
+      const since24 = { createdAt: { $gte: new Date(now - DAY_MS) } };
+      const [opens24h, opensTotal, uniq24h, uniqTotal, first] = await Promise.all([
+        views.countDocuments(since24),
+        views.countDocuments({}),
+        views.distinct('visitorId', since24).then((a) => a.length),
+        views.distinct('visitorId').then((a) => a.length),
+        views.find({}, { projection: { createdAt: 1 } }).sort({ createdAt: 1 }).limit(1).next(),
+      ]);
+      return res.status(200).json({
+        last24h, total, ordersThisWeek, ordersLastWeek, ordersTotal,
+        compare: { opens24h, opensTotal, uniq24h, uniqTotal, since: first ? first.createdAt : null },
+      });
     }
 
     const visitorId = String(body.visitorId || '');
