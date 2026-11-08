@@ -13,6 +13,7 @@ import Footer from '@/components/Footer';
 import IndusQuiz from '@/components/IndusQuiz';
 import InternetAbbreviations from '@/components/InternetAbbreviations';
 import AuthorVideoSection from '@/components/AuthorVideoSection';
+import VideoSection from '@/components/VideoSection';
 import MobileOrderBar from '@/components/MobileOrderBar';
 
 const Index = () => {
@@ -25,6 +26,7 @@ const Index = () => {
         <IndusQuiz />
         <InternetAbbreviations />
         <StorySection />
+        <VideoSection />
         <AuthorVideoSection />
         <BuySection />
         <SampleSection />
