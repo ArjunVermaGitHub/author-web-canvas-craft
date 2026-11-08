@@ -1,6 +1,7 @@
 
 import React from 'react';
 import BookButton from './BookButton';
+import { SAMPLE_CHAPTERS_URL } from '@/config/book';
 
 const SneakPeekSection = () => {
   return (
@@ -14,7 +15,7 @@ const SneakPeekSection = () => {
             A boy who carries the flame of Dharma in his bones..."
           </blockquote>
           
-          <BookButton className="mt-8" onClick={()=> window.open('/Raghav-Kartikeya-Sample-Chapters.pdf', '_blank', 'noopener,noreferrer')}>
+          <BookButton className="mt-8" onClick={()=> window.open(SAMPLE_CHAPTERS_URL, '_blank', 'noopener,noreferrer')}>
           Read the first two chapters free
           </BookButton>
         </div>
