@@ -1,6 +1,6 @@
 import React from 'react';
 import { READER_REVIEWS } from '@/data/readerReviews';
-import BookButton from './BookButton';
+import PurchaseButtons from './PurchaseButtons';
 
 // Real, verified reader reviews only. Never add invented reviews.
 const SHOW_REVIEWS = true;
@@ -85,7 +85,7 @@ const ReviewsSection = () => {
           ))}
         </ul>
         <div className="mt-8">
-          <BookButton href="#buy">Order a signed copy</BookButton>
+          <PurchaseButtons placement="reviews" className="sm:w-fit">Order a signed copy</PurchaseButtons>
         </div>
       </div>
     </section>

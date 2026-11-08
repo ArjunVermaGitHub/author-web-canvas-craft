@@ -1,5 +1,5 @@
 import React from 'react';
-import BookButton from './BookButton';
+import PurchaseButtons from './PurchaseButtons';
 import PinterestSaveButton from './PinterestSaveButton';
 import { BOOK_PRICE, SHIPPING_PRICE, TOTAL_PRICE } from '@/config/book';
 
@@ -26,10 +26,10 @@ const HeroSection = () => {
               who wants humanity gone.
             </p>
 
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-6">
-              <BookButton href="#buy" className="sm:w-auto">
+            <div className="flex flex-col gap-4 mb-6">
+              <PurchaseButtons placement="hero" className="sm:flex-wrap sm:self-start" signedClassName="sm:w-auto">
                 Order a signed copy — ₹{TOTAL_PRICE}
-              </BookButton>
+              </PurchaseButtons>
               <a
                 href="/Raghav-Kartikeya-Sample-Chapters.pdf"
                 target="_blank"

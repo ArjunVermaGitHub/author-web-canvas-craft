@@ -1,5 +1,5 @@
 import React from 'react';
-import BookButton from './BookButton';
+import PurchaseButtons from './PurchaseButtons';
 import { TOTAL_PRICE } from '@/config/book';
 
 const FinalCta = () => {
@@ -9,9 +9,9 @@ const FinalCta = () => {
         <h2 className="page-heading max-w-3xl mx-auto">
           Start Raghav's journey today
         </h2>
-        <BookButton href="#buy" className="text-lg px-8">
+        <PurchaseButtons placement="final_cta" className="sm:justify-center" signedClassName="text-lg px-8">
           Order a signed copy — ₹{TOTAL_PRICE}
-        </BookButton>
+        </PurchaseButtons>
       </div>
     </section>
   );
