@@ -43,12 +43,12 @@ const VideoFacade = ({ embedUrl, title, label, postUrl, featured = false }: Vide
             >
               <Play className="h-7 w-7" aria-hidden="true" />
             </BookButton>
-            <p className="absolute inset-x-0 bottom-0 bg-book-dark px-4 py-3 text-center text-base text-book-light">
-              {label}
-            </p>
           </>
         )}
       </div>
+      <p className="bg-book-dark px-4 py-3 text-center text-base text-book-light">
+        {label}
+      </p>
       {postUrl && (
         <a href={postUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-[44px] items-center text-base text-book-light underline underline-offset-4">
           Watch on Instagram

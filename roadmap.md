@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Add the Instagram trailer and click-to-load Drive videos; verify initial network silence and mobile/desktop playback activation
+- [x] Add the Instagram trailer and click-to-load Drive videos; verified no initial provider requests, tap/keyboard activation and no overflow at 390px and 1280px
 
 - [x] Add the owner-supplied sample PDF at the existing free-sample address and verify it opens without publishing
 
