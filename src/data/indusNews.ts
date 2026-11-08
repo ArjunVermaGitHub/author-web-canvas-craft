@@ -56,10 +56,10 @@ export const INDUS_NEWS: IndusNewsItem[] = [
     url: 'https://theprint.in/opinion/lothal-a-complex-urban-centre-with-maritime-connections-had-dockyard-too/2279500',
   },
   {
-    title: 'Excavation reveals a 5,200-year-old Early Harappan settlement in Kachchh, Gujarat',
-    outlet: 'NewsX',
+    title: 'Kerala University archaeologists find a 5,200-year-old Harappan settlement at Padta Bet, Kachchh',
+    outlet: 'Drishti IAS',
     year: 2024,
-    url: 'https://www.newsx.com/offbeat/archaeological-excavation-reveals-5200-year-old-harappan-settlement-in-gujarat',
+    url: 'https://www.drishtiias.com/daily-updates/daily-news-analysis/padta-bet',
   },
   {
     title: 'Indus Valley civilisation site investigated in northern India (Rakhigarhi)',
