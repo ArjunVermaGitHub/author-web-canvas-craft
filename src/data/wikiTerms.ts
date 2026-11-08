@@ -101,4 +101,79 @@ export const WIKI_TERMS: WikiTerm[] = [
     blurb: 'An all-night vigil and fast held in Shiva\'s honour.',
     url: 'https://en.wikipedia.org/wiki/Maha_Shivaratri',
   },
+  {
+    term: 'Parashurama',
+    blurb: 'The warrior-sage sixth avatar of Vishnu, wielder of the axe.',
+    url: 'https://en.wikipedia.org/wiki/Parashurama',
+  },
+  {
+    term: 'The 64 Kalas',
+    blurb: 'The sixty-four classical arts and skills of ancient India.',
+    url: 'https://en.wikipedia.org/wiki/Kal%C4%81',
+  },
+  {
+    term: 'Kalki',
+    blurb: 'The prophesied tenth and final avatar of Vishnu.',
+    url: 'https://en.wikipedia.org/wiki/Kalki',
+  },
+  {
+    term: 'Kallaripayatu',
+    blurb: 'An ancient martial art of Kerala, said to be taught by Parashurama.',
+    url: 'https://en.wikipedia.org/wiki/Kalaripayattu',
+  },
+  {
+    term: 'Sanjivani',
+    blurb: 'The legendary life-restoring herb Hanuman fetched in the Ramayana.',
+    url: 'https://en.wikipedia.org/wiki/Sanjivani_(Hinduism)',
+  },
+  {
+    term: 'Hanuman Chalisa',
+    blurb: 'Tulsidas\'s forty-verse devotional hymn in praise of Hanuman.',
+    url: 'https://en.wikipedia.org/wiki/Hanuman_Chalisa',
+  },
+  {
+    term: 'Firewalking',
+    blurb: 'Walking barefoot over hot embers, and the science behind it.',
+    url: 'https://en.wikipedia.org/wiki/Firewalking',
+  },
+  {
+    term: 'JWST',
+    blurb: 'The largest space telescope, observing the universe in infrared light.',
+    url: 'https://en.wikipedia.org/wiki/James_Webb_Space_Telescope',
+  },
+  {
+    term: 'Dark matter',
+    blurb: 'The invisible matter that shapes galaxies, detected only through gravity.',
+    url: 'https://en.wikipedia.org/wiki/Dark_matter',
+  },
+  {
+    term: 'Burzahom inscriptions',
+    blurb: 'Neolithic engravings from Burzahom, a prehistoric site near Srinagar, Kashmir.',
+    url: 'https://en.wikipedia.org/wiki/Burzahom_archaeological_site',
+  },
+  {
+    term: 'Rishi Kashyap',
+    blurb: 'Revered Vedic sage, one of the Saptarishis, linked to Kashmir.',
+    url: 'https://en.wikipedia.org/wiki/Kashyapa',
+  },
+  {
+    term: 'Kashmir',
+    blurb: 'The Himalayan region at the northern edge of the Indian subcontinent.',
+    url: 'https://en.wikipedia.org/wiki/Kashmir',
+  },
+  {
+    term: 'Varah Mool (Baramulla)',
+    blurb: 'Ancient Varahamula, the sacred boar-linked site now called Baramulla.',
+    url: 'https://en.wikipedia.org/wiki/Baramulla',
+  },
+  {
+    term: 'Vishkanya',
+    blurb: 'The poison maidens of ancient Indian legend, used as assassins.',
+    url: 'https://en.wikipedia.org/wiki/Vishakanya',
+  },
+  {
+    term: 'Military signalling',
+    blurb: 'How armies convey orders, from runners and flags to radio.',
+    url: 'https://en.wikipedia.org/wiki/Military_communications',
+  },
 ];
