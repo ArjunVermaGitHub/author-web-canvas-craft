@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Add The Facebook stalker verbatim with three endings, four sitemap URLs and seven-active/two-coming-soon tests; verify pages without publishing or deploying.
+
 - [x] Add The soul mate theorist verbatim with three endings only, four sitemap URLs and six-active/three-coming-soon tests; 82 tests pass and pages, refreshed slash variants, canonicals, hidden labels/purchases and 4-2 returning 404 verified at 390px, 768px and 1280px. Nothing published or deployed.
 
 - [x] Add the fifth story, The victim of many loves, verbatim under printed slug `victim-of-many-loves`; add hub and three sitemap URLs and five-active/four-coming-soon tests. No publishing or deployment.

@@ -44,5 +44,9 @@ test('sitemap uses the real live domain for all public pages', () => {
     'https://riturajverma.com/lph/alternate-endings/the-soul-mate-theorist/1-2/',
     'https://riturajverma.com/lph/alternate-endings/the-soul-mate-theorist/2-2/',
     'https://riturajverma.com/lph/alternate-endings/the-soul-mate-theorist/3-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-facebook-stalker/',
+    'https://riturajverma.com/lph/alternate-endings/the-facebook-stalker/1-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-facebook-stalker/2-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-facebook-stalker/3-2/',
   ]);
 });
