@@ -8,7 +8,7 @@ import AlternateEndingsIndex from './AlternateEndingsIndex';
 
 test('LPH pages render self-referencing canonicals for every legacy route variant', () => {
   const paths = ['/lph', '/lph/alternate-endings',
-    ...['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space'].flatMap(storySlug => [
+    ...['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space', 'the-practitioner-of-austerity'].flatMap(storySlug => [
       `/lph/alternate-endings/${storySlug}`,
       ...['1-2', '2-2', '3-2'].map(slug => `/lph/alternate-endings/${storySlug}/${slug}`),
     ])];

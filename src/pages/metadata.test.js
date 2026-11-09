@@ -32,5 +32,9 @@ test('sitemap uses the real live domain for all public pages', () => {
     'https://riturajverma.com/lph/alternate-endings/the-intimacy-of-space/1-2/',
     'https://riturajverma.com/lph/alternate-endings/the-intimacy-of-space/2-2/',
     'https://riturajverma.com/lph/alternate-endings/the-intimacy-of-space/3-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-practitioner-of-austerity/',
+    'https://riturajverma.com/lph/alternate-endings/the-practitioner-of-austerity/1-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-practitioner-of-austerity/2-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-practitioner-of-austerity/3-2/',
   ]);
 });
