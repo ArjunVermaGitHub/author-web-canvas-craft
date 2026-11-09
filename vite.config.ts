@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 import sampleChapters from "./src/assets/sample-chapters.pdf.asset.json";
 
 export default defineConfig(({ mode }) => ({
-  base: "./", // ← ADD THIS
+  base: "/", // Root-hosted assets must also load on refreshed nested routes.
   server: {
     host: "::",
     port: 8080,
