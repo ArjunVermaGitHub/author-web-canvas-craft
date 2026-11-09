@@ -7,6 +7,10 @@ export const TOTAL_PRICE = 335; // ₹ — total the buyer pays
 export const PAYEE_NAME = "Rituraj Narayan Verma";
 export const UPI_ID = "riturajverma2005@ybl";
 
+// Author follow links (shown under the Buy on Amazon button).
+export const INSTAGRAM_URL = "https://www.instagram.com/raghav.kartikeya.series/";
+export const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61574944773635";
+
 // Set this to the author's YouTube watch or share URL to show the video section.
 export const AUTHOR_VIDEO_URL = "";
 

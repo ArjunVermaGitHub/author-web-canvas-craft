@@ -9,7 +9,7 @@ const FinalCta = () => {
         <h2 className="page-heading max-w-3xl mx-auto">
           Start Raghav's journey today
         </h2>
-        <PurchaseButtons placement="final_cta" className="sm:justify-center" signedClassName="text-lg px-8">
+        <PurchaseButtons placement="final_cta" className="sm:justify-center" followClassName="sm:justify-center" signedClassName="text-lg px-8">
           Order a signed copy — ₹{TOTAL_PRICE}
         </PurchaseButtons>
       </div>
