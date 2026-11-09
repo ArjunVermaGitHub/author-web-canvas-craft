@@ -6,6 +6,7 @@ const links = [
   { label: 'The story', href: '#story' },
   { label: 'Press', href: '#press' },
   { label: 'The author', href: '#author' },
+  { label: 'Community', href: '#community' },
 ];
 
 const Header = () => {
@@ -27,7 +28,7 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-lapis hover:text-carnelian transition-colors duration-200 py-2"
+                className="text-lapis hover:text-carnelian transition-colors duration-200 py-2 min-h-11 inline-flex items-center"
               >
                 {link.label}
               </a>
