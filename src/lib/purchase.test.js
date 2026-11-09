@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { selectAmazonStore, selectEbookUrl, trackPurchaseClick, trackOrderSaved } from './purchase';
 import { AMAZON_STORES, AMAZON_URL, AMAZON_EBOOK_URL, AMAZON_EBOOK_INTL_URL } from '../config/amazon';
-import { TOTAL_PRICE } from '../config/book';
+import { FLIPKART_URL, TOTAL_PRICE } from '../config/book';
 
 describe('purchase destinations', () => {
   test('uses the configured ₹335 total', () => { expect(TOTAL_PRICE).toBe(335); });
@@ -56,6 +56,26 @@ describe('OrderSaved tracking', () => {
     ]);
     expect(() => trackOrderSaved('buy', TOTAL_PRICE)).not.toThrow();
     expect(() => trackOrderSaved('buy', TOTAL_PRICE, 'RK-X', () => { throw new Error('blocked'); })).not.toThrow();
+  });
+});
+
+describe('Flipkart click tracking', () => {
+  test('uses the exact India-only Flipkart listing URL', () => {
+    expect(FLIPKART_URL).toBe('https://www.flipkart.com/raghav-kartikeya-tablets-dharma/p/itmd457e27c6c425?pid=9789358984019&marketplace=FLIPKART');
+  });
+  test('sends FlipkartClick with placement and the flipkart label', () => {
+    const calls = [];
+    const pixel = (...args) => calls.push(args);
+    trackPurchaseClick('FlipkartClick', 'hero', 'flipkart', pixel);
+    trackPurchaseClick('FlipkartClick', 'sticky_bar', 'flipkart', pixel);
+    expect(calls).toEqual([
+      ['trackCustom', 'FlipkartClick', { placement: 'hero', store: 'flipkart' }],
+      ['trackCustom', 'FlipkartClick', { placement: 'sticky_bar', store: 'flipkart' }],
+    ]);
+  });
+  test('does nothing without a pixel and never throws when it fails', () => {
+    expect(() => trackPurchaseClick('FlipkartClick', 'header', 'flipkart')).not.toThrow();
+    expect(() => trackPurchaseClick('FlipkartClick', 'hero', 'flipkart', () => { throw new Error('blocked'); })).not.toThrow();
   });
 });
 

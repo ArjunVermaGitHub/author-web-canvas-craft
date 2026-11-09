@@ -7,6 +7,9 @@ export const TOTAL_PRICE = 335; // ₹ — total the buyer pays
 export const PAYEE_NAME = "Rituraj Narayan Verma";
 export const UPI_ID = "riturajverma2005@ybl";
 
+// India-only Flipkart listing; not part of the multi-country Amazon selector.
+export const FLIPKART_URL = "https://www.flipkart.com/raghav-kartikeya-tablets-dharma/p/itmd457e27c6c425?pid=9789358984019&marketplace=FLIPKART";
+
 // Author follow links (shown under the Buy on Amazon button).
 export const INSTAGRAM_URL = "https://www.instagram.com/raghav.kartikeya.series/";
 export const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61574944773635";
