@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Fetch and visually verify the ten pen-name covers, optimize matching images locally, add optional cover data and verify tests/layouts; no publishing.
+
 - [x] Add Other books navigation and `/james-furrington` catalogue with 10 typed book entries, linked pen-name note, page metadata and sitemap; 63 tests pass, direct loads/refreshes and mouse/keyboard menus verified at 390px, 768px and 1280px without overflow. Tablet uses the compact menu. Existing Vercel fallback and API routes unchanged; nothing published.
 - [x] Correct homepage and pen-name canonical/sitemap URLs to the owner's real domain; 66 tests pass and cache-disabled refreshes load content/assets on `/`, `/james-furrington` and `/james-furrington/`. Keep root-relative Vite assets for trailing-slash deep links. Nothing published.
 
