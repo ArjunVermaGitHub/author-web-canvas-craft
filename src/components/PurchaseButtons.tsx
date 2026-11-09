@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import BookButton from './BookButton';
 import { getBrowserAmazonStore, trackPurchaseClick } from '@/lib/purchase';
-import { FACEBOOK_URL, INSTAGRAM_URL } from '@/config/book';
+import { FACEBOOK_URL, FLIPKART_URL, INSTAGRAM_URL } from '@/config/book';
 import { useLocation } from 'react-router-dom';
 
 type Props = {
@@ -11,6 +11,7 @@ type Props = {
   signedClassName?: string;
   amazonClassName?: string;
   amazonVariant?: 'outline' | 'outline-ember';
+  flipkartClassName?: string;
   onOrderClick?: () => void;
   showFollow?: boolean;
   followClassName?: string;
@@ -25,7 +26,7 @@ const FOLLOW_LINKS = [
 const followStyle =
   'min-h-11 w-full sm:w-auto px-4 py-1.5 text-sm font-semibold border hover:bg-transparent hover:text-carnelian';
 
-export default function PurchaseButtons({ placement, children, className = '', signedClassName = '', amazonClassName = '', amazonVariant = 'outline', onOrderClick, showFollow = true, followClassName = '' }: Props) {
+export default function PurchaseButtons({ placement, children, className = '', signedClassName = '', amazonClassName = '', amazonVariant = 'outline', flipkartClassName = '', onOrderClick, showFollow = true, followClassName = '' }: Props) {
   const amazon = useMemo(getBrowserAmazonStore, []);
   const { pathname } = useLocation();
   return (
@@ -35,6 +36,9 @@ export default function PurchaseButtons({ placement, children, className = '', s
       </BookButton>
       <BookButton href={amazon.url} target="_blank" rel="noopener noreferrer" variant={amazonVariant} className={amazonClassName} onClick={() => trackPurchaseClick('AmazonClick', placement, amazon.store)}>
         Buy on Amazon
+      </BookButton>
+      <BookButton href={FLIPKART_URL} target="_blank" rel="noopener noreferrer" variant={amazonVariant} className={flipkartClassName} onClick={() => trackPurchaseClick('FlipkartClick', placement, 'flipkart')}>
+        Buy on Flipkart
       </BookButton>
       {showFollow && (
         <div className={`flex flex-col sm:flex-row gap-2 sm:basis-full sm:mt-1 ${followClassName}`}>
