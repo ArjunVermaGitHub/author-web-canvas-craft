@@ -1,4 +1,3 @@
-
 {
   "version": 2,
   "builds": [
@@ -9,10 +8,82 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
+    {
+      "src": "/books/B0DPJ2ZVBJ.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/db5cd4f8-9d0a-460a-b921-8276b2fb377b/B0DPJ2ZVBJ.jpg"
+      }
+    },
+    {
+      "src": "/books/B0DPKTX5XL.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/4850e4b0-d649-4cb7-8363-af868bc27bba/B0DPKTX5XL.jpg"
+      }
+    },
+    {
+      "src": "/books/B0DPPC382S.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/3ea50a55-3c06-4ce0-bd58-734d3509be5e/B0DPPC382S.jpg"
+      }
+    },
+    {
+      "src": "/books/B0DPQ9JCX4.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/063685c4-cb3f-4438-989d-01080413c10e/B0DPQ9JCX4.jpg"
+      }
+    },
+    {
+      "src": "/books/B0DPQYCZ72.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/401ca29c-ee03-481f-b195-0fc6f5f20885/B0DPQYCZ72.jpg"
+      }
+    },
+    {
+      "src": "/books/B0DPVCYXMW.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/29a13c74-0432-4420-a783-48bf299b43f1/B0DPVCYXMW.jpg"
+      }
+    },
+    {
+      "src": "/books/B0DPX79C8X.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/f18bc192-7c8a-487c-8c1a-a3bdda0dc522/B0DPX79C8X.jpg"
+      }
+    },
+    {
+      "src": "/books/B0DQ4KNV3L.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/cd11fab7-74b6-4353-a8fd-6c741d567c7d/B0DQ4KNV3L.jpg"
+      }
+    },
+    {
+      "src": "/books/B0DQJBKSFT.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/c6ad5964-0e96-4c07-aea2-87f29a1b9323/B0DQJBKSFT.jpg"
+      }
+    },
+    {
+      "src": "/books/B0F4QM55GW.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/a1b38484-f259-4e1d-9ba9-a4df5652dc4c/B0F4QM55GW.jpg"
+      }
+    },
     {
       "src": "/Raghav-Kartikeya-Sample-Chapters.pdf",
       "status": 302,
