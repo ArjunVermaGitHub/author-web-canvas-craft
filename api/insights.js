@@ -60,10 +60,10 @@ export default async function handler(req, res) {
   } catch {
     return res.status(400).json({ error: 'Invalid request' });
   }
+  if (!body || typeof body !== 'object') return res.status(400).json({ error: 'Invalid request' });
   if (!codeMatches(body.code, ownerCode)) {
     return res.status(401).json({ error: 'Wrong access code' });
   }
-  if (!body || typeof body !== 'object') return res.status(400).json({ error: 'Invalid request' });
   const comparison = body.mode === 'tracking' ? trackingComparisonSchema.safeParse(body.comparison) : null;
   if (comparison && !comparison.success) return res.status(400).json({ error: comparison.error.issues[0]?.message || 'Check the comparison fields.' });
   const data = comparison?.success
