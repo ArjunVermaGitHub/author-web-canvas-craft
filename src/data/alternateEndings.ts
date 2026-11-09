@@ -432,7 +432,62 @@ export const ALTERNATE_STORIES: AlternateStory[] = [
       },
     ],
   },
-  { slug: 'the-pursuit-of-perfection', title: 'The pursuit of perfection', endings: [] },
+  {
+    slug: 'the-pursuit-of-perfection',
+    title: 'The pursuit of perfection',
+    endings: [
+      {
+        slug: '1-2',
+        label: 'Happy',
+        paragraphs: [
+          `He lay beside Bhavana with his eyes open until the first light came through the curtains. Then he did what he had not done in months. He woke her.`,
+          `"I have to tell you something," he said, "and I want you to hear all of it before you say anything."`,
+          `He told her about Manisha, about the knife in Priyanka's kitchen, about the couch and his hands on a woman's throat. He did not make it smaller. He did not make himself the victim of it.`,
+          `Bhavana listened with her eyes closed. When he finished, she opened them. "I know," she said. "I read you in the dark. I just didn't know how far it had gone."`,
+          `"I'm not asking you to forgive me."`,
+          `"Good. I'm not going to. Not yet." She sat up. "Dr. Homi opens at nine. Get dressed."`,
+          `This time Harish took the pills. He hated every one of them. He took them anyway.`,
+          `He wrote a letter to Manisha, which Paromita's lawyer read first. It asked for nothing. He accepted the counselling the court ordered and the conditions that came with it, and he never went near her again. He sold his share of the ad agency that spring.`,
+          `By winter he was teaching marketing at a small college in Thane. He was home by six every evening.`,
+          `One Sunday morning his daughter put a cup of coffee in front of him. "It's gone cold," she said, "because you were staring again."`,
+          `"Thank you, Meher," he said, and he said her name carefully, the way you carry something that might spill.`,
+          `She rolled her eyes, ten years old and no longer afraid of him. It was the best answer he had ever been given to any question.`,
+        ],
+      },
+      {
+        slug: '2-2',
+        label: 'Sad',
+        paragraphs: [
+          `He did not tell Bhavana. He lay beside her until the alarm rang, and rehearsed the sentences he would use if anyone asked.`,
+          `Nobody asked for three days. On the fourth morning, two constables and a woman officer stood at the door.`,
+          `Manisha had given a statement. Paromita had made sure the marks on her neck were photographed.`,
+          `The headlines were exactly the ones he had predicted. *Ms Perfect Beauty Attacked by Obsessed Ad Man.* There was a photograph of Harish taken at Arun's party, his eyes half closed. Under it, the caption: *The Face of a Madman?*`,
+          `Bhavana did not read the papers. She sat at the kitchen table with the children's school forms and wrote the guardian's name in her careful legal-assistant handwriting, once for each of them.`,
+          `In the lock-up, they gave him a stub of chalk. He drew a small square on the wall and looked at it for a long time.`,
+          `"Who am I?" he asked it.`,
+          `For the first time, the answer was not a mystery. It was printed in four languages, on page one, above the fold.`,
+        ],
+      },
+      {
+        slug: '3-2',
+        label: 'Twist',
+        paragraphs: [
+          `"Speak up," he said to the voice in the kitchen. "I cannot hear you."`,
+          `"I am speaking," said the voice, "and you are finally close enough to hear."`,
+          `He turned. In the doorway, in the grey light, with her handbag still on her shoulder, stood Bhavana.`,
+          `She was not his conscience. She was not a gatepost or a mirror or a sentence in blue ballpoint on the wall. She was a woman in a crumpled cotton saree who had traced a mobile phone through two lanes of traffic at four in the morning.`,
+          `"I have been standing here for an hour," she said. "I read the walls. All of them."`,
+          `Behind him, on the couch, Manisha stirred and coughed. "She needs a doctor," said Bhavana. "Payal is on her way. So is Dr. Homi. So is the police inspector, because I called him too."`,
+          `"You called the police?"`,
+          `"I called the police on my husband. Do you know how hard that is for a soul mate?" Her voice shook only on the last word.`,
+          `He sat down in the chair he had offered to his imaginary friend. Then he brushed the dust off it himself, with his hand.`,
+          `"Who are you?" she asked. It was not the question he had been putting to everyone else. It was the one he had never answered.`,
+          `"Harish Saxena," he said. "Husband. Father. And a man who is going to tell the inspector everything he did tonight."`,
+          `Bhavana took his hand. "That's a good place to start," she said.`,
+        ],
+      },
+    ],
+  },
 ];
 
 export function storyPath(storySlug: string): string {
