@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Add the three verbatim endings for The intimacy of space, four sitemap URLs and updated three-story/six-coming-soon tests; verify index, hub, ending navigation and canonicals at 390px, 768px and 1280px without publishing.
+- [x] Add the three verbatim endings for The intimacy of space, four sitemap URLs and updated three-story/six-coming-soon tests; 79 tests pass, automatic build clean, and index, hub, ending navigation, canonicals, label-free metadata and direct loads/refreshes with both slash variants verified at 390px, 768px and 1280px without publishing.
 
 - [x] Add the three verbatim endings for The emotional cripple, four sitemap URLs and updated data/route tests; 78 tests pass, automatic build clean, and index, hub, ending navigation, direct loads/refreshes and label-free metadata verified at 390px, 768px and 1280px without publishing.
 
