@@ -10,6 +10,7 @@ export interface OtherBook {
 
 export const OTHER_BOOK_SERIES = [
   { label: 'James Furrington: Cute Cats Coloring Books', path: '/james-furrington' },
+  { label: 'Love, Peace & Happiness: Alternate endings', path: '/lph/alternate-endings/' },
 ];
 
 export const OTHER_BOOKS: OtherBook[] = [
