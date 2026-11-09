@@ -1,10 +1,10 @@
 # Roadmap
 
-- [ ] Add the Amazon India listing after the existing India book; confirm available details and cover, keep unknown metadata omitted, update catalogue tests and verify 390px, 768px and 1280px without publishing.
+- [x] Catalogue now has 11 entries: add Amazon India ISBN 9363555208 immediately after the .com India book. Both supplied pages confirm “Cute cats in india”, Perfect Paperback, 90 pages and publisher; no description was exposed, so the blurb uses confirmed author/publisher only. Matching cover visually verified and hosted via `/books/9363555208.jpg`; optional format/pages/store metadata added. All 68 tests and automatic build pass; refreshed layouts verified at 390px, 768px and 1280px without overflow. Nothing published or deployed.
 
 - [x] Fetch and visually verify all ten pen-name covers, including distinct Japan editions; optimize to quality-82 JPEGs stored via project asset pointers with local `/books/<ASIN>.jpg` redirects. Optional cover metadata and fallback cards added; 67 tests pass and all ten images load at 390px, 768px and 1280px with no overflow and bottom-aligned order buttons. No publishing.
 
-- [x] Add Other books navigation and `/james-furrington` catalogue with 10 typed book entries, linked pen-name note, page metadata and sitemap; 63 tests pass, direct loads/refreshes and mouse/keyboard menus verified at 390px, 768px and 1280px without overflow. Tablet uses the compact menu. Existing Vercel fallback and API routes unchanged; nothing published.
+- [x] Add Other books navigation and `/james-furrington` catalogue (now 11 typed book entries), linked pen-name note, page metadata and sitemap; direct loads/refreshes and mouse/keyboard menus verified at 390px, 768px and 1280px without overflow. Tablet uses the compact menu. Existing Vercel fallback and API routes unchanged; nothing published.
 - [x] Correct homepage and pen-name canonical/sitemap URLs to the owner's real domain; 66 tests pass and cache-disabled refreshes load content/assets on `/`, `/james-furrington` and `/james-furrington/`. Keep root-relative Vite assets for trailing-slash deep links. Nothing published.
 
 - [x] Build community signup after reviews with shared validation, WhatsApp contact and MongoDB `test.rituraj-community`; 59 tests pass and browser validation/success/duplicate/failure/navigation checks pass at 390px and 1280px without overflow. No publishing; real database read-back unavailable because MONGODB_URI is absent in the sandbox.
