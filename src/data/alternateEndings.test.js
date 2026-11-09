@@ -24,17 +24,27 @@ describe('LPH alternate endings', () => {
     expect(story?.endings.map(ending => endingTitle(story, ending))).toEqual([
       'The emotional cripple: Ending 1', 'The emotional cripple: Ending 2', 'The emotional cripple: Ending 3',
     ]);
-    expect(ALTERNATE_STORIES.filter(item => item.endings.length > 0)).toHaveLength(2);
   });
-  test('seven remaining stories await ending data', () => {
+  test('third story has three legacy endings with the supplied paragraph breaks', () => {
+    const story = ALTERNATE_STORIES.find(item => item.slug === 'the-intimacy-of-space');
+    expect(story?.title).toBe('The intimacy of space');
+    expect(story?.endings.map(ending => [ending.slug, ending.label, ending.paragraphs.length])).toEqual([
+      ['1-2', 'Happy', 8], ['2-2', 'Sad', 8], ['3-2', 'Twist', 8],
+    ]);
+    expect(story?.endings.map(ending => endingTitle(story, ending))).toEqual([
+      'The intimacy of space: Ending 1', 'The intimacy of space: Ending 2', 'The intimacy of space: Ending 3',
+    ]);
+    expect(ALTERNATE_STORIES.filter(item => item.endings.length > 0)).toHaveLength(3);
+  });
+  test('six remaining stories await ending data', () => {
     expect(ALTERNATE_STORIES.filter(story => story.endings.length === 0).map(story => story.title)).toEqual([
-      'The intimacy of space', 'The practitioner of austerity',
+      'The practitioner of austerity',
       'The victim of many loves', 'The soul mate theorist', 'The Facebook stalker',
       'The night of the affair', 'The pursuit of perfection',
     ]);
   });
   test('legacy ending canonicals use the real domain and a trailing slash', () => {
-    for (const storySlug of ['a-high-like-heaven', 'the-emotional-cripple']) {
+    for (const storySlug of ['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space']) {
       for (const slug of ['1-2', '2-2', '3-2']) {
         expect(lphCanonical(endingPath(storySlug, slug))).toBe(`https://riturajverma.com/lph/alternate-endings/${storySlug}/${slug}/`);
       }
