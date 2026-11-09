@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Add the Amazon India listing after the existing India book; confirm available details and cover, keep unknown metadata omitted, update catalogue tests and verify 390px, 768px and 1280px without publishing.
+
 - [x] Fetch and visually verify all ten pen-name covers, including distinct Japan editions; optimize to quality-82 JPEGs stored via project asset pointers with local `/books/<ASIN>.jpg` redirects. Optional cover metadata and fallback cards added; 67 tests pass and all ten images load at 390px, 768px and 1280px with no overflow and bottom-aligned order buttons. No publishing.
 
 - [x] Add Other books navigation and `/james-furrington` catalogue with 10 typed book entries, linked pen-name note, page metadata and sitemap; 63 tests pass, direct loads/refreshes and mouse/keyboard menus verified at 390px, 768px and 1280px without overflow. Tablet uses the compact menu. Existing Vercel fallback and API routes unchanged; nothing published.
