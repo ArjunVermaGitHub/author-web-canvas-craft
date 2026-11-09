@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Add The night of the affair verbatim with three endings, four sitemap URLs and eight-active/one-coming-soon tests; verify pages without publishing or deploying.
+
 - [x] Add The Facebook stalker verbatim with three endings, four sitemap URLs and seven-active/two-coming-soon tests; 83 tests pass, automatic build clean, and navigation, refreshed slash variants, titles, canonicals and hidden labels/purchases verified at 390px, 768px and 1280px. No helpline note; nothing published or deployed.
 
 - [x] Add The soul mate theorist verbatim with three endings only, four sitemap URLs and six-active/three-coming-soon tests; 82 tests pass and pages, refreshed slash variants, canonicals, hidden labels/purchases and 4-2 returning 404 verified at 390px, 768px and 1280px. Nothing published or deployed.

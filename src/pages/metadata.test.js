@@ -48,5 +48,9 @@ test('sitemap uses the real live domain for all public pages', () => {
     'https://riturajverma.com/lph/alternate-endings/the-facebook-stalker/1-2/',
     'https://riturajverma.com/lph/alternate-endings/the-facebook-stalker/2-2/',
     'https://riturajverma.com/lph/alternate-endings/the-facebook-stalker/3-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-night-of-the-affair/',
+    'https://riturajverma.com/lph/alternate-endings/the-night-of-the-affair/1-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-night-of-the-affair/2-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-night-of-the-affair/3-2/',
   ]);
 });
