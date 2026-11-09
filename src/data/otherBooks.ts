@@ -1,8 +1,9 @@
 export interface OtherBook {
   title: string;
   blurb: string;
-  format: 'Paperback' | 'Hardcover';
-  pages: number;
+  format?: 'Paperback' | 'Hardcover' | 'Perfect Paperback';
+  pages?: number;
+  store?: 'Amazon.com' | 'Amazon India';
   url: string;
   cover?: { path: string; alt: string; width: number; height: number };
 }
@@ -17,6 +18,7 @@ export const OTHER_BOOKS: OtherBook[] = [
   { title: 'Cute Cats in Japan Coloring Book', blurb: 'Cute cats join cultural activities in Japan.', format: 'Paperback', pages: 84, url: 'https://www.amazon.com/dp/B0DPQYCZ72', cover: { path: '/books/B0DPQYCZ72.jpg', alt: 'Cover of Cute Cats in Japan Coloring Book by James Furrington', width: 500, height: 500 } },
   { title: 'Cute Cats in Japan Coloring Book — Bold & Easy hardcover edition', blurb: 'Bold and easy designs with thick lines for stress relief.', format: 'Hardcover', pages: 78, url: 'https://www.amazon.com/dp/B0F4QM55GW', cover: { path: '/books/B0F4QM55GW.jpg', alt: 'Cover of Cute Cats in Japan Coloring Book — Bold & Easy hardcover edition by James Furrington', width: 376, height: 500 } },
   { title: 'Cute Cats in India Coloring Book', blurb: 'Cats journey through temples, marketplaces, dances and Bollywood songs in India.', format: 'Paperback', pages: 84, url: 'https://www.amazon.com/dp/B0DPQ9JCX4', cover: { path: '/books/B0DPQ9JCX4.jpg', alt: 'Cover of Cute Cats in India Coloring Book by James Furrington', width: 500, height: 500 } },
+  { title: 'Cute cats in india', blurb: 'By James Furrington. Published by Evincepub Publishing.', format: 'Perfect Paperback', pages: 90, store: 'Amazon India', url: 'https://www.amazon.in/dp/9363555208', cover: { path: '/books/9363555208.jpg', alt: 'Cover of Cute Cats in India Colouring Book by James Furrington, Amazon India edition', width: 575, height: 800 } },
   { title: 'Cute Chats in China Coloring Book', blurb: 'Explore China through a cat’s eyes, from cultural activities to famous landmarks.', format: 'Paperback', pages: 83, url: 'https://www.amazon.com/dp/B0DPJ2ZVBJ', cover: { path: '/books/B0DPJ2ZVBJ.jpg', alt: 'Cover of Cute Chats in China Coloring Book by James Furrington', width: 500, height: 500 } },
   { title: 'Cute Cats in Outer Space Coloring Book', blurb: 'An out-of-this-world cat journey through the solar system and nearby galaxies.', format: 'Paperback', pages: 84, url: 'https://www.amazon.com/dp/B0DPX79C8X', cover: { path: '/books/B0DPX79C8X.jpg', alt: 'Cover of Cute Cats in Outer Space Coloring Book by James Furrington', width: 500, height: 500 } },
   { title: 'Cute Cats in Uniform Coloring Book', blurb: 'Discover the world of uniformed professions through the eyes of cute cats.', format: 'Paperback', pages: 84, url: 'https://www.amazon.com/dp/B0DQ4KNV3L', cover: { path: '/books/B0DQ4KNV3L.jpg', alt: 'Cover of Cute Cats in Uniform Coloring Book by James Furrington', width: 500, height: 500 } },

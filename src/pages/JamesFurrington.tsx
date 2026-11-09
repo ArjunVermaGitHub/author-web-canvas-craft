@@ -40,12 +40,17 @@ export default function JamesFurrington() {
                   <PawPrint className="h-6 w-6 mb-4 text-lapis/60" aria-hidden="true" />
                 )}
                 <h2 className="font-serif text-2xl leading-tight break-words">{book.title}</h2>
+                {book.store === 'Amazon India' && <p className="mt-2 text-sm text-lapis/70">Amazon India edition</p>}
                 <p className="mt-3 leading-relaxed">{book.blurb}</p>
-                <p className="mt-4 mb-6 text-sm text-lapis/70">{book.format} · {book.pages} pages</p>
-                <BookButton href={book.url} target="_blank" rel="noopener noreferrer" className="mt-auto w-full gap-2">
-                  Order on Amazon <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
+                {(book.format || book.pages !== undefined) && (
+                  <p className="mt-4 text-sm text-lapis/70">{[book.format, book.pages !== undefined ? `${book.pages} pages` : undefined].filter(Boolean).join(' · ')}</p>
+                )}
+                <div className="mt-auto pt-6">
+                <BookButton href={book.url} target="_blank" rel="noopener noreferrer" className="w-full gap-2">
+                  {book.store === 'Amazon India' ? 'Order on Amazon India' : 'Order on Amazon'} <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
                   <span className="sr-only"> (opens in a new tab)</span>
                 </BookButton>
+                </div>
               </li>
             ))}
           </ul>
