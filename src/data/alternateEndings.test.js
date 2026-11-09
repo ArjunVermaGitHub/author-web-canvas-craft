@@ -15,18 +15,31 @@ describe('LPH alternate endings', () => {
       'A high, like heaven: Ending 1', 'A high, like heaven: Ending 2', 'A high, like heaven: Ending 3',
     ]);
   });
-  test('eight remaining stories await ending data', () => {
+  test('second story has three legacy endings with the supplied paragraph breaks', () => {
+    const story = ALTERNATE_STORIES.find(item => item.slug === 'the-emotional-cripple');
+    expect(story?.title).toBe('The emotional cripple');
+    expect(story?.endings.map(ending => [ending.slug, ending.label, ending.paragraphs.length])).toEqual([
+      ['1-2', 'Happy', 6], ['2-2', 'Sad', 5], ['3-2', 'Twist', 7],
+    ]);
+    expect(story?.endings.map(ending => endingTitle(story, ending))).toEqual([
+      'The emotional cripple: Ending 1', 'The emotional cripple: Ending 2', 'The emotional cripple: Ending 3',
+    ]);
+    expect(ALTERNATE_STORIES.filter(item => item.endings.length > 0)).toHaveLength(2);
+  });
+  test('seven remaining stories await ending data', () => {
     expect(ALTERNATE_STORIES.filter(story => story.endings.length === 0).map(story => story.title)).toEqual([
-      'The emotional cripple', 'The intimacy of space', 'The practitioner of austerity',
+      'The intimacy of space', 'The practitioner of austerity',
       'The victim of many loves', 'The soul mate theorist', 'The Facebook stalker',
       'The night of the affair', 'The pursuit of perfection',
     ]);
   });
   test('legacy ending canonicals use the real domain and a trailing slash', () => {
-    for (const slug of ['1-2', '2-2', '3-2']) {
-      expect(lphCanonical(endingPath('a-high-like-heaven', slug))).toBe(`https://riturajverma.com/lph/alternate-endings/a-high-like-heaven/${slug}/`);
+    for (const storySlug of ['a-high-like-heaven', 'the-emotional-cripple']) {
+      for (const slug of ['1-2', '2-2', '3-2']) {
+        expect(lphCanonical(endingPath(storySlug, slug))).toBe(`https://riturajverma.com/lph/alternate-endings/${storySlug}/${slug}/`);
+      }
+      expect(lphCanonical(storyPath(storySlug))).toBe(`https://riturajverma.com/lph/alternate-endings/${storySlug}/`);
     }
-    expect(lphCanonical(storyPath('a-high-like-heaven'))).toBe('https://riturajverma.com/lph/alternate-endings/a-high-like-heaven/');
     expect(lphCanonical('/lph')).toBe('https://riturajverma.com/lph/');
     expect(lphCanonical('/lph/alternate-endings/')).toBe('https://riturajverma.com/lph/alternate-endings/');
   });

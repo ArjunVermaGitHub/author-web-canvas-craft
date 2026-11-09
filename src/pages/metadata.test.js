@@ -24,5 +24,9 @@ test('sitemap uses the real live domain for all public pages', () => {
     'https://riturajverma.com/lph/alternate-endings/a-high-like-heaven/1-2/',
     'https://riturajverma.com/lph/alternate-endings/a-high-like-heaven/2-2/',
     'https://riturajverma.com/lph/alternate-endings/a-high-like-heaven/3-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-emotional-cripple/',
+    'https://riturajverma.com/lph/alternate-endings/the-emotional-cripple/1-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-emotional-cripple/2-2/',
+    'https://riturajverma.com/lph/alternate-endings/the-emotional-cripple/3-2/',
   ]);
 });
