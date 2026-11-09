@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Add Other books navigation and James Furrington catalogue with typed book data, page metadata, sitemap and desktop/mobile verification; do not publish.
+- [x] Add Other books navigation and `/james-furrington` catalogue with 10 typed book entries, linked pen-name note, page metadata and sitemap; 63 tests pass, direct loads/refreshes and mouse/keyboard menus verified at 390px, 768px and 1280px without overflow. Tablet uses the compact menu. Existing Vercel fallback and API routes unchanged; nothing published.
 
 - [x] Build community signup after reviews with shared validation, WhatsApp contact and MongoDB `test.rituraj-community`; 59 tests pass and browser validation/success/duplicate/failure/navigation checks pass at 390px and 1280px without overflow. No publishing; real database read-back unavailable because MONGODB_URI is absent in the sandbox.
 

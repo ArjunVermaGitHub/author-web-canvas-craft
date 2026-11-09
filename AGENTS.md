@@ -13,3 +13,4 @@
 - Community signup uses the shared Zod schema in `src/lib/communityValidation.js` in both the form and Vercel endpoint, with a unique email index in MongoDB. Why: client/server rules stay identical and concurrent signups cannot duplicate records.
 - Pen-name catalogue data and menu entries live in `src/data/otherBooks.ts`; `/james-furrington` uses the shared Header/Footer and a linked pen-name note, with untracked catalogue links. Why: additional series stay data-driven and the author identity remains clear.
 - Use HelmetProvider for route titles/descriptions/canonicals, keeping static social tags as homepage fallback; shared header anchors target the homepage from other routes. Why: route navigation and metadata must not retain a previous page's identity.
+- Keep Vite assets root-relative and preserve Vercel's filesystem/API rules before the SPA fallback. Why: refreshed nested page URLs must load assets without changing serverless endpoint behavior.
