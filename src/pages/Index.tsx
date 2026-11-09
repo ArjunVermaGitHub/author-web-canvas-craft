@@ -17,10 +17,14 @@ import NewsSection from '@/components/NewsSection';
 import AuthorVideoSection from '@/components/AuthorVideoSection';
 import VideoSection from '@/components/VideoSection';
 import OrderBar from '@/components/OrderBar';
+import { Helmet } from 'react-helmet-async';
 
 const Index = () => {
   return (
     <div className="homepage-order-space min-h-screen bg-stonepage text-lapis">
+      <Helmet>
+        <link rel="canonical" href="https://author-web-canvas-craft.lovable.app/" />
+      </Helmet>
       <Header />
       <main>
         <HeroSection />

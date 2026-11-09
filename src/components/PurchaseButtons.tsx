@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import BookButton from './BookButton';
 import { getBrowserAmazonStore, trackPurchaseClick } from '@/lib/purchase';
 import { FACEBOOK_URL, INSTAGRAM_URL } from '@/config/book';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
   placement: string;
@@ -26,9 +27,10 @@ const followStyle =
 
 export default function PurchaseButtons({ placement, children, className = '', signedClassName = '', amazonClassName = '', amazonVariant = 'outline', onOrderClick, showFollow = true, followClassName = '' }: Props) {
   const amazon = useMemo(getBrowserAmazonStore, []);
+  const { pathname } = useLocation();
   return (
     <div className={`flex flex-col sm:flex-row sm:flex-wrap gap-2 ${className}`}>
-      <BookButton href="#buy" className={signedClassName} onClick={() => { trackPurchaseClick('OrderClick', placement); onOrderClick?.(); }}>
+      <BookButton href={pathname === '/' ? '#buy' : '/#buy'} className={signedClassName} onClick={() => { trackPurchaseClick('OrderClick', placement); onOrderClick?.(); }}>
         {children}
       </BookButton>
       <BookButton href={amazon.url} target="_blank" rel="noopener noreferrer" variant={amazonVariant} className={amazonClassName} onClick={() => trackPurchaseClick('AmazonClick', placement, amazon.store)}>
