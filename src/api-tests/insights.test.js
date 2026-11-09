@@ -1,7 +1,7 @@
 import { expect, test } from 'bun:test';
 import { Readable } from 'node:stream';
 import { EventEmitter } from 'node:events';
-import handler from './insights.js';
+import handler from '../../api/insights.js';
 
 async function request(body) {
   const req = Readable.from([Buffer.from(JSON.stringify(body))]);

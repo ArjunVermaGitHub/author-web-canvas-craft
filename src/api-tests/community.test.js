@@ -1,6 +1,6 @@
 import { expect, test } from 'bun:test';
 import { Readable } from 'node:stream';
-import { createCommunityHandler } from './community.js';
+import { createCommunityHandler } from '../../api/community.js';
 
 const valid = { name: 'Reader Name', email: 'Reader@Example.COM', phone: '98765-43210', consent: true, honeypot: '' };
 async function request(body, { exists = false, method = 'POST', dbError = null } = {}) {

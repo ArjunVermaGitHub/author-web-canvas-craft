@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import handler, { decodeEntities, parseNewsRss } from './news.js';
+import handler, { decodeEntities, parseNewsRss } from '../../api/news.js';
 
 const item = (title, url, date = 'Sun, 08 Nov 2026 10:00:00 GMT', source = '') => `<item><title><![CDATA[${title}]]></title><link>${url}</link><pubDate>${date}</pubDate>${source ? `<source>${source}</source>` : ''}</item>`;
 

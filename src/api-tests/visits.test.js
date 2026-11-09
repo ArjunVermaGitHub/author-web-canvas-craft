@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test';
-import { recordCampaignSession } from './visits.js';
+import { recordCampaignSession } from '../../api/visits.js';
 
 function fakeDb() {
   const rows = new Map();
