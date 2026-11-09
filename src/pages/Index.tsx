@@ -23,7 +23,7 @@ const Index = () => {
   return (
     <div className="homepage-order-space min-h-screen bg-stonepage text-lapis">
       <Helmet>
-        <link rel="canonical" href="https://author-web-canvas-craft.lovable.app/" />
+        <link rel="canonical" href="https://riturajverma.com/" />
       </Helmet>
       <Header />
       <main>
