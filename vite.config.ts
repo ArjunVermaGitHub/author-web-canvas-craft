@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 import sampleChapters from "./src/assets/sample-chapters.pdf.asset.json";
 import { readFileSync, readdirSync } from 'node:fs';
 
-const bookCoverRedirects = new Map(
+const bookCoverRedirects = new Map<string, string>(
   readdirSync(path.resolve(__dirname, 'public/books')).filter(name => name.endsWith('.asset.json')).map(name => {
     const asset = JSON.parse(readFileSync(path.resolve(__dirname, 'public/books', name), 'utf8'));
     return [`/books/${asset.original_filename}`, `https://author-web-canvas-craft.lovable.app${asset.url}`] as const;
