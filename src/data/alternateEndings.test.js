@@ -34,17 +34,26 @@ describe('LPH alternate endings', () => {
     expect(story?.endings.map(ending => endingTitle(story, ending))).toEqual([
       'The intimacy of space: Ending 1', 'The intimacy of space: Ending 2', 'The intimacy of space: Ending 3',
     ]);
-    expect(ALTERNATE_STORIES.filter(item => item.endings.length > 0)).toHaveLength(3);
   });
-  test('six remaining stories await ending data', () => {
+  test('fourth story has three legacy endings with the supplied paragraph breaks', () => {
+    const story = ALTERNATE_STORIES.find(item => item.slug === 'the-practitioner-of-austerity');
+    expect(story?.title).toBe('The practitioner of austerity');
+    expect(story?.endings.map(ending => [ending.slug, ending.label, ending.paragraphs.length])).toEqual([
+      ['1-2', 'Happy', 9], ['2-2', 'Sad', 5], ['3-2', 'Twist', 7],
+    ]);
+    expect(story?.endings.map(ending => endingTitle(story, ending))).toEqual([
+      'The practitioner of austerity: Ending 1', 'The practitioner of austerity: Ending 2', 'The practitioner of austerity: Ending 3',
+    ]);
+    expect(ALTERNATE_STORIES.filter(item => item.endings.length > 0)).toHaveLength(4);
+  });
+  test('five remaining stories await ending data', () => {
     expect(ALTERNATE_STORIES.filter(story => story.endings.length === 0).map(story => story.title)).toEqual([
-      'The practitioner of austerity',
       'The victim of many loves', 'The soul mate theorist', 'The Facebook stalker',
       'The night of the affair', 'The pursuit of perfection',
     ]);
   });
   test('legacy ending canonicals use the real domain and a trailing slash', () => {
-    for (const storySlug of ['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space']) {
+    for (const storySlug of ['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space', 'the-practitioner-of-austerity']) {
       for (const slug of ['1-2', '2-2', '3-2']) {
         expect(lphCanonical(endingPath(storySlug, slug))).toBe(`https://riturajverma.com/lph/alternate-endings/${storySlug}/${slug}/`);
       }
