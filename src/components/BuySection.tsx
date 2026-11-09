@@ -57,7 +57,7 @@ const BuySection = () => {
     }
   };
 
-  const handleDetailsSubmit = (e: React.FormEvent) => {
+  const handleDetailsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = orderSchema.safeParse({
       name,
@@ -75,10 +75,6 @@ const BuySection = () => {
       });
       return;
     }
-    setStep('payment');
-  };
-
-  const handlePaid = async () => {
     setIsSubmitting(true);
     try {
       const response = await fetch('/api/order', {
@@ -98,7 +94,7 @@ const BuySection = () => {
       if (!response.ok) throw new Error(data.error || 'Something went wrong');
       setOrderId(data.orderId || '');
       trackOrderSaved('buy', TOTAL_PRICE, data.orderId || undefined);
-      setStep('done');
+      setStep('payment');
     } catch (error) {
       toast({
         title: 'Could not save your order',
@@ -149,8 +145,8 @@ const BuySection = () => {
                   <Textarea id="buyer-message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="A short note the author will handwrite inside your copy" className={inputClass} maxLength={200} rows={2} />
                 </div>
                 <div className="pt-2">
-                  <BookButton type="submit" className="w-full sm:w-auto">
-                    Continue to payment — ₹{TOTAL_PRICE}
+                  <BookButton type="submit" className="w-full sm:w-auto" disabled={isSubmitting}>
+                    {isSubmitting ? 'Saving order…' : `Continue to payment — ₹${TOTAL_PRICE}`}
                   </BookButton>
                 </div>
               </form>
@@ -158,6 +154,13 @@ const BuySection = () => {
 
             {step === 'payment' && (
               <div className="space-y-5">
+                {orderId && (
+                  <div className="border-l-4 border-ember pl-4">
+                    <p className="text-stonepage/80 text-base">Your Order ID</p>
+                    <p className="font-serif text-3xl text-ember tracking-wide">{orderId}</p>
+                    <p className="font-semibold">Please write this Order ID in the PhonePe payment note</p>
+                  </div>
+                )}
                 <div className="border border-ember/40 p-4 text-stonepage">
                   <div className="flex justify-between font-serif text-ember text-lg">
                     <span>Total</span><span>₹{TOTAL_PRICE}</span>
@@ -180,7 +183,7 @@ const BuySection = () => {
                 </div>
                 <p className="text-stonepage/80 text-center">
                   Scan the QR with your PhonePe app and pay ₹{TOTAL_PRICE} to {PAYEE_NAME}.
-                  Then tap the button below so we can save your order and ship your copy.
+                  Then tap the button below so we can verify your payment and ship your copy.
                 </p>
                 {isTouchDevice && (
                   <div className="space-y-2 text-center">
@@ -193,11 +196,8 @@ const BuySection = () => {
                   </div>
                 )}
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <BookButton variant="outline-ember" onClick={() => setStep('details')} disabled={isSubmitting} className="flex-1">
-                    Back
-                  </BookButton>
-                  <BookButton onClick={handlePaid} disabled={isSubmitting} className="flex-1">
-                    {isSubmitting ? 'Saving order…' : "I've paid on PhonePe"}
+                  <BookButton onClick={() => setStep('done')} className="flex-1">
+                    I've paid on PhonePe
                   </BookButton>
                 </div>
               </div>
