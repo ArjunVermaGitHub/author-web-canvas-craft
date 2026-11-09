@@ -14,7 +14,7 @@ export default function AlternateEndingsIndex() {
 
   const title = story ? `${story.title}: Alternate endings` : `${LPH_BOOK.title} — Alternate endings`;
   const description = story
-    ? `Read the Happy, Sad and Twist alternate endings for ${story.title}, a story by Rituraj Verma in Love, Peace & Happiness.`
+    ? `Read the alternate endings for ${story.title}, a story by Rituraj Verma in Love, Peace & Happiness.`
     : `Alternate endings to stories in ${LPH_BOOK.title}, the 2012 book by Rituraj Verma.`;
   const canonical = lphCanonical(story ? storyPath(story.slug) : pathname);
 

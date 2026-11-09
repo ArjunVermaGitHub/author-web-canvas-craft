@@ -85,5 +85,5 @@ export function lphCanonical(path: string): string {
 }
 
 export function endingTitle(story: AlternateStory, ending: AlternateEnding): string {
-  return `${story.title}: Ending ${story.endings.indexOf(ending) + 1} (${ending.label})`;
+  return `${story.title}: Ending ${story.endings.indexOf(ending) + 1}`;
 }
