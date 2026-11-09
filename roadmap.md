@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Add "Love, Peace & Happiness: Alternate endings" to the Other books menu data (desktop dropdown and mobile menu), linking to /lph/alternate-endings/ with active highlighting on /lph paths; 76 tests pass and both entries verified at 390px, 768px and 1280px. Nothing published.
+
 - [x] Restore the data-driven Love, Peace & Happiness pilot ending pages, story hub and indexes; direct loads/refreshes with both slash variants, canonicals, ending navigation, header exclusions and unknown-path 404s verified at 390px, 768px and 1280px without publishing. Existing Vercel SPA fallback retained.
 
 - [x] Hide Raghav purchase buttons in the shared header on pen-name pages via `shouldShowPurchaseButtons(pathname)` driven by OTHER_BOOK_SERIES paths; 70 tests pass and header balance verified at 390px, 768px and 1280px on `/james-furrington` (buttons gone, menu/dropdown intact) and `/` (buttons present). Nothing published.

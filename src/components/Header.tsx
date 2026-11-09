@@ -19,6 +19,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const homeHref = (hash: string) => pathname === '/' ? hash : `/${hash}`;
   const showPurchase = shouldShowPurchaseButtons(pathname);
+  const isSeriesActive = (path: string) => path.startsWith('/lph') && pathname.startsWith('/lph');
 
   return (
     <header className="sticky top-0 z-40 bg-stonepage border-b-2 border-lapis">
@@ -49,8 +50,8 @@ const Header = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="max-w-[calc(100vw-2rem)] rounded-none border-2 border-lapis bg-stonepage text-lapis shadow-none">
                 {OTHER_BOOK_SERIES.map(series => (
-                  <DropdownMenuItem key={series.path} asChild className="min-h-11 rounded-none text-base focus:bg-lapis focus:text-stonepage">
-                    <Link to={series.path}>{series.label}</Link>
+                  <DropdownMenuItem key={series.path} asChild className={`min-h-11 rounded-none text-base focus:bg-lapis focus:text-stonepage ${isSeriesActive(series.path) ? 'text-carnelian font-semibold' : ''}`}>
+                    <Link to={series.path} aria-current={isSeriesActive(series.path) ? 'page' : undefined}>{series.label}</Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -98,7 +99,7 @@ const Header = () => {
                 <ul>
                   {OTHER_BOOK_SERIES.map(series => (
                     <li key={series.path}>
-                      <Link to={series.path} className="pl-4 py-3 min-h-11 flex items-center text-lapis hover:text-carnelian" onClick={() => setIsMenuOpen(false)}>
+                      <Link to={series.path} className={`pl-4 py-3 min-h-11 flex items-center hover:text-carnelian ${isSeriesActive(series.path) ? 'text-carnelian font-semibold' : 'text-lapis'}`} onClick={() => setIsMenuOpen(false)} aria-current={isSeriesActive(series.path) ? 'page' : undefined}>
                         {series.label}
                       </Link>
                     </li>

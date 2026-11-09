@@ -47,7 +47,10 @@ describe('pen-name catalogue', () => {
     expect(originalBooks.map(book => book.format)).toEqual(['Paperback', 'Paperback', 'Paperback', 'Hardcover', 'Paperback', 'Paperback', 'Paperback', 'Paperback', 'Paperback', 'Paperback']);
     expect(originalBooks[5].title).toBe('Cute Chats in China Coloring Book');
     expect(OTHER_BOOKS[3].title).toContain('Bold & Easy hardcover edition');
-    expect(OTHER_BOOK_SERIES).toEqual([{ label: 'James Furrington: Cute Cats Coloring Books', path: '/james-furrington' }]);
+    expect(OTHER_BOOK_SERIES).toEqual([
+      { label: 'James Furrington: Cute Cats Coloring Books', path: '/james-furrington' },
+      { label: 'Love, Peace & Happiness: Alternate endings', path: '/lph/alternate-endings/' },
+    ]);
   });
   test('places the India-market edition after the original India book with confirmed metadata', () => {
     const index = OTHER_BOOKS.findIndex(book => book.url === 'https://www.amazon.in/dp/9363555208');
