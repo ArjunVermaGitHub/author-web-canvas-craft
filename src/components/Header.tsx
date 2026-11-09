@@ -55,15 +55,19 @@ const Header = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <PurchaseButtons placement="header" showFollow={false} signedClassName="min-h-[44px] px-4 xl:px-6" amazonClassName="hidden xl:inline-flex">
-              Order a signed copy
-            </PurchaseButtons>
+            {showPurchase && (
+              <PurchaseButtons placement="header" showFollow={false} signedClassName="min-h-[44px] px-4 xl:px-6" amazonClassName="hidden xl:inline-flex">
+                Order a signed copy
+              </PurchaseButtons>
+            )}
           </nav>
 
           <div className="flex items-center gap-2 lg:hidden">
-            <PurchaseButtons placement="header" showFollow={false} signedClassName="px-2 py-2 text-base leading-tight max-w-[148px]" amazonClassName="hidden" onOrderClick={() => setIsMenuOpen(false)}>
-              Order a signed copy
-            </PurchaseButtons>
+            {showPurchase && (
+              <PurchaseButtons placement="header" showFollow={false} signedClassName="px-2 py-2 text-base leading-tight max-w-[148px]" amazonClassName="hidden" onOrderClick={() => setIsMenuOpen(false)}>
+                Order a signed copy
+              </PurchaseButtons>
+            )}
            <Button variant="ghost"
              className="lg:hidden rounded-none text-lapis p-2 -mr-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-transparent"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
