@@ -18,7 +18,7 @@ async function request(body, { exists = false, method = 'POST', dbError = null }
       };
     } };
   });
-  const req = Readable.from([typeof body === 'string' ? body : JSON.stringify(body)]);
+  const req = Readable.from([Buffer.from(typeof body === 'string' ? body : JSON.stringify(body))]);
   req.method = method;
   req.headers = { 'content-type': 'application/json' };
   const res = { headers: {}, setHeader(key, value) { this.headers[key] = value; }, status(code) { this.code = code; return this; }, json(data) { this.data = data; return this; }, end() { return this; } };

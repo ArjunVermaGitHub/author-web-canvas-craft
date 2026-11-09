@@ -17,7 +17,7 @@ test('spaces and dashes are stripped before storing', () => {
 test('email is lowercased and limited to 254 characters', () => {
   expect(communitySchema.parse({ ...valid, email: ' Reader@Example.COM ' }).email).toBe('reader@example.com');
   for (const email of ['bad', 'a@b', 'a b@example.com', 'a@example.com\nInjected']) expect(communitySchema.safeParse({ ...valid, email }).success).toBe(false);
-  const exact = `${'a'.repeat(64)}@${'b'.repeat(63)}.${'c'.repeat(63)}.${'d'.repeat(60)}`;
+  const exact = `${'a'.repeat(64)}@${'b'.repeat(63)}.${'c'.repeat(63)}.${'d'.repeat(61)}`;
   expect(exact.length).toBe(254);
   expect(communitySchema.safeParse({ ...valid, email: exact }).success).toBe(true);
   expect(communitySchema.safeParse({ ...valid, email: `${exact}d` }).success).toBe(false);
