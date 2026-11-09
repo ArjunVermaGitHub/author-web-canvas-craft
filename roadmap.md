@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Add community signup after reviews with shared validation, WhatsApp contact and the MongoDB `rituraj-community` collection; test API outcomes and desktop/mobile layout without publishing
+- [x] Build community signup after reviews with shared validation, WhatsApp contact and MongoDB `test.rituraj-community`; 59 tests pass and browser validation/success/duplicate/failure/navigation checks pass at 390px and 1280px without overflow. No publishing; real database read-back unavailable because MONGODB_URI is absent in the sandbox.
 
 - [x] Add "Raghav Kartikeya's Wiki" section (69 Wikipedia term cards after the story section, plain page-flow list, no tracking) with data file and tests; verified at 1280×800 and 390×844 without publishing
 
