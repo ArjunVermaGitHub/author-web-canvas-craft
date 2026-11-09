@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Restore the data-driven Love, Peace & Happiness pilot ending pages, story hub and indexes; verify direct loads, canonical URLs, header exclusions and tests without publishing.
+- [x] Restore the data-driven Love, Peace & Happiness pilot ending pages, story hub and indexes; direct loads/refreshes with both slash variants, canonicals, ending navigation, header exclusions and unknown-path 404s verified at 390px, 768px and 1280px without publishing. Existing Vercel SPA fallback retained.
 
 - [x] Hide Raghav purchase buttons in the shared header on pen-name pages via `shouldShowPurchaseButtons(pathname)` driven by OTHER_BOOK_SERIES paths; 70 tests pass and header balance verified at 390px, 768px and 1280px on `/james-furrington` (buttons gone, menu/dropdown intact) and `/` (buttons present). Nothing published.
 
