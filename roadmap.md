@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Add Other books navigation and `/james-furrington` catalogue with 10 typed book entries, linked pen-name note, page metadata and sitemap; 63 tests pass, direct loads/refreshes and mouse/keyboard menus verified at 390px, 768px and 1280px without overflow. Tablet uses the compact menu. Existing Vercel fallback and API routes unchanged; nothing published.
+
 - [x] Build community signup after reviews with shared validation, WhatsApp contact and MongoDB `test.rituraj-community`; 59 tests pass and browser validation/success/duplicate/failure/navigation checks pass at 390px and 1280px without overflow. No publishing; real database read-back unavailable because MONGODB_URI is absent in the sandbox.
 
 - [x] Add "Raghav Kartikeya's Wiki" section (69 Wikipedia term cards after the story section, plain page-flow list, no tracking) with data file and tests; verified at 1280×800 and 390×844 without publishing
