@@ -8,6 +8,7 @@ import BuySection from '@/components/BuySection';
 import SampleSection from '@/components/SampleSection';
 import PressSection from '@/components/PressSection';
 import ReviewsSection from '@/components/ReviewsSection';
+import CommunitySection from '@/components/CommunitySection';
 import AuthorSection from '@/components/AuthorSection';
 import FinalCta from '@/components/FinalCta';
 import Footer from '@/components/Footer';
@@ -34,6 +35,7 @@ const Index = () => {
         <SampleSection />
         <PressSection />
         <ReviewsSection />
+        <CommunitySection />
         <AuthorSection />
         <FinalCta />
       </main>
