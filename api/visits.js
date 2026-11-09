@@ -3,6 +3,7 @@
 import { connectToDatabase } from './utils/mongodb.js';
 import { buffer } from 'micro';
 import { timingSafeEqual } from 'crypto';
+import { normalizeUtm, isSessionId, indiaDay } from '../src/lib/campaign.js';
 
 export const config = { api: { bodyParser: false } };
 
@@ -13,6 +14,29 @@ function codeMatches(given, expected) {
   const a = Buffer.from(String(given || ''));
   const b = Buffer.from(expected);
   return a.length === b.length && timingSafeEqual(a, b);
+}
+
+export async function campaignTable(db) {
+  const today = indiaDay();
+  const rows = await db.collection('rituraj-campaign-sessions').aggregate([
+    { $group: { _id: { campaign: '$campaign', source: '$source', medium: '$medium' }, total: { $sum: 1 }, today: { $sum: { $cond: [{ $eq: ['$day', today] }, 1, 0] } } } },
+    { $sort: { total: -1 } },
+    { $limit: 200 },
+  ]).toArray();
+  return rows.map((r) => ({ ...r._id, today: r.today, total: r.total }));
+}
+
+export async function recordCampaignSession(db, sessionId, utm) {
+  if (!isSessionId(sessionId)) return false;
+  const col = db.collection('rituraj-campaign-sessions');
+  await col.createIndex({ sessionId: 1 }, { unique: true });
+  const labels = normalizeUtm(utm);
+  await col.updateOne(
+    { sessionId },
+    { $setOnInsert: { sessionId, ...labels, day: indiaDay(), createdAt: new Date() } },
+    { upsert: true }
+  );
+  return true;
 }
 
 export default async function handler(req, res) {
@@ -73,9 +97,11 @@ export default async function handler(req, res) {
         views.distinct('visitorId').then((a) => a.length),
         views.find({}, { projection: { createdAt: 1 } }).sort({ createdAt: 1 }).limit(1).next(),
       ]);
+      const campaigns = await campaignTable(db);
       return res.status(200).json({
         last24h, total, ordersThisWeek, ordersLastWeek, ordersTotal,
         compare: { opens24h, opensTotal, uniq24h, uniqTotal, since: first ? first.createdAt : null },
+        campaigns,
       });
     }
 
@@ -88,6 +114,7 @@ export default async function handler(req, res) {
       { $setOnInsert: { visitorId, day, createdAt: new Date() } },
       { upsert: true }
     );
+    try { await recordCampaignSession(db, body.sessionId, body.utm); } catch (e) { if (e?.code !== 11000) console.error('Campaign log error:', e); }
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Visit counter error:', err);
