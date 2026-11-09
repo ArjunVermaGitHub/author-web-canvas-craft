@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { OTHER_BOOK_SERIES } from '@/data/otherBooks';
+import { shouldShowPurchaseButtons } from '@/lib/headerPurchase';
 import PurchaseButtons from './PurchaseButtons';
 
 const links = [
@@ -17,6 +18,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { pathname } = useLocation();
   const homeHref = (hash: string) => pathname === '/' ? hash : `/${hash}`;
+  const showPurchase = shouldShowPurchaseButtons(pathname);
 
   return (
     <header className="sticky top-0 z-40 bg-stonepage border-b-2 border-lapis">
