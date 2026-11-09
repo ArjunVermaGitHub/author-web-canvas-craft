@@ -15,8 +15,14 @@ test('pen-name canonical and sharing URL self-reference the real live domain', (
   expect(source.match(/property="og:url" content="([^"]+)"/)?.[1]).toBe('https://riturajverma.com/james-furrington');
 });
 
-test('sitemap uses the real live domain for both public pages', () => {
+test('sitemap uses the real live domain for all public pages', () => {
   expect([...read('../../public/sitemap.xml').matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1])).toEqual([
     'https://riturajverma.com/', 'https://riturajverma.com/james-furrington',
+    'https://riturajverma.com/lph/',
+    'https://riturajverma.com/lph/alternate-endings/',
+    'https://riturajverma.com/lph/alternate-endings/a-high-like-heaven/',
+    'https://riturajverma.com/lph/alternate-endings/a-high-like-heaven/1-2/',
+    'https://riturajverma.com/lph/alternate-endings/a-high-like-heaven/2-2/',
+    'https://riturajverma.com/lph/alternate-endings/a-high-like-heaven/3-2/',
   ]);
 });
