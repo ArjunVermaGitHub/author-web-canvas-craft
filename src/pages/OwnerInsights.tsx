@@ -8,7 +8,8 @@ import TrackingComparison from '@/components/TrackingComparison';
 const MAX_CHARS = 200_000;
 
 type Compare = { opens24h: number; opensTotal: number; uniq24h: number; uniqTotal: number; since: string | null };
-type Stats = { last24h: number; total: number; ordersThisWeek: number; ordersLastWeek: number; ordersTotal: number; compare?: Compare };
+type Campaign = { campaign: string; source: string; medium: string; today: number; total: number };
+type Stats = { campaigns?: Campaign[]; last24h: number; total: number; ordersThisWeek: number; ordersLastWeek: number; ordersTotal: number; compare?: Compare };
 
 const fmt = (n: number) => Number(n || 0).toLocaleString('en-IN');
 const ratio = (opens: number, uniq: number) => (uniq ? (opens / uniq).toFixed(1) : '–');
@@ -154,6 +155,35 @@ const OwnerInsights = () => {
                     </tbody>
                   </table>
                 </div>
+              </section>
+            )}
+            {stats?.campaigns && (
+              <section className="border-t-4 border-lapis pt-4 mt-2" aria-labelledby="campaign-heading">
+                <h2 id="campaign-heading" className="font-serif text-2xl mb-1">Visits by campaign</h2>
+                <p className="text-base text-lapis/70 mb-4">One visit per browser session. Today means since midnight India time.</p>
+                {stats.campaigns.length === 0 ? <p>No campaign visits recorded yet.</p> : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-base">
+                      <thead>
+                        <tr className="border-b-2 border-lapis">
+                          <th className="py-2 pr-4">Campaign</th><th className="py-2 pr-4">Source</th><th className="py-2 pr-4">Medium</th>
+                          <th className="py-2 pr-4">Visits today</th><th className="py-2">Visits all time</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {stats.campaigns.map((c) => (
+                          <tr key={`${c.campaign}|${c.source}|${c.medium}`} className="border-b border-lapis/30">
+                            <td className="py-2 pr-4 break-all">{c.campaign}</td>
+                            <td className="py-2 pr-4 break-all">{c.source}</td>
+                            <td className="py-2 pr-4 break-all">{c.medium}</td>
+                            <td className="py-2 pr-4 font-serif text-xl">{fmt(c.today)}</td>
+                            <td className="py-2 font-serif text-xl">{fmt(c.total)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </section>
             )}
           </div>
