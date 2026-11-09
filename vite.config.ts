@@ -6,6 +6,7 @@ import { componentTagger } from "lovable-tagger";
 import sampleChapters from "./src/assets/sample-chapters.pdf.asset.json";
 import { readFileSync, readdirSync } from 'node:fs';
 
+// Discover hosted covers by filename, including numeric ISBN-10 India editions.
 const bookCoverRedirects = new Map<string, string>(
   readdirSync(path.resolve(__dirname, 'public/books')).filter(name => name.endsWith('.asset.json')).map(name => {
     const asset = JSON.parse(readFileSync(path.resolve(__dirname, 'public/books', name), 'utf8'));
