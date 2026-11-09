@@ -14,10 +14,10 @@ export default function JamesFurrington() {
       <Helmet>
         <title>James Furrington: Cute Cats Coloring Books</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href="https://author-web-canvas-craft.lovable.app/james-furrington" />
+        <link rel="canonical" href="https://riturajverma.com/james-furrington" />
         <meta property="og:title" content="James Furrington: Cute Cats Coloring Books" />
         <meta property="og:description" content={description} />
-        <meta property="og:url" content="https://author-web-canvas-craft.lovable.app/james-furrington" />
+        <meta property="og:url" content="https://riturajverma.com/james-furrington" />
       </Helmet>
       <Header />
       <main id="top" className="band-section">
