@@ -1,8 +1,9 @@
 export interface OtherBook {
   title: string;
   blurb: string;
-  format: 'Paperback' | 'Hardcover';
-  pages: number;
+  format?: 'Paperback' | 'Hardcover';
+  pages?: number;
+  store?: 'Amazon.com' | 'Amazon India';
   url: string;
   cover?: { path: string; alt: string; width: number; height: number };
 }
