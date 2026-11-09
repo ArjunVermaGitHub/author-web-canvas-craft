@@ -44,16 +44,33 @@ describe('LPH alternate endings', () => {
     expect(story?.endings.map(ending => endingTitle(story, ending))).toEqual([
       'The practitioner of austerity: Ending 1', 'The practitioner of austerity: Ending 2', 'The practitioner of austerity: Ending 3',
     ]);
-    expect(ALTERNATE_STORIES.filter(item => item.endings.length > 0)).toHaveLength(4);
+
   });
-  test('five remaining stories await ending data', () => {
+  test('fifth story preserves printed URLs and supplied paragraph breaks', () => {
+    const story = ALTERNATE_STORIES.find(item => item.slug === 'victim-of-many-loves');
+    expect(story?.title).toBe('The victim of many loves');
+    expect(ALTERNATE_STORIES.some(item => item.slug === 'the-victim-of-many-loves')).toBe(false);
+    expect(story?.endings.map(ending => [ending.slug, ending.label, ending.paragraphs.length])).toEqual([
+      ['1-2', 'Happy', 14], ['2-2', 'Sad', 9], ['3-2', 'Twist', 10],
+    ]);
+    expect(story?.endings.map(ending => endingPath(story.slug, ending.slug))).toEqual([
+      '/lph/alternate-endings/victim-of-many-loves/1-2/',
+      '/lph/alternate-endings/victim-of-many-loves/2-2/',
+      '/lph/alternate-endings/victim-of-many-loves/3-2/',
+    ]);
+    expect(story?.endings.map(ending => endingTitle(story, ending))).toEqual([
+      'The victim of many loves: Ending 1', 'The victim of many loves: Ending 2', 'The victim of many loves: Ending 3',
+    ]);
+    expect(ALTERNATE_STORIES.filter(item => item.endings.length > 0)).toHaveLength(5);
+  });
+  test('four remaining stories await ending data', () => {
     expect(ALTERNATE_STORIES.filter(story => story.endings.length === 0).map(story => story.title)).toEqual([
-      'The victim of many loves', 'The soul mate theorist', 'The Facebook stalker',
+      'The soul mate theorist', 'The Facebook stalker',
       'The night of the affair', 'The pursuit of perfection',
     ]);
   });
   test('legacy ending canonicals use the real domain and a trailing slash', () => {
-    for (const storySlug of ['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space', 'the-practitioner-of-austerity']) {
+    for (const storySlug of ['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space', 'the-practitioner-of-austerity', 'victim-of-many-loves']) {
       for (const slug of ['1-2', '2-2', '3-2']) {
         expect(lphCanonical(endingPath(storySlug, slug))).toBe(`https://riturajverma.com/lph/alternate-endings/${storySlug}/${slug}/`);
       }
