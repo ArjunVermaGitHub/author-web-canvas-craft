@@ -83,15 +83,21 @@ describe('LPH alternate endings', () => {
     expect(story?.endings.map(ending => [ending.slug, ending.label, ending.paragraphs.length])).toEqual([
       ['1-2', 'Happy', 13], ['2-2', 'Sad', 10], ['3-2', 'Twist', 17],
     ]);
-    expect(ALTERNATE_STORIES.filter(item => item.endings.length > 0)).toHaveLength(8);
   });
-  test('one remaining story awaits ending data', () => {
-    expect(ALTERNATE_STORIES.filter(story => story.endings.length === 0).map(story => story.title)).toEqual([
-      'The pursuit of perfection',
+  test('ninth story preserves printed slugs and supplied paragraph breaks', () => {
+    const story = ALTERNATE_STORIES.find(item => item.slug === 'the-pursuit-of-perfection');
+    expect(story?.title).toBe('The pursuit of perfection');
+    expect(story?.endings.map(ending => [ending.slug, ending.label, ending.paragraphs.length])).toEqual([
+      ['1-2', 'Happy', 12], ['2-2', 'Sad', 8], ['3-2', 'Twist', 12],
     ]);
   });
+  test('all nine stories have endings and none await ending data', () => {
+    expect(ALTERNATE_STORIES).toHaveLength(9);
+    expect(ALTERNATE_STORIES.filter(story => story.endings.length > 0)).toHaveLength(9);
+    expect(ALTERNATE_STORIES.filter(story => story.endings.length === 0)).toHaveLength(0);
+  });
   test('legacy ending canonicals use the real domain and a trailing slash', () => {
-    for (const storySlug of ['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space', 'the-practitioner-of-austerity', 'victim-of-many-loves', 'the-soul-mate-theorist', 'the-facebook-stalker', 'the-night-of-the-affair']) {
+    for (const storySlug of ['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space', 'the-practitioner-of-austerity', 'victim-of-many-loves', 'the-soul-mate-theorist', 'the-facebook-stalker', 'the-night-of-the-affair', 'the-pursuit-of-perfection']) {
       for (const slug of ['1-2', '2-2', '3-2']) {
         expect(lphCanonical(endingPath(storySlug, slug))).toBe(`https://riturajverma.com/lph/alternate-endings/${storySlug}/${slug}/`);
       }

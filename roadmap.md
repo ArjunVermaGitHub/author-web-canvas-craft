@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Add the final story, The pursuit of perfection, verbatim (12/8/12 paragraphs); update sitemap, route and nine-active/zero-coming-soon tests, verify reader navigation, and do not publish or deploy.
+
 - [x] Add The night of the affair verbatim with three endings (13/10/17 paragraphs), four sitemap URLs and eight-active/one-coming-soon tests; 84 tests pass, automatic build clean, and navigation, refreshed slash variants, titles, canonicals and hidden labels/purchases verified at 390px, 768px and 1280px. No helpline note; nothing published or deployed.
 
 - [x] Add The Facebook stalker verbatim with three endings, four sitemap URLs and seven-active/two-coming-soon tests; 83 tests pass, automatic build clean, and navigation, refreshed slash variants, titles, canonicals and hidden labels/purchases verified at 390px, 768px and 1280px. No helpline note; nothing published or deployed.
