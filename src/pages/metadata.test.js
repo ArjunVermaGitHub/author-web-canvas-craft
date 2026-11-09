@@ -36,5 +36,9 @@ test('sitemap uses the real live domain for all public pages', () => {
     'https://riturajverma.com/lph/alternate-endings/the-practitioner-of-austerity/1-2/',
     'https://riturajverma.com/lph/alternate-endings/the-practitioner-of-austerity/2-2/',
     'https://riturajverma.com/lph/alternate-endings/the-practitioner-of-austerity/3-2/',
+    'https://riturajverma.com/lph/alternate-endings/victim-of-many-loves/',
+    'https://riturajverma.com/lph/alternate-endings/victim-of-many-loves/1-2/',
+    'https://riturajverma.com/lph/alternate-endings/victim-of-many-loves/2-2/',
+    'https://riturajverma.com/lph/alternate-endings/victim-of-many-loves/3-2/',
   ]);
 });
