@@ -1,6 +1,6 @@
 import { expect, test, beforeEach } from 'bun:test';
-import handler, { validateUpdate } from './owner-orders.js';
-import { isOrderId, isOrderStatus, codeMatches } from '../src/lib/orderStatus.js';
+import handler, { validateUpdate } from '../../api/owner-orders.js';
+import { isOrderId, isOrderStatus, codeMatches } from '../lib/orderStatus.js';
 
 function fakeRes() {
   const r = { code: 0, body: null, setHeader() {}, status(c) { r.code = c; return r; }, json(b) { r.body = b; return r; }, end() { return r; } };
