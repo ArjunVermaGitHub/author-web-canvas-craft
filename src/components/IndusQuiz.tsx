@@ -69,7 +69,7 @@ const IndusQuiz = () => {
               <h3 ref={headingRef} tabIndex={-1} className="font-serif text-2xl text-lapis mb-6">
                 Your score: {score} out of {INDUS_QUIZ.length}
               </h3>
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4">
                 <BookButton variant="outline" href={SAMPLE_CHAPTERS_URL} target="_blank" rel="noopener noreferrer">
                   Read the first two chapters free
                 </BookButton>

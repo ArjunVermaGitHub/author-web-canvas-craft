@@ -32,13 +32,13 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
-            <PurchaseButtons placement="header" signedClassName="min-h-[44px] px-4 xl:px-6" amazonClassName="hidden xl:inline-flex">
+            <PurchaseButtons placement="header" showFollow={false} signedClassName="min-h-[44px] px-4 xl:px-6" amazonClassName="hidden xl:inline-flex">
               Order a signed copy
             </PurchaseButtons>
           </nav>
 
           <div className="flex items-center gap-2 md:hidden">
-            <PurchaseButtons placement="header" signedClassName="px-2 py-2 text-base leading-tight max-w-[148px]" amazonClassName="hidden" onOrderClick={() => setIsMenuOpen(false)}>
+            <PurchaseButtons placement="header" showFollow={false} signedClassName="px-2 py-2 text-base leading-tight max-w-[148px]" amazonClassName="hidden" onOrderClick={() => setIsMenuOpen(false)}>
               Order a signed copy
             </PurchaseButtons>
           <button
