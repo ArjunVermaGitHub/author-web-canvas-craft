@@ -4,12 +4,14 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import BookButton from '@/components/BookButton';
 import TrackingComparison from '@/components/TrackingComparison';
+import OrderLog, { type Order } from '@/components/OrderLog';
 
 const MAX_CHARS = 200_000;
 
 type Compare = { opens24h: number; opensTotal: number; uniq24h: number; uniqTotal: number; since: string | null };
 type Campaign = { campaign: string; source: string; medium: string; today: number; total: number };
-type Stats = { campaigns?: Campaign[]; last24h: number; total: number; ordersThisWeek: number; ordersLastWeek: number; ordersTotal: number; compare?: Compare };
+type Counts = { week: number; prevWeek: number; all: number };
+type Stats = { campaigns?: Campaign[]; last24h: number; total: number; orderCounts?: { placed: Counts; paid: Counts; pending: Counts }; compare?: Compare };
 
 const fmt = (n: number) => Number(n || 0).toLocaleString('en-IN');
 const ratio = (opens: number, uniq: number) => (uniq ? (opens / uniq).toFixed(1) : '–');
@@ -24,20 +26,25 @@ const OwnerInsights = () => {
   const abortRef = useRef<AbortController | null>(null);
   const [stats, setStats] = useState<Stats | null>(null);
   const [statsLoading, setStatsLoading] = useState(false);
+  const [orders, setOrders] = useState<Order[] | null>(null);
 
   const loadStats = async () => {
     setError('');
     if (!code.trim()) return setError('Enter your access code.');
     setStatsLoading(true);
     try {
-      const res = await fetch('/api/visits', {
+      const post = (url: string) => fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code }),
+      }).then(async (res) => {
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(body.error || `Request failed (${res.status})`);
+        return body;
       });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(body.error || `Request failed (${res.status})`);
+      const [body, log] = await Promise.all([post('/api/visits'), post('/api/owner-orders')]);
       setStats(body);
+      setOrders(log.orders || []);
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -111,9 +118,6 @@ const OwnerInsights = () => {
                 {[
                   ['Visitors, last 24 hours', stats.last24h],
                   ['Visitors, all time', stats.total],
-                  ['Signed copies, last 7 days', stats.ordersThisWeek],
-                  ['Signed copies, previous 7 days', stats.ordersLastWeek],
-                  ['Signed copies, all time', stats.ordersTotal],
                 ].map(([label, value]) => (
                   <div key={label} className="border-t-4 border-lapis pt-2">
                     <dt className="text-base text-lapis/70">{label}</dt>
@@ -122,6 +126,36 @@ const OwnerInsights = () => {
                 ))}
               </dl>
             )}
+            {stats?.orderCounts && (
+              <section className="border-t-4 border-lapis pt-4 mt-2" aria-labelledby="orders-heading">
+                <h2 id="orders-heading" className="font-serif text-2xl mb-1">Signed copies</h2>
+                <p className="text-base text-lapis/70 mb-4">Cancelled orders are not counted in placed or pending.</p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-base">
+                    <thead>
+                      <tr className="border-b-2 border-lapis">
+                        <th className="py-2 pr-4"></th><th className="py-2 pr-4">Last 7 days</th><th className="py-2 pr-4">Previous 7 days</th><th className="py-2">All time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {([
+                        ['Orders placed', stats.orderCounts.placed],
+                        ['Paid (confirmed in PhonePe)', stats.orderCounts.paid],
+                        ['Pending verification', stats.orderCounts.pending],
+                      ] as const).map(([label, c]) => (
+                        <tr key={label} className="border-b border-lapis/30">
+                          <td className="py-2 pr-4">{label}</td>
+                          <td className="py-2 pr-4 font-serif text-xl">{fmt(c.week)}</td>
+                          <td className="py-2 pr-4 font-serif text-xl">{fmt(c.prevWeek)}</td>
+                          <td className="py-2 font-serif text-xl">{fmt(c.all)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            )}
+            {orders && <OrderLog code={code} orders={orders} setOrders={(fn) => setOrders((o) => fn(o || []))} />}
             {stats?.compare && (
               <section className="border-t-4 border-lapis pt-4 mt-2" aria-labelledby="compare-heading">
                 <h2 id="compare-heading" className="font-serif text-2xl mb-1">Page opens vs unique visitors</h2>

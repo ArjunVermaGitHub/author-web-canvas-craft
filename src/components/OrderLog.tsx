@@ -43,7 +43,7 @@ const OrderLog = ({ code, orders, setOrders }: { code: string; orders: Order[]; 
       <h2 id="orderlog-heading" className="font-serif text-2xl mb-3">Order log</h2>
       <div className="flex flex-wrap gap-2 mb-4" role="group" aria-label="Filter orders">
         {FILTERS.map(([key, label]) => (
-          <BookButton key={key} type="button" variant={filter === key ? 'default' : 'outline'} onClick={() => setFilter(key)} aria-pressed={filter === key}>
+          <BookButton key={key} type="button" variant={filter === key ? 'primary' : 'outline'} onClick={() => setFilter(key)}>
             {label}
           </BookButton>
         ))}
