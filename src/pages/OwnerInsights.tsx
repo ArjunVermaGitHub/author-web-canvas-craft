@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import BookButton from '@/components/BookButton';
+import TrackingComparison from '@/components/TrackingComparison';
 
 const MAX_CHARS = 200_000;
 
@@ -184,6 +185,7 @@ const OwnerInsights = () => {
             <div className="whitespace-pre-wrap break-words leading-relaxed">{output}</div>
           </section>
         )}
+        <TrackingComparison code={code} />
       </div>
     </div>
   );
