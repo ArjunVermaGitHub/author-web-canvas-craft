@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Add community signup after reviews with shared validation, WhatsApp contact and the MongoDB `rituraj-community` collection; test API outcomes and desktop/mobile layout without publishing
+
 - [x] Add "Raghav Kartikeya's Wiki" section (69 Wikipedia term cards after the story section, plain page-flow list, no tracking) with data file and tests; verified at 1280×800 and 390×844 without publishing
 
 - [x] Add on-demand latest news with cached Vercel RSS endpoint and editor-picks fallback; 40 tests pass, success/empty/error/refetch/restore verified at 1280×800 and 390×844 with no initial news request or overflow. Direct handler returned 15 live results; Vite does not execute serverless endpoints. Not published.

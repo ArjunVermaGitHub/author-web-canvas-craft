@@ -11,6 +11,9 @@ export const UPI_ID = "riturajverma2005@ybl";
 export const INSTAGRAM_URL = "https://www.instagram.com/raghav.kartikeya.series/";
 export const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61574944773635";
 
+export const COMMUNITY_WHATSAPP_NUMBER = "919324893014";
+export const COMMUNITY_WHATSAPP_URL = `https://wa.me/${COMMUNITY_WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi Rituraj, I'm a reader of Raghav Kartikeya and the Tablets of Dharma.")}`;
+
 // Set this to the author's YouTube watch or share URL to show the video section.
 export const AUTHOR_VIDEO_URL = "";
 
