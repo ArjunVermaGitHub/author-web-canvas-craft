@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Add the three verbatim endings for The emotional cripple, four sitemap URLs and updated data/route tests; verify index, hub and ending navigation at 390px, 768px and 1280px without publishing.
+- [x] Add the three verbatim endings for The emotional cripple, four sitemap URLs and updated data/route tests; 78 tests pass, automatic build clean, and index, hub, ending navigation, direct loads/refreshes and label-free metadata verified at 390px, 768px and 1280px without publishing.
 
 - [x] Add "Love, Peace & Happiness: Alternate endings" to the Other books menu data (desktop dropdown and mobile menu), linking to /lph/alternate-endings/ with active highlighting on /lph paths; 76 tests pass and both entries verified at 390px, 768px and 1280px. Nothing published.
 
