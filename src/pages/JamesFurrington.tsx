@@ -32,7 +32,13 @@ export default function JamesFurrington() {
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
             {OTHER_BOOKS.map(book => (
               <li key={book.url} className="border-t-2 border-lapis pt-6 pb-4 flex flex-col min-w-0">
-                <PawPrint className="h-6 w-6 mb-4 text-lapis/60" aria-hidden="true" />
+                {book.cover ? (
+                  <div className="aspect-square w-full mb-6 flex items-center justify-center">
+                    <img src={book.cover.path} alt={book.cover.alt} width={book.cover.width} height={book.cover.height} loading="lazy" decoding="async" className="w-full h-full object-contain" />
+                  </div>
+                ) : (
+                  <PawPrint className="h-6 w-6 mb-4 text-lapis/60" aria-hidden="true" />
+                )}
                 <h2 className="font-serif text-2xl leading-tight break-words">{book.title}</h2>
                 <p className="mt-3 leading-relaxed">{book.blurb}</p>
                 <p className="mt-4 mb-6 text-sm text-lapis/70">{book.format} · {book.pages} pages</p>
