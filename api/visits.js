@@ -3,6 +3,7 @@
 import { connectToDatabase } from './utils/mongodb.js';
 import { buffer } from 'micro';
 import { timingSafeEqual } from 'crypto';
+import { STATUS_FILTERS } from '../src/lib/orderStatus.js';
 import { normalizeUtm, isSessionId, indiaDay } from '../src/lib/campaign.js';
 
 export const config = { api: { bodyParser: false } };
@@ -80,13 +81,21 @@ export default async function handler(req, res) {
 
       const now = Date.now();
       const orders = db.collection('rituraj-orders');
-      const [last24h, total, ordersThisWeek, ordersLastWeek, ordersTotal] = await Promise.all([
+      const thisWeek = { createdAt: { $gte: new Date(now - 7 * DAY_MS) } };
+      const lastWeek = { createdAt: { $gte: new Date(now - 14 * DAY_MS), $lt: new Date(now - 7 * DAY_MS) } };
+      const [last24h, total] = await Promise.all([
         visits.distinct('visitorId', { createdAt: { $gte: new Date(now - DAY_MS) } }).then((a) => a.length),
         visits.distinct('visitorId').then((a) => a.length),
-        orders.countDocuments({ createdAt: { $gte: new Date(now - 7 * DAY_MS) } }),
-        orders.countDocuments({ createdAt: { $gte: new Date(now - 14 * DAY_MS), $lt: new Date(now - 7 * DAY_MS) } }),
-        orders.countDocuments({}),
       ]);
+      const orderCounts = {};
+      await Promise.all(Object.entries(STATUS_FILTERS).map(async ([key, f]) => {
+        const [week, prevWeek, all] = await Promise.all([
+          orders.countDocuments({ ...f, ...thisWeek }),
+          orders.countDocuments({ ...f, ...lastWeek }),
+          orders.countDocuments(f),
+        ]);
+        orderCounts[key] = { week, prevWeek, all };
+      }));
       // Page opens vs unique visitors, both from the page-view log so the period matches exactly.
       const views = db.collection('rituraj-pageviews');
       const since24 = { createdAt: { $gte: new Date(now - DAY_MS) } };
@@ -99,7 +108,7 @@ export default async function handler(req, res) {
       ]);
       const campaigns = await campaignTable(db);
       return res.status(200).json({
-        last24h, total, ordersThisWeek, ordersLastWeek, ordersTotal,
+        last24h, total, orderCounts,
         compare: { opens24h, opensTotal, uniq24h, uniqTotal, since: first ? first.createdAt : null },
         campaigns,
       });
