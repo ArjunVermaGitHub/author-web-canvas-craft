@@ -37,7 +37,7 @@ export function selectEbookUrl(store?: string) {
 
 type Pixel = (command: 'trackCustom', event: string, data: { placement: string; store?: string }) => void;
 
-export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'PayClick' | 'EbookClick', placement: string, store?: string, pixel?: Pixel) {
+export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'UpiAppClick' | 'EbookClick', placement: string, store?: string, pixel?: Pixel) {
   const fbq = pixel ?? (typeof window === 'undefined' ? undefined : (window as Window & { fbq?: Pixel }).fbq);
   if (typeof fbq !== 'function') return;
   try { fbq('trackCustom', event, store ? { placement, store } : { placement }); } catch { /* Tracking must not interrupt navigation. */ }
