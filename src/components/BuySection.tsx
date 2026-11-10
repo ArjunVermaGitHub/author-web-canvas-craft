@@ -158,7 +158,7 @@ const BuySection = () => {
                   <div className="border-l-4 border-ember pl-4">
                     <p className="text-stonepage/80 text-base">Your Order ID</p>
                     <p className="font-serif text-3xl text-ember tracking-wide">{orderId}</p>
-                    <p className="font-semibold">Please write this Order ID in the PhonePe payment note</p>
+                    <p className="font-semibold">Please write this Order ID in the payment note (remarks) of your UPI app</p>
                   </div>
                 )}
                 <div className="border border-ember/40 p-4 text-stonepage">
@@ -169,11 +169,11 @@ const BuySection = () => {
                 {isTouchDevice && (
                   <div className="space-y-2">
                     <BookButton href={upiLink} onClick={handlePayTap} className="w-full">
-                      Pay ₹{TOTAL_PRICE} with PhonePe / UPI
+                      Pay ₹{TOTAL_PRICE} with any UPI app
                     </BookButton>
                     {payTapped && (
                       <p className="text-stonepage/80 text-center">
-                        After paying in your UPI app, come back here and tap 'I've paid on PhonePe'.
+                        After paying in your UPI app, come back here and tap 'I've paid'.
                       </p>
                     )}
                   </div>
@@ -182,8 +182,19 @@ const BuySection = () => {
                   <img src="/phonepe-qr.png" alt={`PhonePe QR code for ${PAYEE_NAME}`} className="w-56 bg-stonepage p-2" />
                 </div>
                 <p className="text-stonepage/80 text-center">
-                  Scan the QR with your PhonePe app and pay ₹{TOTAL_PRICE} to {PAYEE_NAME}.
-                  Then tap the button below so we can verify your payment and ship your copy.
+                  {isTouchDevice ? (
+                    <>
+                      Paying from another phone or device? Scan this QR with any UPI app and pay
+                      ₹{TOTAL_PRICE} to {PAYEE_NAME}. Then tap the button below so we can verify your
+                      payment and ship your copy.
+                    </>
+                  ) : (
+                    <>
+                      Scan this QR with any UPI app (PhonePe, Google Pay, Paytm or your bank's app)
+                      and pay ₹{TOTAL_PRICE} to {PAYEE_NAME}. Then tap the button below so we can
+                      verify your payment and ship your copy.
+                    </>
+                  )}
                 </p>
                 {isTouchDevice && (
                   <div className="space-y-2 text-center">
@@ -197,7 +208,7 @@ const BuySection = () => {
                 )}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <BookButton onClick={() => setStep('done')} className="flex-1">
-                    I've paid on PhonePe
+                    I've paid
                   </BookButton>
                 </div>
               </div>
@@ -207,8 +218,8 @@ const BuySection = () => {
               <div className="space-y-4 border-l-4 border-ember pl-5">
                 <h3 className="text-2xl font-serif text-ember">Order received</h3>
                 <p>
-                  Thank you, {name.split(' ')[0]}. We'll verify your payment of ₹{TOTAL_PRICE} on
-                  PhonePe and ship your signed copy of {BOOK_TITLE} to your address.
+                  Thank you, {name.split(' ')[0]}. We'll verify your payment of ₹{TOTAL_PRICE} and
+                  ship your signed copy of {BOOK_TITLE} to your address.
                 </p>
                 {orderId && (
                   <p className="text-stonepage/80 text-base">
