@@ -40,6 +40,21 @@ describe('optional Meta click tracking', () => {
   });
 });
 
+describe('UPI app click tracking', () => {
+  test('sends UpiAppClick with the placement only', () => {
+    const calls = [];
+    const pixel = (...args) => calls.push(args);
+    trackPurchaseClick('UpiAppClick', 'buy_payment', undefined, pixel);
+    expect(calls).toEqual([
+      ['trackCustom', 'UpiAppClick', { placement: 'buy_payment' }],
+    ]);
+  });
+  test('does nothing without a pixel and never throws when it fails', () => {
+    expect(() => trackPurchaseClick('UpiAppClick', 'buy_payment')).not.toThrow();
+    expect(() => trackPurchaseClick('UpiAppClick', 'buy_payment', undefined, () => { throw new Error('blocked'); })).not.toThrow();
+  });
+});
+
 describe('OrderSaved tracking', () => {
   test('sends placement, INR value and order id', () => {
     const calls = [];
