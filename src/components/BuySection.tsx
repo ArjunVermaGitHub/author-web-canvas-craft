@@ -41,11 +41,11 @@ const BuySection = () => {
   );
   const { toast } = useToast();
 
-  const upiLink = buildUpiPayLink(UPI_ID, PAYEE_NAME, TOTAL_PRICE, name.split(' ')[0] || '');
+  const upiLink = buildUpiPayLink(UPI_ID, PAYEE_NAME, TOTAL_PRICE, orderId);
 
   const handlePayTap = () => {
     setPayTapped(true);
-    trackPurchaseClick('PayClick', 'upi_deeplink');
+    trackPurchaseClick('UpiAppClick', 'buy_payment');
   };
 
   const handleCopyUpiId = async () => {

@@ -3,19 +3,19 @@
 
 const NOTE_MAX_LENGTH = 40;
 
-export function sanitizeUpiNote(firstName: string): string {
-  const cleaned = firstName.replace(/[^a-zA-Z0-9 -]/g, '').trim();
-  const note = cleaned ? `Signed copy - ${cleaned}` : 'Signed copy';
-  return note.slice(0, NOTE_MAX_LENGTH).trim();
+// The transaction note carries the Order ID so payments can be matched in the owner order log.
+export function sanitizeUpiNote(orderId: string): string {
+  const cleaned = orderId.replace(/[^a-zA-Z0-9 -]/g, '').trim();
+  return (cleaned || 'Signed copy').slice(0, NOTE_MAX_LENGTH).trim();
 }
 
-export function buildUpiPayLink(upiId: string, payeeName: string, amount: number, firstName: string): string {
+export function buildUpiPayLink(upiId: string, payeeName: string, amount: number, orderId: string): string {
   const params = new URLSearchParams({
     pa: upiId,
     pn: payeeName,
     am: String(amount),
     cu: 'INR',
-    tn: sanitizeUpiNote(firstName),
+    tn: sanitizeUpiNote(orderId),
   });
   return `upi://pay?${params.toString()}`;
 }
