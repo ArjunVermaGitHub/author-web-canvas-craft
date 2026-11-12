@@ -56,6 +56,18 @@ describe('UPI app click tracking', () => {
 });
 
 describe('OrderSaved tracking', () => {
+  test('ad-page order and payment tracking use their distinct placements', () => {
+    const calls = [];
+    const pixel = (...args) => calls.push(args);
+    trackOrderSaved('landing', TOTAL_PRICE, 'RK-ABC123', pixel);
+    trackPurchaseClick('UpiAppClick', 'landing_payment', undefined, pixel);
+    trackPurchaseClick('AmazonClick', 'landing', 'India', pixel);
+    expect(calls).toEqual([
+      ['trackCustom', 'OrderSaved', { placement: 'landing', value: 335, currency: 'INR', order_id: 'RK-ABC123' }],
+      ['trackCustom', 'UpiAppClick', { placement: 'landing_payment' }],
+      ['trackCustom', 'AmazonClick', { placement: 'landing', store: 'India' }],
+    ]);
+  });
   test('sends placement, INR value and order id', () => {
     const calls = [];
     trackOrderSaved('buy', TOTAL_PRICE, 'RK-ABC123', (...args) => calls.push(args));
