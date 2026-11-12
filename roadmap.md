@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Add compact `/signed-copy` ad page with shared order flow, landing tracking placements, silent campaign logging, noindex metadata and mobile autofill; verify tests and mobile/desktop screens without deployment.
+- [x] Add compact `/signed-copy` ad page with shared order flow, landing tracking placements, silent campaign logging, noindex metadata and mobile autofill. All 115 tests pass; preview order/payment/done, refresh, canonical, campaign session persistence and homepage tracking regression verified at phone/desktop sizes. Form starts at 820px on 390×844 and 928px on 320×740. Real order persistence and UPI-app handoff remain unverified; no publishing or deployment.
 
 - [x] Add owner-only Meta/GA4 comparison at /owner/insights with matching dates, scope and timezone, validated counts, ratios and streamed AI diagnosis. 92 tests pass; actual Vercel handler/AI call verified with synthetic counts and local owner code, UI checked through a test bridge at desktop/mobile, automatic build clean. Unpublished. Production verification awaits the owner's Vercel deployment and LOVABLE_API_KEY environment setup; no real campaign reports supplied.
 
