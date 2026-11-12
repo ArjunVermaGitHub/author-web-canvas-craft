@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Add compact `/signed-copy` ad page with shared order flow, landing tracking placements, silent campaign logging, noindex metadata and mobile autofill; verify tests and mobile/desktop screens without deployment.
+
 - [x] Add owner-only Meta/GA4 comparison at /owner/insights with matching dates, scope and timezone, validated counts, ratios and streamed AI diagnosis. 92 tests pass; actual Vercel handler/AI call verified with synthetic counts and local owner code, UI checked through a test bridge at desktop/mobile, automatic build clean. Unpublished. Production verification awaits the owner's Vercel deployment and LOVABLE_API_KEY environment setup; no real campaign reports supplied.
 
 - [x] Add the final story, The pursuit of perfection, verbatim (12/8/12 paragraphs), four sitemap URLs and nine-active/zero-coming-soon tests; 85 tests pass and automatic build is clean. Navigation, refreshed endings, paragraph counts, canonicals, hidden labels/purchases and no overflow verified at 390px, 768px and 1280px. Existing per-story Coming soon fallback remains available without an empty section. No helpline note; nothing published or deployed.

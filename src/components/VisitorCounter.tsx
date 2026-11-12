@@ -17,7 +17,7 @@ type Counts = { last24h: number; total: number };
 
 // Records every page open, then shows public page-view counts.
 // Hidden until the Vercel API responds (e.g. in the Lovable preview).
-const VisitorCounter = () => {
+const VisitorCounter = ({ showCounts = true }: { showCounts?: boolean }) => {
   const [counts, setCounts] = useState<Counts | null>(null);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const VisitorCounter = () => {
     }
   }, []);
 
-  if (!counts) return null;
+  if (!showCounts || !counts) return null;
   const fmt = (n: number) => n.toLocaleString('en-IN');
   return (
     <p className="text-stonepage/80 text-base mt-6" aria-live="polite">
