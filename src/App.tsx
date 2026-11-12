@@ -10,6 +10,7 @@ import OwnerInsights from "./pages/OwnerInsights";
 import JamesFurrington from "./pages/JamesFurrington";
 import AlternateEnding from "./pages/AlternateEnding";
 import AlternateEndingsIndex from "./pages/AlternateEndingsIndex";
+import SignedCopy from "./pages/SignedCopy";
 import { HelmetProvider } from 'react-helmet-async';
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/signed-copy" element={<SignedCopy />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/james-furrington" element={<JamesFurrington />} />
           <Route path="/lph" element={<AlternateEndingsIndex />} />
