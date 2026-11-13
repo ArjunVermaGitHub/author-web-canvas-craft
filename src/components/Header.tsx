@@ -24,10 +24,10 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-40 bg-stonepage border-b-2 border-lapis">
       <div className="max-w-screen-2xl mx-auto px-4 md:px-8">
-        <div className="flex justify-between items-center gap-4 h-16 md:h-20">
+        <div className="flex justify-between items-center gap-2 md:gap-4 h-16 md:h-20">
           <a
             href={homeHref('#top')}
-            className="text-lapis font-serif text-xl md:text-2xl py-2 shrink-0"
+            className="text-lapis font-serif text-xl md:text-2xl py-2 min-w-0 leading-tight lg:shrink-0"
           >
             Rituraj Verma
           </a>
@@ -63,9 +63,9 @@ const Header = () => {
             )}
           </nav>
 
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-2 shrink-0 lg:hidden">
             {showPurchase && (
-              <PurchaseButtons placement="header" showFollow={false} signedClassName="px-2 py-2 text-base leading-tight max-w-[148px]" amazonClassName="hidden" flipkartClassName="hidden" onOrderClick={() => setIsMenuOpen(false)}>
+              <PurchaseButtons placement="header" showFollow={false} signedClassName="px-2 py-2 text-sm sm:text-base leading-tight max-w-[128px] sm:max-w-[148px]" amazonClassName="hidden" flipkartClassName="hidden" onOrderClick={() => setIsMenuOpen(false)}>
                 Order a signed copy
               </PurchaseButtons>
             )}
