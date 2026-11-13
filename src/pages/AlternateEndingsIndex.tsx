@@ -19,7 +19,7 @@ export default function AlternateEndingsIndex() {
   const canonical = lphCanonical(story ? storyPath(story.slug) : pathname);
 
   return (
-    <div className="min-h-screen bg-stonepage text-lapis">
+    <div className="public-site">
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -30,7 +30,7 @@ export default function AlternateEndingsIndex() {
       </Helmet>
       <Header />
       <main id="top" className="band-section">
-        <div className="max-w-3xl mx-auto min-w-0">
+        <div className="site-container min-w-0">
           <h1 className="page-heading break-words">{story ? story.title : LPH_BOOK.title}</h1>
           <p className="text-xl mb-4">Alternate endings</p>
           <p className="text-sm leading-relaxed mb-8">{story ? 'A story in Love, Peace & Happiness by Rituraj Verma' : `Rituraj Verma · ${LPH_BOOK.year} · ${LPH_BOOK.publisher} · ISBN ${LPH_BOOK.isbn}`}</p>

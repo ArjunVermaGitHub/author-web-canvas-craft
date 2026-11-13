@@ -499,7 +499,7 @@ export function endingPath(storySlug: string, endingSlug: string): string {
 }
 
 export function lphCanonical(path: string): string {
-  return `https://riturajverma.com${path.replace(/\/+$/, '')}/`;
+  return `https://www.riturajverma.com${path.replace(/\/+$/, '')}/`;
 }
 
 export function endingTitle(story: AlternateStory, ending: AlternateEnding): string {

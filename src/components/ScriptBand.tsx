@@ -37,8 +37,8 @@ const signs = [
 
 const ScriptBand = () => {
   return (
-    <section className="bg-lapis text-stonepage band-section">
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-background text-stonepage band-section">
+      <div className="site-container">
         <ul
           className="flex flex-wrap justify-center gap-x-8 gap-y-6 text-ember mb-10"
           aria-label="Carved Indus Valley signs"
@@ -52,7 +52,7 @@ const ScriptBand = () => {
           ))}
         </ul>
 
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="text-left">
           <h2 className="band-heading">The script nobody can read</h2>
           <p className="text-lg md:text-xl leading-relaxed text-stonepage/90">
             Thousands of Indus Valley seals survive, carved with signs that

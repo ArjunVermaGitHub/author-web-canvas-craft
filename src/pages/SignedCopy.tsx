@@ -16,7 +16,7 @@ const SignedCopy = () => {
   const [amazon] = useState(getBrowserAmazonStore);
 
   return (
-    <div className="min-h-screen bg-stonepage text-lapis">
+    <div className="public-site">
       <Helmet>
         <title>Order a signed copy — Raghav Kartikeya and the Tablets of Dharma</title>
         <meta name="description" content={`Order ${BOOK_TITLE}, signed by Rituraj Verma with your own message handwritten inside, for ₹${TOTAL_PRICE}.`} />
@@ -26,13 +26,13 @@ const SignedCopy = () => {
         <meta property="og:description" content={`A signed copy with your own message handwritten inside — ₹${TOTAL_PRICE}.`} />
         <meta property="og:url" content="https://www.riturajverma.com/signed-copy" />
       </Helmet>
-      <header className="border-b-2 border-lapis">
-        <div className="mx-auto max-w-3xl px-5">
+      <header className="site-header">
+        <div className="site-container">
           <Link to="/" className="inline-flex min-h-[44px] items-center font-serif text-xl">Rituraj Verma</Link>
         </div>
       </header>
       <main>
-        <section className="mx-auto max-w-3xl px-5 pb-5 pt-5 md:pt-8">
+        <section className="site-container pb-5 pt-5 md:pt-8">
           <div className="flex items-center gap-4 md:gap-6">
             <img src="/raghav-ebook-cover.jpg" alt={`${BOOK_TITLE} book cover`} className="h-auto w-20 shrink-0 md:w-32" fetchPriority="high" />
             <h1 className="min-w-0 text-2xl leading-tight md:text-4xl">{BOOK_TITLE}</h1>
@@ -41,7 +41,7 @@ const SignedCopy = () => {
           <p className="mt-4 font-semibold">Signed by the author, with your own message handwritten inside — <span className="whitespace-nowrap">₹{TOTAL_PRICE}</span></p>
           <BookButton href="#signed-copy-order" className="mt-3 w-full sm:w-auto">Order your signed copy</BookButton>
         </section>
-        <section className="mx-auto max-w-3xl border-t-4 border-lapis px-5 py-4">
+        <section className="site-container border-t border-border py-4">
           <h2 className="text-xl md:text-2xl">Read what reviewers said</h2>
           <ul className="mt-2 grid gap-x-6 sm:grid-cols-3">
             {reviews.map(review => (
@@ -56,19 +56,19 @@ const SignedCopy = () => {
           </ul>
           <p className="mt-1 text-sm text-lapis/80">{READER_REVIEWS.length} reader reviews so far</p>
         </section>
-        <section id="signed-copy-order" className="scroll-mt-4 bg-lapis px-5 py-6 text-stonepage md:py-8">
-          <div className="mx-auto max-w-xl">
+        <section id="signed-copy-order" className="scroll-mt-4 bg-background py-6 text-stonepage md:py-8">
+          <div className="site-container">
             <h2 className="mb-5 text-3xl text-ember">Order a signed copy</h2>
             <SignedCopyOrderFlow placement="landing" paymentPlacement="landing_payment" />
           </div>
         </section>
-        <div className="mx-auto max-w-xl px-5 py-4">
+        <div className="site-container py-4">
           <a href={amazon.url} target="_blank" rel="noopener noreferrer" onClick={() => trackPurchaseClick('AmazonClick', 'landing', amazon.store)} className="inline-flex min-h-[44px] items-center underline underline-offset-4">Prefer Amazon? Order there instead</a>
           <p className="text-sm text-lapis/70">As an Amazon Associate I earn from qualifying purchases.</p>
         </div>
       </main>
-      <footer className="border-t-2 border-lapis px-5 py-3">
-        <div className="mx-auto max-w-xl">
+      <footer className="border-t border-border py-3">
+        <div className="site-container">
           <Link to="/privacy" className="inline-flex min-h-[44px] items-center underline underline-offset-4">Privacy policy</Link>
         </div>
         <VisitorCounter showCounts={false} />

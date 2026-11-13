@@ -22,8 +22,8 @@ const IndusQuiz = () => {
   };
 
   return (
-    <section className="bg-stonepage band-section" aria-labelledby="indus-quiz-heading">
-      <div className="max-w-6xl mx-auto">
+    <section id="quiz" className="bg-background band-section" aria-labelledby="indus-quiz-heading">
+      <div className="site-container">
         <h2 id="indus-quiz-heading" className="page-heading max-w-3xl">
           How much do you know about the Indus script?
         </h2>

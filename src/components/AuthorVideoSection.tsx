@@ -6,8 +6,8 @@ const AuthorVideoSection = () => {
   if (!embedUrl) return null;
 
   return (
-    <section className="bg-stonepage band-section">
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-background band-section">
+      <div className="site-container">
         <h2 className="page-heading">Hear it from the author</h2>
         <iframe
           src={embedUrl}

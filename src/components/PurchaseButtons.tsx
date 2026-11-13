@@ -31,7 +31,7 @@ export default function PurchaseButtons({ placement, children, className = '', s
   const { pathname } = useLocation();
   return (
     <div className={`flex flex-col sm:flex-row sm:flex-wrap gap-2 ${className}`}>
-      <BookButton href={pathname === '/' ? '#buy' : '/#buy'} className={signedClassName} onClick={() => { trackPurchaseClick('OrderClick', placement); onOrderClick?.(); }}>
+      <BookButton href={pathname === '/shop' ? '#buy' : '/shop#buy'} className={signedClassName} onClick={() => { trackPurchaseClick('OrderClick', placement); onOrderClick?.(); }}>
         {children}
       </BookButton>
       <BookButton href={amazon.url} target="_blank" rel="noopener noreferrer" variant={amazonVariant} className={amazonClassName} onClick={() => trackPurchaseClick('AmazonClick', placement, amazon.store)}>

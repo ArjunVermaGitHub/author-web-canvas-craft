@@ -8,9 +8,9 @@ const PrivacyPolicy = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-book-dark text-book-light">
+    <div className="public-site">
       <header className="bg-book-dark/80 backdrop-blur-sm border-b border-book-medium">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="site-container py-4 flex justify-between items-center">
           <Link to="/" className="text-book-gold font-serif text-2xl hover:text-book-amber transition-colors">
             Rituraj
           </Link>
@@ -21,7 +21,7 @@ const PrivacyPolicy = () => {
       </header>
 
       <main className="book-section">
-        <div className="container mx-auto max-w-3xl">
+        <div className="site-container">
           <h1 className="section-heading mb-4">Privacy Policy</h1>
           <p className="text-center text-book-amber mb-2">Website: riturajverma.com</p>
           <p className="text-center text-book-light/70 text-sm mb-12">
