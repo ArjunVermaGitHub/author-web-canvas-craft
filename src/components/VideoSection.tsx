@@ -19,14 +19,14 @@ const INSTAGRAM_PROFILE = 'https://www.instagram.com/raghav.kartikeya.series/';
 
 const VideoSection = () => {
   return (
-    <section className="book-section bg-book-medium">
-      <div className="container mx-auto">
+    <section id="video" className="book-section bg-book-medium">
+      <div className="site-container">
         <h2 className="section-heading">Watch the Story Unfold</h2>
-        <p className="text-book-light text-lg text-center max-w-2xl mx-auto mb-10">
+        <p className="text-book-light text-lg text-left mb-10">
           Trailers and glimpses from Raghav Kartikeya and the Tablets of Dharma.
         </p>
 
-        <div className="max-w-3xl mx-auto mb-10">
+        <div className="mb-10">
           <h3 className="text-2xl text-book-light text-center mb-4">The 2-minute trailer</h3>
           <VideoFacade
             postUrl="https://www.instagram.com/p/DcEaSWwtv3x/"
@@ -36,11 +36,11 @@ const VideoSection = () => {
           />
         </div>
 
-        <div className="grid md:grid-cols-2 items-start gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 items-start gap-6 ">
           {VIDEOS.map((video) => (
             <div
               key={video.id}
-              className="rounded-lg overflow-hidden border border-book-gold/40 bg-book-dark shadow-lg"
+              className="content-panel overflow-hidden"
             >
               <VideoFacade
                 embedUrl={`https://drive.google.com/file/d/${video.id}/preview`}
@@ -52,7 +52,7 @@ const VideoSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-10">
+        <div className="text-left mt-10">
           <BookButton
             variant="outline"
             onClick={() =>

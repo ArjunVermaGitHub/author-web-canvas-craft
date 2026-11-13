@@ -17,15 +17,15 @@ const beats = [
 
 const StorySection = () => {
   return (
-    <section id="story" className="scroll-mt-20 bg-stonepage band-section">
-      <div className="max-w-6xl mx-auto">
+    <section id="story" className="scroll-mt-20 bg-background band-section">
+      <div className="site-container">
         <h2 className="page-heading max-w-3xl">
           Three things happen to Raghav in Book 1
         </h2>
 
         <div className="grid md:grid-cols-3 gap-x-8 gap-y-10 mb-12">
           {beats.map((beat) => (
-            <article key={beat.title} className="border-t-4 border-carnelian pt-6">
+            <article key={beat.title} className="content-panel p-6">
               <h3 className="text-xl md:text-2xl font-serif text-lapis mb-3 leading-snug">
                 {beat.title}
               </h3>

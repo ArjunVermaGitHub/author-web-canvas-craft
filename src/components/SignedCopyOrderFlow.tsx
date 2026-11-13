@@ -21,7 +21,7 @@ const orderSchema = z.object({
 type Step = 'details' | 'payment' | 'done';
 
 const inputClass =
-  'bg-white/5 border border-ember/40 text-stonepage placeholder:text-stonepage/50 focus-visible:ring-ember min-h-[44px]';
+  'bg-card border border-ember/40 text-stonepage placeholder:text-stonepage/50 focus-visible:ring-ember min-h-[44px]';
 
 interface SignedCopyOrderFlowProps {
   placement?: string;
@@ -177,7 +177,7 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
       </div>
     )}
     <div className="flex justify-center">
-      <img src="/phonepe-qr.png" alt={`PhonePe QR code for ${PAYEE_NAME}`} className="w-56 bg-stonepage p-2" />
+      <img src="/phonepe-qr.png" alt={`PhonePe QR code for ${PAYEE_NAME}`} className="w-56 bg-background p-2" />
     </div>
     <p className="text-stonepage/80 text-center">
       {isTouchDevice ? (

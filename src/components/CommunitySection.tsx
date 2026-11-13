@@ -9,7 +9,7 @@ import { communitySchema } from '@/lib/communityValidation.js';
 
 type Field = 'name' | 'email' | 'phone' | 'consent' | 'honeypot';
 type Errors = Partial<Record<Field, string>>;
-const inputClass = 'min-h-11 rounded-none border-lapis/40 bg-stonepage text-lapis placeholder:text-lapis/50 focus-visible:ring-carnelian';
+const inputClass = 'min-h-11 rounded-none border-lapis/40 bg-background text-lapis placeholder:text-lapis/50 focus-visible:ring-carnelian';
 
 const CommunitySection = () => {
   const [values, setValues] = useState({ name: '', email: '', phone: '', consent: false, honeypot: '' });
@@ -60,8 +60,8 @@ const CommunitySection = () => {
   };
 
   return (
-    <section id="community" aria-labelledby="community-heading" className="scroll-mt-20 bg-stonepage text-lapis band-section">
-      <div className="max-w-6xl mx-auto">
+    <section id="community" aria-labelledby="community-heading" className="scroll-mt-20 bg-background text-lapis band-section">
+      <div className="site-container">
         <h2 id="community-heading" className="page-heading">Join the Raghav Kartikeya Community</h2>
         <p className="text-lg max-w-2xl mb-8">Join fellow readers for Book 2 news, giveaways and chats with the author. There’s a place for you here.</p>
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
@@ -90,7 +90,7 @@ const CommunitySection = () => {
                 </div>
                 <div>
                   <div className="flex items-start gap-3">
-                    <Checkbox id="community-consent" name="consent" required disabled={pending} checked={values.consent} onCheckedChange={checked => { setValues(previous => ({ ...previous, consent: checked === true })); setErrors(previous => ({ ...previous, consent: undefined })); }} aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? 'community-consent-error' : undefined} className="min-h-11 min-w-11 rounded-none border-lapis data-[state=checked]:bg-lapis data-[state=checked]:text-stonepage focus-visible:ring-carnelian" />
+                    <Checkbox id="community-consent" name="consent" required disabled={pending} checked={values.consent} onCheckedChange={checked => { setValues(previous => ({ ...previous, consent: checked === true })); setErrors(previous => ({ ...previous, consent: undefined })); }} aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? 'community-consent-error' : undefined} className="min-h-11 min-w-11 rounded-none border-lapis data-[state=checked]:bg-background data-[state=checked]:text-stonepage focus-visible:ring-carnelian" />
                     <Label htmlFor="community-consent" className="min-h-11 cursor-pointer leading-relaxed">I agree to receive updates from the author on email and WhatsApp. I can opt out any time.</Label>
                   </div>
                   {errors.consent && <p id="community-consent-error" className="text-carnelian text-sm mt-2" role="alert">{errors.consent}</p>}

@@ -8,8 +8,8 @@ const socials = [
 
 const AuthorSection = () => {
   return (
-    <section id="author" className="scroll-mt-20 bg-lapis text-stonepage band-section">
-      <div className="max-w-6xl mx-auto">
+    <section id="author" className="scroll-mt-20 bg-background text-stonepage band-section">
+      <div className="site-container">
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
           <div className="shrink-0">
             <img

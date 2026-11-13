@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://riturajverma.com/sitemap.xml
+Sitemap: https://www.riturajverma.com/sitemap.xml

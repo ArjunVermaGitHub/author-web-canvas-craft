@@ -99,12 +99,12 @@ describe('LPH alternate endings', () => {
   test('legacy ending canonicals use the real domain and a trailing slash', () => {
     for (const storySlug of ['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space', 'the-practitioner-of-austerity', 'victim-of-many-loves', 'the-soul-mate-theorist', 'the-facebook-stalker', 'the-night-of-the-affair', 'the-pursuit-of-perfection']) {
       for (const slug of ['1-2', '2-2', '3-2']) {
-        expect(lphCanonical(endingPath(storySlug, slug))).toBe(`https://riturajverma.com/lph/alternate-endings/${storySlug}/${slug}/`);
+        expect(lphCanonical(endingPath(storySlug, slug))).toBe(`https://www.riturajverma.com/lph/alternate-endings/${storySlug}/${slug}/`);
       }
-      expect(lphCanonical(storyPath(storySlug))).toBe(`https://riturajverma.com/lph/alternate-endings/${storySlug}/`);
+      expect(lphCanonical(storyPath(storySlug))).toBe(`https://www.riturajverma.com/lph/alternate-endings/${storySlug}/`);
     }
-    expect(lphCanonical('/lph')).toBe('https://riturajverma.com/lph/');
-    expect(lphCanonical('/lph/alternate-endings/')).toBe('https://riturajverma.com/lph/alternate-endings/');
+    expect(lphCanonical('/lph')).toBe('https://www.riturajverma.com/lph/');
+    expect(lphCanonical('/lph/alternate-endings/')).toBe('https://www.riturajverma.com/lph/alternate-endings/');
   });
   test('LPH purchase links point to the supplied edition', () => {
     expect(LPH_BOOK.indiaUrl).toBe('https://www.amazon.in/dp/B007TPAI06');

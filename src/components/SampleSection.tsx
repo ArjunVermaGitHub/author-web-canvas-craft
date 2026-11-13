@@ -64,8 +64,8 @@ const SampleSection = () => {
   };
 
   return (
-    <section id="sample" className="scroll-mt-20 bg-stonepage band-section">
-      <div className="max-w-6xl mx-auto">
+    <section id="sample" className="scroll-mt-20 bg-background band-section">
+      <div className="site-container">
         <h2 className="page-heading">Read the first two chapters before you buy</h2>
         <p className="text-lg text-lapis/90 max-w-2xl mb-8">
           Enter your email and we will send the first two chapters today.
@@ -101,7 +101,7 @@ const SampleSection = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               required
-              className="min-h-[44px] bg-white/60 border-2 border-lapis/40 text-lapis placeholder:text-lapis/50"
+              className="min-h-[44px] bg-card border-2 border-lapis/40 text-lapis placeholder:text-lapis/50"
             />
             <BookButton type="submit" disabled={isSubmitting} className="sm:shrink-0">
               {isSubmitting ? 'Sending…' : 'Send me the first two chapters'}

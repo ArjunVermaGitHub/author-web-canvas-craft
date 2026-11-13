@@ -52,8 +52,8 @@ const NewsSection = () => {
   };
 
   return (
-    <section id="news" className="scroll-mt-20 bg-stonepage band-section" aria-labelledby="news-heading">
-      <div className="max-w-6xl mx-auto">
+    <section id="news" className="scroll-mt-20 bg-background band-section" aria-labelledby="news-heading">
+      <div className="site-container">
         <h2 id="news-heading" className="page-heading max-w-3xl">
           The Indus Valley in the news
         </h2>

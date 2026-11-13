@@ -27,12 +27,12 @@ const REVIEWS = [
 const ReviewsSection = () => {
   if (!SHOW_REVIEWS) return null;
   return (
-    <section className="bg-stonepage band-section">
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-background band-section">
+      <div className="site-container">
         <h2 className="page-heading">What readers say</h2>
         <div className="grid md:grid-cols-2 gap-x-8 gap-y-10">
           {REVIEWS.map((r) => (
-            <article key={r.url} className="border-t-4 border-lapis pt-6">
+            <article key={r.url} className="content-panel p-6">
               <p className="text-carnelian text-xl mb-3" aria-label="5 out of 5 stars" role="img">
                 <span aria-hidden="true">★★★★★</span>
               </p>
@@ -54,7 +54,7 @@ const ReviewsSection = () => {
           ))}
         </div>
 
-        <h3 className="font-serif text-2xl text-lapis mt-14 mb-6 border-t-4 border-lapis pt-6">
+        <h3 className="font-serif text-2xl text-lapis mt-14 mb-6 content-panel p-6">
           More reader reviews
         </h3>
         <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 divide-y divide-lapis/15 sm:divide-y-0">
@@ -71,7 +71,7 @@ const ReviewsSection = () => {
                   .map((l) => (
                     <a
                       key={l.label}
-                      href={l.href!}
+                      href={l.href ?? undefined}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${r.name}'s review on ${l.label}`}

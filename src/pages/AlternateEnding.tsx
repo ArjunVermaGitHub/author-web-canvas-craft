@@ -17,7 +17,7 @@ export default function AlternateEnding() {
   const canonical = lphCanonical(endingPath(story.slug, ending.slug));
 
   return (
-    <div className="min-h-screen bg-stonepage text-lapis">
+    <div className="public-site">
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -28,7 +28,7 @@ export default function AlternateEnding() {
       </Helmet>
       <Header />
       <main id="top" className="band-section">
-        <article className="max-w-3xl mx-auto min-w-0">
+        <article className="site-container min-w-0">
           <h1 className="page-heading break-words">{title}</h1>
           <p className="text-sm leading-relaxed mb-10">An alternate ending to a story in Love, Peace &amp; Happiness by Rituraj Verma</p>
           <div className="space-y-6 text-lg leading-relaxed">

@@ -1,5 +1,9 @@
 # Roadmap
 
+- [ ] Build approved multi-page series structure, www canonicals and legacy hash redirects.
+- [ ] Apply night-sky/firelight/gold theme and shared public-page alignment.
+- [ ] Run all tests and verify all public routes at 390, 768 and 1280px; preserve live order and tracking behavior.
+
 - [x] Fix desktop header purchase buttons wrapping across the header border; keep all purchase destinations and tracking unchanged.
 
 - [x] Add compact `/signed-copy` ad page with shared order flow, landing tracking placements, silent campaign logging, noindex metadata and mobile autofill. All 115 tests pass; preview order/payment/done, refresh, canonical, campaign session persistence and homepage tracking regression verified at phone/desktop sizes. Form starts at 820px on 390×844 and 928px on 320×740. Real order persistence and UPI-app handoff remain unverified; no publishing or deployment.

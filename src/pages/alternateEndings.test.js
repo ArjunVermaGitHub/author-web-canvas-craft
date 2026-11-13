@@ -26,7 +26,7 @@ test('LPH pages render self-referencing canonicals for every legacy route varian
         ),
       ));
       expect(context.helmet?.link.toComponent().find(link => link.props.rel === 'canonical')?.props.href)
-        .toBe(`https://riturajverma.com${path}/`);
+        .toBe(`https://www.riturajverma.com${path}/`);
     }
   }
 });
