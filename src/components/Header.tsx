@@ -23,11 +23,11 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-40 bg-stonepage border-b-2 border-lapis">
-      <div className="max-w-6xl mx-auto px-4 md:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
+      <div className="max-w-screen-2xl mx-auto px-4 md:px-8">
+        <div className="flex justify-between items-center gap-2 md:gap-4 h-16 md:h-20">
           <a
             href={homeHref('#top')}
-            className="text-lapis font-serif text-xl md:text-2xl py-2 min-w-0"
+            className="text-lapis font-serif text-xl md:text-2xl py-2 min-w-0 leading-tight lg:shrink-0"
           >
             Rituraj Verma
           </a>
@@ -37,7 +37,7 @@ const Header = () => {
               <a
                 key={link.href}
                 href={homeHref(link.href)}
-                className="text-lapis hover:text-carnelian transition-colors duration-200 py-2 min-h-11 inline-flex items-center"
+                className="text-lapis hover:text-carnelian transition-colors duration-200 py-2 min-h-11 inline-flex items-center whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -57,15 +57,15 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             {showPurchase && (
-              <PurchaseButtons placement="header" showFollow={false} signedClassName="min-h-[44px] px-4 xl:px-6" amazonClassName="hidden xl:inline-flex" flipkartClassName="hidden xl:inline-flex">
+              <PurchaseButtons placement="header" showFollow={false} className="sm:flex-nowrap shrink-0" signedClassName="min-h-[44px] px-3 text-sm whitespace-nowrap" amazonClassName="hidden xl:inline-flex px-3 text-sm whitespace-nowrap" flipkartClassName="hidden xl:inline-flex px-3 text-sm whitespace-nowrap">
                 Order a signed copy
               </PurchaseButtons>
             )}
           </nav>
 
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-2 shrink-0 lg:hidden">
             {showPurchase && (
-              <PurchaseButtons placement="header" showFollow={false} signedClassName="px-2 py-2 text-base leading-tight max-w-[148px]" amazonClassName="hidden" flipkartClassName="hidden" onOrderClick={() => setIsMenuOpen(false)}>
+              <PurchaseButtons placement="header" showFollow={false} signedClassName="px-2 py-2 text-sm sm:text-base leading-tight max-w-[128px] sm:max-w-[148px]" amazonClassName="hidden" flipkartClassName="hidden" onOrderClick={() => setIsMenuOpen(false)}>
                 Order a signed copy
               </PurchaseButtons>
             )}
