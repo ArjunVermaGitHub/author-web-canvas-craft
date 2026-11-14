@@ -1,117 +1,40 @@
-import React, { useState } from 'react';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
-import { OTHER_BOOK_SERIES } from '@/data/otherBooks';
+import { NAV_PAGES } from '@/config/site';
 import { shouldShowPurchaseButtons } from '@/lib/headerPurchase';
-import PurchaseButtons from './PurchaseButtons';
+import { trackPurchaseClick } from '@/lib/purchase';
+import BookButton from './BookButton';
 
-const links = [
-  { label: 'The story', href: '#story' },
-  { label: 'Press', href: '#press' },
-  { label: 'The author', href: '#author' },
-  { label: 'Community', href: '#community' },
-];
-
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export default function Header() {
+  const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
-  const homeHref = (hash: string) => pathname === '/' ? hash : `/${hash}`;
-  const showPurchase = shouldShowPurchaseButtons(pathname);
-  const isSeriesActive = (path: string) => path.startsWith('/lph') && pathname.startsWith('/lph');
-
-  return (
-    <header className="sticky top-0 z-40 bg-stonepage border-b-2 border-lapis">
-      <div className="max-w-screen-2xl mx-auto px-4 md:px-8">
-        <div className="flex justify-between items-center gap-2 md:gap-4 h-16 md:h-20">
-          <a
-            href={homeHref('#top')}
-            className="text-lapis font-serif text-xl md:text-2xl py-2 min-w-0 leading-tight lg:shrink-0"
-          >
-            Rituraj Verma
-          </a>
-
-          <nav className="hidden lg:flex items-center gap-3 xl:gap-4" aria-label="Main">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={homeHref(link.href)}
-                className="text-lapis hover:text-carnelian transition-colors duration-200 py-2 min-h-11 inline-flex items-center whitespace-nowrap"
-              >
-                {link.label}
-              </a>
-            ))}
-            <DropdownMenu modal={false}>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="min-h-11 rounded-none px-2 text-base text-lapis hover:bg-transparent hover:text-carnelian">
-                  Other books <ChevronDown aria-hidden="true" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="max-w-[calc(100vw-2rem)] rounded-none border-2 border-lapis bg-stonepage text-lapis shadow-none">
-                {OTHER_BOOK_SERIES.map(series => (
-                  <DropdownMenuItem key={series.path} asChild className={`min-h-11 rounded-none text-base focus:bg-lapis focus:text-stonepage ${isSeriesActive(series.path) ? 'text-carnelian font-semibold' : ''}`}>
-                    <Link to={series.path} aria-current={isSeriesActive(series.path) ? 'page' : undefined}>{series.label}</Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            {showPurchase && (
-              <PurchaseButtons placement="header" showFollow={false} className="sm:flex-nowrap shrink-0" signedClassName="min-h-[44px] px-3 text-sm whitespace-nowrap" amazonClassName="hidden xl:inline-flex px-3 text-sm whitespace-nowrap" flipkartClassName="hidden xl:inline-flex px-3 text-sm whitespace-nowrap">
-                Order a signed copy
-              </PurchaseButtons>
-            )}
-          </nav>
-
-          <div className="flex items-center gap-2 shrink-0 lg:hidden">
-            {showPurchase && (
-              <PurchaseButtons placement="header" showFollow={false} signedClassName="px-2 py-2 text-sm sm:text-base leading-tight max-w-[128px] sm:max-w-[148px]" amazonClassName="hidden" flipkartClassName="hidden" onOrderClick={() => setIsMenuOpen(false)}>
-                Order a signed copy
-              </PurchaseButtons>
-            )}
-           <Button variant="ghost"
-             className="lg:hidden rounded-none text-lapis p-2 -mr-2 min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-transparent"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMenuOpen}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-           </Button>
-          </div>
+  useEffect(() => setOpen(false), [pathname]);
+  const showShop = shouldShowPurchaseButtons(pathname);
+  const shop = <BookButton href="/shop#buy" aria-current={pathname === "/shop" ? "page" : undefined} className="header-shop px-4 whitespace-nowrap " onClick={() => { trackPurchaseClick('OrderClick', 'header'); setOpen(false); }}>Shop the Book</BookButton>;
+  return <header className="site-header sticky top-0 z-40">
+    <div className="site-container">
+      <div className="header-row flex items-center justify-between gap-4 py-4">
+        <Link to="/" className="shrink-0 min-h-11 flex flex-col justify-center leading-snug" aria-label="Raghav Kartikeya: Fantasy with Roots — Home">
+          <span className="brand-name">RAGHAV KARTIKEYA</span><span className="brand-tagline mt-1">FANTASY WITH ROOTS</span>
+        </Link>
+        <nav className="desktop-nav items-center gap-3" aria-label="Main">
+          {NAV_PAGES.slice(0, -1).map(page => <Link key={page.path} to={page.path} className="nav-link text-foreground hover:text-accent text-sm whitespace-nowrap" aria-current={pathname === page.path ? 'page' : undefined}>{page.label}</Link>)}
+          {showShop && shop}
+        </nav>
+        <div className="mobile-nav-controls items-center gap-3">
+          <div className="hidden sm:block">{showShop && shop}</div>
+          <Button variant="ghost" size="icon" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="site-menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
         </div>
-
-        {isMenuOpen && (
-          <nav className="pb-4 lg:hidden" aria-label="Mobile">
-            <ul className="flex flex-col divide-y divide-lapis/15 border-t border-lapis/15">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={homeHref(link.href)}
-                    className="text-lapis hover:text-carnelian transition-colors py-3 min-h-[44px] flex items-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <p className="pt-3 font-semibold">Other books</p>
-                <ul>
-                  {OTHER_BOOK_SERIES.map(series => (
-                    <li key={series.path}>
-                      <Link to={series.path} className={`pl-4 py-3 min-h-11 flex items-center hover:text-carnelian ${isSeriesActive(series.path) ? 'text-carnelian font-semibold' : 'text-lapis'}`} onClick={() => setIsMenuOpen(false)} aria-current={isSeriesActive(series.path) ? 'page' : undefined}>
-                        {series.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        )}
       </div>
-    </header>
-  );
-};
-
-export default Header;
+      {open && <nav id="site-menu" className="mobile-menu pb-5 max-h-[calc(100dvh-90px)] overflow-y-auto" aria-label="Mobile">
+        <ul className="border-t border-accent/35 divide-y divide-accent/20">
+          {NAV_PAGES.filter(page => page.path !== '/shop' || showShop).map(page => <li key={page.path}>
+            {page.path === '/shop' ? <div className="pt-4">{shop}</div> : <Link to={page.path} onClick={() => setOpen(false)} aria-current={pathname === page.path ? 'page' : undefined} className="mobile-page-link block py-3 min-h-11 text-foreground hover:text-accent"><span className="block font-semibold">{page.label}</span><span className="block text-sm text-secondary">{page.tagline}</span></Link>}
+          </li>)}
+        </ul>
+      </nav>}
+    </div>
+  </header>;
+}

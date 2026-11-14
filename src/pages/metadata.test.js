@@ -1,12 +1,13 @@
 import { expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
+import { CANONICAL_BASE, NAV_PAGES } from '../config/site';
 
 const read = (path) => readFileSync(new URL(path, import.meta.url), 'utf8');
 const canonical = (source) => source.match(/rel="canonical" href="([^"]+)"/)?.[1];
 
 test('homepage static and route canonical use the real live domain', () => {
   expect(canonical(read('../../index.html'))).toBe('https://www.riturajverma.com/');
-  expect(canonical(read('./Index.tsx'))).toBe('https://www.riturajverma.com/');
+  expect(`${CANONICAL_BASE}${NAV_PAGES[0].path}`).toBe('https://www.riturajverma.com/');
 });
 
 test('pen-name canonical and sharing URL self-reference the real live domain', () => {
@@ -17,7 +18,7 @@ test('pen-name canonical and sharing URL self-reference the real live domain', (
 
 test('sitemap uses the real live domain for all public pages', () => {
   expect([...read('../../public/sitemap.xml').matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1])).toEqual([
-    'https://www.riturajverma.com/', 'https://www.riturajverma.com/james-furrington',
+    ...NAV_PAGES.map(page => `${CANONICAL_BASE}${page.path}`), 'https://www.riturajverma.com/privacy', 'https://www.riturajverma.com/james-furrington',
     'https://www.riturajverma.com/lph/',
     'https://www.riturajverma.com/lph/alternate-endings/',
     'https://www.riturajverma.com/lph/alternate-endings/a-high-like-heaven/',

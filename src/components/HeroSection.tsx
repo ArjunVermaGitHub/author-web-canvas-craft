@@ -1,95 +1,19 @@
-import React, { useState } from 'react';
-import PurchaseButtons from './PurchaseButtons';
+import { useState } from 'react';
+import BookButton from './BookButton';
 import PinterestSaveButton from './PinterestSaveButton';
-import { TOTAL_PRICE, SAMPLE_CHAPTERS_URL } from '@/config/book';
+import { BOOK_TITLE, TOTAL_PRICE, SAMPLE_CHAPTERS_URL, FLIPKART_URL } from '@/config/book';
 import { getBrowserAmazonStore, selectEbookUrl, trackPurchaseClick } from '@/lib/purchase';
-
-const facts = [
-  ['Genre', 'Mythological fantasy, teens and young adults'],
-  ['Series', 'Book 1'],
-  ['Publisher', 'Qurate Books, August 2026'],
-  ['ISBN', '9789358987447'],
-];
-
-const HeroSection = () => {
+export default function HeroSection() {
   const [amazon] = useState(getBrowserAmazonStore);
-
-  return (
-    <section id="top" className="scroll-mt-20 bg-stonepage">
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-12 md:py-20">
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-          <div className="w-full lg:w-3/5">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl text-lapis font-serif leading-tight mb-6">
-              Raghav Kartikeya and the Tablets of Dharma
-            </h1>
-            <p className="text-lg md:text-xl text-lapis leading-relaxed mb-8 max-w-2xl">
-              A nine-year-old from Mumbai finds he can read the Indus Valley
-              script, a language no scholar has ever deciphered. It leads him
-              to a hidden school in the Himalayas, and to an immortal warlord
-              who wants humanity gone.
-            </p>
-
-            <div className="flex flex-col gap-4 mb-6">
-              <PurchaseButtons placement="hero" className="sm:flex-wrap sm:self-start" signedClassName="sm:w-auto">
-                Order a signed copy — ₹{TOTAL_PRICE}
-              </PurchaseButtons>
-              <a
-                href={selectEbookUrl(amazon.store)}
-                target="_blank"
-                rel="noopener noreferrer sponsored"
-                onClick={() => trackPurchaseClick('EbookClick', 'hero', amazon.store === 'India' ? undefined : amazon.store)}
-                className="text-lapis font-semibold underline underline-offset-4 hover:text-carnelian transition-colors min-h-[44px] flex items-center"
-              >
-                Buy the ebook
-              </a>
-              <p className="text-lapis/60 text-base">
-                As an Amazon Associate I earn from qualifying purchases.
-              </p>
-              <a
-                href={SAMPLE_CHAPTERS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-carnelian font-semibold underline underline-offset-4 hover:text-lapis transition-colors min-h-[44px] flex items-center"
-              >
-                Read the first two chapters free
-              </a>
-            </div>
-
-            <p className="text-lapis/80 text-base max-w-xl leading-relaxed mb-10">
-              The author handwrites your message inside the cover. Pay by
-              PhonePe QR.
-            </p>
-
-            <dl className="border-t-2 border-lapis max-w-xl">
-              {facts.map(([term, detail]) => (
-                <div
-                  key={term}
-                  className="flex gap-4 py-3 border-b border-lapis/20"
-                >
-                  <dt className="font-semibold text-lapis w-28 shrink-0">
-                    {term}
-                  </dt>
-                  <dd className="text-lapis/90">{detail}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <div className="w-full lg:w-2/5 flex flex-col items-center gap-5 lg:items-end">
-            <img
-              src="/raghav-ebook-cover.jpg"
-              alt="Raghav Kartikeya and the Tablets of Dharma — book cover"
-              width={1200}
-              height={1920}
-              decoding="async"
-              className="w-full max-w-xs md:max-w-sm h-auto"
-            />
-            <PinterestSaveButton />
-          </div>
-        </div>
+  return <section id="top" className="home-hero scroll-mt-24"><div className="site-container py-12 md:py-16">
+    <div className="grid lg:grid-cols-[minmax(0,1fr)_360px] items-center gap-12 lg:gap-16">
+      <div className="min-w-0"><p className="eyebrow mb-5">BOOK ONE OF THE SERIES</p><h1 className="hero-title mb-6">{BOOK_TITLE}</h1>
+        <p className="text-lg md:text-xl leading-relaxed mb-7">A nine-year-old from Mumbai finds he can read the Indus Valley script, a language no scholar has ever deciphered. It leads him to a hidden school in the Himalayas, and to an immortal warlord who wants humanity gone.</p>
+        <div className="flex flex-col items-start gap-3"><BookButton href="/shop#buy" className="w-full sm:w-auto" onClick={() => trackPurchaseClick('OrderClick', 'hero')}>Order a signed copy — ₹{TOTAL_PRICE}</BookButton><BookButton variant="outline" href={SAMPLE_CHAPTERS_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">Read the first two chapters free</BookButton></div>
+        <div className="mt-4 flex flex-wrap items-center gap-x-2 text-secondary"><span>Also on</span><a className="inline-flex items-center min-h-11 text-accent underline underline-offset-4" href={amazon.url} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackPurchaseClick('AmazonClick', 'hero', amazon.store)}>Amazon</a><span>·</span><a className="inline-flex items-center min-h-11 text-accent underline underline-offset-4" href={FLIPKART_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackPurchaseClick('FlipkartClick', 'hero')}>Flipkart</a><span>·</span><a className="inline-flex items-center min-h-11 text-accent underline underline-offset-4" href={selectEbookUrl(amazon.store)} target="_blank" rel="noopener noreferrer sponsored" onClick={() => trackPurchaseClick('EbookClick', 'hero', amazon.store === 'India' ? undefined : amazon.store)}>Kindle</a></div>
+        <p className="text-sm text-secondary">As an Amazon Associate I earn from qualifying purchases.</p><p className="text-secondary mt-5">The author handwrites your message inside the cover. Pay by PhonePe QR.</p>
       </div>
-    </section>
-  );
-};
-
-export default HeroSection;
+      <div className="flex flex-col items-center gap-6 px-3"><img src="/raghav-ebook-cover.jpg" alt={`${BOOK_TITLE} — book cover`} width={1200} height={1920} fetchPriority="high" decoding="async" className="hero-cover h-auto" /><PinterestSaveButton /></div>
+    </div>
+  </div></section>;
+}
