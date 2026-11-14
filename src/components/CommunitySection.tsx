@@ -6,12 +6,18 @@ import { Checkbox } from '@/components/ui/checkbox';
 import BookButton from './BookButton';
 import { COMMUNITY_WHATSAPP_URL } from '@/config/book';
 import { communitySchema } from '@/lib/communityValidation.js';
+import { whatsappUrl } from '@/lib/whatsapp';
 
 type Field = 'name' | 'email' | 'phone' | 'consent' | 'honeypot';
 type Errors = Partial<Record<Field, string>>;
 const inputClass = 'min-h-11 rounded-none border-lapis/40 bg-background text-lapis placeholder:text-lapis/50 focus-visible:ring-carnelian';
 
 const CommunitySection = () => {
+  const [chatUrl] = useState(() => {
+    const url = new URL(COMMUNITY_WHATSAPP_URL);
+    const touch = typeof window === 'undefined' || !window.matchMedia('(pointer: fine)').matches;
+    return whatsappUrl(touch, url.pathname.slice(1), url.searchParams.get('text') || '');
+  });
   const [values, setValues] = useState({ name: '', email: '', phone: '', consent: false, honeypot: '' });
   const [errors, setErrors] = useState<Errors>({});
   const [pending, setPending] = useState(false);
@@ -103,7 +109,7 @@ const CommunitySection = () => {
           </div>
           <div className="min-w-0 border-t-4 border-lapis pt-6 space-y-5">
             <h3 className="font-serif text-2xl">A conversation with Rituraj</h3>
-            <BookButton href={COMMUNITY_WHATSAPP_URL} target="_blank" rel="noopener noreferrer" variant="outline" className="min-h-11 w-full sm:w-auto gap-2">
+            <BookButton href={chatUrl} target="_blank" rel="noopener noreferrer" variant="outline" className="min-h-11 w-full sm:w-auto gap-2">
               <MessageCircle aria-hidden="true" className="shrink-0" size={20} />
               <span>Chat with the author on WhatsApp<span className="sr-only"> (opens in a new tab)</span></span>
             </BookButton>

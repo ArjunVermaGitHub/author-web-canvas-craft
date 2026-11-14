@@ -1,5 +1,9 @@
 # Roadmap
 
+- [ ] Add opt-in Razorpay orders, verification/webhook, retry state and owner payment details while preserving keyless UPI fallback.
+- [ ] Use WhatsApp Web for fine-pointer devices and wa.me for touch devices.
+- [ ] Run payment tests and browser checks; document Vercel/Razorpay setup and verification limits.
+
 - [ ] Build approved multi-page series structure, www canonicals and legacy hash redirects.
 - [ ] Apply night-sky/firelight/gold theme and shared public-page alignment.
 - [ ] Run all tests and verify all public routes at 390, 768 and 1280px; preserve live order and tracking behavior.
