@@ -33,7 +33,7 @@ const PinterestSaveButton = ({ className }: PinterestSaveButtonProps) => {
       data-pin-url={SITE_URL}
       data-pin-description={PINTEREST_DESCRIPTION}
       className={cn(
-        'inline-flex items-center justify-center min-h-[44px] px-6 py-2.5 font-sans font-semibold text-base rounded-none border-2 border-lapis text-lapis hover:bg-background hover:text-stonepage transition-colors duration-200 text-center',
+        'inline-flex items-center justify-center min-h-[44px] px-6 py-2.5 font-sans font-semibold text-base rounded-none border border-accent text-accent hover:border-link-hover hover:text-link-hover transition-colors duration-200 text-center',
         className,
       )}
     >
