@@ -302,7 +302,7 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
   <div className="space-y-4 border-l-4 border-ember pl-5">
     <h3 className="text-2xl font-serif text-ember">Order received</h3>
     <p>
-      Thank you, {name.split(' ')[0]}. {razorpay ? `We've received your payment of ₹${TOTAL_PRICE} and will` : `We'll verify your payment of ₹${TOTAL_PRICE} and`}
+      Thank you, {name.split(' ')[0]}. {razorpay ? `We've received your payment of ₹${TOTAL_PRICE} and will` : `We'll verify your payment of ₹${TOTAL_PRICE} and`}{' '}
       ship your signed copy of {BOOK_TITLE} to your address.
     </p>
     {orderId && (
