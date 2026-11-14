@@ -2,13 +2,20 @@ import { expect, test } from 'bun:test';
 import { createElement as h } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
-import OtherBooksSection from './OtherBooksSection';
+import OtherBooksSection, { FEATURED_COLORING_BOOK_IDS } from './OtherBooksSection';
 import LphBookLinks from './LphBookLinks';
 import { LPH_BOOK } from '../data/alternateEndings';
 import { OTHER_BOOKS, OTHER_BOOKS_SERIES_URL } from '../data/otherBooks';
 
 const render = (lphBook = LPH_BOOK) => renderToStaticMarkup(h(MemoryRouter, null, h(OtherBooksSection, { lphBook })));
 const destinations = html => [...html.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
+const expectedFeaturedIds = ['B0DPKTX5XL', 'B0DPVCYXMW', 'B0DPQ9JCX4', 'B0DPX79C8X'];
+const expectedFeaturedBooks = expectedFeaturedIds.map(id => OTHER_BOOKS.find(book => book.url === `https://www.amazon.com/dp/${id}`));
+
+test('featured coloring covers select exactly USA, UK, Amazon.com India and Outer Space in order', () => {
+  expect(FEATURED_COLORING_BOOK_IDS).toEqual(expectedFeaturedIds);
+  expect(expectedFeaturedBooks.map(book => book?.url)).toEqual(expectedFeaturedIds.map(id => `https://www.amazon.com/dp/${id}`));
+});
 
 test('both catalogue cards use existing book data and exact purchase/reading destinations', () => {
   const html = render();
@@ -20,7 +27,7 @@ test('both catalogue cards use existing book data and exact purchase/reading des
     '/james-furrington', OTHER_BOOKS_SERIES_URL,
   ]);
   expect([...html.matchAll(/<img[^>]*src="([^"]+)"[^>]*alt="([^"]+)"/g)].map(match => [match[1], match[2]])).toEqual(
-    [[LPH_BOOK.cover.path, LPH_BOOK.cover.alt.replaceAll('&', '&amp;')], ...OTHER_BOOKS.slice(0, 4).map(book => [book.cover.path, book.cover.alt.replaceAll('&', '&amp;')])],
+    [[LPH_BOOK.cover.path, LPH_BOOK.cover.alt.replaceAll('&', '&amp;')], ...expectedFeaturedBooks.map(book => [book.cover.path, book.cover.alt.replaceAll('&', '&amp;')])],
   );
 });
 
@@ -67,5 +74,5 @@ test('matching India and Kindle destinations appear exactly once in both LPH pur
 test('a supplied LPH cover is included without changing the four catalogue covers', () => {
   const cover = { path: '/test-lph-cover.jpg', alt: 'Test LPH cover', width: 300, height: 400 };
   const sources = [...render({ ...LPH_BOOK, cover }).matchAll(/<img[^>]*src="([^"]+)"/g)].map(match => match[1]);
-  expect(sources).toEqual([cover.path, ...OTHER_BOOKS.slice(0, 4).map(book => book.cover.path)]);
+  expect(sources).toEqual([cover.path, ...expectedFeaturedBooks.map(book => book.cover.path)]);
 });

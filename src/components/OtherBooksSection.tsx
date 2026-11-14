@@ -3,6 +3,12 @@ import { LPH_BOOK, type LphBook } from '@/data/alternateEndings';
 import { OTHER_BOOKS, OTHER_BOOKS_SERIES_URL } from '@/data/otherBooks';
 import BookButton from './BookButton';
 
+export const FEATURED_COLORING_BOOK_IDS = ['B0DPKTX5XL', 'B0DPVCYXMW', 'B0DPQ9JCX4', 'B0DPX79C8X'];
+
+const featuredColoringBooks = OTHER_BOOKS
+  .filter(book => FEATURED_COLORING_BOOK_IDS.includes(new URL(book.url).pathname.split('/')[2]))
+  .sort((a, b) => FEATURED_COLORING_BOOK_IDS.indexOf(new URL(a.url).pathname.split('/')[2]) - FEATURED_COLORING_BOOK_IDS.indexOf(new URL(b.url).pathname.split('/')[2]));
+
 export default function OtherBooksSection({ lphBook = LPH_BOOK }: { lphBook?: LphBook }) {
   return <section className="band-section" aria-labelledby="other-books-heading">
     <div className="site-container">
@@ -28,7 +34,7 @@ export default function OtherBooksSection({ lphBook = LPH_BOOK }: { lphBook?: Lp
         <article className="content-panel p-6 flex flex-col min-w-0">
           <h3 className="font-serif text-accent text-2xl leading-snug">Cute Cats Coloring Books by James Furrington (pen name)</h3>
           <div className="grid grid-cols-4 gap-3 my-6">
-            {OTHER_BOOKS.slice(0, 4).map(book => <div key={book.url} className="aspect-[3/4] min-w-0 flex items-center justify-center">
+            {featuredColoringBooks.map(book => <div key={book.url} className="aspect-[3/4] min-w-0 flex items-center justify-center">
               {book.cover && <img src={book.cover.path} alt={book.cover.alt} width={book.cover.width} height={book.cover.height} loading="lazy" className="w-full h-full object-contain" />}
             </div>)}
           </div>
