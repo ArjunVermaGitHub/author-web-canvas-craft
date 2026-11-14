@@ -19,7 +19,7 @@ export default function Header() {
         <Link to="/" className="shrink-0 min-h-11 flex flex-col justify-center leading-snug" aria-label="Raghav Kartikeya: Fantasy with Roots — Home">
           <span className="brand-name">RAGHAV KARTIKEYA</span><span className="brand-tagline mt-1">FANTASY WITH ROOTS</span>
         </Link>
-        <nav className="desktop-nav items-center gap-3" aria-label="Main">
+        <nav className="desktop-nav items-center gap-2" aria-label="Main">
           {NAV_PAGES.slice(0, -1).map(page => <Link key={page.path} to={page.path} className="nav-link text-foreground hover:text-accent text-sm whitespace-nowrap" aria-current={pathname === page.path ? 'page' : undefined}>{page.label}</Link>)}
           {showShop && shop}
         </nav>

@@ -9,6 +9,8 @@ export const NAV_PAGES = [
   { path: '/world', label: 'The World', tagline: 'History and mythology', description: 'Trailers and glimpses from Raghav Kartikeya and the Tablets of Dharma. Real discoveries from the civilisation behind the book.' },
   { path: '/author', label: 'About the Author', tagline: 'Meet Rituraj', description: 'Rituraj Verma, author of the Raghav Kartikeya series.' },
   { path: '/media', label: 'Media Room', tagline: 'Press and interviews', description: 'Press and interviews about Raghav Kartikeya and the Tablets of Dharma.' },
+  { path: '/other-books', label: 'Other Books', tagline: 'More from the author', description: 'Love, Peace & Happiness and the Cute Cats coloring books by Rituraj Verma.' },
   { path: '/shop', label: 'Shop the Book', tagline: 'Order a signed copy', description: 'Order a signed copy of Raghav Kartikeya and the Tablets of Dharma, or read the first two chapters free.' },
 ] as const;
 export type SitePage = typeof NAV_PAGES[number];
+export const HOME_TEASER_PAGES = NAV_PAGES.filter(page => page.path !== '/' && page.path !== '/other-books');

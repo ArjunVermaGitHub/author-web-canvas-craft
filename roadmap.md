@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Feature the existing other books on Home, Books and `/other-books`, update navigation without adding a ninth teaser, and verify tests and three screen widths.
+
 - [x] Add opt-in Razorpay orders, verification/webhook, retry state and owner payment details while preserving keyless UPI fallback.
 - [x] Use WhatsApp Web for fine-pointer devices and wa.me for touch devices.
 - [x] Run payment tests and browser checks; document Vercel/Razorpay setup and verification limits. Live Razorpay/Atlas transactions and webhook delivery await owner environment/dashboard setup; browser flows use simulated provider responses.
