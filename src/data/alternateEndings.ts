@@ -31,6 +31,12 @@ export const LPH_BOOK: LphBook = {
   kindleUrl: 'https://www.amazon.in/dp/B007TPAI06',
   internationalUrl: 'https://www.amazon.com/dp/B007TPAI06',
   authorEmail: 'author@riturajverma.com',
+  cover: {
+    path: '/books/B007TPAI06.jpg',
+    alt: 'Cover of Love, Peace & Happiness: What more can you want? by Rituraj Verma',
+    width: 503,
+    height: 800,
+  },
 };
 
 export const ALTERNATE_STORIES: AlternateStory[] = [

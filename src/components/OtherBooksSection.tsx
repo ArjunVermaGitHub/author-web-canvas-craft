@@ -9,8 +9,9 @@ export default function OtherBooksSection({ lphBook = LPH_BOOK }: { lphBook?: Lp
       <p className="eyebrow mb-4">ALSO BY THE AUTHOR</p>
       <h2 id="other-books-heading" className="section-heading">More books by Rituraj Verma</h2>
       <div className="grid md:grid-cols-2 gap-6">
-        <article className="content-panel p-6 flex flex-col min-w-0">
-          {lphBook.cover && <img src={lphBook.cover.path} alt={lphBook.cover.alt} width={lphBook.cover.width} height={lphBook.cover.height} loading="lazy" className="w-40 aspect-[3/4] object-contain mb-6" />}
+        <article className="content-panel p-6 flex flex-col sm:flex-row items-start gap-6 min-w-0">
+          {lphBook.cover && <img src={lphBook.cover.path} alt={lphBook.cover.alt} width={lphBook.cover.width} height={lphBook.cover.height} loading="lazy" className="w-[140px] h-auto shrink-0" />}
+          <div className="flex flex-col min-w-0 flex-1 self-stretch">
           {lphBook.kindleUrl && <p className="eyebrow text-xs mb-3">KINDLE EDITION AVAILABLE</p>}
           <h3 className="font-serif text-accent text-2xl leading-snug">{lphBook.title}</h3>
           <p className="text-secondary mt-3">{lphBook.year} · {lphBook.publisher}</p>
@@ -20,6 +21,7 @@ export default function OtherBooksSection({ lphBook = LPH_BOOK }: { lphBook?: Lp
             <BookButton variant={lphBook.kindleUrl ? 'outline' : 'primary'} href={lphBook.indiaUrl} target="_blank" rel="noopener noreferrer">Buy on Amazon India</BookButton>
             <BookButton variant="outline" href={lphBook.internationalUrl} target="_blank" rel="noopener noreferrer">Buy outside India</BookButton>
             <Link className="text-accent hover:text-link-hover min-h-11 inline-flex items-center underline underline-offset-4" to="/lph/alternate-endings/">Read the alternate endings</Link>
+          </div>
           </div>
         </article>
         <article className="content-panel p-6 flex flex-col min-w-0">

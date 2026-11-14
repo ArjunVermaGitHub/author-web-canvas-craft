@@ -20,13 +20,18 @@ test('both catalogue cards use existing book data and exact purchase/reading des
     '/james-furrington', OTHER_BOOKS_SERIES_URL,
   ]);
   expect([...html.matchAll(/<img[^>]*src="([^"]+)"[^>]*alt="([^"]+)"/g)].map(match => [match[1], match[2]])).toEqual(
-    OTHER_BOOKS.slice(0, 4).map(book => [book.cover.path, book.cover.alt.replaceAll('&', '&amp;')]),
+    [[LPH_BOOK.cover.path, LPH_BOOK.cover.alt.replaceAll('&', '&amp;')], ...OTHER_BOOKS.slice(0, 4).map(book => [book.cover.path, book.cover.alt.replaceAll('&', '&amp;')])],
   );
 });
 
-test('LPH defaults use the supplied Kindle destination and leave cover unset', () => {
+test('LPH defaults use the supplied Kindle destination and verified cover', () => {
   expect(LPH_BOOK.kindleUrl).toBe('https://www.amazon.in/dp/B007TPAI06');
-  expect(LPH_BOOK.cover).toBeUndefined();
+  expect(LPH_BOOK.cover).toEqual({
+    path: '/books/B007TPAI06.jpg',
+    alt: 'Cover of Love, Peace & Happiness: What more can you want? by Rituraj Verma',
+    width: 503, height: 800,
+  });
+  expect([...render().matchAll(/<img\b/g)]).toHaveLength(5);
   expect(destinations(render())).toHaveLength(6);
 });
 
