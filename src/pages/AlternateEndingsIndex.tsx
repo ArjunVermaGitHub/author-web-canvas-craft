@@ -1,22 +1,23 @@
 import { Helmet } from 'react-helmet-async';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LphBookLinks from '@/components/LphBookLinks';
 import { ALTERNATE_STORIES, LPH_BOOK, endingPath, endingTitle, lphCanonical, storyPath } from '@/data/alternateEndings';
-import NotFound from './NotFound';
+import { resolveStory, LPH_INDEX_PATH } from '@/lib/lphSlug';
 
 export default function AlternateEndingsIndex() {
   const { storySlug } = useParams();
-  const { pathname } = useLocation();
-  const story = ALTERNATE_STORIES.find(item => item.slug === storySlug && item.endings.length > 0);
-  if (storySlug && !story) return <NotFound />;
+  const { pathname, search, hash } = useLocation();
+  const story = resolveStory(storySlug ?? '');
+  const target = story ? storyPath(story.slug) : (!storySlug && /^\/lph\/?$/i.test(pathname) ? '/lph/' : LPH_INDEX_PATH);
+  if (pathname !== target) return <Navigate replace to={`${target}${search}${hash}`} />;
 
   const title = story ? `${story.title}: Alternate endings` : `${LPH_BOOK.title} — Alternate endings`;
   const description = story
     ? `Read the alternate endings for ${story.title}, a story by Rituraj Verma in Love, Peace & Happiness.`
     : `Alternate endings to stories in ${LPH_BOOK.title}, the 2012 book by Rituraj Verma.`;
-  const canonical = lphCanonical(story ? storyPath(story.slug) : pathname);
+  const canonical = lphCanonical(target);
 
   return (
     <div className="public-site">

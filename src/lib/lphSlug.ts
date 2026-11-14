@@ -33,8 +33,7 @@ export function resolveEnding(story: AlternateStory, raw: string) {
   if (matched) return matched;
   const number = /^(?:ending-?)?(\d+)$/.exec(slug)?.[1];
   if (!number) return undefined;
-  return uniqueMatch(story.endings, (_ending, index?: number) => false)
-    ?? story.endings.find((_ending, index) => index + 1 === Number(number));
+  return story.endings.find((_ending, index) => index + 1 === Number(number));
 }
 
 /** Resolve the entire copied path, ignoring junk after the story/ending. */
