@@ -21,6 +21,4 @@
 - Order statuses (pending_verification/paid/cancelled), ID format and owner-code comparison live in `src/lib/orderStatus.js`; the order log and status changes are served only by owner-gated `api/owner-orders.js`. Why: order data must never reach a public endpoint and counts must exclude unpaid orders.
 - `/signed-copy` is a noindex ad page without shared navigation or OrderBar; it and BuySection reuse SignedCopyOrderFlow with explicit tracking placements, while VisitorCounter logs silently. Why: keep ad ordering compact without duplicating payment logic or changing homepage events.
 
-- Public colours, typography, borders and glow are semantic CSS tokens; every public section uses the single `site-container` (1180px maximum, 32px insets, 20px on phones), including legacy and ad pages. Why: preserve the requested cover-inspired design and consistent alignment without independent section widths.
-- Series routes compose existing sections through PageLayout; books and future characters are data-driven, with an empty character catalogue until author entries exist. Why: preserve existing content and avoid invented books or people.
-- The shared header uses two desktop rows at 1280px and a tagline menu below that width; other-series links remain in the footer. Why: all nine navigation labels must fit without overlap and retain large touch targets.
+- Public page structure and presentation rules live in `src/AGENTS.md`. Why: keep scoped guidance beside the frontend.

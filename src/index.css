@@ -137,12 +137,15 @@
   .site-header { background: hsl(var(--background) / .86); border-bottom: 1px solid hsl(var(--accent) / .35); backdrop-filter: blur(12px); }
   .site-footer { background: hsl(var(--footer)); border-top: 1px solid hsl(var(--accent) / .35); }
   .desktop-nav { display: none; }
+  .mobile-nav-controls { display: flex; }
   .mobile-page-link[aria-current="page"] { color: hsl(var(--accent)); border-left: 2px solid hsl(var(--accent)); padding-left: 12px; }
   @media (min-width: 1280px) { .desktop-nav { display: flex; } .mobile-nav-controls, .mobile-menu { display: none; } .header-row { flex-wrap: wrap; } .desktop-nav { width: 100%; justify-content: space-between; } }
   .brand-name { font-family: Cinzel, Georgia, serif; font-weight: 700; font-size: 22px; letter-spacing: .12em; color: hsl(var(--accent)); }
   .brand-tagline { font-family: Cinzel, Georgia, serif; font-size: 12px; letter-spacing: .32em; color: hsl(var(--muted-foreground)); }
   .eyebrow { font-family: Cinzel, Georgia, serif; font-size: 14px; letter-spacing: .3em; text-transform: uppercase; color: hsl(var(--accent)); }
   .page-header-band, .home-hero, .final-glow { background-image: radial-gradient(ellipse at 50% 100%, hsl(var(--ember-glow) / .3), transparent 65%); }
+  .public-site main#top > .site-container > h1, .public-site main#top > article > h1 { font-size: 52px; line-height: 1.16; }
+  .public-site main#top.band-section { background-image: radial-gradient(ellipse 70% 180px at 50% 0%, hsl(var(--ember-glow) / .22), transparent); }
   .page-header-band { padding-block: 60px 48px; border-bottom: 1px solid hsl(var(--accent) / .35); }
   .page-title { font-size: 52px; line-height: 1.16; color: hsl(var(--heading)); overflow-wrap: break-word; }
   .hero-title { font-size: 56px; line-height: 1.15; color: hsl(var(--heading)); }
@@ -155,6 +158,7 @@
   .wiki-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 20px; }
   .public-site h1, .public-site h2 { color: hsl(var(--heading)); }
   .nav-link { min-height: 44px; display: flex; align-items: center; border-bottom: 2px solid transparent; }
+  .header-shop[aria-current="page"] { outline: 2px solid hsl(var(--accent)); outline-offset: 4px; }
   .nav-link[aria-current="page"] { color: hsl(var(--accent)); border-color: hsl(var(--accent)); }
   .public-site [class*="text-lapis/"] , .public-site [class*="text-stonepage/"] , .public-site [class*="text-book-light/"] { color: hsl(var(--secondary)); }
   .public-site [class*="placeholder:"]::placeholder { color: hsl(var(--muted-foreground)); opacity: 1; }
@@ -163,5 +167,5 @@
   .public-site main a:not([class*="bg-primary"]):hover { color: hsl(var(--link-hover)); }
   .public-site h1, .public-site h2, .public-site h3 { overflow-wrap: break-word; }
   .public-site .site-footer h2, .public-site .content-panel h2, .public-site .teaser-card h2 { color: hsl(var(--accent)); }
-  @media (max-width: 639px) { .site-container { padding-inline: 20px; } .page-title { font-size: 36px; } .hero-title { font-size: 38px; } .brand-name { font-size: 18px; } .brand-tagline { font-size: 10px; } .page-header-band { padding-block: 40px; } }
+  @media (max-width: 639px) { .site-container { padding-inline: 20px; } .page-title, .public-site main#top > .site-container > h1, .public-site main#top > article > h1 { font-size: 36px; } .hero-title { font-size: 38px; } .brand-name { font-size: 18px; } .brand-tagline { font-size: 10px; } .page-header-band { padding-block: 40px; } }
 }

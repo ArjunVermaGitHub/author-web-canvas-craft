@@ -12,7 +12,7 @@ export default function Header() {
   const { pathname } = useLocation();
   useEffect(() => setOpen(false), [pathname]);
   const showShop = shouldShowPurchaseButtons(pathname);
-  const shop = <BookButton href="/shop#buy" className="header-shop px-4 whitespace-nowrap" onClick={() => { trackPurchaseClick('OrderClick', 'header'); setOpen(false); }}>Shop the Book</BookButton>;
+  const shop = <BookButton href="/shop#buy" aria-current={pathname === "/shop" ? "page" : undefined} className="header-shop px-4 whitespace-nowrap " onClick={() => { trackPurchaseClick('OrderClick', 'header'); setOpen(false); }}>Shop the Book</BookButton>;
   return <header className="site-header sticky top-0 z-40">
     <div className="site-container">
       <div className="header-row flex items-center justify-between gap-4 py-4">
@@ -23,7 +23,7 @@ export default function Header() {
           {NAV_PAGES.slice(0, -1).map(page => <Link key={page.path} to={page.path} className="nav-link text-foreground hover:text-accent text-sm whitespace-nowrap" aria-current={pathname === page.path ? 'page' : undefined}>{page.label}</Link>)}
           {showShop && shop}
         </nav>
-        <div className="mobile-nav-controls flex items-center gap-3">
+        <div className="mobile-nav-controls items-center gap-3">
           <div className="hidden sm:block">{showShop && shop}</div>
           <Button variant="ghost" size="icon" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="site-menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
         </div>
