@@ -28,6 +28,7 @@ export const LPH_BOOK: LphBook = {
   publisher: 'Jufic Books / Leadstart',
   isbn: '978-93-81-836-34-7',
   indiaUrl: 'https://www.amazon.in/dp/B007TPAI06',
+  kindleUrl: 'https://www.amazon.in/dp/B007TPAI06',
   internationalUrl: 'https://www.amazon.com/dp/B007TPAI06',
   authorEmail: 'author@riturajverma.com',
 };

@@ -11,6 +11,7 @@ export default function OtherBooksSection({ lphBook = LPH_BOOK }: { lphBook?: Lp
       <div className="grid md:grid-cols-2 gap-6">
         <article className="content-panel p-6 flex flex-col min-w-0">
           {lphBook.cover && <img src={lphBook.cover.path} alt={lphBook.cover.alt} width={lphBook.cover.width} height={lphBook.cover.height} loading="lazy" className="w-40 aspect-[3/4] object-contain mb-6" />}
+          {lphBook.kindleUrl && <p className="eyebrow text-xs mb-3">KINDLE EDITION AVAILABLE</p>}
           <h3 className="font-serif text-accent text-2xl leading-snug">{lphBook.title}</h3>
           <p className="text-secondary mt-3">{lphBook.year} · {lphBook.publisher}</p>
           <p className="mt-4 mb-6">A collection of short stories, with alternate endings to read online.</p>
