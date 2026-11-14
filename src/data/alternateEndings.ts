@@ -10,7 +10,19 @@ export type AlternateStory = {
   endings: AlternateEnding[];
 };
 
-export const LPH_BOOK = {
+export type LphBook = {
+  title: string;
+  year: number;
+  publisher: string;
+  isbn: string;
+  indiaUrl: string;
+  internationalUrl: string;
+  authorEmail: string;
+  kindleUrl?: string;
+  cover?: { path: string; alt: string; width: number; height: number };
+};
+
+export const LPH_BOOK: LphBook = {
   title: 'Love, Peace & Happiness: What more can you want?',
   year: 2012,
   publisher: 'Jufic Books / Leadstart',

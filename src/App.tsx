@@ -21,6 +21,7 @@ import World from './pages/World';
 import Author from './pages/Author';
 import Media from './pages/Media';
 import Shop from './pages/Shop';
+import OtherBooks from './pages/OtherBooks';
 import ScrollToHash from './components/ScrollToHash';
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/world" element={<World />} />
           <Route path="/author" element={<Author />} />
           <Route path="/media" element={<Media />} />
+          <Route path="/other-books" element={<OtherBooks />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/signed-copy" element={<SignedCopy />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
