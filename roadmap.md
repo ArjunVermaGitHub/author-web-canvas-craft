@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Feature the existing other books on Home, Books and `/other-books`, update navigation without adding a ninth teaser, and verify tests and three screen widths.
+- [x] Feature the existing other books on Home, Books and `/other-books`, update navigation without adding a ninth teaser, and verify tests and three screen widths. All 167 tests and automatic build pass; nine page-size checks confirm shared alignment, loaded covers, no overflow, desktop navigation fit and mobile navigation. Production auto-deployment and external Amazon checkout remain unverified; no Lovable publish used.
 
 - [x] Add opt-in Razorpay orders, verification/webhook, retry state and owner payment details while preserving keyless UPI fallback.
 - [x] Use WhatsApp Web for fine-pointer devices and wa.me for touch devices.
