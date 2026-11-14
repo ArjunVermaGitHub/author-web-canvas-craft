@@ -17,9 +17,10 @@ export default function OtherBooksSection({ lphBook = LPH_BOOK }: { lphBook?: Lp
           <p className="text-secondary mt-3">{lphBook.year} · {lphBook.publisher}</p>
           <p className="mt-4 mb-6">A collection of short stories, with alternate endings to read online.</p>
           <div className="mt-auto flex flex-col gap-3">
-            {lphBook.kindleUrl && <BookButton href={lphBook.kindleUrl} target="_blank" rel="noopener noreferrer">Read on Kindle</BookButton>}
-            <BookButton variant={lphBook.kindleUrl ? 'outline' : 'primary'} href={lphBook.indiaUrl} target="_blank" rel="noopener noreferrer">Buy on Amazon India</BookButton>
-            <BookButton variant="outline" href={lphBook.internationalUrl} target="_blank" rel="noopener noreferrer">Buy outside India</BookButton>
+            {lphBook.kindleUrl && <BookButton href={lphBook.kindleUrl} target="_blank" rel="noopener noreferrer">Read on Kindle — India</BookButton>}
+            {lphBook.indiaUrl !== lphBook.kindleUrl && <BookButton variant={lphBook.kindleUrl ? 'outline' : 'primary'} href={lphBook.indiaUrl} target="_blank" rel="noopener noreferrer">Buy on Amazon India</BookButton>}
+            <BookButton variant="outline" href={lphBook.internationalUrl} target="_blank" rel="noopener noreferrer">Read on Kindle — outside India</BookButton>
+            <p className="text-sm text-secondary">Kindle edition. The paperback is out of print.</p>
             <Link className="text-accent hover:text-link-hover min-h-11 inline-flex items-center underline underline-offset-4" to="/lph/alternate-endings/">Read the alternate endings</Link>
           </div>
           </div>
