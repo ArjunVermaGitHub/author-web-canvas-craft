@@ -151,6 +151,7 @@
   .content-panel:hover, .teaser-card:hover { border-color: hsl(var(--accent) / .85); }
   .teaser-card { display: flex; flex-direction: column; min-height: 204px; padding: 24px; }
   .teaser-shop { background: hsl(var(--primary) / .1); border-color: hsl(var(--primary)); }
+  .public-site #wiki h2 { color: hsl(var(--primary)); }
   .wiki-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 20px; }
   .public-site h1, .public-site h2 { color: hsl(var(--heading)); }
   .nav-link { min-height: 44px; display: flex; align-items: center; border-bottom: 2px solid transparent; }
