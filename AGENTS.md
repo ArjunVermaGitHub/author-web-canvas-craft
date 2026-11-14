@@ -22,3 +22,8 @@
 - `/signed-copy` is a noindex ad page without shared navigation or OrderBar; it and BuySection reuse SignedCopyOrderFlow with explicit tracking placements, while VisitorCounter logs silently. Why: keep ad ordering compact without duplicating payment logic or changing homepage events.
 
 - Public page structure and presentation rules live in `src/AGENTS.md`. Why: keep scoped guidance beside the frontend.
+
+<!-- LOVABLE:BEGIN -->
+- Use `src/config/bookPrice.js` (re-exported by `book.ts`) for the server/client price; keep payee settings in `book.ts`. Why: server payments cannot import browser asset pointers.
+- Razorpay requires both server keys; raw-body HMAC and atomic capture updates live in `api/razorpay-*` and `api/utils/razorpay.js`. Why: keyless sites retain UPI and duplicate/unverified payments never count as purchases.
+<!-- LOVABLE:END -->
