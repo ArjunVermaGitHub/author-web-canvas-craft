@@ -15,6 +15,13 @@
   ],
   "routes": [
     {
+      "src": "/books/B007TPAI06.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/bb99057c-6905-4fc0-a63a-7679b1392afa/B007TPAI06.jpg"
+      }
+    },
+    {
       "src": "/books/9363555208.jpg",
       "status": 302,
       "headers": {

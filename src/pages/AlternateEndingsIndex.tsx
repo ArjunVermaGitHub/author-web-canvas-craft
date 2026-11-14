@@ -31,9 +31,14 @@ export default function AlternateEndingsIndex() {
       <Header />
       <main id="top" className="band-section">
         <div className="site-container min-w-0">
+          <div className="flex flex-col sm:flex-row items-start gap-6 mb-8">
+          {!story && LPH_BOOK.cover && <img src={LPH_BOOK.cover.path} alt={LPH_BOOK.cover.alt} width={LPH_BOOK.cover.width} height={LPH_BOOK.cover.height} className="w-[140px] h-auto shrink-0" />}
+          <div className="min-w-0 flex-1">
           <h1 className="page-heading break-words">{story ? story.title : LPH_BOOK.title}</h1>
           <p className="text-xl mb-4">Alternate endings</p>
-          <p className="text-sm leading-relaxed mb-8">{story ? 'A story in Love, Peace & Happiness by Rituraj Verma' : `Rituraj Verma · ${LPH_BOOK.year} · ${LPH_BOOK.publisher} · ISBN ${LPH_BOOK.isbn}`}</p>
+          <p className="text-sm leading-relaxed">{story ? 'A story in Love, Peace & Happiness by Rituraj Verma' : `Rituraj Verma · ${LPH_BOOK.year} · ${LPH_BOOK.publisher} · ISBN ${LPH_BOOK.isbn}`}</p>
+          </div>
+          </div>
           {story ? (
             <>
               <ul className="divide-y divide-lapis/20 border-t-2 border-lapis">

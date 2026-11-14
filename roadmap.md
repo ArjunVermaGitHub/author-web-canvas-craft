@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Add the visually verified Amazon LPH cover via hosted JPEG/legacy redirects and display it uncropped in catalogue cards and the alternate-endings index. All 168 tests and automatic build pass; six checks at 390/1280px confirm the hosted image loads at its natural ratio without overflow. No Lovable publish used; production auto-deployment remains unverified.
+
 - [x] Set the supplied LPH Kindle edition, show its availability and primary link across catalogue/LPH pages, and retain the unset cover. All 168 tests pass, automatic build is clean, and both public Kindle links are verified in the preview. No Lovable publish used.
 
 - [x] Feature the existing other books on Home, Books and `/other-books`, update navigation without adding a ninth teaser, and verify tests and three screen widths. All 167 tests and automatic build pass; nine page-size checks confirm shared alignment, loaded covers, no overflow, desktop navigation fit and mobile navigation. Production auto-deployment and external Amazon checkout remain unverified; no Lovable publish used.
