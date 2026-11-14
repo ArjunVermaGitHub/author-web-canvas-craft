@@ -28,7 +28,7 @@ const SignedCopy = () => {
       </Helmet>
       <header className="site-header">
         <div className="site-container">
-          <Link to="/" className="inline-flex min-h-[44px] items-center font-serif text-xl">Rituraj Verma</Link>
+          <Link to="/" className="inline-flex min-h-[44px] items-center font-serif text-xl text-accent">Rituraj Verma</Link>
         </div>
       </header>
       <main>
@@ -67,7 +67,7 @@ const SignedCopy = () => {
           <p className="text-sm text-lapis/70">As an Amazon Associate I earn from qualifying purchases.</p>
         </div>
       </main>
-      <footer className="border-t border-border py-3">
+      <footer className="site-footer py-3">
         <div className="site-container">
           <Link to="/privacy" className="inline-flex min-h-[44px] items-center underline underline-offset-4">Privacy policy</Link>
         </div>

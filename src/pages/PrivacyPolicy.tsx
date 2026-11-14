@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const PrivacyPolicy = () => {
@@ -9,22 +10,14 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="public-site">
-      <header className="bg-book-dark/80 backdrop-blur-sm border-b border-book-medium">
-        <div className="site-container py-4 flex justify-between items-center">
-          <Link to="/" className="text-book-gold font-serif text-2xl hover:text-book-amber transition-colors">
-            Rituraj
-          </Link>
-          <Link to="/" className="text-book-light hover:text-book-gold transition-colors text-sm">
-            ← Back to Home
-          </Link>
-        </div>
-      </header>
+      <Helmet><title>Privacy Policy — Raghav Kartikeya: Fantasy with Roots</title><meta name="description" content="Privacy Policy for riturajverma.com." /><link rel="canonical" href="https://www.riturajverma.com/privacy" /><meta property="og:url" content="https://www.riturajverma.com/privacy" /></Helmet>
+      <Header />
 
       <main className="book-section">
         <div className="site-container">
           <h1 className="section-heading mb-4">Privacy Policy</h1>
-          <p className="text-center text-book-amber mb-2">Website: riturajverma.com</p>
-          <p className="text-center text-book-light/70 text-sm mb-12">
+          <p className="text-left text-book-amber mb-2">Website: riturajverma.com</p>
+          <p className="text-left text-book-light/70 text-sm mb-12">
             Effective date: 31 July 2026
             <span className="mx-2">·</span>
             Last updated: 31 July 2026
