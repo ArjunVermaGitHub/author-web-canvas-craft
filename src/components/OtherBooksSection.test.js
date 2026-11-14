@@ -16,7 +16,7 @@ test('both catalogue cards use existing book data and exact purchase/reading des
   expect(html).toContain(`${LPH_BOOK.year} · ${LPH_BOOK.publisher}`);
   expect(html).toContain(`${OTHER_BOOKS.length} coloring books`);
   expect(destinations(html)).toEqual([
-    LPH_BOOK.kindleUrl, LPH_BOOK.indiaUrl, LPH_BOOK.internationalUrl, '/lph/alternate-endings/',
+    LPH_BOOK.kindleUrl, LPH_BOOK.internationalUrl, '/lph/alternate-endings/',
     '/james-furrington', OTHER_BOOKS_SERIES_URL,
   ]);
   expect([...html.matchAll(/<img[^>]*src="([^"]+)"[^>]*alt="([^"]+)"/g)].map(match => [match[1], match[2]])).toEqual(
@@ -32,7 +32,7 @@ test('LPH defaults use the supplied Kindle destination and verified cover', () =
     width: 503, height: 800,
   });
   expect([...render().matchAll(/<img\b/g)]).toHaveLength(5);
-  expect(destinations(render())).toHaveLength(6);
+  expect(destinations(render())).toHaveLength(5);
 });
 
 test('a supplied Kindle destination appears first and only when configured', () => {
@@ -51,9 +51,17 @@ test('a supplied Kindle destination appears first and only when configured', () 
 test('LPH page purchase destinations put the configured Kindle edition first', () => {
   const html = renderToStaticMarkup(h(MemoryRouter, null, h(LphBookLinks)));
   expect(destinations(html)).toEqual([
-    'https://www.amazon.in/dp/B007TPAI06', LPH_BOOK.indiaUrl,
+    'https://www.amazon.in/dp/B007TPAI06',
     LPH_BOOK.internationalUrl, `mailto:${LPH_BOOK.authorEmail}`,
   ]);
+});
+
+test('matching India and Kindle destinations appear exactly once in both LPH purchase placements', () => {
+  const html = renderToStaticMarkup(h(MemoryRouter, null, h(LphBookLinks)));
+  expect(LPH_BOOK.indiaUrl).toBe(LPH_BOOK.kindleUrl);
+  for (const placement of [render(), html]) {
+    expect(destinations(placement).filter(url => url === 'https://www.amazon.in/dp/B007TPAI06')).toHaveLength(1);
+  }
 });
 
 test('a supplied LPH cover is included without changing the four catalogue covers', () => {
