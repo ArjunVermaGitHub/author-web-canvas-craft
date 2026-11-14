@@ -1,7 +1,7 @@
 # AGENTS.md
 
 - Backend: Vercel serverless functions in `api/` (ES modules, `micro` buffer for body parsing, CORS headers on every response) backed by MongoDB Atlas via `MONGODB_URI` env and the cached connection in `api/utils/mongodb.js`. Do not add Lovable Cloud/Supabase — the user runs their own MongoDB. Why: user manages their own Vercel deployment and Atlas cluster.
-- Prices and payee name live in `src/config/book.ts` as the single source of truth. Why: the user changes the book price when the Amazon price changes.
+- Price lives in `src/config/bookPrice.js`, re-exported by `src/config/book.ts`; payee stays in `book.ts`. Why: server and browser payments share one price without browser assets.
 - Amazon stores live in `src/config/amazon.ts`; purchase buttons share browser-region selection and optional Meta click tracking through `src/lib/purchase.ts`. Why: all purchase placements must use consistent destinations without geo-IP requests or checkout changes.
 - Owner-only tools live under /owner/* and call /api endpoints gated by the OWNER_ACCESS_CODE env var; AI calls run in Vercel functions using LOVABLE_API_KEY env. Why: no Lovable Cloud backend, keep keys server-side.
 - Tracking comparison reuses the owner insights endpoint with a separately validated mode and server-only diagnostic prompt; shared pure comparison rules calculate ratios without inferring lost people. Why: matching report scope and owner access must be checked before paid AI requests.
@@ -22,3 +22,7 @@
 - `/signed-copy` is a noindex ad page without shared navigation or OrderBar; it and BuySection reuse SignedCopyOrderFlow with explicit tracking placements, while VisitorCounter logs silently. Why: keep ad ordering compact without duplicating payment logic or changing homepage events.
 
 - Public page structure and presentation rules live in `src/AGENTS.md`. Why: keep scoped guidance beside the frontend.
+
+<!-- LOVABLE:BEGIN -->
+- Razorpay requires both server keys; raw-body HMAC and atomic capture updates live in `api/razorpay-*` and `api/utils/razorpay.js`. Why: keyless sites retain UPI and duplicate/unverified payments never count as purchases.
+<!-- LOVABLE:END -->

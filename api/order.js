@@ -1,6 +1,8 @@
 import { connectToDatabase } from './utils/mongodb.js';
 import { buffer } from 'micro';
 import { randomBytes } from 'crypto';
+import { createRazorpayOrder, razorpayEnabled } from './utils/razorpay.js';
+import { TOTAL_PRICE } from '../src/config/bookPrice.js';
 
 export const config = {
   api: {
@@ -17,7 +19,7 @@ function makeOrderId() {
   return `RK-${randomBytes(3).toString('hex').toUpperCase()}`;
 }
 
-export default async function handler(req, res) {
+export default async function handler(req, res, deps = {}) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
@@ -36,7 +38,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const rawBody = await buffer(req);
+    const rawBody = deps.rawBody ?? await buffer(req);
     const body = JSON.parse(rawBody.toString());
     const name = typeof body.name === 'string' ? body.name.trim() : '';
     const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
@@ -71,12 +73,14 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid order amount' });
     }
 
-    const MONGODB_URI = process.env.MONGODB_URI;
+    const env = deps.env ?? process.env;
+    const active = razorpayEnabled(env);
+    const MONGODB_URI = env.MONGODB_URI;
     if (!MONGODB_URI) {
       return res.status(500).json({ error: 'Server configuration error' });
     }
 
-    const db = await connectToDatabase(MONGODB_URI);
+    const db = deps.db ?? await connectToDatabase(MONGODB_URI);
     const collection = db.collection('rituraj-orders');
     const orderId = makeOrderId();
 
@@ -88,15 +92,22 @@ export default async function handler(req, res) {
       address,
       pincode,
       message: message ?? null,
-      amount,
-      paymentMethod: 'phonepe',
+      amount: active ? TOTAL_PRICE : amount,
+      paymentMethod: active ? 'razorpay' : 'phonepe',
       status: 'pending_verification',
       createdAt: new Date(),
     });
 
+    let razorpay;
+    if (active) {
+      razorpay = await createRazorpayOrder(orderId, env, deps.fetch ?? fetch);
+      await collection.updateOne({ orderId }, { $set: { razorpayOrderId: razorpay.orderId } });
+    }
+
     return res.status(201).json({
       message: 'Order saved successfully',
       orderId,
+      ...(razorpay ? { razorpay } : {}),
     });
   } catch (error) {
     console.error('Error processing order:', error);

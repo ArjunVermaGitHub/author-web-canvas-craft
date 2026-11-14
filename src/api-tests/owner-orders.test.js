@@ -57,3 +57,17 @@ test('invalid status is rejected before touching the database', async () => {
   expect(res.code).toBe(400);
   expect(updates.length).toBe(0);
 });
+
+test('owner order listing includes payment method, payment ID and status', async () => {
+  const res = fakeRes();
+  let projection;
+  const row = { orderId: 'RK-ABC123', paymentMethod: 'razorpay', paymentId: 'pay_123', status: 'paid' };
+  const db = { collection: () => ({ find: (_q, options) => {
+    projection = options.projection;
+    return { sort: () => ({ limit: () => ({ toArray: async () => [row] }) }) };
+  } }) };
+  await handler({ method: 'POST' }, res, { rawBody: JSON.stringify({ code: 'secret-code' }), db });
+  expect(res.code).toBe(200);
+  expect(projection.paymentMethod).toBe(1); expect(projection.paymentId).toBe(1); expect(projection.status).toBe(1);
+  expect(res.body.orders[0]).toEqual(row);
+});

@@ -1,8 +1,12 @@
 # Roadmap
 
-- [ ] Build approved multi-page series structure, www canonicals and legacy hash redirects.
-- [ ] Apply night-sky/firelight/gold theme and shared public-page alignment.
-- [ ] Run all tests and verify all public routes at 390, 768 and 1280px; preserve live order and tracking behavior.
+- [x] Add opt-in Razorpay orders, verification/webhook, retry state and owner payment details while preserving keyless UPI fallback.
+- [x] Use WhatsApp Web for fine-pointer devices and wa.me for touch devices.
+- [x] Run payment tests and browser checks; document Vercel/Razorpay setup and verification limits. Live Razorpay/Atlas transactions and webhook delivery await owner environment/dashboard setup; browser flows use simulated provider responses.
+
+- [x] Build approved multi-page series structure, www canonicals and legacy hash redirects.
+- [x] Apply night-sky/firelight/gold theme and shared public-page alignment.
+- [x] Run all tests and verify all public routes at 390, 768 and 1280px; preserve live order and tracking behavior. Completed in prior request (149 tests, 153 page-size checks); real order storage and UPI-app handoff remain unverified.
 
 - [x] Fix desktop header purchase buttons wrapping across the header border; keep all purchase destinations and tracking unchanged.
 

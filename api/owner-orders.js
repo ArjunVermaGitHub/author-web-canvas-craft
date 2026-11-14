@@ -46,7 +46,7 @@ export default async function handler(req, res, deps = {}) {
       return res.status(200).json({ orderId: body.orderId, status: body.status, statusUpdatedAt });
     }
     const list = await orders.find({}, {
-      projection: { _id: 0, orderId: 1, createdAt: 1, name: 1, phone: 1, email: 1, address: 1, pincode: 1, amount: 1, status: 1, message: 1, statusUpdatedAt: 1 },
+      projection: { _id: 0, orderId: 1, createdAt: 1, name: 1, phone: 1, email: 1, address: 1, pincode: 1, amount: 1, status: 1, message: 1, statusUpdatedAt: 1, paymentMethod: 1, paymentId: 1, paidAt: 1 },
     }).sort({ createdAt: -1 }).limit(1000).toArray();
     return res.status(200).json({ orders: list });
   } catch (err) {
