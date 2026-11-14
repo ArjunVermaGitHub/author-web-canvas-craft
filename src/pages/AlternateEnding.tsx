@@ -1,16 +1,18 @@
 import { Helmet } from 'react-helmet-async';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LphBookLinks from '@/components/LphBookLinks';
-import { ALTERNATE_STORIES, endingPath, endingTitle, lphCanonical, storyPath } from '@/data/alternateEndings';
-import NotFound from './NotFound';
+import { endingPath, endingTitle, lphCanonical, storyPath } from '@/data/alternateEndings';
+import { resolveStory, resolveEnding, LPH_INDEX_PATH } from '@/lib/lphSlug';
 
 export default function AlternateEnding() {
   const { storySlug, endingSlug } = useParams();
-  const story = ALTERNATE_STORIES.find(item => item.slug === storySlug);
-  const ending = story?.endings.find(item => item.slug === endingSlug);
-  if (!story || !ending) return <NotFound />;
+  const { pathname, search, hash } = useLocation();
+  const story = resolveStory(storySlug ?? '');
+  const ending = story ? resolveEnding(story, endingSlug ?? '') : undefined;
+  const target = story ? (ending ? endingPath(story.slug, ending.slug) : storyPath(story.slug)) : LPH_INDEX_PATH;
+  if (!story || !ending || pathname !== target) return <Navigate replace to={`${target}${search}${hash}`} />;
 
   const title = endingTitle(story, ending);
   const description = `${title}. An alternate ending to a story in Love, Peace & Happiness by Rituraj Verma.`;

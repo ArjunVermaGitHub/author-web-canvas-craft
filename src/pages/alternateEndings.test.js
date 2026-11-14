@@ -6,14 +6,14 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import AlternateEnding from './AlternateEnding';
 import AlternateEndingsIndex from './AlternateEndingsIndex';
 
-test('LPH pages render self-referencing canonicals for every legacy route variant', () => {
+test('LPH pages render self-referencing canonicals at canonical trailing-slash destinations', () => {
   const paths = ['/lph', '/lph/alternate-endings',
     ...['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space', 'the-practitioner-of-austerity', 'victim-of-many-loves', 'the-soul-mate-theorist', 'the-facebook-stalker', 'the-night-of-the-affair', 'the-pursuit-of-perfection'].flatMap(storySlug => [
       `/lph/alternate-endings/${storySlug}`,
       ...['1-2', '2-2', '3-2'].map(slug => `/lph/alternate-endings/${storySlug}/${slug}`),
     ])];
   for (const path of paths) {
-    for (const suffix of ['', '/']) {
+    for (const suffix of ['/']) {
       const context = {};
       renderToString(h(HelmetProvider, { context },
         h(MemoryRouter, { initialEntries: [`${path}${suffix}`] },

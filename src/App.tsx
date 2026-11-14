@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import OwnerInsights from "./pages/OwnerInsights";
 import JamesFurrington from "./pages/JamesFurrington";
 import AlternateEnding from "./pages/AlternateEnding";
+import LphRedirect from "./pages/LphRedirect";
 import AlternateEndingsIndex from "./pages/AlternateEndingsIndex";
 import SignedCopy from "./pages/SignedCopy";
 import { HelmetProvider } from 'react-helmet-async';
@@ -52,6 +53,7 @@ const App = () => (
           <Route path="/lph/alternate-endings" element={<AlternateEndingsIndex />} />
           <Route path="/lph/alternate-endings/:storySlug" element={<AlternateEndingsIndex />} />
           <Route path="/lph/alternate-endings/:storySlug/:endingSlug" element={<AlternateEnding />} />
+          <Route path="/lph/*" element={<LphRedirect />} />
           <Route path="/owner/insights" element={<OwnerInsights />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
