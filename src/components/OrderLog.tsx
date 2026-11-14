@@ -4,6 +4,7 @@ import BookButton from '@/components/BookButton';
 export type Order = {
   orderId: string; createdAt: string; name: string; phone: string; email?: string; address?: string;
   pincode?: string; amount: number; status?: string; message?: string | null;
+  paymentMethod?: string; paymentId?: string; paidAt?: string;
 };
 type Filter = 'pending_verification' | 'paid' | 'cancelled' | 'all';
 const FILTERS: [Filter, string][] = [['all', 'All'], ['pending_verification', 'Pending'], ['paid', 'Paid'], ['cancelled', 'Cancelled']];
@@ -56,6 +57,7 @@ const OrderLog = ({ code, orders, setOrders }: { code: string; orders: Order[]; 
               <tr className="border-b-2 border-lapis">
                 <th className="py-2 pr-4">Order ID</th><th className="py-2 pr-4">Date and time (India)</th><th className="py-2 pr-4">Name</th>
                 <th className="py-2 pr-4">Phone</th><th className="py-2 pr-4">Amount</th><th className="py-2 pr-4">Status</th>
+                <th className="py-2 pr-4">Payment method</th><th className="py-2 pr-4">Payment ID</th>
                 <th className="py-2 pr-4">Message for the cover</th><th className="py-2">Actions</th>
               </tr>
             </thead>
@@ -77,6 +79,8 @@ const OrderLog = ({ code, orders, setOrders }: { code: string; orders: Order[]; 
                     <td className="py-2 pr-4 whitespace-nowrap">{o.phone}</td>
                     <td className="py-2 pr-4 whitespace-nowrap">₹{o.amount}</td>
                     <td className="py-2 pr-4">{LABEL[s]}</td>
+                    <td className="py-2 pr-4">{o.paymentMethod || 'phonepe'}</td>
+                    <td className="py-2 pr-4 break-all">{o.paymentId || '–'}</td>
                     <td className="py-2 pr-4 break-words min-w-[10rem]">{o.message || '–'}</td>
                     <td className="py-2">
                       <div className="flex flex-col gap-2 min-w-[9rem]">
