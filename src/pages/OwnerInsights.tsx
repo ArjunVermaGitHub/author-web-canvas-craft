@@ -96,7 +96,7 @@ const OwnerInsights = () => {
   };
 
   return (
-    <div className="min-h-screen bg-stonepage text-lapis px-4 py-10 md:px-8">
+    <div className="min-h-screen bg-background text-foreground px-4 py-10 md:px-8">
       <div className="max-w-3xl mx-auto">
         <h1 className="font-serif text-3xl md:text-4xl mb-2">Sales insights</h1>
         <p className="mb-8 text-lapis/80">
@@ -107,7 +107,7 @@ const OwnerInsights = () => {
         <form onSubmit={analyse} className="space-y-5 border-t-4 border-lapis pt-6">
           <div className="space-y-2">
             <Label htmlFor="owner-code">Access code</Label>
-            <Input id="owner-code" type="password" value={code} onChange={(e) => setCode(e.target.value)} className="min-h-[44px] rounded-none bg-white/60" autoComplete="current-password" />
+            <Input id="owner-code" type="password" value={code} onChange={(e) => setCode(e.target.value)} className="min-h-[44px] rounded-none bg-card border-accent/40 text-foreground" autoComplete="current-password" />
           </div>
           <div className="space-y-3">
             <BookButton type="button" variant="outline" onClick={loadStats} disabled={statsLoading}>
@@ -223,16 +223,16 @@ const OwnerInsights = () => {
           </div>
           <div className="space-y-2">
             <Label htmlFor="owner-file">Upload export (CSV, JSON or text)</Label>
-            <Input id="owner-file" type="file" accept=".csv,.json,.txt,.tsv" onChange={onFile} className="min-h-[44px] rounded-none bg-white/60" />
+            <Input id="owner-file" type="file" accept=".csv,.json,.txt,.tsv" onChange={onFile} className="min-h-[44px] rounded-none bg-card border-accent/40 text-foreground" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="owner-data">Event data</Label>
-            <Textarea id="owner-data" value={data} onChange={(e) => setData(e.target.value)} rows={10} placeholder="event_name,page,source,device,count..." className="rounded-none bg-white/60 font-mono text-base" />
+            <Textarea id="owner-data" value={data} onChange={(e) => setData(e.target.value)} rows={10} placeholder="event_name,page,source,device,count..." className="rounded-none bg-card border-accent/40 text-foreground font-mono text-base" />
             <p className="text-base text-lapis/70">{data.length.toLocaleString()} / {MAX_CHARS.toLocaleString()} characters</p>
           </div>
           <div className="space-y-2">
             <Label htmlFor="owner-question">Specific question (optional)</Label>
-            <Input id="owner-question" value={question} maxLength={500} onChange={(e) => setQuestion(e.target.value)} placeholder="e.g. Why do mobile visitors pick Amazon?" className="min-h-[44px] rounded-none bg-white/60" />
+            <Input id="owner-question" value={question} maxLength={500} onChange={(e) => setQuestion(e.target.value)} placeholder="e.g. Why do mobile visitors pick Amazon?" className="min-h-[44px] rounded-none bg-card border-accent/40 text-foreground" />
           </div>
           <div className="flex gap-3">
             <BookButton type="submit" disabled={loading}>{loading ? 'Analysing…' : 'Find patterns'}</BookButton>
