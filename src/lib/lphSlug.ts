@@ -33,7 +33,8 @@ export function resolveEnding(story: AlternateStory, raw: string) {
   if (matched) return matched;
   const number = /^(?:ending-?)?(\d+)$/.exec(slug)?.[1];
   if (!number) return undefined;
-  return story.endings.find((_ending, index) => index + 1 === Number(number));
+  // Numeric aliases resolve only against this story's configured endings.
+  return story.endings[Number(number) - 1];
 }
 
 /** Resolve the entire copied path, ignoring junk after the story/ending. */

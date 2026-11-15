@@ -329,6 +329,23 @@ export const ALTERNATE_STORIES: AlternateStory[] = [
           `Behind them, a small voice shouted, "Tee!" and a hand with three fingers up appeared at the bedroom door.`,
         ],
       },
+      {
+        slug: '4-2',
+        label: 'Open',
+        paragraphs: [
+          `"Yes," said Rajneesh. "But I will not give up easily."`,
+          `Paromita did not laugh this time. She looked at him over the rim of her cup, the way she looked at a client who had said something true by accident. "Then give me one thing," she said. "No theory. Not for a month."`,
+          `"A month without a theory?"`,
+          `"Without a number, without forty hours, without a column for what it costs. If you can do that, we will talk about the rest."`,
+          `He agreed, and discovered how much of his day had been arithmetic. He caught himself pricing the rice, the rent and the tuition fees. Twice he reached for his ear and stopped. At Timmy Bar, Sanjay raised an eyebrow and asked what had happened to him. "I am trying to be stupid," said Rajneesh. "It is harder than it looks."`,
+          `On the thirtieth evening he came home to find Dhrub asleep on the hall floor with one hand held up, three fingers out. Paromita sat beside him with the neon-red light from the street across her face.`,
+          `"Well?" she said.`,
+          `Rajneesh opened his mouth. He had a sentence ready. It had a column in it, and a total.`,
+          `"I do not know," he said. "I did not count."`,
+          `She watched him for a long time. Then she moved Dhrub's hand gently onto his chest and made a place on the floor beside her.`,
+          `Neither of them said what it meant, and for that one night they did not need to.`,
+        ],
+      },
     ],
   },
   {

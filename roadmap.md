@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Add the supplied fourth Soul mate theorist ending verbatim, update sitemap/canonical and story-scoped alias tests, and verify the reader flow.
+
 - [x] Normalize copied Kindle LPH links, replace noncanonical addresses and recover unknown/extra segments. All 195 tests pass, automatic build is clean, and 15 direct-load browser checks confirm canonical redirects, preserved campaign queries and unchanged ending paragraphs without runtime errors. No Lovable publish used; live auto-deployment unverified.
 
 - [x] Add the visually verified Amazon LPH cover via hosted JPEG/legacy redirects and display it uncropped in catalogue cards and the alternate-endings index. All 168 tests and automatic build pass; six checks at 390/1280px confirm the hosted image loads at its natural ratio without overflow. No Lovable publish used; production auto-deployment remains unverified.
@@ -28,7 +30,7 @@
 
 - [x] Add The Facebook stalker verbatim with three endings, four sitemap URLs and seven-active/two-coming-soon tests; 83 tests pass, automatic build clean, and navigation, refreshed slash variants, titles, canonicals and hidden labels/purchases verified at 390px, 768px and 1280px. No helpline note; nothing published or deployed.
 
-- [x] Add The soul mate theorist verbatim with three endings only, four sitemap URLs and six-active/three-coming-soon tests; 82 tests pass and pages, refreshed slash variants, canonicals, hidden labels/purchases and 4-2 returning 404 verified at 390px, 768px and 1280px. Nothing published or deployed.
+- [x] Restore The soul mate theorist's original three endings and legacy URLs; the fourth ending is tracked separately above.
 
 - [x] Add the fifth story, The victim of many loves, verbatim under printed slug `victim-of-many-loves`; add hub and three sitemap URLs and five-active/four-coming-soon tests. No publishing or deployment.
 
