@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Add the supplied fourth Soul mate theorist ending verbatim, update sitemap/canonical and story-scoped alias tests, and verify the reader flow.
+- [x] Add the supplied fourth Soul mate theorist ending verbatim, update sitemap/canonical and story-scoped alias tests, and verify the reader flow. All 199 tests pass; automatic build is clean. Story index and sibling links already render from data; the new ending retains their label-free styling. Browser checks confirm all 11 paragraphs, canonical URL, numeric aliases and other-story fallback. No Lovable publish used; live auto-deployment unverified.
 
 - [x] Normalize copied Kindle LPH links, replace noncanonical addresses and recover unknown/extra segments. All 195 tests pass, automatic build is clean, and 15 direct-load browser checks confirm canonical redirects, preserved campaign queries and unchanged ending paragraphs without runtime errors. No Lovable publish used; live auto-deployment unverified.
 
