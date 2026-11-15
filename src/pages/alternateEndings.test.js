@@ -5,12 +5,13 @@ import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import AlternateEnding from './AlternateEnding';
 import AlternateEndingsIndex from './AlternateEndingsIndex';
+import { ALTERNATE_STORIES } from '../data/alternateEndings';
 
 test('LPH pages render self-referencing canonicals at canonical trailing-slash destinations', () => {
   const paths = ['/lph', '/lph/alternate-endings',
-    ...['a-high-like-heaven', 'the-emotional-cripple', 'the-intimacy-of-space', 'the-practitioner-of-austerity', 'victim-of-many-loves', 'the-soul-mate-theorist', 'the-facebook-stalker', 'the-night-of-the-affair', 'the-pursuit-of-perfection'].flatMap(storySlug => [
-      `/lph/alternate-endings/${storySlug}`,
-      ...['1-2', '2-2', '3-2'].map(slug => `/lph/alternate-endings/${storySlug}/${slug}`),
+    ...ALTERNATE_STORIES.flatMap(story => [
+      `/lph/alternate-endings/${story.slug}`,
+      ...story.endings.map(ending => `/lph/alternate-endings/${story.slug}/${ending.slug}`),
     ])];
   for (const path of paths) {
     for (const suffix of ['/']) {

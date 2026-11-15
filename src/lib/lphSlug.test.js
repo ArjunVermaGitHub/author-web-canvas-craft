@@ -21,6 +21,10 @@ for (const [label, path] of [
 ]) test(label, () => expect(resolveLphPath(path)).toBe(canonical));
 
 test('unknown ending falls back to story index', () => expect(resolveLphPath(`${base}${story}/4-2/`)).toBe(`${base}${story}/`));
+for (const alias of ['4', 'ending-4', '4-2']) test(`soul mate fourth ending alias ${alias}`, () => {
+  expect(resolveLphPath(`${base}the-soul-mate-theorist/${alias}/`)).toBe(`${base}the-soul-mate-theorist/4-2/`);
+  expect(resolveLphPath(`${base}${story}/${alias}/`)).toBe(`${base}${story}/`);
+});
 test('unknown story falls back to alternate-endings index', () => expect(resolveLphPath(`${base}unknown/1-2/`)).toBe(base));
 test('catch-all recovers unknown LPH segments', () => expect(resolveLphPath('/lph/junk/index.html')).toBe(base));
 test('story index drops index.html and extra segments', () => expect(resolveLphPath(`${base}${story}/index.html/junk`)).toBe(`${base}${story}/`));
