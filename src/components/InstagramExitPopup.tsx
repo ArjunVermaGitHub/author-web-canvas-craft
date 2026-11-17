@@ -4,6 +4,7 @@ import { Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { INSTAGRAM_URL } from '@/config/book';
+import { trackPurchaseClick } from '@/lib/purchase';
 import { allowsExitPopup, EXIT_POPUP_SESSION_KEY, shouldShowExitPopup } from '@/lib/exitIntent';
 
 export default function InstagramExitPopup() {
@@ -28,6 +29,7 @@ export default function InstagramExitPopup() {
       shown.current = true;
       try { sessionStorage.setItem(EXIT_POPUP_SESSION_KEY, '1'); } catch { /* Retain the in-memory guard. */ }
       setOpen(true);
+      trackPurchaseClick('InstagramPopupShown', 'exit_popup');
     };
     document.addEventListener('mouseout', onLeave);
     return () => document.removeEventListener('mouseout', onLeave);
@@ -40,7 +42,7 @@ export default function InstagramExitPopup() {
         <DialogTitle className="pr-4 font-heading text-xl leading-relaxed tracking-normal text-heading">Follow on Instagram</DialogTitle>
         <DialogDescription className="text-base text-muted-foreground">@raghav.kartikeya.series</DialogDescription>
         <Button asChild className="mt-2 rounded-sm whitespace-normal text-center">
-          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackPurchaseClick('InstagramFollowClick', 'exit_popup'); setOpen(false); }}>
             <Instagram aria-hidden="true" /> Follow on Instagram
           </a>
         </Button>

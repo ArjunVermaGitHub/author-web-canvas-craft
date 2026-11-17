@@ -40,6 +40,20 @@ describe('optional Meta click tracking', () => {
   });
 });
 
+describe('Instagram popup tracking', () => {
+  for (const event of ['InstagramPopupShown', 'InstagramFollowClick']) {
+    test(`${event} uses the existing custom-event helper with popup placement only`, () => {
+      const calls = [];
+      trackPurchaseClick(event, 'exit_popup', undefined, (...args) => calls.push(args));
+      expect(calls).toEqual([['trackCustom', event, { placement: 'exit_popup' }]]);
+    });
+    test(`${event} safely skips an absent or failing pixel`, () => {
+      expect(() => trackPurchaseClick(event, 'exit_popup')).not.toThrow();
+      expect(() => trackPurchaseClick(event, 'exit_popup', undefined, () => { throw new Error('blocked'); })).not.toThrow();
+    });
+  }
+});
+
 describe('UPI app click tracking', () => {
   test('sends UpiAppClick with the placement only', () => {
     const calls = [];

@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Add InstagramPopupShown and InstagramFollowClick through the existing Meta helper only. All 207 tests pass and automatic build is clean; browser checks with a recording pixel confirm one event per action and unchanged dismissal/repeat prevention. Existing click events have no internal owner event log; Meta receipt and live deployment remain unverified. No publish used.
+
 - [x] Add a once-per-visit desktop exit popup linking to the existing Instagram profile after 15 seconds; preserve ordering and owner pages. All 203 tests pass and automatic build is clean; browser checks confirm the destination, dismissal, reload prevention and no touch popup. No Lovable publish used; live deployment unverified.
 
 - [x] Add the supplied fourth Soul mate theorist ending verbatim, update sitemap/canonical and story-scoped alias tests, and verify the reader flow. All 199 tests pass; automatic build is clean. Story index and sibling links already render from data; the new ending retains their label-free styling. Browser checks confirm all 11 paragraphs, canonical URL, numeric aliases and other-story fallback. No Lovable publish used; live auto-deployment unverified.
