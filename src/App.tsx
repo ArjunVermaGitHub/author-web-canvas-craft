@@ -24,6 +24,7 @@ import Media from './pages/Media';
 import Shop from './pages/Shop';
 import OtherBooks from './pages/OtherBooks';
 import ScrollToHash from './components/ScrollToHash';
+import InstagramExitPopup from './components/InstagramExitPopup';
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToHash />
+        <InstagramExitPopup />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/books" element={<Books />} />
