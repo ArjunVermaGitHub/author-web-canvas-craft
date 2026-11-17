@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
 import { BOOK_TITLE, TOTAL_PRICE, PAYEE_NAME } from '@/config/book';
-import { trackOrderSaved } from '@/lib/purchase';
+import { trackPurchaseClick, trackOrderSaved } from '@/lib/purchase';
 
 interface BuyModalProps {
   open: boolean;
@@ -33,7 +33,18 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderId, setOrderId] = useState('');
+  const checkoutStarted = useRef(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (!open) checkoutStarted.current = false;
+  }, [open]);
+
+  const handleCheckoutStarted = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    if (checkoutStarted.current || !(event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement)) return;
+    checkoutStarted.current = true;
+    trackPurchaseClick('CheckoutStarted', 'modal');
+  };
 
   const reset = () => {
     setStep('details');
@@ -104,7 +115,7 @@ const BuyModal = ({ open, onOpenChange }: BuyModalProps) => {
                 {BOOK_TITLE} — ₹{TOTAL_PRICE}
               </DialogDescription>
             </DialogHeader>
-            <form onSubmit={handleDetailsSubmit} className="space-y-4 pt-4">
+            <form onSubmit={handleDetailsSubmit} onFocusCapture={handleCheckoutStarted} onInputCapture={handleCheckoutStarted} className="space-y-4 pt-4">
               <div className="space-y-2">
                 <Label htmlFor="buyer-name" className="text-book-light">Full Name</Label>
                 <Input id="buyer-name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your full name" className={inputClass} required maxLength={100} />

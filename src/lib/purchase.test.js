@@ -40,6 +40,20 @@ describe('optional Meta click tracking', () => {
   });
 });
 
+describe('CheckoutStarted tracking', () => {
+  for (const placement of ['landing', 'buy', 'modal']) {
+    test(`sends CheckoutStarted with ${placement} placement and no personal data`, () => {
+      const calls = [];
+      trackPurchaseClick('CheckoutStarted', placement, undefined, (...args) => calls.push(args));
+      expect(calls).toEqual([['trackCustom', 'CheckoutStarted', { placement }]]);
+    });
+  }
+  test('safely skips an absent or failing pixel', () => {
+    expect(() => trackPurchaseClick('CheckoutStarted', 'buy')).not.toThrow();
+    expect(() => trackPurchaseClick('CheckoutStarted', 'landing', undefined, () => { throw new Error('blocked'); })).not.toThrow();
+  });
+});
+
 describe('Instagram popup tracking', () => {
   for (const event of ['InstagramPopupShown', 'InstagramFollowClick']) {
     test(`${event} uses the existing custom-event helper with popup placement only`, () => {

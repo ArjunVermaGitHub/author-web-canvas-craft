@@ -46,6 +46,7 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
   const paymentBusy = useRef(false);
   const confirmed = useRef(false);
   const submitBusy = useRef(false);
+  const checkoutStarted = useRef(false);
   const successfulPayment = useRef<RazorpayPayment | null>(null);
   const [isTouchDevice] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
@@ -53,6 +54,12 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
   const { toast } = useToast();
 
   const upiLink = buildUpiPayLink(UPI_ID, PAYEE_NAME, TOTAL_PRICE, orderId);
+
+  const handleCheckoutStarted = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    if (checkoutStarted.current || !(event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement)) return;
+    checkoutStarted.current = true;
+    trackPurchaseClick('CheckoutStarted', placement);
+  };
 
   const handlePayTap = () => {
     setPayTapped(true);
@@ -185,7 +192,7 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
   return (
     <>
 {step === 'details' && (
-  <form onSubmit={handleDetailsSubmit} className="space-y-5">
+  <form onSubmit={handleDetailsSubmit} onFocusCapture={handleCheckoutStarted} onInputCapture={handleCheckoutStarted} className="space-y-5">
     <div className="space-y-2">
       <Label htmlFor="buyer-name" className="text-stonepage">Full name</Label>
       <Input id="buyer-name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your full name" className={inputClass} required maxLength={100} />

@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Add placement-only CheckoutStarted once per order-form view/modal opening. All 211 tests pass; browser recording-pixel checks confirm one event across all six fields on /signed-copy and /shop, reload reset, and one per legacy modal opening. No form values sent; no publish used. Live Meta receipt remains unverified.
+
 - [x] Add InstagramPopupShown and InstagramFollowClick through the existing Meta helper only. All 207 tests pass and automatic build is clean; browser checks with a recording pixel confirm one event per action and unchanged dismissal/repeat prevention. Existing click events have no internal owner event log; Meta receipt and live deployment remain unverified. No publish used.
 
 - [x] Add a once-per-visit desktop exit popup linking to the existing Instagram profile after 15 seconds; preserve ordering and owner pages. All 203 tests pass and automatic build is clean; browser checks confirm the destination, dismissal, reload prevention and no touch popup. No Lovable publish used; live deployment unverified.
