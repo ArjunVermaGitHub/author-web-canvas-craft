@@ -203,7 +203,7 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
     </div>
     <div className="space-y-2">
       <Label htmlFor="buyer-phone" className="text-stonepage">Mobile number</Label>
-      <Input id="buyer-phone" type="tel" inputMode="tel" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="10-digit mobile number" className={inputClass} required maxLength={10} />
+      <Input id="buyer-phone" type="tel" inputMode="numeric" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="10-digit mobile number" className={inputClass} required maxLength={10} />
     </div>
     <div className="space-y-2">
       <Label htmlFor="buyer-address" className="text-stonepage">Delivery address</Label>

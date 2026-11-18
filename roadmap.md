@@ -86,3 +86,5 @@
 - [x] Fixes: QR payment wording, store email in orders, Amazon link, hide reviews
 - [x] Paid-ad campaign tracking (UTM per session) in owner visitor view
 - [x] Owner order log with paid/pending/cancelled statuses
+
+- [x] /signed-copy-story mobile story ladder ad page with Ladder* pixel events; /signed-copy hero OrderClick

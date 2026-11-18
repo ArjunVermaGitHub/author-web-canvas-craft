@@ -26,3 +26,6 @@ export const SITE_URL = "https://www.riturajverma.com/";
 export const COVER_IMAGE_URL = "https://www.riturajverma.com/raghav-ebook-cover.jpg";
 export const PINTEREST_DESCRIPTION =
   "Raghav Kartikeya and the Tablets of Dharma by Rituraj Verma — a nine-year-old from Mumbai can read the undeciphered Indus Valley script, and that is why an immortal warlord hunts him. Book 1 of a mythological fantasy series. Order a signed copy.";
+
+// Delivery promise shown on the story ladder offer; change it here only.
+export const SIGNED_COPY_DELIVERY_TEXT = "Delivered anywhere in India in 5 days";

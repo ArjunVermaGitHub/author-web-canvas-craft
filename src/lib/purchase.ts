@@ -35,12 +35,14 @@ export function selectEbookUrl(store?: string) {
   return store && store !== 'India' ? AMAZON_EBOOK_INTL_URL : AMAZON_EBOOK_URL;
 }
 
-type Pixel = (command: 'trackCustom', event: string, data: { placement: string; store?: string }) => void;
+type Pixel = (command: 'trackCustom', event: string, data: { placement: string; store?: string; utm_content?: string }) => void;
 
-export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'UpiAppClick' | 'EbookClick' | 'InstagramPopupShown' | 'InstagramFollowClick' | 'CheckoutStarted', placement: string, store?: string, pixel?: Pixel) {
+export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'UpiAppClick' | 'EbookClick' | 'InstagramPopupShown' | 'InstagramFollowClick' | 'CheckoutStarted' | 'LadderStart' | 'LadderRung1' | 'LadderRung2' | 'LadderRung3' | 'LadderOfferShown', placement: string, store?: string, pixel?: Pixel, extra?: { utm_content?: string }) {
   const fbq = pixel ?? (typeof window === 'undefined' ? undefined : (window as Window & { fbq?: Pixel }).fbq);
   if (typeof fbq !== 'function') return;
-  try { fbq('trackCustom', event, store ? { placement, store } : { placement }); } catch { /* Tracking must not interrupt navigation. */ }
+  const data: { placement: string; store?: string; utm_content?: string } = store ? { placement, store } : { placement };
+  if (extra?.utm_content) data.utm_content = extra.utm_content;
+  try { fbq('trackCustom', event, data); } catch { /* Tracking must not interrupt navigation. */ }
 }
 
 type OrderPixel = (command: 'trackCustom', event: string, data: { placement: string; value: number; currency: 'INR'; order_id?: string }) => void;

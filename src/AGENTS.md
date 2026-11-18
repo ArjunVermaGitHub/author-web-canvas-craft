@@ -7,3 +7,4 @@
 - SignedCopyOrderFlow selects checkout only from the order response, loads Razorpay on demand and emits deduplicated Purchase events only after server verification; retries retain the order. Why: preserve UPI behavior and prevent double charging/counting.
 - Community WhatsApp destinations use a pure pointer-based URL helper. Why: desktop readers need WhatsApp Web while touch readers retain wa.me.
 - Instagram exit intent uses a shared router-mounted dialog, sessionStorage plus an in-memory once-per-visit guard, and pure eligibility rules; exclude checkout and private routes and never intercept navigation. Why: invite follows without obstructing payments or leaving the site.
+- `/signed-copy-story` is a single-component six-screen ladder with hash-based back navigation; hook copy keyed by utm_content and once-per-load Ladder events live in `src/lib/storyLadder.ts`. Why: test ad copy variants without double-counting funnel steps.

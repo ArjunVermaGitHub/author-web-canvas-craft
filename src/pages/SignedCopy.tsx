@@ -39,7 +39,7 @@ const SignedCopy = () => {
           </div>
           <p className="mt-4 leading-relaxed">A nine-year-old from Mumbai finds he can read the Indus Valley script, a language no scholar has ever deciphered. It leads him to a hidden school in the Himalayas, and to an immortal warlord who wants humanity gone.</p>
           <p className="mt-4 font-semibold">Signed by the author, with your own message handwritten inside — <span className="whitespace-nowrap">₹{TOTAL_PRICE}</span></p>
-          <BookButton href="#signed-copy-order" className="mt-3 w-full sm:w-auto">Order your signed copy</BookButton>
+          <BookButton href="#signed-copy-order" onClick={() => trackPurchaseClick('OrderClick', 'landing_hero')} className="mt-3 w-full sm:w-auto">Order your signed copy</BookButton>
         </section>
         <section className="site-container border-t border-border py-4">
           <h2 className="text-xl md:text-2xl">Read what reviewers said</h2>

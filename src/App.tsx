@@ -12,6 +12,7 @@ import AlternateEnding from "./pages/AlternateEnding";
 import LphRedirect from "./pages/LphRedirect";
 import AlternateEndingsIndex from "./pages/AlternateEndingsIndex";
 import SignedCopy from "./pages/SignedCopy";
+import SignedCopyStory from "./pages/SignedCopyStory";
 import { HelmetProvider } from 'react-helmet-async';
 
 import Books from './pages/Books';
@@ -49,6 +50,7 @@ const App = () => (
           <Route path="/other-books" element={<OtherBooks />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/signed-copy" element={<SignedCopy />} />
+          <Route path="/signed-copy-story" element={<SignedCopyStory />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/james-furrington" element={<JamesFurrington />} />
           <Route path="/lph" element={<AlternateEndingsIndex />} />
