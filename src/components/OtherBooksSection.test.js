@@ -34,7 +34,7 @@ test('both catalogue cards use existing book data and exact purchase/reading des
 test('LPH defaults use the supplied Kindle destination and verified cover', () => {
   expect(LPH_BOOK.kindleUrl).toBe('https://www.amazon.in/dp/B007TPAI06');
   expect(LPH_BOOK.cover).toEqual({
-    path: '/books/B007TPAI06.jpg',
+    path: '/books/lph-kindle-cover.jpg',
     alt: 'Cover of Love, Peace & Happiness: What more can you want? by Rituraj Verma',
     width: 600, height: 800,
   });

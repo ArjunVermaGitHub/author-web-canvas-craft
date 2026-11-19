@@ -15,6 +15,13 @@
   ],
   "routes": [
     {
+      "src": "/books/lph-kindle-cover.jpg",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/7e19623e-d536-4ac2-ad73-f196f2ab3d1b/lph-kindle-cover.jpg"
+      }
+    },
+    {
       "src": "/books/B007TPAI06.jpg",
       "status": 302,
       "headers": {
