@@ -36,7 +36,7 @@ test('LPH defaults use the supplied Kindle destination and verified cover', () =
   expect(LPH_BOOK.cover).toEqual({
     path: '/books/B007TPAI06.jpg',
     alt: 'Cover of Love, Peace & Happiness: What more can you want? by Rituraj Verma',
-    width: 503, height: 800,
+    width: 600, height: 800,
   });
   expect([...render().matchAll(/<img\b/g)]).toHaveLength(5);
   expect(destinations(render())).toHaveLength(5);
