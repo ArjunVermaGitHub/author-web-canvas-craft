@@ -34,7 +34,7 @@ export const LPH_BOOK: LphBook = {
   cover: {
     path: '/books/B007TPAI06.jpg',
     alt: 'Cover of Love, Peace & Happiness: What more can you want? by Rituraj Verma',
-    width: 503,
+    width: 600,
     height: 800,
   },
 };
