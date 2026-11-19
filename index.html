@@ -21,21 +21,96 @@
     <meta name="twitter:description" content="A nine-year-old from Mumbai can read the undeciphered Indus Valley script — and that is why an immortal warlord hunts him. Order a signed copy from the author." />
     <meta name="twitter:image" content="https://www.riturajverma.com/raghav-ebook-cover.jpg" />
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Book",
-        "name": "Raghav Kartikeya and the Tablets of Dharma",
-        "author": { "@type": "Person", "name": "Rituraj Verma" },
-        "isbn": "9789358987447",
-        "publisher": { "@type": "Organization", "name": "Qurate Books" },
-        "datePublished": "2026-08",
-        "inLanguage": "en",
-        "genre": "Mythological fantasy",
-        "url": "https://www.riturajverma.com/",
-        "image": "https://www.riturajverma.com/raghav-ebook-cover.jpg",
-        "description": "A nine-year-old from Mumbai can read the undeciphered Indus Valley script — and that is why an immortal warlord hunts him. Order a signed copy of Book 1 from the author.",
-        "sameAs": "https://www.amazon.in/dp/9358984015"
-      }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.riturajverma.com/author#person",
+      "name": "Rituraj Verma",
+      "url": "https://www.riturajverma.com/author",
+      "jobTitle": "Novelist",
+      "description": "Mumbai-based debut novelist and author of the mythological fantasy series Raghav Kartikeya.",
+      "homeLocation": { "@type": "Place", "name": "Mumbai, India" },
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Tulane University, A. B. Freeman School of Business" }
+      ],
+      "sameAs": [
+        "https://www.goodreads.com/author/show/6426631.Rituraj_Verma"
+      ]
+    },
+    {
+      "@type": "BookSeries",
+      "@id": "https://www.riturajverma.com/#series",
+      "name": "Raghav Kartikeya: Fantasy with Roots",
+      "url": "https://www.riturajverma.com/",
+      "author": { "@id": "https://www.riturajverma.com/author#person" },
+      "genre": ["Mythological fantasy", "Young adult fiction"],
+      "sameAs": [
+        "https://www.instagram.com/raghav.kartikeya.series/",
+        "https://www.facebook.com/profile.php?id=61574944773635"
+      ]
+    },
+    {
+      "@type": "Book",
+      "@id": "https://www.riturajverma.com/books#book1",
+      "name": "Raghav Kartikeya and the Tablets of Dharma",
+      "url": "https://www.riturajverma.com/books",
+      "image": "https://www.riturajverma.com/raghav-ebook-cover.jpg",
+      "author": { "@id": "https://www.riturajverma.com/author#person" },
+      "isPartOf": { "@id": "https://www.riturajverma.com/#series" },
+      "position": 1,
+      "inLanguage": "en",
+      "genre": ["Mythological fantasy", "Young adult fiction"],
+      "typicalAgeRange": "12-",
+      "description": "Raghav is nine, lives in Mumbai, and can read the undeciphered Indus Valley script. That gift leads him to Shambhala, a secret academy in the Himalayas, and puts him in the path of Tarak, an immortal warlord who wants to destroy humanity.",
+      "publisher": { "@type": "Organization", "name": "Qurate Books", "url": "https://quratebooks.com" },
+      "offers": {
+        "@type": "Offer",
+        "name": "Signed copy from the author",
+        "url": "https://www.riturajverma.com/shop",
+        "price": "335",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition",
+        "seller": { "@id": "https://www.riturajverma.com/author#person" },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "IN" },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "DAY" }
+          }
+        }
+      },
+      "workExample": [
+        {
+          "@type": "Book",
+          "name": "Raghav Kartikeya and the Tablets of Dharma (Indian edition)",
+          "bookFormat": "https://schema.org/Paperback",
+          "isbn": "9789358984019",
+          "numberOfPages": 494,
+          "datePublished": "2026-07-23",
+          "publisher": { "@type": "Organization", "name": "Qurate Books" },
+          "sameAs": "https://www.amazon.in/dp/9358984015"
+        },
+        {
+          "@type": "Book",
+          "name": "Raghav Kartikeya and the Tablets of Dharma (International Edition)",
+          "bookFormat": "https://schema.org/Paperback",
+          "isbn": "9789358987447",
+          "publisher": { "@type": "Organization", "name": "Qurate Books" },
+          "sameAs": "https://www.amazon.com/dp/9358987448"
+        },
+        {
+          "@type": "Book",
+          "name": "Raghav Kartikeya and the Tablets of Dharma (Kindle edition)",
+          "bookFormat": "https://schema.org/EBook"
+        }
+      ]
+    }
+  ]
+}
     </script>
     
     <!-- Google Tag Manager -->
