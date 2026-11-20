@@ -88,3 +88,5 @@
 - [x] Owner order log with paid/pending/cancelled statuses
 
 - [x] /signed-copy-story mobile story ladder ad page with Ladder* pixel events; /signed-copy hero OrderClick
+
+- [x] Update route search titles/descriptions and static homepage fallbacks; noindex missing/private pages; verify unchanged JSON-LD and all 51 sitemap URLs. Blanket current-date lastmod omitted: no authoritative page-specific significant-change timestamps.

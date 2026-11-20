@@ -6,6 +6,33 @@ const read = (path) => readFileSync(new URL(path, import.meta.url), 'utf8');
 const canonical = (source) => source.match(/rel="canonical" href="([^"]+)"/)?.[1];
 const jsonLdBlocks = (source) => [...source.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m => m[1]);
 
+const seoValues = [
+  ['/', 'Raghav Kartikeya and the Tablets of Dharma by Rituraj Verma | Signed Copies', 'A nine-year-old from Mumbai can read the undeciphered Indus Valley script, and an immortal warlord hunts him for it. Order a signed copy of Book 1 from the author.'],
+  ['/shop', 'Buy a Signed Copy of Raghav Kartikeya and the Tablets of Dharma – ₹335', 'Order a copy signed by author Rituraj Verma for ₹335, delivered in India within 5 days. Or buy on Amazon, Flipkart or Kindle, or read the first two chapters free.'],
+  ['/books', 'Raghav Kartikeya and the Tablets of Dharma (Book 1) – Mythological Fantasy'],
+  ['/author', 'Rituraj Verma – Author of the Raghav Kartikeya Series'],
+  ['/characters', 'Characters of Raghav Kartikeya and the Tablets of Dharma', 'Meet Raghav, Little Yama, Maya, Tarak and the other characters of the Raghav Kartikeya mythological fantasy series by Rituraj Verma.'],
+  ['/reviews', 'Reader Reviews – Raghav Kartikeya and the Tablets of Dharma'],
+  ['/wiki', "Raghav's Wiki – Myths, Places and Ideas from Raghav Kartikeya"],
+];
+for (const [path, title, description] of seoValues) test(`${path} has the requested search metadata`, () => {
+  const page = NAV_PAGES.find(page => page.path === path);
+  expect(page.seoTitle).toBe(title);
+  expect(page.seoDescription).toBe(description);
+});
+
+test('static homepage search and social fallbacks match the requested metadata', () => {
+  const source = read('../../index.html');
+  const [, title, description] = seoValues[0];
+  expect(source.match(/<title>(.*?)<\/title>/)?.[1]).toBe(title);
+  for (const key of ['og:title', 'twitter:title']) {
+    expect(source.match(new RegExp(`<meta (?:name|property)="${key}" content="([^"]+)"`))?.[1]).toBe(title);
+  }
+  for (const key of ['description', 'og:description', 'twitter:description']) {
+    expect(source.match(new RegExp(`<meta (?:name|property)="${key}" content="([^"]+)"`))?.[1]).toBe(description);
+  }
+});
+
 test('homepage static and route canonical use the real live domain', () => {
   expect(canonical(read('../../index.html'))).toBe('https://www.riturajverma.com/');
   expect(`${CANONICAL_BASE}${NAV_PAGES[0].path}`).toBe('https://www.riturajverma.com/');
