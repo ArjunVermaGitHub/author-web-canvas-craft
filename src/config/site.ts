@@ -2,6 +2,7 @@ export const SITE_NAME = 'Raghav Kartikeya: Fantasy with Roots';
 export const CANONICAL_BASE = 'https://www.riturajverma.com';
 export const NAV_PAGES = [
   { path: '/', label: 'Home', tagline: 'Enter the universe', description: 'A nine-year-old from Mumbai finds he can read the Indus Valley script, a language no scholar has ever deciphered.', seoTitle: "Raghav Kartikeya and the Tablets of Dharma by Rituraj Verma | Signed Copies", seoDescription: "A nine-year-old from Mumbai can read the undeciphered Indus Valley script, and an immortal warlord hunts him for it. Order a signed copy of Book 1 from the author." },
+  { path: "/start-here", label: "Start Here", tagline: "Your way in", description: "New to the series? What Raghav Kartikeya is, who it's for, and where to begin.", seoTitle: "Start Here – What Is the Raghav Kartikeya Series? | Rituraj Verma" },
   { path: '/books', label: 'The Books', tagline: 'Discover the series', description: 'Raghav Kartikeya and the Tablets of Dharma. Book 1 of the mythological fantasy series.', seoTitle: "Raghav Kartikeya and the Tablets of Dharma (Book 1) – Mythological Fantasy" },
   { path: '/wiki', label: "Raghav’s Wiki", tagline: 'Explore the mythology', description: 'Curious about a place, a myth or an idea from the story? Start here.', seoTitle: "Raghav's Wiki – Myths, Places and Ideas from Raghav Kartikeya" },
   { path: '/characters', label: 'Characters', tagline: 'Meet the inhabitants', description: 'Characters — Raghav Kartikeya: Fantasy with Roots.', seoTitle: "Characters of Raghav Kartikeya and the Tablets of Dharma", seoDescription: "Meet Raghav, Little Yama, Maya, Tarak and the other characters of the Raghav Kartikeya mythological fantasy series by Rituraj Verma." },
@@ -13,4 +14,4 @@ export const NAV_PAGES = [
   { path: '/shop', label: 'Shop the Book', tagline: 'Order a signed copy', description: 'Order a signed copy of Raghav Kartikeya and the Tablets of Dharma, or read the first two chapters free.', seoTitle: "Buy a Signed Copy of Raghav Kartikeya and the Tablets of Dharma – ₹335", seoDescription: "Order a copy signed by author Rituraj Verma for ₹335, delivered in India within 5 days. Or buy on Amazon, Flipkart or Kindle, or read the first two chapters free." },
 ] as const;
 export type SitePage = typeof NAV_PAGES[number] & { seoTitle?: string; seoDescription?: string };
-export const HOME_TEASER_PAGES = NAV_PAGES.filter(page => page.path !== '/' && page.path !== '/other-books');
+export const HOME_TEASER_PAGES = NAV_PAGES.filter(page => page.path !== '/' && page.path !== '/other-books' && page.path !== '/start-here');

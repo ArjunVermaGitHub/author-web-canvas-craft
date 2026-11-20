@@ -1,5 +1,9 @@
 # Roadmap
 
+- [x] Add Start Here and navigation/sitemap entry.
+- [x] Add configurable Book 2 progress and reuse sample signup.
+- [x] Add homepage social proof; 233 tests pass and six browser checks at 390/768/1280 verify links, covers, navigation fit and no overflow. JSON-LD untouched; no publishing. Book 2 progress numbers await Rituraj confirmation before publishing.
+
 - [x] Add placement-only CheckoutStarted once per order-form view/modal opening. All 211 tests pass; browser recording-pixel checks confirm one event across all six fields on /signed-copy and /shop, reload reset, and one per legacy modal opening. No form values sent; no publish used. Live Meta receipt remains unverified.
 
 - [x] Add InstagramPopupShown and InstagramFollowClick through the existing Meta helper only. All 207 tests pass and automatic build is clean; browser checks with a recording pixel confirm one event per action and unchanged dismissal/repeat prevention. Existing click events have no internal owner event log; Meta receipt and live deployment remain unverified. No publish used.

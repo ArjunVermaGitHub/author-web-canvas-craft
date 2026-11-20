@@ -15,6 +15,7 @@ import SignedCopy from "./pages/SignedCopy";
 import SignedCopyStory from "./pages/SignedCopyStory";
 import { HelmetProvider } from 'react-helmet-async';
 
+import StartHere from './pages/StartHere';
 import Books from './pages/Books';
 import Wiki from './pages/Wiki';
 import Characters from './pages/Characters';
@@ -40,6 +41,7 @@ const App = () => (
         <InstagramExitPopup />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/start-here" element={<StartHere />} />
           <Route path="/books" element={<Books />} />
           <Route path="/wiki" element={<Wiki />} />
           <Route path="/characters" element={<Characters />} />

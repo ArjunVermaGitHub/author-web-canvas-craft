@@ -7,7 +7,7 @@ import { HOME_TEASER_PAGES, NAV_PAGES } from '../config/site';
 import PageLayout from '../components/PageLayout';
 import NotFound from './NotFound';
 import OwnerInsights from './OwnerInsights';
-const paths = ['/', '/books', '/wiki', '/characters', '/reviews', '/world', '/author', '/media', '/other-books', '/shop'];
+const paths = ['/', '/start-here', '/books', '/wiki', '/characters', '/reviews', '/world', '/author', '/media', '/other-books', '/shop'];
 test('Other Books appears between Media Room and Shop in navigation', () => expect(NAV_PAGES.map(p=>p.path)).toEqual(paths));
 test('home retains exactly eight series teasers without Other Books', () => {
   expect(HOME_TEASER_PAGES.map(p => p.path)).toEqual(['/books', '/wiki', '/characters', '/reviews', '/world', '/author', '/media', '/shop']);

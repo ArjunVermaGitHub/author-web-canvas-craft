@@ -86,6 +86,11 @@
 }
 
 @layer components {
+  .book2-progress-bar { appearance: none; border: 0; border-radius: 2px; overflow: hidden; background: hsl(var(--card)); color: hsl(var(--primary)); }
+  .book2-progress-bar::-webkit-progress-bar { background: hsl(var(--card)); }
+  .book2-progress-bar::-webkit-progress-value { background: hsl(var(--primary)); }
+  .book2-progress-bar::-moz-progress-bar { background: hsl(var(--primary)); }
+
   .order-bar {
     padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
   }
