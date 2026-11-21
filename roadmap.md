@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Add six supplied homepage character cards with permanent optimized portraits/clips and local Vite/Vercel redirects, dialog playback and existing tracking. All 251 tests and automatic build pass; real audio playback, replay, mute, fade, close/hidden-page cleanup, blocked-play retry, CTA scroll and recording-pixel events verified at 390×844 and 1440px, with no overflow. Parashuram/Tarak use the requested book-cover placeholders pending portraits. Physical iPhone playback, live Meta receipt and production deployment remain unverified; no publishing.
+
 - [x] Rebuild homepage hero, reader proof, why, gift preview, inline order, sample signup, FAQ and store footer.
 - [x] Simplify shared navigation/sticky ordering; retain all page destinations and move Book 2/community access off home to Books/Author.
 - [x] Verify 242 tests and browser checks at 390/768/1440: first-screen hero CTA/trust/sample visible at 390×844, no overflow, 44px targets, gift edit protection, tracking, sample signup and shop/ad checkout regressions. Payment/signup browser responses simulated; real orders, emails and Meta receipt unverified. No publishing.

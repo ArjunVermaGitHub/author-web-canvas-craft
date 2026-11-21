@@ -15,6 +15,118 @@
   ],
   "routes": [
     {
+      "src": "/characters/anna.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/ea6cc6bf-d656-4de4-9858-385aff1c0251/anna.webp"
+      }
+    },
+    {
+      "src": "/characters/dobhal.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/c3130947-9ad5-40f4-bf0b-90c1a3d08b6a/dobhal.webp"
+      }
+    },
+    {
+      "src": "/characters/priya.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/b54ca0ab-e63b-4094-9255-3bba24cf5051/priya.webp"
+      }
+    },
+    {
+      "src": "/characters/raghav.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/878f4935-daae-4451-a383-5760c6ba404c/raghav.webp"
+      }
+    },
+    {
+      "src": "/audio/characters/anna-bed.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/8ef68fb1-9f9a-4c99-b152-f81478ff970a/anna-bed.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/anna-voice.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/b4e0c4bc-b3f8-4e0c-84e5-f003bc7b4d6e/anna-voice.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/dobhal-bed.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/9b2b1ba0-78d1-4f07-a284-ffb51120c689/dobhal-bed.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/dobhal-voice.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/201a9249-a5e5-45fc-9a21-a409c1a08f4b/dobhal-voice.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/parashuram-bed.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/a3e0f41b-9db0-438c-b229-beb560e9d6f2/parashuram-bed.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/parashuram-voice.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/d7d70bd9-f93e-4479-aa6e-3dc48ae4346a/parashuram-voice.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/priya-bed.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/0490750b-85e7-4d87-ae17-01740562f33d/priya-bed.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/priya-voice.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/c7d7fd4c-9efe-4294-b51c-dcf4c90825a8/priya-voice.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/raghav-bed.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/d140e838-0ebb-42ed-b069-a7c3f1e3c83b/raghav-bed.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/raghav-voice.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/1fd465e9-86e5-4420-95e9-48b001a6c72b/raghav-voice.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/tarak-bed.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/b1197e9e-a3e3-4291-9b25-fdaa9b890ccf/tarak-bed.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/tarak-voice.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/b5c251b6-285f-4f0a-9e2a-b3b88ca6f4f3/tarak-voice.mp3"
+      }
+    },
+    {
       "src": "/books/lph-kindle-cover.jpg",
       "status": 302,
       "headers": {

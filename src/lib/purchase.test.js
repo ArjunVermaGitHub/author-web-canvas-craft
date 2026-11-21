@@ -24,6 +24,17 @@ describe('purchase destinations', () => {
 });
 
 describe('optional Meta click tracking', () => {
+  test('CharacterOpen and its order CTA send only the requested placement', () => {
+    const calls = [];
+    trackPurchaseClick('CharacterOpen', 'home_characters_raghav', undefined, (...args) => calls.push(args));
+    trackPurchaseClick('OrderClick', 'character_raghav', undefined, (...args) => calls.push(args));
+    expect(calls).toEqual([
+      ['trackCustom', 'CharacterOpen', { placement: 'home_characters_raghav' }],
+      ['trackCustom', 'OrderClick', { placement: 'character_raghav' }],
+    ]);
+    expect(() => trackPurchaseClick('CharacterOpen', 'home_characters_priya')).not.toThrow();
+    expect(() => trackPurchaseClick('CharacterOpen', 'home_characters_priya', undefined, () => { throw new Error('blocked'); })).not.toThrow();
+  });
   test('sends custom events with placement and Amazon store', () => {
     const calls = [];
     const pixel = (...args) => calls.push(args);

@@ -37,7 +37,7 @@ export function selectEbookUrl(store?: string) {
 
 type Pixel = (command: 'trackCustom', event: string, data: { placement: string; store?: string; utm_content?: string }) => void;
 
-export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'UpiAppClick' | 'EbookClick' | 'InstagramPopupShown' | 'InstagramFollowClick' | 'CheckoutStarted' | 'LadderStart' | 'LadderRung1' | 'LadderRung2' | 'LadderRung3' | 'LadderOfferShown', placement: string, store?: string, pixel?: Pixel, extra?: { utm_content?: string }) {
+export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'UpiAppClick' | 'EbookClick' | 'InstagramPopupShown' | 'InstagramFollowClick' | 'CheckoutStarted' | 'LadderStart' | 'LadderRung1' | 'LadderRung2' | 'LadderRung3' | 'LadderOfferShown' | 'CharacterOpen', placement: string, store?: string, pixel?: Pixel, extra?: { utm_content?: string }) {
   const fbq = pixel ?? (typeof window === 'undefined' ? undefined : (window as Window & { fbq?: Pixel }).fbq);
   if (typeof fbq !== 'function') return;
   const data: { placement: string; store?: string; utm_content?: string } = store ? { placement, store } : { placement };

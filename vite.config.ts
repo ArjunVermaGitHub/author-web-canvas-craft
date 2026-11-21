@@ -6,12 +6,14 @@ import { componentTagger } from "lovable-tagger";
 import sampleChapters from "./src/assets/sample-chapters.pdf.asset.json";
 import { readFileSync, readdirSync } from 'node:fs';
 
-// Discover hosted catalogue covers by filename, including LPH and numeric ISBN-10 editions.
+// Preserve local media addresses while serving permanent hosted assets.
 const bookCoverRedirects = new Map<string, string>(
-  readdirSync(path.resolve(__dirname, 'public/books')).filter(name => name.endsWith('.asset.json')).map(name => {
-    const asset = JSON.parse(readFileSync(path.resolve(__dirname, 'public/books', name), 'utf8'));
-    return [`/books/${asset.original_filename}`, `https://author-web-canvas-craft.lovable.app${asset.url}`] as const;
-  }),
+  ['books', 'characters', 'audio/characters'].flatMap(directory =>
+    readdirSync(path.resolve(__dirname, 'public', directory)).filter(name => name.endsWith('.asset.json')).map(name => {
+      const asset = JSON.parse(readFileSync(path.resolve(__dirname, 'public', directory, name), 'utf8'));
+      return [`/${directory}/${asset.original_filename}`, `https://author-web-canvas-craft.lovable.app${asset.url}`] as const;
+    }),
+  ),
 );
 
 export default defineConfig(({ mode }) => ({
