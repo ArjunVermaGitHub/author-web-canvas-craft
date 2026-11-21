@@ -7,8 +7,8 @@ test('six supplied characters stay in the requested order', () => {
   expect(CHARACTER_CARDS.map(c => c.id)).toEqual(['raghav', 'priya', 'anna', 'parashuram', 'tarak', 'dobhal']);
   expect(CHARACTER_CARDS.map(c => c.role)).toEqual(['The hero', 'His best friend', 'His mother', 'The immortal warrior-sage', 'The last savage of the mountain', 'National Security Adviser']);
 });
-test('only Parashuram and Tarak use the requested book-cover placeholder', () => {
-  expect(CHARACTER_CARDS.filter(c => c.image === '/raghav-ebook-cover.jpg').map(c => c.id)).toEqual(['parashuram', 'tarak']);
+test('all six characters use their supplied portraits rather than book-cover placeholders', () => {
+  expect(CHARACTER_CARDS.map(c => c.image)).toEqual(CHARACTER_CARDS.map(c => `/characters/${c.id}.webp`));
 });
 test('every character has separate permanent mp3 clips, never expiring source links', () => {
   for (const c of CHARACTER_CARDS) {

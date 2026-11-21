@@ -15,6 +15,20 @@
   ],
   "routes": [
     {
+      "src": "/characters/tarak.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/40e9e21e-e661-4b44-ab62-9b14f3fb9082/tarak.webp"
+      }
+    },
+    {
+      "src": "/characters/parashuram.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/70d24ef9-0d48-4946-a7f0-8201ea89e226/parashuram.webp"
+      }
+    },
+    {
       "src": "/characters/anna.webp",
       "status": 302,
       "headers": {
