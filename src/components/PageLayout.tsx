@@ -13,6 +13,6 @@ export default function PageLayout({ page, children, home = false }: { page: Sit
       <link rel="canonical" href={canonical} /><meta property="og:title" content={title} />
       <meta property="og:description" content={description} /><meta property="og:url" content={canonical} />
     </Helmet>
-    <Header /><main>{!home && <PageHeader title={page.label} tagline={page.tagline} intro={page.path === '/characters' ? undefined : page.description} />}{children}</main><Footer />
+    <Header /><main>{!home && <PageHeader title={page.label} tagline={page.tagline} intro={page.path === '/characters' ? undefined : page.description} />}{children}</main><Footer home={home} />
   </div>;
 }

@@ -4,7 +4,7 @@ import { useToast } from '@/hooks/use-toast';
 import BookButton from './BookButton';
 import { SAMPLE_CHAPTERS_URL } from '@/config/book';
 
-const SampleSection = () => {
+const SampleSection = ({ conversion = false }: { conversion?: boolean }) => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
@@ -39,7 +39,7 @@ const SampleSection = () => {
       if (data.status === 'exists') {
         toast({
           title: 'Already registered',
-          description: "You're on the list. The sample link is also available above.",
+          description: conversion ? "You're on the list for chapters and book updates." : "You're on the list. The sample link is also available above.",
         });
       } else if (delivered) {
         toast({
@@ -49,7 +49,7 @@ const SampleSection = () => {
       } else {
         toast({
           title: "You're on the list",
-          description: 'The sample link is also available above.',
+          description: conversion ? "You're on the list for chapters and book updates." : 'The sample link is also available above.',
         });
       }
     } catch (error) {
@@ -64,14 +64,13 @@ const SampleSection = () => {
   };
 
   return (
-    <section id="sample" className="scroll-mt-20 bg-background band-section">
-      <div className="site-container">
-        <h2 className="page-heading">Read the first two chapters before you buy</h2>
+    <section id="sample" className={conversion ? "scroll-mt-44 bg-background band-section border-t border-accent/35" : "scroll-mt-20 bg-background band-section"}>
+      <div className="site-container"><div className={conversion ? "border border-dashed border-accent/60 p-6 md:p-10" : undefined}>
+        <h2 className="page-heading">{conversion ? 'Read the first two chapters free' : 'Read the first two chapters before you buy'}</h2>
         <p className="text-lg text-lapis/90 max-w-2xl mb-8">
-          Enter your email and we will send the first two chapters today.
-          We will also tell you when Book 2 is ready.
+          {conversion ? "We'll email them to you right now, with a link back here when you're ready to order." : <>Enter your email and we will send the first two chapters today. We will also tell you when Book 2 is ready.</>}
         </p>
-        <p className="mb-8">
+        {!conversion && <p className="mb-8">
           <a
             href={SAMPLE_CHAPTERS_URL}
             target="_blank"
@@ -80,13 +79,13 @@ const SampleSection = () => {
           >
             Read the first two chapters free
           </a>
-        </p>
+        </p>}
 
         {sent ? (
           <p className="text-lg text-lapis border-l-4 border-carnelian pl-5 max-w-2xl">
             {emailSent
               ? "Check your inbox for the first two chapters. If they don't arrive in a few minutes, look in spam."
-              : "You're on the list. The sample link is also available above."}
+              : conversion ? "You're on the list. We'll email you the chapters and book updates." : "You're on the list. The sample link is also available above."}
           </p>
         ) : (
           <>
@@ -104,7 +103,7 @@ const SampleSection = () => {
               className="min-h-[44px] bg-card border-2 border-lapis/40 text-lapis placeholder:text-lapis/50"
             />
             <BookButton type="submit" disabled={isSubmitting} className="sm:shrink-0">
-              {isSubmitting ? 'Sending…' : 'Send me the first two chapters'}
+              {isSubmitting ? 'Sending…' : conversion ? 'Send me the chapters' : 'Send me the first two chapters'}
             </BookButton>
           </form>
           <p className="text-base text-lapis/80 max-w-xl mt-4">
@@ -113,7 +112,7 @@ const SampleSection = () => {
           </p>
           </>
         )}
-      </div>
+      </div></div>
     </section>
   );
 };

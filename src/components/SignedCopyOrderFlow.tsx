@@ -1,5 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
+import { LockKeyhole } from 'lucide-react';
+import { messageFromPrefill } from '@/lib/homeConversion';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -27,16 +29,21 @@ const inputClass =
 interface SignedCopyOrderFlowProps {
   placement?: string;
   paymentPlacement?: string;
+  initialMessage?: string;
 }
 
-const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_payment' }: SignedCopyOrderFlowProps) => {
+const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_payment', initialMessage }: SignedCopyOrderFlowProps) => {
   const [step, setStep] = useState<Step>('details');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [pincode, setPincode] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(initialMessage ?? '');
+  const messageEdited = useRef(false);
+  useEffect(() => {
+    setMessage(current => messageFromPrefill(current, initialMessage, messageEdited.current));
+  }, [initialMessage]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderId, setOrderId] = useState('');
   const [payTapped, setPayTapped] = useState(false);
@@ -198,11 +205,11 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
       <Input id="buyer-name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your full name" className={inputClass} required maxLength={100} />
     </div>
     <div className="space-y-2">
-      <Label htmlFor="buyer-email" className="text-stonepage">Email <span className="text-stonepage/60 text-base">(for order updates)</span></Label>
+      <Label htmlFor="buyer-email" className="text-stonepage">Email (for your receipt)</Label>
       <Input id="buyer-email" type="email" inputMode="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className={inputClass} required />
     </div>
     <div className="space-y-2">
-      <Label htmlFor="buyer-phone" className="text-stonepage">Mobile number</Label>
+      <Label htmlFor="buyer-phone" className="text-stonepage">Mobile (for delivery updates on WhatsApp)</Label>
       <Input id="buyer-phone" type="tel" inputMode="numeric" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="10-digit mobile number" className={inputClass} required maxLength={10} />
     </div>
     <div className="space-y-2">
@@ -217,12 +224,14 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
       <Label htmlFor="buyer-message" className="text-stonepage">
         Message from the author <span className="text-stonepage/60 text-base">(optional)</span>
       </Label>
-      <Textarea id="buyer-message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="A short note the author will handwrite inside your copy" className={inputClass} maxLength={200} rows={2} />
+      <Textarea id="buyer-message" value={message} onChange={(e) => { messageEdited.current = true; setMessage(e.target.value); }} placeholder="A short note the author will handwrite inside your copy" className={inputClass} maxLength={200} rows={2} />
     </div>
     <div className="pt-2">
-      <BookButton type="submit" className="w-full sm:w-auto" disabled={isSubmitting}>
-        {isSubmitting ? 'Saving order…' : `Continue to payment — ₹${TOTAL_PRICE}`}
+      <BookButton type="submit" className={placement === 'home' ? 'w-full min-h-12 gap-2' : 'w-full sm:w-auto'} disabled={isSubmitting}>
+        {placement === 'home' && <LockKeyhole size={18} aria-hidden="true" />}
+        {isSubmitting ? 'Saving order…' : placement === 'home' ? `Pay ₹${TOTAL_PRICE} securely` : `Continue to payment — ₹${TOTAL_PRICE}`}
       </BookButton>
+      {placement === 'home' && <p className="text-sm text-secondary text-center mt-3">UPI · Google Pay · PhonePe · Cards · Netbanking — via Razorpay</p>}
     </div>
   </form>
 )}

@@ -4,4 +4,4 @@ import ScriptBand from '@/components/ScriptBand';
 import IndusQuiz from '@/components/IndusQuiz';
 import NewsSection from '@/components/NewsSection';
 import VideoSection from '@/components/VideoSection';
-export default function World() { return <PageLayout page={NAV_PAGES[5]}><ScriptBand /><IndusQuiz /><NewsSection /><VideoSection /></PageLayout>; }
+export default function World() { const page = NAV_PAGES.find(page => page.path === '/world'); if (!page) return null; return <PageLayout page={page}><ScriptBand /><IndusQuiz /><NewsSection /><VideoSection /></PageLayout>; }

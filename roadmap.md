@@ -1,5 +1,9 @@
 # Roadmap
 
+- [x] Rebuild homepage hero, reader proof, why, gift preview, inline order, sample signup, FAQ and store footer.
+- [x] Simplify shared navigation/sticky ordering; retain all page destinations and move Book 2/community access off home to Books/Author.
+- [x] Verify 242 tests and browser checks at 390/768/1440: first-screen hero CTA/trust/sample visible at 390×844, no overflow, 44px targets, gift edit protection, tracking, sample signup and shop/ad checkout regressions. Payment/signup browser responses simulated; real orders, emails and Meta receipt unverified. No publishing.
+
 - [x] Add Start Here and navigation/sitemap entry.
 - [x] Add configurable Book 2 progress and reuse sample signup.
 - [x] Add homepage social proof; 233 tests pass and six browser checks at 390/768/1280 verify links, covers, navigation fit and no overflow. JSON-LD untouched; no publishing. Book 2 progress numbers await Rituraj confirmation before publishing.

@@ -40,7 +40,7 @@ export default function StartHere() {
       <h2 className="page-heading">The series so far</h2>
       <div className="grid md:grid-cols-2 gap-10">
         <div className="flex items-start gap-6"><a href="/books" className="shrink-0"><img src="/raghav-ebook-cover.jpg" alt={`${BOOK_TITLE} — book cover`} width={1200} height={1920} loading="lazy" className="w-24 sm:w-32 h-auto border border-accent/35" /></a><div className="min-w-0"><p className="text-sm text-secondary mb-3">Book 1</p><h3 className="text-xl text-heading mb-5">Raghav Kartikeya and the Tablets of Dharma — out now</h3><BookButton variant="outline" href="/books">The Books</BookButton></div></div>
-        <div><p className="text-sm text-secondary mb-3">Book 2</p><h3 className="text-xl text-heading mb-5">The Moonwell — being written</h3><BookButton variant="outline" href="/#book2-progress">Book 2 progress</BookButton></div>
+        <div><p className="text-sm text-secondary mb-3">Book 2</p><h3 className="text-xl text-heading mb-5">The Moonwell — being written</h3><BookButton variant="outline" href="/books#book2-progress">Book 2 progress</BookButton></div>
       </div>
     </div></section>
   </PageLayout>;
