@@ -1,12 +1,12 @@
 import { Users, BookOpen, Layers, ShieldCheck } from 'lucide-react';
 import BookButton from './BookButton';
 import AmazonPurchaseButton from './AmazonPurchaseButton';
-import { TOTAL_PRICE } from '@/config/book';
+import { TOTAL_PRICE, BOOK_PAGES } from '@/config/book';
 import { trackPurchaseClick } from '@/lib/purchase';
 
 const FACTS = [
   { icon: Users, title: 'Ages 10–19', text: 'Written for young readers; adults who love mythology read it too.' },
-  { icon: BookOpen, title: '498 pages', text: 'A big, immersive adventure.' },
+  { icon: BookOpen, title: `${BOOK_PAGES} pages`, text: 'A big, immersive adventure.' },
   { icon: Layers, title: 'Book 1 of a series', text: 'It ends on a cliffhanger. Book 2, The Moonwell, is being written.' },
   { icon: ShieldCheck, title: 'Gentle on violence', text: 'Limited violence. Good wins over evil.' },
 ];
