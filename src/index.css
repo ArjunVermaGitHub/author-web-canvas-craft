@@ -206,6 +206,9 @@
   .conversion-cover { grid-column: 1; position: relative; align-self: start; width: 104px; }
   .conversion-price { grid-column: 2; align-self: center; min-width: 0; }
   .signed-badge { position: absolute; right: -12px; top: 16px; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; transform: rotate(-12deg); background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); border: 2px solid hsl(var(--background)); font-size: 10px; line-height: 1.25; font-weight: 700; }
+  .trailer-dialog { width: auto; max-width: calc(100vw - 24px); }
+  .trailer-video { --trailer-h: min(calc(85dvh - 130px), calc((100vw - 56px) * 16 / 9)); display: block; height: var(--trailer-h); width: calc(var(--trailer-h) * 9 / 16); max-width: none; object-fit: contain; background: hsl(var(--background)); }
+  @media (min-width: 768px) { .trailer-video { --trailer-h: calc(80dvh - 120px); } }
   .conversion-cta, .conversion-trust { grid-column: 1 / -1; }
   .home-review-row { display: grid; grid-auto-flow: column; grid-auto-columns: 190px; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; }
   .home-review-row > a { scroll-snap-align: start; }

@@ -50,6 +50,20 @@
       }
     },
     {
+      "src": "/trailer-1.mp4",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/75f05ae9-932d-4b66-ae3e-dc9324ade0cb/trailer-1.mp4"
+      }
+    },
+    {
+      "src": "/trailer-1-poster.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/11c7a905-2c1d-4024-9d46-d81be000fc0b/trailer-1-poster.webp"
+      }
+    },
+    {
       "src": "/audio/characters/little-yama-bed.mp3",
       "status": 302,
       "headers": {

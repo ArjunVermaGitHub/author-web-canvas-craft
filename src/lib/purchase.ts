@@ -40,9 +40,9 @@ export function selectEbookUrl(store?: string) {
 
 type CampaignExtra = { utm_content?: string; utm_campaign?: string };
 type Pixel = (command: 'trackCustom', event: string, data: { placement: string; store?: string } & CampaignExtra) => void;
-const ATTRIBUTED_EVENTS = new Set(['CheckoutStarted', 'CheckoutFieldDone', 'CheckoutError', 'CheckoutAbandon', 'OrderClick', 'CharacterOpen']);
+const ATTRIBUTED_EVENTS = new Set(['CheckoutStarted', 'CheckoutFieldDone', 'CheckoutError', 'CheckoutAbandon', 'OrderClick', 'CharacterOpen', 'TrailerOpen', 'TrailerPlay', 'TrailerComplete', 'TrailerUnmute']);
 
-export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'UpiAppClick' | 'EbookClick' | 'InstagramPopupShown' | 'InstagramFollowClick' | 'CheckoutStarted' | 'CheckoutFieldDone' | 'CheckoutError' | 'CheckoutAbandon' | 'LadderStart' | 'LadderRung1' | 'LadderRung2' | 'LadderRung3' | 'LadderOfferShown' | 'CharacterOpen', placement: string, store?: string, pixel?: Pixel, extra?: CampaignExtra) {
+export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'UpiAppClick' | 'EbookClick' | 'InstagramPopupShown' | 'InstagramFollowClick' | 'CheckoutStarted' | 'CheckoutFieldDone' | 'CheckoutError' | 'CheckoutAbandon' | 'LadderStart' | 'LadderRung1' | 'LadderRung2' | 'LadderRung3' | 'LadderOfferShown' | 'CharacterOpen' | 'TrailerOpen' | 'TrailerPlay' | 'TrailerComplete' | 'TrailerUnmute', placement: string, store?: string, pixel?: Pixel, extra?: CampaignExtra) {
   const fbq = pixel ?? (typeof window === 'undefined' ? undefined : (window as Window & { fbq?: Pixel }).fbq);
   if (typeof fbq !== 'function') return;
   const data: { placement: string; store?: string } & CampaignExtra = store ? { placement, store } : { placement };

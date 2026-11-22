@@ -15,7 +15,7 @@ export default function InstagramExitPopup() {
 
   useEffect(() => {
     setOpen(false);
-    if (!allowsExitPopup(pathname)) return;
+    if (!allowsExitPopup(pathname) || pathname === '/') return; // The homepage shows the trailer instead.
     try { shown.current = shown.current || sessionStorage.getItem(EXIT_POPUP_SESSION_KEY) === '1'; } catch { /* In-memory fallback when storage is unavailable. */ }
     const onLeave = (event: MouseEvent) => {
       if (!shouldShowExitPopup({
