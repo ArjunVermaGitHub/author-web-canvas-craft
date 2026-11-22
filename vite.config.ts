@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 import sampleChapters from "./src/assets/sample-chapters.pdf.asset.json";
 import { readFileSync, readdirSync } from 'node:fs';
 
-// Preserve local media addresses while serving permanent hosted assets, including alternate character portraits.
+// Preserve local media addresses while serving permanent hosted assets, including alternate portraits and voice takes.
 const bookCoverRedirects = new Map<string, string>(
   ['books', 'characters', 'audio/characters'].flatMap(directory =>
     readdirSync(path.resolve(__dirname, 'public', directory)).filter(name => name.endsWith('.asset.json')).map(name => {

@@ -32,7 +32,14 @@
       "src": "/audio/characters/little-yama-voice.mp3",
       "status": 302,
       "headers": {
-        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/4aa0a893-e7ab-483c-80a6-7249a021af24/little-yama-voice.mp3"
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/91babdea-fcd0-4658-8e1d-1995f0ef4fcb/little-yama-voice.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/little-yama-voice-alt.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/13eba906-545c-41e3-bbee-7507284dd152/little-yama-voice-alt.mp3"
       }
     },
     {

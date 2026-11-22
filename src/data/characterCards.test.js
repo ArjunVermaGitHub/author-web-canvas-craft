@@ -26,7 +26,7 @@ test('every character has separate permanent mp3 clips, never expiring source li
 
 test('Little Yama alternate portrait and Anna legacy media retain permanent local redirects', () => {
   expect(CHARACTER_CARDS.some(c => c.id === 'anna')).toBe(false);
-  for (const url of ['/characters/little-yama-alt.webp', '/characters/anna.webp', '/audio/characters/anna-voice.mp3', '/audio/characters/anna-bed.mp3']) {
+  for (const url of ['/characters/little-yama-alt.webp', '/audio/characters/little-yama-voice-alt.mp3', '/characters/anna.webp', '/audio/characters/anna-voice.mp3', '/audio/characters/anna-bed.mp3']) {
     const pointer = JSON.parse(readFileSync(new URL(`../../public${url}.asset.json`, import.meta.url), 'utf8'));
     const route = vercel.routes.find(r => r.src === url);
     expect(route?.headers?.Location).toBe(`https://author-web-canvas-craft.lovable.app${pointer.url}`);

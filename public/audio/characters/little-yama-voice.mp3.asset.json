@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "4aa0a893-e7ab-483c-80a6-7249a021af24",
+  "asset_id": "91babdea-fcd0-4658-8e1d-1995f0ef4fcb",
   "project_id": "faae4f96-94af-4b50-8a41-c8813d097e98",
-  "url": "/__l5e/assets-v1/4aa0a893-e7ab-483c-80a6-7249a021af24/little-yama-voice.mp3",
-  "r2_key": "a/v1/faae4f96-94af-4b50-8a41-c8813d097e98/4aa0a893-e7ab-483c-80a6-7249a021af24/little-yama-voice.mp3",
+  "url": "/__l5e/assets-v1/91babdea-fcd0-4658-8e1d-1995f0ef4fcb/little-yama-voice.mp3",
+  "r2_key": "a/v1/faae4f96-94af-4b50-8a41-c8813d097e98/91babdea-fcd0-4658-8e1d-1995f0ef4fcb/little-yama-voice.mp3",
   "original_filename": "little-yama-voice.mp3",
-  "size": 120404,
+  "size": 129600,
   "content_type": "audio/mpeg",
-  "created_at": "2026-11-22T02:37:16Z"
+  "created_at": "2026-11-22T02:39:05Z"
 }
