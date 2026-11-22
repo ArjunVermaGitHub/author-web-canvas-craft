@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
-import { LockKeyhole } from 'lucide-react';
+import { CreditCard, LockKeyhole, Truck } from 'lucide-react';
 import { messageFromPrefill } from '@/lib/homeConversion';
+import { CHECKOUT_FIELDS, mergePostalAddress, normalizeMobile, parsePostalLocation, type CheckoutField, type PostalLocation } from '@/lib/checkoutDetails';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -22,6 +23,7 @@ const orderSchema = z.object({
 });
 
 type Step = 'details' | 'payment' | 'done';
+const completedFields = new Set<string>();
 
 const inputClass =
   'bg-card border border-ember/40 text-stonepage placeholder:text-stonepage/50 focus-visible:ring-ember min-h-[44px]';
@@ -40,6 +42,14 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
   const [address, setAddress] = useState('');
   const [pincode, setPincode] = useState('');
   const [message, setMessage] = useState(initialMessage ?? '');
+  const [messageExpanded, setMessageExpanded] = useState(Boolean(initialMessage));
+  const [errors, setErrors] = useState<Partial<Record<CheckoutField, string>>>({});
+  const [postalResult, setPostalResult] = useState<{ pin: string; location: PostalLocation } | null>(null);
+  const location = postalResult?.pin === pincode ? postalResult.location : null;
+  const formRef = useRef<HTMLFormElement>(null);
+  const lastFieldTouched = useRef<CheckoutField>('phone');
+  const submitted = useRef(false);
+  const abandoned = useRef(false);
   const messageEdited = useRef(false);
   useEffect(() => {
     setMessage(current => messageFromPrefill(current, initialMessage, messageEdited.current));
@@ -62,8 +72,77 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
 
   const upiLink = buildUpiPayLink(UPI_ID, PAYEE_NAME, TOTAL_PRICE, orderId);
 
+  useEffect(() => {
+    setPostalResult(null);
+    if (!/^[1-9]\d{5}$/.test(pincode)) return;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 5000);
+    void (async () => {
+      try {
+        const response = await fetch(`https://api.postalpincode.in/pincode/${encodeURIComponent(pincode)}`, { signal: controller.signal });
+        if (!response.ok) return;
+        const detected = parsePostalLocation(await response.json());
+        if (detected && !controller.signal.aborted) setPostalResult({ pin: pincode, location: detected });
+      } catch { /* Delivery details can always be entered manually. */ }
+      finally { window.clearTimeout(timeout); }
+    })();
+    return () => { controller.abort(); window.clearTimeout(timeout); };
+  }, [pincode]);
+
+  useEffect(() => {
+    const abandon = () => {
+      if (!checkoutStarted.current || submitted.current || abandoned.current) return;
+      abandoned.current = true;
+      trackPurchaseClick('CheckoutAbandon', `${placement}_${lastFieldTouched.current}`);
+    };
+    const onVisibility = () => { if (document.visibilityState === 'hidden') abandon(); };
+    document.addEventListener('visibilitychange', onVisibility);
+    window.addEventListener('pagehide', abandon);
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibility);
+      window.removeEventListener('pagehide', abandon);
+    };
+  }, [placement]);
+
+  const markFieldDone = (field: CheckoutField) => {
+    const key = `rk-checkout-field:${field}`;
+    if (completedFields.has(key)) return;
+    try {
+      if (sessionStorage.getItem(key)) return;
+      sessionStorage.setItem(key, '1');
+    } catch { /* In-memory guard remains available when storage is disabled. */ }
+    completedFields.add(key);
+    trackPurchaseClick('CheckoutFieldDone', `${placement}_${field}`);
+  };
+
+  const validateField = (field: CheckoutField, value: string, showError: boolean) => {
+    const normalized = field === 'phone' ? normalizeMobile(value) : field === 'address' ? mergePostalAddress(value, location) : value;
+    const parsed = orderSchema.shape[field].safeParse(normalized);
+    if (showError) setErrors(current => ({ ...current, [field]: parsed.success ? undefined : parsed.error.issues[0]?.message }));
+    if (parsed.success && value.trim()) markFieldDone(field);
+  };
+
+  const fieldProps = (field: CheckoutField, value: string) => ({
+    'aria-invalid': Boolean(errors[field]),
+    'aria-describedby': errors[field] ? `buyer-${field}-error` : undefined,
+    onBlur: (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      // Let submit validate atomically so removing an error cannot move the button between pointer-down and click.
+      if (event.relatedTarget instanceof HTMLButtonElement && event.relatedTarget.type === 'submit') return;
+      validateField(field, value, true);
+    },
+  });
+  const fieldError = (field: CheckoutField) => errors[field] && (
+    <p id={`buyer-${field}-error`} className="text-destructive text-sm" aria-live="polite">{errors[field]}</p>
+  );
+
   const handleCheckoutStarted = (event: React.SyntheticEvent<HTMLFormElement>) => {
-    if (checkoutStarted.current || !(event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement)) return;
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) || target.readOnly) return;
+    const field = CHECKOUT_FIELDS.find(item => target.id === `buyer-${item}`);
+    if (!field) return;
+    lastFieldTouched.current = field;
+    if (event.type === 'input') validateField(field, target.value, false);
+    if (checkoutStarted.current) return;
     checkoutStarted.current = true;
     trackPurchaseClick('CheckoutStarted', placement);
   };
@@ -143,19 +222,29 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
     const result = orderSchema.safeParse({
       name,
       email,
-      phone,
-      address,
+      phone: normalizeMobile(phone),
+      address: mergePostalAddress(address, location),
       pincode,
       message: message || undefined,
     });
     if (!result.success) {
-      toast({
-        title: 'Please check your details',
-        description: result.error.issues[0].message,
-        variant: 'destructive',
-      });
+      const nextErrors: Partial<Record<CheckoutField, string>> = {};
+      for (const issue of result.error.issues) {
+        const field = CHECKOUT_FIELDS.find(item => item === issue.path[0]);
+        if (field && !nextErrors[field]) nextErrors[field] = issue.message;
+      }
+      setErrors(nextErrors);
+      const firstInvalid = CHECKOUT_FIELDS.find(field => nextErrors[field]);
+      if (firstInvalid) {
+        trackPurchaseClick('CheckoutError', `${placement}_${firstInvalid}`);
+        const input = formRef.current?.querySelector<HTMLInputElement | HTMLTextAreaElement>(`#buyer-${firstInvalid}`);
+        input?.scrollIntoView({ block: 'center', behavior: 'auto' });
+        input?.focus({ preventScroll: true });
+      }
       return;
     }
+    setErrors({});
+    for (const field of CHECKOUT_FIELDS) { if (result.data[field]?.trim()) markFieldDone(field); }
     submitBusy.current = true;
     setIsSubmitting(true);
     try {
@@ -163,17 +252,18 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name,
-          email,
-          phone,
-          address,
-          pincode,
-          message: message.trim() || undefined,
+          name: result.data.name,
+          email: result.data.email,
+          phone: result.data.phone,
+          address: result.data.address,
+          pincode: result.data.pincode,
+          message: result.data.message || undefined,
           amount: TOTAL_PRICE,
         }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Something went wrong');
+      submitted.current = true;
       setOrderId(data.orderId || '');
       trackOrderSaved(placement, TOTAL_PRICE, data.orderId || undefined);
       setStep('payment');
@@ -199,39 +289,55 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
   return (
     <>
 {step === 'details' && (
-  <form onSubmit={handleDetailsSubmit} onFocusCapture={handleCheckoutStarted} onInputCapture={handleCheckoutStarted} className="space-y-5">
+  <form ref={formRef} noValidate onSubmit={handleDetailsSubmit} onFocusCapture={handleCheckoutStarted} onInputCapture={handleCheckoutStarted} className="space-y-4 min-w-0">
+    <div className="space-y-2">
+      <Label htmlFor="buyer-phone" className="text-stonepage">{placement === 'home' ? 'Mobile (for delivery updates on WhatsApp)' : 'Mobile number'}</Label>
+      <Input id="buyer-phone" type="tel" inputMode="numeric" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="10-digit mobile number" className={inputClass} required maxLength={24} {...fieldProps('phone', phone)} />
+      {fieldError('phone')}
+    </div>
     <div className="space-y-2">
       <Label htmlFor="buyer-name" className="text-stonepage">Full name</Label>
-      <Input id="buyer-name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your full name" className={inputClass} required maxLength={100} />
+      <Input id="buyer-name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your full name" className={inputClass} required maxLength={100} {...fieldProps('name', name)} />
+      {fieldError('name')}
     </div>
     <div className="space-y-2">
       <Label htmlFor="buyer-email" className="text-stonepage">Email (for your receipt)</Label>
-      <Input id="buyer-email" type="email" inputMode="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className={inputClass} required />
+      <Input id="buyer-email" type="email" inputMode="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className={inputClass} required {...fieldProps('email', email)} />
+      {fieldError('email')}
+    </div>
+    <div className="grid grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-3">
+      <div className="space-y-2 min-w-0">
+        <Label htmlFor="buyer-pincode" className="text-stonepage">Pincode</Label>
+        <Input id="buyer-pincode" inputMode="numeric" autoComplete="postal-code" value={pincode} onChange={(e) => setPincode(e.target.value)} placeholder="6-digit pincode" className={inputClass} required maxLength={6} {...fieldProps('pincode', pincode)} />
+        {fieldError('pincode')}
+      </div>
+      <div className="space-y-2 min-w-0">
+        <Label htmlFor="buyer-city" className="text-stonepage">City, State</Label>
+        <div className="relative">
+          <Textarea id="buyer-city" readOnly tabIndex={-1} rows={2} value={location ? `✓ ${location.district}, ${location.state}` : ''} aria-live="polite" className={`${inputClass} resize-none text-sm leading-5 min-h-[44px] py-1`} />
+        </div>
+      </div>
     </div>
     <div className="space-y-2">
-      <Label htmlFor="buyer-phone" className="text-stonepage">Mobile (for delivery updates on WhatsApp)</Label>
-      <Input id="buyer-phone" type="tel" inputMode="numeric" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="10-digit mobile number" className={inputClass} required maxLength={10} />
+      <Label htmlFor="buyer-address" className="text-stonepage">House / flat, street, area</Label>
+      <Textarea id="buyer-address" autoComplete="street-address" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Flat 4B, Sea View Apts, Linking Road, Bandra West" className={inputClass} required maxLength={300} rows={2} {...fieldProps('address', address)} />
+      {fieldError('address')}
     </div>
-    <div className="space-y-2">
-      <Label htmlFor="buyer-address" className="text-stonepage">Delivery address</Label>
-      <Textarea id="buyer-address" autoComplete="street-address" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="House/flat, street, area, city, state" className={inputClass} required maxLength={300} rows={3} />
-    </div>
-    <div className="space-y-2">
-      <Label htmlFor="buyer-pincode" className="text-stonepage">Pincode</Label>
-      <Input id="buyer-pincode" inputMode="numeric" autoComplete="postal-code" value={pincode} onChange={(e) => setPincode(e.target.value)} placeholder="6-digit pincode" className={inputClass} required maxLength={6} />
-    </div>
-    <div className="space-y-2">
+    {messageExpanded || Boolean(message) || Boolean(initialMessage) ? <div className="space-y-2">
       <Label htmlFor="buyer-message" className="text-stonepage">
         Message from the author <span className="text-stonepage/60 text-base">(optional)</span>
       </Label>
-      <Textarea id="buyer-message" value={message} onChange={(e) => { messageEdited.current = true; setMessage(e.target.value); }} placeholder="A short note the author will handwrite inside your copy" className={inputClass} maxLength={200} rows={2} />
-    </div>
-    <div className="pt-2">
+      <Textarea id="buyer-message" value={message} onChange={(e) => { messageEdited.current = true; setMessage(e.target.value); }} placeholder="A short note the author will handwrite inside your copy" className={inputClass} maxLength={200} rows={2} {...fieldProps('message', message)} />
+      {fieldError('message')}
+    </div> : <BookButton type="button" variant="outline" className="border-0 px-0 py-1 justify-start text-left text-sm font-normal" aria-expanded={false} aria-controls="buyer-message" onClick={() => setMessageExpanded(true)}>+ Add a message for the author to handwrite (optional)</BookButton>}
+    <div className="pt-2 space-y-3">
+      <p className="text-xs text-secondary leading-5">
+        <LockKeyhole size={13} className="inline-block align-text-bottom mr-1" aria-hidden="true" />Secure payment by Razorpay · <CreditCard size={13} className="inline-block align-text-bottom mr-1" aria-hidden="true" />UPI / GPay / PhonePe / cards · <Truck size={13} className="inline-block align-text-bottom mr-1" aria-hidden="true" />Delivered in 5 days
+      </p>
       <BookButton type="submit" className={placement === 'home' ? 'w-full min-h-12 gap-2' : 'w-full sm:w-auto'} disabled={isSubmitting}>
         {placement === 'home' && <LockKeyhole size={18} aria-hidden="true" />}
         {isSubmitting ? 'Saving order…' : placement === 'home' ? `Pay ₹${TOTAL_PRICE} securely` : `Continue to payment — ₹${TOTAL_PRICE}`}
       </BookButton>
-      {placement === 'home' && <p className="text-sm text-secondary text-center mt-3">UPI · Google Pay · PhonePe · Cards · Netbanking — via Razorpay</p>}
     </div>
   </form>
 )}

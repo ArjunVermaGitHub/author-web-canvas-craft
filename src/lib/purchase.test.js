@@ -65,6 +65,17 @@ describe('CheckoutStarted tracking', () => {
   });
 });
 
+describe('checkout drop-off tracking', () => {
+  for (const event of ['CheckoutFieldDone', 'CheckoutError', 'CheckoutAbandon']) {
+    test(`${event} sends only placement and safely tolerates blocked tracking`, () => {
+      const calls = [];
+      trackPurchaseClick(event, 'home_phone', undefined, (...args) => calls.push(args));
+      expect(calls).toEqual([['trackCustom', event, { placement: 'home_phone' }]]);
+      expect(() => trackPurchaseClick(event, 'home_phone', undefined, () => { throw new Error('blocked'); })).not.toThrow();
+    });
+  }
+});
+
 describe('Instagram popup tracking', () => {
   for (const event of ['InstagramPopupShown', 'InstagramFollowClick']) {
     test(`${event} uses the existing custom-event helper with popup placement only`, () => {

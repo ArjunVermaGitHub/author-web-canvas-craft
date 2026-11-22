@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Simplify shared signed-copy details with mobile normalization, optional-message expansion, nonblocking 5-second postal lookup, inline validation/first-error focus and placement-only drop-off events. All 264 Bun tests and automatic build pass; /, /signed-copy and /shop verified at 390/1440 with real 400050 lookup, offline/timeout/stale-response fallback, session deduplication, unchanged payload keys, gift prefill, error-clearing submit regression and simulated order/payment/done flows. API, Razorpay paths, payment/done views, prices and GTM untouched; no publishing. Live payment, MongoDB persistence and Meta receipt remain unverified.
+
 - [x] Add six supplied homepage character cards with permanent optimized portraits/clips and local Vite/Vercel redirects, dialog playback and existing tracking. All 251 tests and automatic build pass; real audio playback, replay, mute, fade, close/hidden-page cleanup, blocked-play retry, CTA scroll and recording-pixel events verified at 390×844 and 1440px, with no overflow. Parashuram/Tarak use the requested book-cover placeholders pending portraits. Physical iPhone playback, live Meta receipt and production deployment remain unverified; no publishing.
 
 - [x] Rebuild homepage hero, reader proof, why, gift preview, inline order, sample signup, FAQ and store footer.
