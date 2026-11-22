@@ -40,6 +40,17 @@ export async function recordCampaignSession(db, sessionId, utm) {
   return true;
 }
 
+// Session visits only: orders and checkout events have no stored session linkage.
+export async function adVisitsTable(db, now = new Date()) {
+  const rows = await db.collection('rituraj-campaign-sessions').aggregate([
+    { $match: { createdAt: { $gte: new Date(now.getTime() - 7 * DAY_MS), $lte: now } } },
+    { $group: { _id: { $ifNull: ['$content', '(none)'] }, visits: { $sum: 1 } } },
+    { $sort: { visits: -1, _id: 1 } },
+    { $limit: 200 },
+  ]).toArray();
+  return rows.map(row => ({ content: row._id, visits: row.visits }));
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -106,11 +117,12 @@ export default async function handler(req, res) {
         views.distinct('visitorId').then((a) => a.length),
         views.find({}, { projection: { createdAt: 1 } }).sort({ createdAt: 1 }).limit(1).next(),
       ]);
-      const campaigns = await campaignTable(db);
+      const [campaigns, adVisits] = await Promise.all([campaignTable(db), adVisitsTable(db)]);
       return res.status(200).json({
         last24h, total, orderCounts,
         compare: { opens24h, opensTotal, uniq24h, uniqTotal, since: first ? first.createdAt : null },
         campaigns,
+        adVisits,
       });
     }
 

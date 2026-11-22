@@ -1,3 +1,5 @@
+import { getCampaignTrackingData } from './campaign.js';
+
 export type RazorpayOrder = { orderId: string; keyId: string; amount: number };
 export type RazorpayPayment = {
   razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string;
@@ -54,15 +56,16 @@ export function trackConfirmedPurchase(orderId: string, value: number, title: st
   let storage: StorageLike | undefined;
   try { storage = window.localStorage; } catch { /* Blocked storage. */ }
   purchaseOnce(orderId, () => {
+    const attribution = getCampaignTrackingData();
     const target = window as Window & {
       fbq?: (command: string, event: string, data: Record<string, unknown>) => void;
       dataLayer?: Record<string, unknown>[];
     };
-    try { target.fbq?.('track', 'Purchase', { value, currency: 'INR', content_name: title, content_type: 'product', order_id: orderId }); }
+    try { target.fbq?.('track', 'Purchase', { value, currency: 'INR', content_name: title, content_type: 'product', order_id: orderId, ...attribution }); }
     catch { /* Tracking never blocks confirmation. */ }
     try {
       target.dataLayer ??= [];
-      target.dataLayer.push({ event: 'purchase_confirmed', value, currency: 'INR', order_id: orderId });
+      target.dataLayer.push({ event: 'purchase_confirmed', value, currency: 'INR', order_id: orderId, ...attribution });
     } catch { /* Tracking never blocks confirmation. */ }
   }, storage);
 }

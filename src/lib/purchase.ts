@@ -1,4 +1,5 @@
 import { AMAZON_URL, AMAZON_STORES, AMAZON_REGION_CODES, AMAZON_EBOOK_URL, AMAZON_EBOOK_INTL_URL } from '@/config/amazon';
+import { campaignTrackingData, getCampaignTrackingData } from './campaign.js';
 
 const TIMEZONE_REGIONS: Record<string, string> = {
   'Asia/Kolkata': 'IN', 'Asia/Calcutta': 'IN',
@@ -35,23 +36,25 @@ export function selectEbookUrl(store?: string) {
   return store && store !== 'India' ? AMAZON_EBOOK_INTL_URL : AMAZON_EBOOK_URL;
 }
 
-type Pixel = (command: 'trackCustom', event: string, data: { placement: string; store?: string; utm_content?: string }) => void;
+type CampaignExtra = { utm_content?: string; utm_campaign?: string };
+type Pixel = (command: 'trackCustom', event: string, data: { placement: string; store?: string } & CampaignExtra) => void;
+const ATTRIBUTED_EVENTS = new Set(['CheckoutStarted', 'CheckoutFieldDone', 'CheckoutError', 'CheckoutAbandon', 'OrderClick', 'CharacterOpen']);
 
-export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'UpiAppClick' | 'EbookClick' | 'InstagramPopupShown' | 'InstagramFollowClick' | 'CheckoutStarted' | 'CheckoutFieldDone' | 'CheckoutError' | 'CheckoutAbandon' | 'LadderStart' | 'LadderRung1' | 'LadderRung2' | 'LadderRung3' | 'LadderOfferShown' | 'CharacterOpen', placement: string, store?: string, pixel?: Pixel, extra?: { utm_content?: string }) {
+export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'UpiAppClick' | 'EbookClick' | 'InstagramPopupShown' | 'InstagramFollowClick' | 'CheckoutStarted' | 'CheckoutFieldDone' | 'CheckoutError' | 'CheckoutAbandon' | 'LadderStart' | 'LadderRung1' | 'LadderRung2' | 'LadderRung3' | 'LadderOfferShown' | 'CharacterOpen', placement: string, store?: string, pixel?: Pixel, extra?: CampaignExtra) {
   const fbq = pixel ?? (typeof window === 'undefined' ? undefined : (window as Window & { fbq?: Pixel }).fbq);
   if (typeof fbq !== 'function') return;
-  const data: { placement: string; store?: string; utm_content?: string } = store ? { placement, store } : { placement };
-  if (extra?.utm_content) data.utm_content = extra.utm_content;
+  const data: { placement: string; store?: string } & CampaignExtra = store ? { placement, store } : { placement };
+  Object.assign(data, ATTRIBUTED_EVENTS.has(event) ? getCampaignTrackingData() : {}, campaignTrackingData({ campaign: extra?.utm_campaign, content: extra?.utm_content }));
   try { fbq('trackCustom', event, data); } catch { /* Tracking must not interrupt navigation. */ }
 }
 
-type OrderPixel = (command: 'trackCustom', event: string, data: { placement: string; value: number; currency: 'INR'; order_id?: string }) => void;
+type OrderPixel = (command: 'trackCustom', event: string, data: { placement: string; value: number; currency: 'INR'; order_id?: string } & CampaignExtra) => void;
 
 // Fires once when an order is saved; named OrderSaved (not Purchase) to avoid clashing with other sites' Purchase events.
 export function trackOrderSaved(placement: string, value: number, orderId?: string, pixel?: OrderPixel) {
   const fbq = pixel ?? (typeof window === 'undefined' ? undefined : (window as Window & { fbq?: OrderPixel }).fbq);
   if (typeof fbq !== 'function') return;
-  const data: { placement: string; value: number; currency: 'INR'; order_id?: string } = { placement, value, currency: 'INR' };
+  const data: { placement: string; value: number; currency: 'INR'; order_id?: string } & CampaignExtra = { placement, value, currency: 'INR', ...getCampaignTrackingData() };
   if (orderId) data.order_id = orderId;
   try { fbq('trackCustom', 'OrderSaved', data); } catch { /* Tracking must not interrupt the order flow. */ }
 }

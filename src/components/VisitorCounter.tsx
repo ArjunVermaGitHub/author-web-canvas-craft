@@ -1,15 +1,5 @@
 import { useEffect, useState } from 'react';
-import { resolveSession } from '@/lib/campaign.js';
-
-const SESSION_KEY = 'rv-campaign-session';
-
-function campaignSession() {
-  let stored = null;
-  try { stored = JSON.parse(sessionStorage.getItem(SESSION_KEY) || 'null'); } catch { /* ignore */ }
-  const session = resolveSession(stored, window.location.search, crypto.randomUUID());
-  try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch { /* ignore */ }
-  return session;
-}
+import { getCampaignSession } from '@/lib/campaign.js';
 
 const ID_KEY = 'rv-visitor-id';
 
@@ -34,7 +24,8 @@ const VisitorCounter = ({ showCounts = true }: { showCounts?: boolean }) => {
         id = crypto.randomUUID();
         localStorage.setItem(ID_KEY, id);
       }
-      const session = campaignSession();
+      const session = getCampaignSession();
+      if (!session) return;
       fetch('/api/visits', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

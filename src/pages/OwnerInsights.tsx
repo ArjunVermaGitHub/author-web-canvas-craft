@@ -12,7 +12,7 @@ const MAX_CHARS = 200_000;
 type Compare = { opens24h: number; opensTotal: number; uniq24h: number; uniqTotal: number; since: string | null };
 type Campaign = { campaign: string; source: string; medium: string; today: number; total: number };
 type Counts = { week: number; prevWeek: number; all: number };
-type Stats = { campaigns?: Campaign[]; last24h: number; total: number; orderCounts?: { placed: Counts; paid: Counts; pending: Counts }; compare?: Compare };
+type Stats = { campaigns?: Campaign[]; adVisits?: { content: string; visits: number }[]; last24h: number; total: number; orderCounts?: { placed: Counts; paid: Counts; pending: Counts }; compare?: Compare };
 
 const fmt = (n: number) => Number(n || 0).toLocaleString('en-IN');
 const ratio = (opens: number, uniq: number) => (uniq ? (opens / uniq).toFixed(1) : '–');
@@ -219,6 +219,21 @@ const OwnerInsights = () => {
                       </tbody>
                     </table>
                   </div>
+                )}
+              </section>
+            )}
+            {stats?.adVisits && (
+              <section className="border-t border-accent/40 pt-4 mt-2" aria-labelledby="ad-funnel-heading">
+                <h2 id="ad-funnel-heading" className="font-serif text-2xl mb-2">Checkout funnel by ad (utm_content)</h2>
+                <p className="text-sm text-secondary mb-3">Visits in the last 7 days, counted once per browser session. Missing ad labels appear as (none).</p>
+                <p className="text-sm text-secondary mb-4">Checkout-by-ad comes from Meta Events Manager custom data (utm_campaign and utm_content). Checkout and order counts are not stored per session here.</p>
+                {stats.adVisits.length === 0 ? <p>No visits recorded in the last 7 days.</p> : (
+                  <table className="w-full table-fixed text-left text-sm">
+                    <thead><tr className="border-b border-accent/40"><th className="py-2 pr-3 w-3/4">Ad (utm_content)</th><th className="py-2 text-right">Visits</th></tr></thead>
+                    <tbody>{stats.adVisits.map(row => <tr key={row.content} className="border-b border-accent/20">
+                      <td className="py-2 pr-3 break-all">{row.content}</td><td className="py-2 text-right tabular-nums">{fmt(row.visits)}</td>
+                    </tr>)}</tbody>
+                  </table>
                 )}
               </section>
             )}

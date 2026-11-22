@@ -76,6 +76,34 @@ describe('checkout drop-off tracking', () => {
   }
 });
 
+describe('campaign/ad attribution on existing events', () => {
+  for (const event of ['CheckoutStarted', 'CheckoutFieldDone', 'CheckoutError', 'CheckoutAbandon', 'OrderClick', 'CharacterOpen', 'OrderSaved']) {
+    test(`${event} carries the stored campaign and ad after page navigation`, () => {
+      const previous = globalThis.window;
+      const values = new Map([['rv-campaign-session', JSON.stringify({ id: 'abcdefgh-1', utm: { source: 'meta', medium: 'paid', campaign: 'launch', content: 'ad_a' } })]]);
+      globalThis.window = { location: { search: '' }, crypto: { randomUUID: () => 'abcdefgh-2' }, sessionStorage: { getItem: key => values.get(key), setItem: (key, value) => values.set(key, value) } };
+      try {
+        const calls = []; const pixel = (...args) => calls.push(args);
+        if (event === 'OrderSaved') trackOrderSaved('home', 335, 'RK-ABC123', pixel);
+        else trackPurchaseClick(event, 'home_phone', undefined, pixel);
+        expect(calls[0][1]).toBe(event);
+        expect(calls[0][2]).toMatchObject({ utm_campaign: 'launch', utm_content: 'ad_a' });
+        expect(Object.keys(calls[0][2]).sort()).toEqual(event === 'OrderSaved'
+          ? ['currency', 'order_id', 'placement', 'utm_campaign', 'utm_content', 'value']
+          : ['placement', 'utm_campaign', 'utm_content']);
+        const unrelated = [];
+        trackPurchaseClick('AmazonClick', 'home', 'India', (...args) => unrelated.push(args));
+        expect(unrelated[0][2]).toEqual({ placement: 'home', store: 'India' });
+      } finally { if (previous === undefined) delete globalThis.window; else globalThis.window = previous; }
+    });
+  }
+  test('explicit extra supports cleaned campaign and content, preserving existing ladder usage', () => {
+    const calls = [];
+    trackPurchaseClick('LadderStart', 'ladder', undefined, (...args) => calls.push(args), { utm_campaign: ' Launch ', utm_content: ' Ad_A ' });
+    expect(calls).toEqual([['trackCustom', 'LadderStart', { placement: 'ladder', utm_campaign: 'launch', utm_content: 'ad_a' }]]);
+  });
+});
+
 describe('Instagram popup tracking', () => {
   for (const event of ['InstagramPopupShown', 'InstagramFollowClick']) {
     test(`${event} uses the existing custom-event helper with popup placement only`, () => {
