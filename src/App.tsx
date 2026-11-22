@@ -27,6 +27,7 @@ import Shop from './pages/Shop';
 import OtherBooks from './pages/OtherBooks';
 import ScrollToHash from './components/ScrollToHash';
 import InstagramExitPopup from './components/InstagramExitPopup';
+import WhatsAppChatButton from './components/WhatsAppChatButton';
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollToHash />
         <InstagramExitPopup />
+        <WhatsAppChatButton />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/start-here" element={<StartHere />} />

@@ -343,7 +343,7 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
 )}
 
 {step === 'payment' && razorpay && (
-  <div className="space-y-5" aria-live="polite">
+  <div data-checkout-step="payment" className="space-y-5" aria-live="polite">
     <p>Pay securely by UPI, card or netbanking via Razorpay</p>
     <div className="border-l-4 border-ember pl-4">
       <p>Your Order ID</p><p className="font-serif text-3xl text-ember tracking-wide">{orderId}</p>
@@ -359,7 +359,7 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
 )}
 
 {step === 'payment' && !razorpay && (
-  <div className="space-y-5">
+  <div data-checkout-step="payment" className="space-y-5">
     {orderId && (
       <div className="border-l-4 border-ember pl-4">
         <p className="text-stonepage/80 text-base">Your Order ID</p>

@@ -38,6 +38,9 @@
     --footer: 214.737 54.286% 6.863%;
     --primary-hover: 25.618 85.577% 59.216%;
     --link-hover: 40.465 74.138% 77.255%;
+    --whatsapp: 142 70% 49%;
+    --whatsapp-hover: 142 70% 39%;
+    --whatsapp-foreground: 0 0% 100%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -86,6 +89,11 @@
 }
 
 @layer components {
+  .whatsapp-chat-button.whatsapp-chat-button { position: fixed; right: 16px; bottom: calc(16px + max(env(safe-area-inset-bottom, 0px), var(--chat-bar-offset, 0px))); z-index: 50; width: 56px; height: 56px; padding: 14px; border-radius: 50%; background: hsl(var(--whatsapp)); color: hsl(var(--whatsapp-foreground)); }
+  .whatsapp-chat-button.whatsapp-chat-button:hover { background: hsl(var(--whatsapp-hover)); }
+  .whatsapp-chat-button.whatsapp-chat-button svg { width: 28px; height: 28px; }
+  .whatsapp-chat-label { display: none; position: absolute; right: 68px; width: 220px; white-space: normal; padding: 8px 12px; border: 1px solid hsl(var(--accent) / .35); border-radius: 2px; background: hsl(var(--popover)); color: hsl(var(--popover-foreground)); font-size: 14px; line-height: 1.4; }
+  @media (hover: hover) and (pointer: fine) { .whatsapp-chat-button:hover .whatsapp-chat-label, .whatsapp-chat-button:focus-visible .whatsapp-chat-label { display: block; } }
   .character-tile-caption { min-height: 52%; background: linear-gradient(to top, hsl(var(--background)) 15%, hsl(var(--background) / .92) 55%, transparent); }
   .character-dialog { width: calc(100% - 32px); max-width: 520px; max-height: calc(100dvh - 32px); display: flex; flex-direction: column; }
   .character-dialog-image { width: 180px; height: 225px; max-width: 100%; }

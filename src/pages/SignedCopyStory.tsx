@@ -190,7 +190,7 @@ const SignedCopyStory = () => {
         )}
       </main>
       {step < 5 && (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-accent/35 px-5 pt-3 text-center" style={{ background: '#15202B', paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))' }}>
+        <div data-sticky-purchase-bar className="fixed inset-x-0 bottom-0 z-40 border-t border-accent/35 px-5 pt-3 text-center" style={{ background: '#15202B', paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))' }}>
           <div className="mx-auto max-w-md">
             <button type="button" onClick={next} className="min-h-[48px] w-full bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-primary-hover">{BUTTON_LABELS[step]}</button>
             {step === 0 && <p className="mt-2 text-sm text-lapis/80">Two minutes. Nothing to buy until the end.</p>}
