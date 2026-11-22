@@ -18,7 +18,7 @@ export default function HomeHero() {
       <p className="text-secondary text-sm leading-snug mt-2">Paperback &amp; Kindle · Trusted Amazon checkout · Rated {AMAZON_RATING}★ by {AMAZON_RATING_COUNT} readers on Amazon</p>
       <p className="text-muted-foreground text-xs leading-snug mt-1">As an Amazon Associate I earn from qualifying purchases.</p>
       <BookButton variant="outline" href="#order" className="w-full min-h-12 mt-4" onClick={() => trackPurchaseClick('OrderClick', 'home_hero_signed')}>Signed gift copy — ₹{TOTAL_PRICE}</BookButton>
-      <p className="text-secondary text-sm leading-snug mt-2">Your message handwritten inside by the author · Delivered in 5 days · Less than the ₹449 cover price</p>
+      <p className="text-secondary text-sm leading-snug mt-2">Your message handwritten inside by the author · Delivered in 5 days · Less than the ₹499 cover price</p>
       <a href="#sample" className="inline-flex items-center min-h-11 text-accent underline underline-offset-4 text-sm mt-1">Not sure yet? Read chapters 1 &amp; 2 free →</a>
     </div>
   </div></section>;
