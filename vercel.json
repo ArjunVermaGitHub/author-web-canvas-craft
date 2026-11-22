@@ -15,6 +15,34 @@
   ],
   "routes": [
     {
+      "src": "/characters/little-yama.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/374ca70c-ba5c-4e8b-beb2-359ca76244a9/little-yama.webp"
+      }
+    },
+    {
+      "src": "/characters/little-yama-alt.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/0c47d7b8-253a-47bc-9af3-be0f2cefced0/little-yama-alt.webp"
+      }
+    },
+    {
+      "src": "/audio/characters/little-yama-voice.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/4aa0a893-e7ab-483c-80a6-7249a021af24/little-yama-voice.mp3"
+      }
+    },
+    {
+      "src": "/audio/characters/little-yama-bed.mp3",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/e62e26c1-8380-4488-8ee3-704c86be4983/little-yama-bed.mp3"
+      }
+    },
+    {
       "src": "/characters/tarak.webp",
       "status": 302,
       "headers": {
