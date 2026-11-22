@@ -4,8 +4,8 @@ import { readFileSync } from 'node:fs';
 import vercel from '../../vercel.json';
 
 test('six supplied characters stay in the requested order', () => {
-  expect(CHARACTER_CARDS.map(c => c.id)).toEqual(['raghav', 'priya', 'anna', 'parashuram', 'tarak', 'dobhal']);
-  expect(CHARACTER_CARDS.map(c => c.role)).toEqual(['The hero', 'His best friend', 'His mother', 'The immortal warrior-sage', 'The last savage of the mountain', 'National Security Adviser']);
+  expect(CHARACTER_CARDS.map(c => c.id)).toEqual(['raghav', 'tarak', 'anna', 'parashuram', 'priya', 'dobhal']);
+  expect(CHARACTER_CARDS.map(c => c.role)).toEqual(['The hero', 'The last savage of the mountain', 'His mother', 'The immortal warrior-sage', 'His best friend', 'National Security Adviser']);
 });
 test('all six characters use their supplied portraits rather than book-cover placeholders', () => {
   expect(CHARACTER_CARDS.map(c => c.image)).toEqual(CHARACTER_CARDS.map(c => `/characters/${c.id}.webp`));
