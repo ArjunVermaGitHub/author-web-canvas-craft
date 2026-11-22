@@ -89,6 +89,16 @@ test('sitemap uses the real live domain for all public pages', () => {
   ]);
 });
 
+// The server-side tag loader fires the Meta pixel, Conversions API and Clarity, so it must never run on
+// Lovable editor/preview hosts; the snippet body itself stays byte-identical to the container export.
+const GTM_LOADER = "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src=\"https://load.server.riturajverma.com/1ywnlcjuswy.js?\"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','4u5226=EBNOMj4uQSMyTjVAPSRfSA9KQVtbRQgARAUaAR8RDQQPEgEYC00PARQ%3D');";
+
+test('tag loader runs only on the live domain hosts', () => {
+  const source = read('../../index.html');
+  const inline = source.match(/<!-- Google Tag Manager -->\s*<script>([\s\S]*?)<\/script>/)?.[1];
+  expect(inline).toBe(`if(location.hostname==='www.riturajverma.com'||location.hostname==='riturajverma.com'){${GTM_LOADER}}`);
+});
+
 test('homepage carries one structured-data block with the author, series and book nodes', () => {
   const blocks = jsonLdBlocks(read('../../index.html'));
   expect(blocks).toHaveLength(1);
