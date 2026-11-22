@@ -43,6 +43,13 @@
       }
     },
     {
+      "src": "/back-cover.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/5786e9d1-0061-4793-a0e9-045bb89d7a97/back-cover.webp"
+      }
+    },
+    {
       "src": "/audio/characters/little-yama-bed.mp3",
       "status": 302,
       "headers": {
