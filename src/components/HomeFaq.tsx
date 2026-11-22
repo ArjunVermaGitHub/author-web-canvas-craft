@@ -1,6 +1,6 @@
 export default function HomeFaq() {
   const faqs = [
-    ["Who is it for?", 'Readers aged 10–19, and adults who love Indian mythology. The hero is nine; the adventure is big enough for older readers.'],
+    ["Who is it for?", 'Readers aged 10 and up, and adults who love Indian mythology. The hero is nine; the adventure is big enough for older readers.'],
     ['Is it a complete story?', 'It is Book 1 of a series and ends on a cliffhanger. Book 2, The Moonwell, is being written.'],
     ['Is the signed copy the same book as on Amazon?', 'Yes, the same Qurate Books paperback, signed with your message inside.'],
     ['When will it arrive?', 'Within 5 days anywhere in India.'],

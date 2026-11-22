@@ -9,7 +9,7 @@ export default function HomeHero() {
   return <section id="top" className="home-hero conversion-hero scroll-mt-24">
     <div className="hero-bg" aria-hidden="true"><img src="/raghav-ebook-cover.jpg" alt="" loading="lazy" decoding="async" /></div>
     <div className="site-container conversion-hero-grid">
-    <div className="conversion-hook"><p className="text-accent text-sm font-semibold mb-3" title={BOOK_TITLE}>Book 1 · Mythological fantasy · Ages 10–19</p>
+    <div className="conversion-hook"><p className="text-accent text-sm font-semibold mb-3" title={BOOK_TITLE}>Book 1 · Mythological fantasy · Ages 10+</p>
       <h1 className="conversion-title">He's nine. He can read a script no scholar ever has. Now an immortal warlord is hunting him.</h1>
     </div>
     <div className="conversion-cover"><img src="/raghav-ebook-cover.jpg" alt={`${BOOK_TITLE} — book cover`} width={1200} height={1920} fetchPriority="high" className="w-full h-auto border border-accent" /></div>
