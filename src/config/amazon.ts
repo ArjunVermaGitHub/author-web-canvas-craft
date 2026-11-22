@@ -22,3 +22,7 @@ export const AMAZON_STORES: [string, string][] = [
 ];
 
 export const AMAZON_REGION_CODES = ['US', 'GB', 'CA', 'AU', 'DE', 'FR', 'IT', 'ES', 'JP', 'SG', 'NL', 'SE', 'PL', 'BE'];
+
+// Verified on the Amazon India product page; update both together when the listing changes.
+export const AMAZON_RATING = 4.5;
+export const AMAZON_RATING_COUNT = 95;
