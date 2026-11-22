@@ -9,6 +9,7 @@ import { DESKTOP_NAV_PAGES, MORE_NAV_PAGES } from '@/lib/homeConversion';
 import { shouldShowPurchaseButtons } from '@/lib/headerPurchase';
 import { trackPurchaseClick } from '@/lib/purchase';
 import BookButton from './BookButton';
+import AmazonPurchaseButton from './AmazonPurchaseButton';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function Header() {
           {MORE_NAV_PAGES.map(page => <DropdownMenuItem key={page.path} asChild className="min-h-11"><Link to={page.path} aria-current={pathname === page.path ? 'page' : undefined}>{page.label}</Link></DropdownMenuItem>)}
           {!showShop && <DropdownMenuItem asChild className="min-h-11"><Link to="/shop">Shop the Book</Link></DropdownMenuItem>}
         </DropdownMenuContent></DropdownMenu>
-        {showShop && shop}
+        {showShop && <AmazonPurchaseButton placement="header" className="header-shop px-4 whitespace-nowrap" />}
       </nav>
       <div className="mobile-nav-controls"><Button variant="ghost" size="icon" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="site-menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button></div>
     </div>

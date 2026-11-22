@@ -6,6 +6,7 @@ import { CHARACTER_CARDS, type CharacterCard } from '@/data/characterCards';
 import { TOTAL_PRICE } from '@/config/book';
 import { createCharacterAudioPlayer } from '@/lib/characterAudio';
 import { trackPurchaseClick } from '@/lib/purchase';
+import AmazonPurchaseButton from './AmazonPurchaseButton';
 
 export default function CharacterCards() {
   const [selected, setSelected] = useState<CharacterCard | null>(null);
@@ -77,10 +78,11 @@ export default function CharacterCards() {
           </div>
         </div>
         <div className="character-dialog-footer border-t border-accent/35 bg-background p-4">
-          <Button type="button" className="w-full rounded-none h-auto min-h-12 whitespace-normal leading-snug py-3" onClick={() => {
+          <AmazonPurchaseButton placement={'character_' + selected.id} className="w-full min-h-12">Get the book on Amazon</AmazonPurchaseButton>
+          <Button type="button" variant="link" className="w-full rounded-none h-auto min-h-11 whitespace-normal text-accent leading-snug mt-1" onClick={() => {
             trackPurchaseClick('OrderClick', 'character_' + selected.id);
             ordering.current = true; close();
-          }}>Meet {selected.name} in your signed copy — ₹{TOTAL_PRICE}</Button>
+          }}>or a signed gift copy — ₹{TOTAL_PRICE}</Button>
         </div>
       </DialogContent>}
     </Dialog>

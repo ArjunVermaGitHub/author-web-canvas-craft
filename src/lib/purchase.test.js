@@ -24,6 +24,13 @@ describe('purchase destinations', () => {
 });
 
 describe('optional Meta click tracking', () => {
+  for (const placement of ['home_hero', 'home_sticky', 'character_little-yama', 'home_reader_fit', 'header']) {
+    test(`Amazon primary action preserves the store and session ad at ${placement}`, () => {
+      const calls = [];
+      trackPurchaseClick('AmazonClick', placement, 'India', (...args) => calls.push(args), { utm_content: 'gift_ad' });
+      expect(calls).toEqual([['trackCustom', 'AmazonClick', { placement, store: 'India', utm_content: 'gift_ad' }]]);
+    });
+  }
   test('CharacterOpen and its order CTA send only the requested placement', () => {
     const calls = [];
     trackPurchaseClick('CharacterOpen', 'home_characters_raghav', undefined, (...args) => calls.push(args));

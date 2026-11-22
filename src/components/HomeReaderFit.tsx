@@ -1,5 +1,6 @@
 import { Users, BookOpen, Layers, ShieldCheck } from 'lucide-react';
 import BookButton from './BookButton';
+import AmazonPurchaseButton from './AmazonPurchaseButton';
 import { TOTAL_PRICE } from '@/config/book';
 import { trackPurchaseClick } from '@/lib/purchase';
 
@@ -22,6 +23,8 @@ export default function HomeReaderFit() {
         </div>
       ))}
     </div>
-    <BookButton href="#order" className="mt-8" onClick={() => trackPurchaseClick('OrderClick', 'home_reader_fit')}>Get my signed copy — ₹{TOTAL_PRICE}</BookButton>
+    <div className="mt-8 flex flex-wrap items-center gap-3"><AmazonPurchaseButton placement="home_reader_fit" />
+      <BookButton variant="outline" href="#order" className="border-0 px-1 text-sm underline underline-offset-4" onClick={() => trackPurchaseClick('OrderClick', 'home_reader_fit')}>or a signed gift copy — ₹{TOTAL_PRICE}</BookButton>
+    </div>
   </div></section>;
 }
