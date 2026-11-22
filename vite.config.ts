@@ -11,11 +11,11 @@ const bookCoverRedirects = new Map<string, string>(
   ['books', 'characters', 'audio/characters'].flatMap(directory =>
     readdirSync(path.resolve(__dirname, 'public', directory)).filter(name => name.endsWith('.asset.json')).map(name => {
       const asset = JSON.parse(readFileSync(path.resolve(__dirname, 'public', directory, name), 'utf8'));
-      return [`/${directory}/${asset.original_filename}`, `https://author-web-canvas-craft.lovable.app${asset.url}`] as const;
+      return [`/${directory}/${asset.original_filename}`, `https://author-web-canvas-craft.lovable.app${asset.url}`] as [string, string];
     }),
   ).concat([(() => {
     const asset = JSON.parse(readFileSync(path.resolve(__dirname, 'public', 'back-cover.webp.asset.json'), 'utf8'));
-    return ['/back-cover.webp', `https://author-web-canvas-craft.lovable.app${asset.url}`] as const;
+    return ['/back-cover.webp', `https://author-web-canvas-craft.lovable.app${asset.url}`] as [string, string];
   })()]),
 );
 
