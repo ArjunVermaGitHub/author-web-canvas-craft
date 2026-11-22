@@ -6,20 +6,28 @@ import { FLIPKART_URL, TOTAL_PRICE } from '../config/book';
 describe('purchase destinations', () => {
   test('uses the configured ₹335 total', () => { expect(TOTAL_PRICE).toBe(335); });
   test('uses India for India and unknown regions', () => {
-    expect(selectAmazonStore('en-IN', 'America/New_York')).toEqual({ store: 'India', url: AMAZON_URL });
-    expect(selectAmazonStore('en-ZA', 'Europe/London').store).toBe('India');
+    expect(selectAmazonStore('en-IN', 'Asia/Kolkata')).toEqual({ store: 'India', url: AMAZON_URL });
     expect(selectAmazonStore('', 'Etc/UTC').store).toBe('India');
+    expect(selectAmazonStore('', '').store).toBe('India');
   });
-  test('matches each supported browser region to its country store', () => {
-    const regions = ['US', 'GB', 'CA', 'AU', 'DE', 'FR', 'IT', 'ES', 'JP', 'SG', 'NL', 'SE', 'PL', 'BE'];
-    regions.forEach((region, index) => {
-      expect(selectAmazonStore(`en-${region}`, 'Asia/Kolkata')).toEqual({ store: AMAZON_STORES[index][0], url: AMAZON_STORES[index][1] });
-    });
+  test('Indian timezones always give India regardless of browser language', () => {
+    expect(selectAmazonStore('en-US', 'Asia/Calcutta')).toEqual({ store: 'India', url: AMAZON_URL });
+    expect(selectAmazonStore('en-US', 'Asia/Kolkata')).toEqual({ store: 'India', url: AMAZON_URL });
+    expect(selectAmazonStore('en-GB', 'Asia/Kolkata').store).toBe('India');
   });
-  test('uses timezone only when language has no region', () => {
-    expect(selectAmazonStore('en', 'Europe/London').url).toBe('https://www.amazon.co.uk/dp/9358987448');
+  test('a known timezone wins over the browser language region', () => {
+    expect(selectAmazonStore('en-GB', 'Europe/London').store).toBe('United Kingdom');
+    expect(selectAmazonStore('en-US', 'America/New_York').store).toBe('United States');
+    expect(selectAmazonStore('en-ZA', 'Europe/London').store).toBe('United Kingdom');
     expect(selectAmazonStore('en', 'Australia/Sydney').store).toBe('Australia');
     expect(selectAmazonStore('invalid_locale', 'Asia/Tokyo').store).toBe('Japan');
+  });
+  test('falls back to the language region only when the timezone is unknown', () => {
+    expect(selectAmazonStore('de-DE', '').store).toBe('Germany');
+    const regions = ['US', 'GB', 'CA', 'AU', 'DE', 'FR', 'IT', 'ES', 'JP', 'SG', 'NL', 'SE', 'PL', 'BE'];
+    regions.forEach((region, index) => {
+      expect(selectAmazonStore(`en-${region}`, '')).toEqual({ store: AMAZON_STORES[index][0], url: AMAZON_STORES[index][1] });
+    });
   });
 });
 

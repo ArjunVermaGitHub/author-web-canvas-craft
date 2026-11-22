@@ -16,9 +16,11 @@ const TIMEZONE_REGIONS: Record<string, string> = {
 };
 
 export function selectAmazonStore(language: string, timezone: string) {
-  let region: string | undefined;
-  try { region = new Intl.Locale(language).region; } catch { /* Use timezone when the language is unavailable. */ }
-  region ??= timezone.startsWith('Australia/') ? 'AU' : TIMEZONE_REGIONS[timezone];
+  // The visitor's timezone reflects where they are; browser language often stays en-US on Indian phones.
+  let region: string | undefined = timezone.startsWith('Australia/') ? 'AU' : TIMEZONE_REGIONS[timezone];
+  if (!region) {
+    try { region = new Intl.Locale(language).region; } catch { /* India is the default. */ }
+  }
   const index = AMAZON_REGION_CODES.indexOf(region ?? 'IN');
   const match = AMAZON_STORES[index];
   return match ? { store: match[0], url: match[1] } : { store: 'India', url: AMAZON_URL };
