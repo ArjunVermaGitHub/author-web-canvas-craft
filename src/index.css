@@ -190,6 +190,11 @@
 }
 
 @layer components {
+  .home-hero { position: relative; overflow: hidden; isolation: isolate; }
+  .hero-bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: blur(8px); transform: scale(1.08); }
+  .hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, hsl(var(--background) / .88) 0%, hsl(var(--background) / .8) 45%, hsl(var(--background) / .68) 100%); }
+  @media (max-width: 1023px) { .hero-bg::after { background: hsl(var(--background) / .82); } }
   .conversion-hero-grid { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 12px 22px; padding-block: 20px; }
   .conversion-hook { grid-column: 1 / -1; }
   .conversion-title { font-size: 29px; line-height: 1.18; font-weight: 600; }

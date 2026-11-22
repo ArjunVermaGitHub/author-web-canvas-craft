@@ -6,7 +6,9 @@ import { AMAZON_RATING, AMAZON_RATING_COUNT } from '@/config/amazon';
 import { trackPurchaseClick } from '@/lib/purchase';
 
 export default function HomeHero() {
-  return <section id="top" className="home-hero conversion-hero scroll-mt-24"><div className="site-container conversion-hero-grid">
+  return <section id="top" className="home-hero conversion-hero scroll-mt-24">
+    <div className="hero-bg" aria-hidden="true"><img src="/raghav-ebook-cover.jpg" alt="" loading="lazy" decoding="async" /></div>
+    <div className="site-container conversion-hero-grid">
     <div className="conversion-hook"><p className="text-accent text-sm font-semibold mb-3" title={BOOK_TITLE}>Book 1 · Mythological fantasy · Ages 10–19</p>
       <h1 className="conversion-title">He's nine. He can read a script no scholar ever has. Now an immortal warlord is hunting him.</h1>
     </div>
