@@ -29,6 +29,7 @@ const OtherBooks = lazy(() => import('./pages/OtherBooks'));
 import ScrollToHash from './components/ScrollToHash';
 import InstagramExitPopup from './components/InstagramExitPopup';
 import WhatsAppChatButton from './components/WhatsAppChatButton';
+import InternalTrafficMarker from './components/InternalTrafficMarker';
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
         <ScrollToHash />
         <InstagramExitPopup />
         <WhatsAppChatButton />
+        <InternalTrafficMarker />
         <Suspense fallback={<div className="min-h-screen bg-background" aria-busy="true" />}><Routes>
           <Route path="/" element={<Index />} />
           <Route path="/start-here" element={<StartHere />} />
