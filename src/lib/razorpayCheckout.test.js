@@ -24,3 +24,15 @@ test('confirmed Purchase and purchase_confirmed include session attribution with
     expect(window.dataLayer).toEqual([{ event: 'purchase_confirmed', value: 335, currency: 'INR', order_id: 'RK-ATTRIB1', utm_campaign: 'launch', utm_content: 'ad_a' }]);
   } finally { if (previous === undefined) delete globalThis.window; else globalThis.window = previous; }
 });
+
+test('verified purchase emits purchase_complete once without Meta, with ad labels', () => {
+  const previous = globalThis.window;
+  const values = new Map(); const calls = [];
+  globalThis.window = { location: { hostname: 'www.riturajverma.com', pathname: '/', search: '?utm_campaign=launch&utm_content=ad_2' }, crypto: { randomUUID: () => 'abcdefgh-3' }, localStorage: { getItem: k => values.get(k), setItem: (k,v) => values.set(k,v) }, clarity: (...args) => calls.push(args), dataLayer: [] };
+  try {
+    trackConfirmedPurchase('RK-CLARITY1', 335, 'Book');
+    trackConfirmedPurchase('RK-CLARITY1', 335, 'Book');
+    expect(calls).toEqual([['set', 'utm_campaign', 'launch'], ['set', 'utm_content', 'ad_2'], ['event', 'purchase_complete']]);
+    expect(window.dataLayer).toHaveLength(1);
+  } finally { if (previous === undefined) delete globalThis.window; else globalThis.window = previous; }
+});

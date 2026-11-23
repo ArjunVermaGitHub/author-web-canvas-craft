@@ -13,7 +13,7 @@ const bookCoverRedirects = new Map<string, string>(
       const asset = JSON.parse(readFileSync(path.resolve(__dirname, 'public', directory, name), 'utf8'));
       return [`/${directory}/${asset.original_filename}`, `https://author-web-canvas-craft.lovable.app${asset.url}`] as [string, string];
     }),
-  ).concat(['back-cover.webp', 'trailer-1.mp4', 'trailer-1-poster.webp'].map(name => {
+  ).concat(['back-cover.webp', 'trailer-1.mp4', 'trailer-1-poster.webp', 'hero-cover-mobile.webp', 'hero-cover-desktop.webp', 'hero-background-mobile.webp', 'hero-background-desktop.webp'].map(name => {
     const asset = JSON.parse(readFileSync(path.resolve(__dirname, 'public', `${name}.asset.json`), 'utf8'));
     return [`/${name}`, `https://author-web-canvas-craft.lovable.app${asset.url}`] as [string, string];
   })),

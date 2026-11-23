@@ -96,7 +96,22 @@ const GTM_LOADER = "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':ne
 test('tag loader runs only on the live domain hosts', () => {
   const source = read('../../index.html');
   const inline = source.match(/<!-- Google Tag Manager -->\s*<script>([\s\S]*?)<\/script>/)?.[1];
-  expect(inline).toBe(`if(location.hostname==='www.riturajverma.com'||location.hostname==='riturajverma.com'){${GTM_LOADER}}`);
+  expect(inline).toContain(GTM_LOADER);
+  for (const [host, pathname, agent, expected] of [
+    ['www.riturajverma.com', '/', '', true], ['riturajverma.com', '/', '', true],
+    ['www.riturajverma.com', '/owner/insights', '', false], ['riturajverma.com', '/owner', '', false],
+    ['www.riturajverma.com', '/', 'Electron/30', false],
+    ['lovable.dev', '/', '', false], ['author-web-canvas-craft.lovable.app', '/', '', false],
+    ['id-preview--test.lovable.app', '/', '', false], ['test.lovableproject.com', '/', '', false],
+  ]) {
+    let listener;
+    let loaded = false;
+    const window = { addEventListener: (_, cb) => { listener = cb; } };
+    const document = { getElementsByTagName: () => [{ parentNode: { insertBefore: () => { loaded = true; } } }], createElement: () => ({}) };
+    new Function('location', 'navigator', 'window', 'document', 'setTimeout', inline)({ hostname: host, pathname }, { userAgent: agent }, window, document, cb => cb());
+    listener?.();
+    expect(loaded).toBe(expected);
+  }
 });
 
 test('homepage carries one structured-data block with the author, series and book nodes', () => {

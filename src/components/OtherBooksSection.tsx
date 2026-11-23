@@ -16,7 +16,7 @@ export default function OtherBooksSection({ lphBook = LPH_BOOK }: { lphBook?: Lp
       <h2 id="other-books-heading" className="section-heading">More books by Rituraj Verma</h2>
       <div className="grid md:grid-cols-2 gap-6">
         <article className="content-panel p-6 flex flex-col sm:flex-row items-start gap-6 min-w-0">
-          {lphBook.cover && <img src={lphBook.cover.path} alt={lphBook.cover.alt} width={lphBook.cover.width} height={lphBook.cover.height} loading="lazy" className="w-[140px] h-auto shrink-0" />}
+          {lphBook.cover && <img src={lphBook.cover.path} alt={lphBook.cover.alt} width={lphBook.cover.width} height={lphBook.cover.height} loading="lazy" decoding="async" className="w-[140px] h-auto shrink-0" />}
           <div className="flex flex-col min-w-0 flex-1 self-stretch">
           {lphBook.kindleUrl && <p className="eyebrow text-xs mb-3">KINDLE EDITION AVAILABLE</p>}
           <h3 className="font-serif text-accent text-2xl leading-snug">{lphBook.title}</h3>
@@ -35,7 +35,7 @@ export default function OtherBooksSection({ lphBook = LPH_BOOK }: { lphBook?: Lp
           <h3 className="font-serif text-accent text-2xl leading-snug">Cute Cats Coloring Books by James Furrington (pen name)</h3>
           <div className="grid grid-cols-4 gap-3 my-6">
             {featuredColoringBooks.map(book => <div key={book.url} className="aspect-[3/4] min-w-0 flex items-center justify-center">
-              {book.cover && <img src={book.cover.path} alt={book.cover.alt} width={book.cover.width} height={book.cover.height} loading="lazy" className="w-full h-full object-contain" />}
+              {book.cover && <img src={book.cover.path} alt={book.cover.alt} width={book.cover.width} height={book.cover.height} loading="lazy" decoding="async" className="w-full h-full object-contain" />}
             </div>)}
           </div>
           <p className="mb-6">{OTHER_BOOKS.length} coloring books for all ages.</p>

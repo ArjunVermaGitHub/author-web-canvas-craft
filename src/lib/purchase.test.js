@@ -250,3 +250,16 @@ describe('Ebook edition by visitor country', () => {
     ]);
   });
 });
+
+test('Clarity purchase click fires even when Meta is absent', () => {
+ const previous = globalThis.window; const calls = [];
+ globalThis.window = { location: { hostname: 'www.riturajverma.com', pathname: '/', search: '' }, clarity: (...args) => calls.push(args) };
+ try {
+  trackPurchaseClick('AmazonClick', 'home_hero', 'India');
+  trackPurchaseClick('EbookClick', 'shop');
+  trackPurchaseClick('FlipkartClick', 'shop');
+  trackPurchaseClick('OrderClick', 'home_hero_signed');
+  trackPurchaseClick('CheckoutStarted', 'home');
+  expect(calls).toEqual([['event', 'amazon_click'], ['event', 'kindle_click'], ['event', 'flipkart_click'], ['event', 'signed_copy_click']]);
+ } finally { if (previous === undefined) delete globalThis.window; else globalThis.window = previous; }
+});

@@ -1,3 +1,4 @@
+import { afterInteraction, trackClarityEvent } from './clarity';
 import { getCampaignTrackingData } from './campaign.js';
 
 export type RazorpayOrder = { orderId: string; keyId: string; amount: number };
@@ -55,7 +56,8 @@ export function purchaseOnce(orderId: string, fire: () => void, storage?: Storag
 export function trackConfirmedPurchase(orderId: string, value: number, title: string) {
   let storage: StorageLike | undefined;
   try { storage = window.localStorage; } catch { /* Blocked storage. */ }
-  purchaseOnce(orderId, () => {
+  purchaseOnce(orderId, () => afterInteraction(() => {
+    trackClarityEvent('purchase_complete');
     const attribution = getCampaignTrackingData();
     const target = window as Window & {
       fbq?: (command: string, event: string, data: Record<string, unknown>) => void;
@@ -67,5 +69,5 @@ export function trackConfirmedPurchase(orderId: string, value: number, title: st
       target.dataLayer ??= [];
       target.dataLayer.push({ event: 'purchase_confirmed', value, currency: 'INR', order_id: orderId, ...attribution });
     } catch { /* Tracking never blocks confirmation. */ }
-  }, storage);
+  }), storage);
 }

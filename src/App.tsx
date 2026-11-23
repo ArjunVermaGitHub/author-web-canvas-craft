@@ -1,30 +1,31 @@
+import { lazy, Suspense } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import NotFound from "./pages/NotFound";
-import OwnerInsights from "./pages/OwnerInsights";
-import JamesFurrington from "./pages/JamesFurrington";
-import AlternateEnding from "./pages/AlternateEnding";
-import LphRedirect from "./pages/LphRedirect";
-import AlternateEndingsIndex from "./pages/AlternateEndingsIndex";
-import SignedCopy from "./pages/SignedCopy";
-import SignedCopyStory from "./pages/SignedCopyStory";
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const OwnerInsights = lazy(() => import('./pages/OwnerInsights'));
+const JamesFurrington = lazy(() => import('./pages/JamesFurrington'));
+const AlternateEnding = lazy(() => import('./pages/AlternateEnding'));
+const LphRedirect = lazy(() => import('./pages/LphRedirect'));
+const AlternateEndingsIndex = lazy(() => import('./pages/AlternateEndingsIndex'));
+const SignedCopy = lazy(() => import('./pages/SignedCopy'));
+const SignedCopyStory = lazy(() => import('./pages/SignedCopyStory'));
 import { HelmetProvider } from 'react-helmet-async';
 
-import StartHere from './pages/StartHere';
-import Books from './pages/Books';
-import Wiki from './pages/Wiki';
-import Characters from './pages/Characters';
-import Reviews from './pages/Reviews';
-import World from './pages/World';
-import Author from './pages/Author';
-import Media from './pages/Media';
-import Shop from './pages/Shop';
-import OtherBooks from './pages/OtherBooks';
+const StartHere = lazy(() => import('./pages/StartHere'));
+const Books = lazy(() => import('./pages/Books'));
+const Wiki = lazy(() => import('./pages/Wiki'));
+const Characters = lazy(() => import('./pages/Characters'));
+const Reviews = lazy(() => import('./pages/Reviews'));
+const World = lazy(() => import('./pages/World'));
+const Author = lazy(() => import('./pages/Author'));
+const Media = lazy(() => import('./pages/Media'));
+const Shop = lazy(() => import('./pages/Shop'));
+const OtherBooks = lazy(() => import('./pages/OtherBooks'));
 import ScrollToHash from './components/ScrollToHash';
 import InstagramExitPopup from './components/InstagramExitPopup';
 import WhatsAppChatButton from './components/WhatsAppChatButton';
@@ -41,7 +42,7 @@ const App = () => (
         <ScrollToHash />
         <InstagramExitPopup />
         <WhatsAppChatButton />
-        <Routes>
+        <Suspense fallback={<div className="min-h-screen bg-background" aria-busy="true" />}><Routes>
           <Route path="/" element={<Index />} />
           <Route path="/start-here" element={<StartHere />} />
           <Route path="/books" element={<Books />} />
@@ -65,7 +66,7 @@ const App = () => (
           <Route path="/owner/insights" element={<OwnerInsights />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
-        </Routes>
+        </Routes></Suspense>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

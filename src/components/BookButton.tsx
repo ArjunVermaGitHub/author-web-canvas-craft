@@ -37,6 +37,7 @@ const BookButton = ({
         target={target}
         rel={rel}
         className={classes}
+        id={props.id}
         aria-current={props["aria-current"]}
         onClick={onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
       >

@@ -15,6 +15,34 @@
   ],
   "routes": [
     {
+      "src": "/hero-background-desktop.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/36631d3b-caae-4aa4-849e-be0b1190cc88/hero-background-desktop.webp"
+      }
+    },
+    {
+      "src": "/hero-background-mobile.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/57576a35-60ce-4c18-acf1-635c17ec8a2b/hero-background-mobile.webp"
+      }
+    },
+    {
+      "src": "/hero-cover-desktop.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/c5663206-19c9-4191-bd4a-4bb296915e17/hero-cover-desktop.webp"
+      }
+    },
+    {
+      "src": "/hero-cover-mobile.webp",
+      "status": 302,
+      "headers": {
+        "Location": "https://author-web-canvas-craft.lovable.app/__l5e/assets-v1/fb0d5d58-24f8-4a10-bd30-d763ec6959c0/hero-cover-mobile.webp"
+      }
+    },
+    {
       "src": "/characters/little-yama.webp",
       "status": 302,
       "headers": {

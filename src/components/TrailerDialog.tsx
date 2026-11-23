@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Volume2 } from 'lucide-react';
+import { Play, Volume2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import AmazonPurchaseButton from './AmazonPurchaseButton';
 import { TOTAL_PRICE } from '@/config/book';
@@ -12,10 +13,11 @@ export default function TrailerDialog({ open, mode, onOpenChange }: { open: bool
   const played = useRef(false);
   const completed = useRef(false);
   const ordering = useRef(false);
+  const [activated, setActivated] = useState(mode === 'hero_button');
   const [muted, setMuted] = useState(mode === 'exit_popup');
 
   useEffect(() => {
-    if (!open) return;
+    if (!open || !activated) return;
     played.current = false; completed.current = false;
     const startMuted = mode === 'exit_popup';
     setMuted(startMuted);
@@ -29,7 +31,7 @@ export default function TrailerDialog({ open, mode, onOpenChange }: { open: bool
       });
     });
     return () => cancelAnimationFrame(frame);
-  }, [open, mode]);
+  }, [open, mode, activated]);
 
   const close = () => {
     const el = video.current;
@@ -54,18 +56,18 @@ export default function TrailerDialog({ open, mode, onOpenChange }: { open: bool
       }}>
       <DialogTitle className="sr-only">Raghav Kartikeya — Trailer 1</DialogTitle>
       <div className="relative mx-auto">
-        <video ref={video} className="trailer-video border border-accent/40" src="/trailer-1.mp4" poster="/trailer-1-poster.webp"
+        {!activated ? <Button variant="ghost" className="relative block h-auto p-0" aria-label="Play trailer 1" onClick={() => setActivated(true)}><img src="/trailer-1-poster.webp" alt="" loading="lazy" decoding="async" width={576} height={1024} className="trailer-video border border-accent/40" /><Play aria-hidden="true" className="absolute size-12 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-heading" /></Button> : <video ref={video} className="trailer-video border border-accent/40" src="/trailer-1.mp4" poster="/trailer-1-poster.webp"
           playsInline controls preload="none" muted={muted}
           onVolumeChange={event => setMuted(event.currentTarget.muted)}
           onPlay={() => { if (!played.current) { played.current = true; trackPurchaseClick('TrailerPlay', mode); } }}
           onTimeUpdate={event => {
             const el = event.currentTarget;
             if (!completed.current && el.duration && el.currentTime / el.duration >= 0.9) { completed.current = true; trackPurchaseClick('TrailerComplete', mode); }
-          }} />
-        {muted && <button type="button" onClick={unmute}
+          }} />}
+        {activated && muted && <Button variant="outline" type="button" onClick={unmute}
           className="absolute left-1/2 top-4 -translate-x-1/2 inline-flex min-h-11 items-center gap-2 rounded-sm border border-accent bg-background/90 px-4 text-sm font-semibold text-heading">
           Tap for sound <Volume2 aria-hidden="true" className="h-4 w-4" />
-        </button>}
+        </Button>}
       </div>
       <AmazonPurchaseButton placement="trailer_popup" className="w-full min-h-11" />
       <a href="#order" className="inline-flex min-h-11 items-center justify-center text-sm text-accent underline underline-offset-4"

@@ -1,3 +1,4 @@
+import { afterInteraction, clarityEventForPurchase, trackClarityEvent } from './clarity';
 import { AMAZON_URL, AMAZON_STORES, AMAZON_REGION_CODES, AMAZON_EBOOK_URL, AMAZON_EBOOK_INTL_URL } from '@/config/amazon';
 import { campaignTrackingData, getCampaignTrackingData } from './campaign.js';
 
@@ -44,10 +45,13 @@ const ATTRIBUTED_EVENTS = new Set(['CheckoutStarted', 'CheckoutFieldDone', 'Chec
 
 export function trackPurchaseClick(event: 'OrderClick' | 'AmazonClick' | 'FlipkartClick' | 'UpiAppClick' | 'EbookClick' | 'InstagramPopupShown' | 'InstagramFollowClick' | 'CheckoutStarted' | 'CheckoutFieldDone' | 'CheckoutError' | 'CheckoutAbandon' | 'LadderStart' | 'LadderRung1' | 'LadderRung2' | 'LadderRung3' | 'LadderOfferShown' | 'CharacterOpen' | 'TrailerOpen' | 'TrailerPlay' | 'TrailerComplete' | 'TrailerUnmute', placement: string, store?: string, pixel?: Pixel, extra?: CampaignExtra) {
   const fbq = pixel ?? (typeof window === 'undefined' ? undefined : (window as Window & { fbq?: Pixel }).fbq);
+  const clarityName = clarityEventForPurchase(event);
+  if (clarityName) afterInteraction(() => trackClarityEvent(clarityName));
   if (typeof fbq !== 'function') return;
   const data: { placement: string; store?: string } & CampaignExtra = store ? { placement, store } : { placement };
   Object.assign(data, ATTRIBUTED_EVENTS.has(event) ? getCampaignTrackingData() : {}, campaignTrackingData({ campaign: extra?.utm_campaign, content: extra?.utm_content }));
-  try { fbq('trackCustom', event, data); } catch { /* Tracking must not interrupt navigation. */ }
+  const fire = () => { try { fbq('trackCustom', event, data); } catch { /* Tracking must not interrupt navigation. */ } };
+  if (pixel) fire(); else afterInteraction(fire);
 }
 
 type OrderPixel = (command: 'trackCustom', event: string, data: { placement: string; value: number; currency: 'INR'; order_id?: string } & CampaignExtra) => void;

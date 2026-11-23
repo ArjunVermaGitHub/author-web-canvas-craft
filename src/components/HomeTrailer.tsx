@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import BookButton from './BookButton';
-import TrailerDialog, { type TrailerOpenMode } from './TrailerDialog';
+import type { TrailerOpenMode } from './TrailerDialog';
+const TrailerDialog = lazy(() => import('./TrailerDialog'));
 import { trackPurchaseClick } from '@/lib/purchase';
 import { EXIT_POPUP_SESSION_KEY, recentScrollUp, shouldShowExitPopup, shouldShowTouchExit } from '@/lib/exitIntent';
 
@@ -57,6 +58,6 @@ export default function HomeTrailer() {
       openedByButton.current = true; setMode('hero_button'); setOpen(true);
       trackPurchaseClick('TrailerOpen', 'hero_button');
     }}>▶ Click to watch trailer 1</BookButton>
-    <TrailerDialog open={open} mode={mode} onOpenChange={setOpen} />
+    {open && <Suspense fallback={null}><TrailerDialog open={open} mode={mode} onOpenChange={setOpen} /></Suspense>}
   </>;
 }

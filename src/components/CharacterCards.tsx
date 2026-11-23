@@ -44,7 +44,7 @@ export default function CharacterCards() {
         {CHARACTER_CARDS.map(character => <Button key={character.id} type="button" variant="ghost"
           aria-label={`Meet ${character.name}, ${character.role}`} onClick={event => open(character, event.currentTarget)}
           className="character-tile content-panel relative block h-auto w-full overflow-hidden p-0 whitespace-normal text-left text-foreground motion-safe:transition-transform motion-safe:hover:scale-[1.015] motion-safe:active:scale-[0.98] hover:bg-card">
-          <img src={character.image} alt={character.name} width={640} height={800} loading="lazy" className="aspect-[4/5] w-full object-cover" />
+          <img src={character.image} alt={character.name} width={640} height={800} loading="lazy" decoding="async" className="aspect-[4/5] w-full object-cover" />
           <span className="character-tile-caption absolute inset-x-0 bottom-0 flex flex-col justify-end p-3 md:p-5">
             <span className="font-serif text-heading text-lg md:text-2xl font-semibold">{character.name}</span>
             <span className="text-accent text-xs md:text-sm leading-snug mt-1">{character.role}</span>

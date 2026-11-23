@@ -1,3 +1,4 @@
+import { afterInteraction, trackClarityEvent } from '@/lib/clarity';
 import React, { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
 import { CreditCard, LockKeyhole, Truck } from 'lucide-react';
@@ -211,6 +212,7 @@ const SignedCopyOrderFlow = ({ placement = 'buy', paymentPlacement = 'buy_paymen
       });
       checkout.on('payment.failed', incomplete);
       checkout.open();
+      afterInteraction(() => trackClarityEvent('checkout_started'));
     } catch {
       incomplete();
     }
