@@ -4,7 +4,7 @@ import { AMAZON_STORES, AMAZON_URL, AMAZON_EBOOK_URL, AMAZON_EBOOK_INTL_URL } fr
 import { FLIPKART_URL, TOTAL_PRICE } from '../config/book';
 
 describe('purchase destinations', () => {
-  test('uses the configured ₹335 total', () => { expect(TOTAL_PRICE).toBe(335); });
+  test('uses the configured ₹449 total', () => { expect(TOTAL_PRICE).toBe(449); });
   test('uses India for India and unknown regions', () => {
     expect(selectAmazonStore('en-IN', 'Asia/Kolkata')).toEqual({ store: 'India', url: AMAZON_URL });
     expect(selectAmazonStore('', 'Etc/UTC').store).toBe('India');
@@ -99,7 +99,7 @@ describe('campaign/ad attribution on existing events', () => {
       globalThis.window = { location: { search: '' }, crypto: { randomUUID: () => 'abcdefgh-2' }, sessionStorage: { getItem: key => values.get(key), setItem: (key, value) => values.set(key, value) } };
       try {
         const calls = []; const pixel = (...args) => calls.push(args);
-        if (event === 'OrderSaved') trackOrderSaved('home', 335, 'RK-ABC123', pixel);
+        if (event === 'OrderSaved') trackOrderSaved('home', 449, 'RK-ABC123', pixel);
         else trackPurchaseClick(event, 'home_phone', undefined, pixel);
         expect(calls[0][1]).toBe(event);
         expect(calls[0][2]).toMatchObject({ utm_campaign: 'launch', utm_content: 'ad_a' });
@@ -156,7 +156,7 @@ describe('OrderSaved tracking', () => {
     trackPurchaseClick('UpiAppClick', 'landing_payment', undefined, pixel);
     trackPurchaseClick('AmazonClick', 'landing', 'India', pixel);
     expect(calls).toEqual([
-      ['trackCustom', 'OrderSaved', { placement: 'landing', value: 335, currency: 'INR', order_id: 'RK-ABC123' }],
+      ['trackCustom', 'OrderSaved', { placement: 'landing', value: 449, currency: 'INR', order_id: 'RK-ABC123' }],
       ['trackCustom', 'UpiAppClick', { placement: 'landing_payment' }],
       ['trackCustom', 'AmazonClick', { placement: 'landing', store: 'India' }],
     ]);
@@ -165,14 +165,14 @@ describe('OrderSaved tracking', () => {
     const calls = [];
     trackOrderSaved('buy', TOTAL_PRICE, 'RK-ABC123', (...args) => calls.push(args));
     expect(calls).toEqual([
-      ['trackCustom', 'OrderSaved', { placement: 'buy', value: 335, currency: 'INR', order_id: 'RK-ABC123' }],
+      ['trackCustom', 'OrderSaved', { placement: 'buy', value: 449, currency: 'INR', order_id: 'RK-ABC123' }],
     ]);
   });
   test('omits order_id when absent and never throws', () => {
     const calls = [];
     trackOrderSaved('modal', TOTAL_PRICE, undefined, (...args) => calls.push(args));
     expect(calls).toEqual([
-      ['trackCustom', 'OrderSaved', { placement: 'modal', value: 335, currency: 'INR' }],
+      ['trackCustom', 'OrderSaved', { placement: 'modal', value: 449, currency: 'INR' }],
     ]);
     expect(() => trackOrderSaved('buy', TOTAL_PRICE)).not.toThrow();
     expect(() => trackOrderSaved('buy', TOTAL_PRICE, 'RK-X', () => { throw new Error('blocked'); })).not.toThrow();

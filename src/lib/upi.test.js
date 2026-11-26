@@ -9,7 +9,7 @@ describe('UPI pay link', () => {
     const params = new URLSearchParams(link.slice('upi://pay?'.length));
     expect(params.get('pa')).toBe('riturajverma2005@ybl');
     expect(params.get('pn')).toBe('Rituraj Narayan Verma');
-    expect(params.get('am')).toBe('335');
+    expect(params.get('am')).toBe('449');
     expect(params.get('cu')).toBe('INR');
   });
   test('puts the Order ID in the transaction note so payments can be matched', () => {

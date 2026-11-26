@@ -69,7 +69,7 @@ export default async function handler(req, res, deps = {}) {
     if (message && message.length > 200) {
       return res.status(400).json({ error: 'Message must be 200 characters or fewer' });
     }
-    if (!Number.isFinite(amount) || amount <= 0 || amount > 100000) {
+    if (!Number.isFinite(amount) || amount !== TOTAL_PRICE) {
       return res.status(400).json({ error: 'Invalid order amount' });
     }
 

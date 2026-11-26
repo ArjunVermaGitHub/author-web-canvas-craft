@@ -8,7 +8,7 @@ const jsonLdBlocks = (source) => [...source.matchAll(/<script type="application\
 
 const seoValues = [
   ['/', 'Raghav Kartikeya and the Tablets of Dharma by Rituraj Verma | Signed Copies', 'A nine-year-old from Mumbai can read the undeciphered Indus Valley script, and an immortal warlord hunts him for it. Order a signed copy of Book 1 from the author.'],
-  ['/shop', 'Buy a Signed Copy of Raghav Kartikeya and the Tablets of Dharma – ₹335', 'Order a copy signed by author Rituraj Verma for ₹335, delivered in India within 5 days. Or buy on Amazon, Flipkart or Kindle, or read the first two chapters free.'],
+  ['/shop', 'Buy a Signed Copy of Raghav Kartikeya and the Tablets of Dharma – ₹449', 'Order a copy signed by author Rituraj Verma for ₹449, delivered in India within 5 days. Or buy on Amazon, Flipkart or Kindle, or read the first two chapters free.'],
   ['/books', 'Raghav Kartikeya and the Tablets of Dharma (Book 1) – Mythological Fantasy'],
   ['/author', 'Rituraj Verma – Author of the Raghav Kartikeya Series'],
   ['/characters', 'Characters of Raghav Kartikeya and the Tablets of Dharma', 'Meet Raghav, Little Yama, Maya, Tarak and the other characters of the Raghav Kartikeya mythological fantasy series by Rituraj Verma.'],
@@ -121,7 +121,7 @@ test('homepage carries one structured-data block with the author, series and boo
   expect(graph['@context']).toBe('https://schema.org');
   expect(graph['@graph'].map(node => node['@type'])).toEqual(['Person', 'BookSeries', 'Book']);
   const book = graph['@graph'][2];
-  expect(book.offers.price).toBe('335');
+  expect(book.offers.price).toBe('449');
   expect(book.offers.priceCurrency).toBe('INR');
   expect(book.offers.shippingDetails.shippingDestination.addressCountry).toBe('IN');
   expect(book.workExample.map(edition => edition.isbn)).toEqual(['9789358984019', '9789358987447', undefined]);
