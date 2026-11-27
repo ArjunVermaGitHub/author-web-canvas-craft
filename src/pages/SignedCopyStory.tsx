@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '@/components/SeoHead';
 import { ArrowLeft, Check } from 'lucide-react';
 import SignedCopyOrderFlow from '@/components/SignedCopyOrderFlow';
 import VisitorCounter from '@/components/VisitorCounter';
@@ -117,14 +117,7 @@ const SignedCopyStory = () => {
 
   return (
     <div className="public-site min-h-screen" style={{ background: '#15202B' }}>
-      <Helmet>
-        <title>Read the opening — Raghav Kartikeya and the Tablets of Dharma</title>
-        <meta name="description" content={`Read a few pages of ${BOOK_TITLE}, then order a signed copy.`} />
-        <link rel="canonical" href="https://www.riturajverma.com/signed-copy-story" />
-        <meta name="robots" content="noindex" />
-        <meta property="og:title" content={`Read the opening — ${BOOK_TITLE}`} />
-        <meta property="og:url" content="https://www.riturajverma.com/signed-copy-story" />
-      </Helmet>
+      <SeoHead noindex title="Read the opening — Raghav Kartikeya and the Tablets of Dharma" description={`Read a few pages of ${BOOK_TITLE}, then order a signed copy.`} canonical="https://www.riturajverma.com/signed-copy-story" />
       <header className="site-header">
         <div className="site-container flex items-center gap-2">
           {step > 0 && (

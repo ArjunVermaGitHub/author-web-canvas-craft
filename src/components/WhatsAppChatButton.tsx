@@ -9,7 +9,7 @@ export default function WhatsAppChatButton() {
   const { pathname } = useLocation();
   const [paymentActive, setPaymentActive] = useState(false);
   const anchor = useRef<HTMLAnchorElement>(null);
-  const [touch, setTouch] = useState(() => window.matchMedia('(pointer: coarse)').matches);
+  const [touch, setTouch] = useState(() => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches);
 
   useEffect(() => {
     const media = window.matchMedia('(pointer: coarse)');

@@ -49,7 +49,7 @@ describe('pen-name catalogue', () => {
     expect(OTHER_BOOKS[3].title).toContain('Bold & Easy hardcover edition');
     expect(OTHER_BOOK_SERIES).toEqual([
       { label: 'James Furrington: Cute Cats Coloring Books', path: '/james-furrington' },
-      { label: 'Love, Peace & Happiness: Alternate endings', path: '/lph/alternate-endings/' },
+      { label: 'Love, Peace & Happiness: Alternate endings', path: '/lph/' },
     ]);
   });
   test('places the India-market edition after the original India book with confirmed metadata', () => {

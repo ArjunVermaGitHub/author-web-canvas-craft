@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '@/components/SeoHead';
 import BookButton from '@/components/BookButton';
 import SignedCopyOrderFlow from '@/components/SignedCopyOrderFlow';
 import VisitorCounter from '@/components/VisitorCounter';
@@ -17,15 +17,7 @@ const SignedCopy = () => {
 
   return (
     <div className="public-site">
-      <Helmet>
-        <title>Order a signed copy — Raghav Kartikeya and the Tablets of Dharma</title>
-        <meta name="description" content={`Order ${BOOK_TITLE}, signed by Rituraj Verma with your own message handwritten inside, for ₹${TOTAL_PRICE}.`} />
-        <link rel="canonical" href="https://www.riturajverma.com/signed-copy" />
-        <meta name="robots" content="noindex" />
-        <meta property="og:title" content={`Order a signed copy — ${BOOK_TITLE}`} />
-        <meta property="og:description" content={`A signed copy with your own message handwritten inside — ₹${TOTAL_PRICE}.`} />
-        <meta property="og:url" content="https://www.riturajverma.com/signed-copy" />
-      </Helmet>
+      <SeoHead noindex title="Order a signed copy — Raghav Kartikeya and the Tablets of Dharma" description={`Order ${BOOK_TITLE}, signed by Rituraj Verma with your own message handwritten inside, for ₹${TOTAL_PRICE}.`} canonical="https://www.riturajverma.com/signed-copy" />
       <header className="site-header">
         <div className="site-container">
           <Link to="/" className="inline-flex min-h-[44px] items-center font-serif text-xl text-accent">Rituraj Verma</Link>

@@ -25,8 +25,8 @@ for (const alias of ['4', 'ending-4', '4-2']) test(`soul mate fourth ending alia
   expect(resolveLphPath(`${base}the-soul-mate-theorist/${alias}/`)).toBe(`${base}the-soul-mate-theorist/4-2/`);
   expect(resolveLphPath(`${base}${story}/${alias}/`)).toBe(`${base}${story}/`);
 });
-test('unknown story falls back to alternate-endings index', () => expect(resolveLphPath(`${base}unknown/1-2/`)).toBe(base));
-test('catch-all recovers unknown LPH segments', () => expect(resolveLphPath('/lph/junk/index.html')).toBe(base));
+test('unknown story falls back to the /lph/ index', () => expect(resolveLphPath(`${base}unknown/1-2/`)).toBe('/lph/'));
+test('catch-all recovers unknown LPH segments', () => expect(resolveLphPath('/lph/junk/index.html')).toBe('/lph/'));
 test('story index drops index.html and extra segments', () => expect(resolveLphPath(`${base}${story}/index.html/junk`)).toBe(`${base}${story}/`));
 test('malformed percent encoding does not throw', () => expect(normalizeLphSlug('unknown%zz')).toBe('unknown%zz'));
 test('NFKC, invisible characters, punctuation and repeated dashes normalize', () => {

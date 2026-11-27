@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '@/components/SeoHead';
 import { Link } from 'react-router-dom';
 import { Cat, ExternalLink, PawPrint } from 'lucide-react';
 import Header from '@/components/Header';
@@ -11,14 +11,7 @@ const description = 'Cute cat coloring books for children, teens and adults, wit
 export default function JamesFurrington() {
   return (
     <div className="public-site">
-      <Helmet>
-        <title>James Furrington: Cute Cats Coloring Books</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href="https://www.riturajverma.com/james-furrington" />
-        <meta property="og:title" content="James Furrington: Cute Cats Coloring Books" />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content="https://www.riturajverma.com/james-furrington" />
-      </Helmet>
+      <SeoHead title="James Furrington: Cute Cats Coloring Books" description={description} canonical="https://www.riturajverma.com/james-furrington" />
       <Header />
       <main id="top" className="band-section">
         <div className="site-container">

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '@/components/SeoHead';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="public-site">
-      <Helmet><title>Privacy Policy — Raghav Kartikeya: Fantasy with Roots</title><meta name="description" content="Privacy Policy for riturajverma.com." /><link rel="canonical" href="https://www.riturajverma.com/privacy" /><meta property="og:url" content="https://www.riturajverma.com/privacy" /></Helmet>
+      <SeoHead title="Privacy Policy — Raghav Kartikeya: Fantasy with Roots" description="How riturajverma.com collects, uses and protects your personal information, including email, newsletter signups, cookies and analytics on this site." canonical="https://www.riturajverma.com/privacy" />
       <Header />
 
       <main className="book-section">

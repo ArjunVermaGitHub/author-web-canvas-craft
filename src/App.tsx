@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import type { ReactNode } from "react";
 import Index from "./pages/Index";
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -33,13 +34,15 @@ import InternalTrafficMarker from './components/InternalTrafficMarker';
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <HelmetProvider>
+/** Shared providers; the router is injected so the build-time prerender can use a static router. */
+export function AppShell({ router: Router, helmetContext }: { router: (props: { children: ReactNode }) => JSX.Element; helmetContext?: object }) {
+  return (
+  <HelmetProvider context={helmetContext}>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <Router>
         <ScrollToHash />
         <InstagramExitPopup />
         <WhatsAppChatButton />
@@ -62,6 +65,7 @@ const App = () => (
           <Route path="/james-furrington" element={<JamesFurrington />} />
           <Route path="/lph" element={<AlternateEndingsIndex />} />
           <Route path="/lph/alternate-endings" element={<AlternateEndingsIndex />} />
+          <Route path="/404" element={<NotFound />} />
           <Route path="/lph/alternate-endings/:storySlug" element={<AlternateEndingsIndex />} />
           <Route path="/lph/alternate-endings/:storySlug/:endingSlug" element={<AlternateEnding />} />
           <Route path="/lph/*" element={<LphRedirect />} />
@@ -69,10 +73,13 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes></Suspense>
-      </BrowserRouter>
+      </Router>
     </TooltipProvider>
   </QueryClientProvider>
   </HelmetProvider>
-);
+  );
+}
+
+const App = () => <AppShell router={BrowserRouter} />;
 
 export default App;

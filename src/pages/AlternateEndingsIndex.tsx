@@ -1,4 +1,6 @@
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '@/components/SeoHead';
+import { breadcrumbList } from '@/lib/structuredData';
+import { LPH_SHARE_IMAGE } from '@/data/alternateEndings';
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,10 +12,10 @@ export default function AlternateEndingsIndex() {
   const { storySlug } = useParams();
   const { pathname, search, hash } = useLocation();
   const story = resolveStory(storySlug ?? '');
-  const target = story ? storyPath(story.slug) : (!storySlug && /^\/lph\/?$/i.test(pathname) ? '/lph/' : LPH_INDEX_PATH);
+  const target = story ? storyPath(story.slug) : LPH_INDEX_PATH;
   if (pathname !== target) return <Navigate replace to={`${target}${search}${hash}`} />;
 
-  const title = story ? `${story.title}: Alternate endings` : `${LPH_BOOK.title} — Alternate endings`;
+  const title = story ? `${story.title}: Alternate endings` : 'Love, Peace & Happiness – Alternate Endings | Rituraj Verma';
   const description = story
     ? `Read the alternate endings for ${story.title}, a story by Rituraj Verma in Love, Peace & Happiness.`
     : `Alternate endings to stories in ${LPH_BOOK.title}, the 2012 book by Rituraj Verma.`;
@@ -21,14 +23,8 @@ export default function AlternateEndingsIndex() {
 
   return (
     <div className="public-site">
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonical} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonical} />
-      </Helmet>
+      <SeoHead title={title} description={description} canonical={canonical} image={LPH_SHARE_IMAGE}
+        jsonLd={story ? breadcrumbList([['Love, Peace & Happiness', lphCanonical(LPH_INDEX_PATH)], [story.title, canonical]]) : undefined} />
       <Header />
       <main id="top" className="band-section">
         <div className="site-container min-w-0">
@@ -49,7 +45,7 @@ export default function AlternateEndingsIndex() {
                   </li>
                 ))}
               </ul>
-              <Link to="/lph/alternate-endings/" className="mt-6 min-h-11 inline-flex items-center underline underline-offset-4">All stories</Link>
+              <Link to={LPH_INDEX_PATH} className="mt-6 min-h-11 inline-flex items-center underline underline-offset-4">All stories</Link>
             </>
           ) : (
             <ul className="divide-y divide-lapis/20 border-t-2 border-lapis">

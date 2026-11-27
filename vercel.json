@@ -15,6 +15,15 @@
   ],
   "routes": [
     {
+      "src": "/(.*)",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+      },
+      "continue": true
+    },
+    {
       "src": "/hero-background-desktop.webp",
       "status": 302,
       "headers": {
@@ -327,11 +336,56 @@
       "dest": "/api/$1.js"
     },
     {
+      "src": "/lph(?:/alternate-endings/?)?",
+      "status": 301,
+      "headers": {
+        "Location": "/lph/"
+      }
+    },
+    {
+      "src": "/(start-here|books|wiki|characters|reviews|world|author|media|other-books|shop|privacy|james-furrington|signed-copy|signed-copy-story)/",
+      "status": 301,
+      "headers": {
+        "Location": "/$1"
+      }
+    },
+    {
+      "src": "/lph/alternate-endings/([^/.]+)",
+      "status": 301,
+      "headers": {
+        "Location": "/lph/alternate-endings/$1/"
+      }
+    },
+    {
+      "src": "/lph/alternate-endings/([^/.]+)/([^/.]+)",
+      "status": 301,
+      "headers": {
+        "Location": "/lph/alternate-endings/$1/$2/"
+      }
+    },
+    {
+      "src": "/(start-here|books|wiki|characters|reviews|world|author|media|other-books|shop|privacy|james-furrington|signed-copy|signed-copy-story)",
+      "dest": "/$1/index.html"
+    },
+    {
+      "src": "/owner(?:/.*)?",
+      "dest": "/app.html",
+      "headers": {
+        "X-Robots-Tag": "noindex"
+      }
+    },
+    {
       "handle": "filesystem"
     },
     {
+      "src": "/lph/.*",
+      "status": 404,
+      "dest": "/app.html"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "status": 404,
+      "dest": "/404.html"
     }
   ]
 }

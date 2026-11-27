@@ -1,4 +1,6 @@
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '@/components/SeoHead';
+import { breadcrumbList } from '@/lib/structuredData';
+import { LPH_SHARE_IMAGE } from '@/data/alternateEndings';
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -20,14 +22,8 @@ export default function AlternateEnding() {
 
   return (
     <div className="public-site">
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonical} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonical} />
-      </Helmet>
+      <SeoHead title={title} description={description} canonical={canonical} image={LPH_SHARE_IMAGE}
+        jsonLd={breadcrumbList([['Love, Peace & Happiness', lphCanonical(LPH_INDEX_PATH)], [story.title, lphCanonical(storyPath(story.slug))], [title, canonical]])} />
       <Header />
       <main id="top" className="band-section">
         <article className="site-container min-w-0">

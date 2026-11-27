@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import SeoHead from '@/components/SeoHead';
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -14,7 +14,7 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
-      <Helmet><meta name="robots" content="noindex" /><title>Page not found — Raghav Kartikeya</title></Helmet>
+      <SeoHead noindex title="Page not found — Raghav Kartikeya" description="This page does not exist on riturajverma.com." />
       <div className="site-container text-center">
         <h1 className="text-4xl font-bold mb-4">404</h1>
         <p className="text-xl text-secondary mb-4">Oops! Page not found</p>

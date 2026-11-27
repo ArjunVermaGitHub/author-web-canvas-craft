@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SeoHead from './SeoHead';
+import { authorProfilePage } from '@/lib/structuredData';
 import Header from './Header';
 import Footer from './Footer';
 import PageHeader from './PageHeader';
@@ -9,10 +10,7 @@ export default function PageLayout({ page, children, home = false }: { page: Sit
   const description = page.seoDescription ?? page.description;
   const canonical = `${CANONICAL_BASE}${page.path}`;
   return <div className={home ? 'public-site homepage-order-space' : 'public-site'}>
-    <Helmet><title>{title}</title><meta name="description" content={description} />
-      <link rel="canonical" href={canonical} /><meta property="og:title" content={title} />
-      <meta property="og:description" content={description} /><meta property="og:url" content={canonical} />
-    </Helmet>
+    <SeoHead title={title} description={description} canonical={canonical} jsonLd={page.path === '/author' ? authorProfilePage() : undefined} />
     <Header /><main>{!home && <PageHeader title={page.label} tagline={page.tagline} intro={page.path === '/characters' ? undefined : page.description} />}{children}</main><Footer home={home} />
   </div>;
 }

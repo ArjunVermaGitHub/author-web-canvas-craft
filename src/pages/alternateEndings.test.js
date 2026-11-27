@@ -8,7 +8,7 @@ import AlternateEndingsIndex from './AlternateEndingsIndex';
 import { ALTERNATE_STORIES } from '../data/alternateEndings';
 
 test('LPH pages render self-referencing canonicals at canonical trailing-slash destinations', () => {
-  const paths = ['/lph', '/lph/alternate-endings',
+  const paths = ['/lph',
     ...ALTERNATE_STORIES.flatMap(story => [
       `/lph/alternate-endings/${story.slug}`,
       ...story.endings.map(ending => `/lph/alternate-endings/${story.slug}/${ending.slug}`),

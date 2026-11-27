@@ -1,6 +1,6 @@
 import { ALTERNATE_STORIES, endingPath, storyPath, type AlternateStory } from '../data/alternateEndings';
 
-export const LPH_INDEX_PATH = '/lph/alternate-endings/';
+export const LPH_INDEX_PATH = '/lph/';
 
 export function normalizeLphSlug(raw: string): string {
   let decoded = raw;

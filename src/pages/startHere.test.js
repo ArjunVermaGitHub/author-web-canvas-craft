@@ -8,5 +8,5 @@ test('Start Here directs readers through the existing sample, characters, wiki a
 
 test('Start Here follows Home and has its own search title', () => {
   expect(NAV_PAGES[1].path).toBe('/start-here');
-  expect(NAV_PAGES[1].seoTitle).toBe('Start Here – What Is the Raghav Kartikeya Series? | Rituraj Verma');
+  expect(NAV_PAGES[1].seoTitle).toBe('Start Here – The Raghav Kartikeya Series | Rituraj Verma');
 });

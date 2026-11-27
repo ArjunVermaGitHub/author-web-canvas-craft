@@ -23,7 +23,7 @@ test('both catalogue cards use existing book data and exact purchase/reading des
   expect(html).toContain(`${LPH_BOOK.year} · ${LPH_BOOK.publisher}`);
   expect(html).toContain(`${OTHER_BOOKS.length} coloring books`);
   expect(destinations(html)).toEqual([
-    LPH_BOOK.kindleUrl, LPH_BOOK.internationalUrl, '/lph/alternate-endings/',
+    LPH_BOOK.kindleUrl, LPH_BOOK.internationalUrl, '/lph/',
     '/james-furrington', OTHER_BOOKS_SERIES_URL,
   ]);
   expect([...html.matchAll(/<img[^>]*src="([^"]+)"[^>]*alt="([^"]+)"/g)].map(match => [match[1], match[2]])).toEqual(
@@ -46,11 +46,11 @@ test('a supplied Kindle destination appears first and only when configured', () 
   const kindleUrl = 'https://example.com/test-kindle';
   const { kindleUrl: omittedKindleUrl, ...bookWithoutKindle } = LPH_BOOK;
   expect(destinations(render({ ...LPH_BOOK, kindleUrl }))).toEqual([
-    kindleUrl, LPH_BOOK.indiaUrl, LPH_BOOK.internationalUrl, '/lph/alternate-endings/',
+    kindleUrl, LPH_BOOK.indiaUrl, LPH_BOOK.internationalUrl, '/lph/',
     '/james-furrington', OTHER_BOOKS_SERIES_URL,
   ]);
   expect(destinations(render(bookWithoutKindle))).toEqual([
-    LPH_BOOK.indiaUrl, LPH_BOOK.internationalUrl, '/lph/alternate-endings/',
+    LPH_BOOK.indiaUrl, LPH_BOOK.internationalUrl, '/lph/',
     '/james-furrington', OTHER_BOOKS_SERIES_URL,
   ]);
 });

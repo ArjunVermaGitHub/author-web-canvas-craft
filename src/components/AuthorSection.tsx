@@ -14,7 +14,9 @@ const AuthorSection = () => {
           <div className="shrink-0">
             <img
               src="/dad.jpeg"
-              alt="Rituraj Verma"
+              alt="Rituraj Verma, author of the Raghav Kartikeya series"
+              width={511}
+              height={512}
               className="w-56 h-56 md:w-72 md:h-72 object-cover border-4 border-ember"
             />
           </div>

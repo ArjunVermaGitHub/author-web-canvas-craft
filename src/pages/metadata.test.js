@@ -7,14 +7,39 @@ const canonical = (source) => source.match(/rel="canonical" href="([^"]+)"/)?.[1
 const jsonLdBlocks = (source) => [...source.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m => m[1]);
 
 const seoValues = [
-  ['/', 'Raghav Kartikeya and the Tablets of Dharma by Rituraj Verma | Signed Copies', 'A nine-year-old from Mumbai can read the undeciphered Indus Valley script, and an immortal warlord hunts him for it. Order a signed copy of Book 1 from the author.'],
-  ['/shop', 'Buy a Signed Copy of Raghav Kartikeya and the Tablets of Dharma – ₹449', 'Order a copy signed by author Rituraj Verma for ₹449, delivered in India within 5 days. Or buy on Amazon, Flipkart or Kindle, or read the first two chapters free.'],
-  ['/books', 'Raghav Kartikeya and the Tablets of Dharma (Book 1) – Mythological Fantasy'],
-  ['/author', 'Rituraj Verma – Author of the Raghav Kartikeya Series'],
+  ['/', 'Raghav Kartikeya and the Tablets of Dharma | Rituraj Verma', 'A nine-year-old from Mumbai can read the undeciphered Indus Valley script, and an immortal warlord hunts him for it. Order a signed copy of Book 1 from the author.'],
+  ['/shop', 'Buy Raghav Kartikeya and the Tablets of Dharma – ₹449', 'Order a copy signed by author Rituraj Verma for ₹449, delivered in India within 5 days. Or buy on Amazon, Flipkart or Kindle, or read the first two chapters free.'],
+  ['/books', 'Raghav Kartikeya and the Tablets of Dharma – Book 1'],
+  ['/author', 'Rituraj Verma – Author of the Raghav Kartikeya Series', 'Rituraj Verma is a Mumbai-based debut novelist and the author of Raghav Kartikeya, a mythological fantasy series rooted in the Indus Valley civilisation.'],
   ['/characters', 'Characters of Raghav Kartikeya and the Tablets of Dharma', 'Meet Raghav, Little Yama, Maya, Tarak and the other characters of the Raghav Kartikeya mythological fantasy series by Rituraj Verma.'],
-  ['/reviews', 'Reader Reviews – Raghav Kartikeya and the Tablets of Dharma'],
-  ['/wiki', "Raghav's Wiki – Myths, Places and Ideas from Raghav Kartikeya"],
+  ['/reviews', 'Reader Reviews – Raghav Kartikeya and the Tablets of Dharma', "Real reader reviews of Raghav Kartikeya and the Tablets of Dharma, Book 1 of Rituraj Verma's mythological fantasy series rooted in Indian myth."],
+  ['/wiki', "Raghav's Wiki – Myths, Places and Ideas of Raghav Kartikeya", "Raghav's Wiki explains the myths, places, gods and ideas behind the Raghav Kartikeya series, from the Indus Valley script to Shambhala and Little Yama."],
 ];
+test('search titles stay within 60 characters and descriptions within 120-155 where set', () => {
+  for (const page of NAV_PAGES) {
+    expect((page.seoTitle ?? '').length).toBeLessThanOrEqual(60);
+    if (['/author', '/reviews', '/wiki'].includes(page.path)) {
+      expect(page.seoDescription.length).toBeGreaterThanOrEqual(120);
+      expect(page.seoDescription.length).toBeLessThanOrEqual(155);
+    }
+  }
+});
+
+test('sitemap gives every entry a lastmod and drops the duplicate LPH index', () => {
+  const sitemap = read('../../public/sitemap.xml');
+  expect(sitemap.match(/<url>/g).length).toBe(sitemap.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g).length);
+  expect(sitemap).not.toContain('/lph/alternate-endings/</loc>');
+});
+
+test('vercel redirects the duplicate LPH index and returns 404 for unknown paths', () => {
+  const routes = JSON.parse(read('../../vercel.json')).routes;
+  const lph = routes.find(route => route.headers?.Location === '/lph/');
+  expect(new RegExp(`^${lph.src}$`).test('/lph/alternate-endings/')).toBe(true);
+  expect(new RegExp(`^${lph.src}$`).test('/lph/')).toBe(false);
+  expect(routes.at(-1)).toEqual({ src: '/(.*)', status: 404, dest: '/404.html' });
+  expect(routes.findIndex(route => route.src === '/api/(.*)')).toBeLessThan(routes.findIndex(route => route.status === 404));
+});
+
 for (const [path, title, description] of seoValues) test(`${path} has the requested search metadata`, () => {
   const page = NAV_PAGES.find(page => page.path === path);
   expect(page.seoTitle).toBe(title);
@@ -40,15 +65,14 @@ test('homepage static and route canonical use the real live domain', () => {
 
 test('pen-name canonical and sharing URL self-reference the real live domain', () => {
   const source = read('./JamesFurrington.tsx');
-  expect(canonical(source)).toBe('https://www.riturajverma.com/james-furrington');
-  expect(source.match(/property="og:url" content="([^"]+)"/)?.[1]).toBe('https://www.riturajverma.com/james-furrington');
+  // SeoHead derives og:url from the canonical prop.
+  expect(source.match(/canonical="([^"]+)"/)?.[1]).toBe('https://www.riturajverma.com/james-furrington');
 });
 
 test('sitemap uses the real live domain for all public pages', () => {
   expect([...read('../../public/sitemap.xml').matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1])).toEqual([
     ...NAV_PAGES.map(page => `${CANONICAL_BASE}${page.path}`), 'https://www.riturajverma.com/privacy', 'https://www.riturajverma.com/james-furrington',
     'https://www.riturajverma.com/lph/',
-    'https://www.riturajverma.com/lph/alternate-endings/',
     'https://www.riturajverma.com/lph/alternate-endings/a-high-like-heaven/',
     'https://www.riturajverma.com/lph/alternate-endings/a-high-like-heaven/1-2/',
     'https://www.riturajverma.com/lph/alternate-endings/a-high-like-heaven/2-2/',

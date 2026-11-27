@@ -526,3 +526,6 @@ export function lphCanonical(path: string): string {
 export function endingTitle(story: AlternateStory, ending: AlternateEnding): string {
   return `${story.title}: Ending ${story.endings.indexOf(ending) + 1}`;
 }
+
+/** Absolute share image for LPH pages (the local cover path redirects to the hosted asset). */
+export const LPH_SHARE_IMAGE = `https://www.riturajverma.com${LPH_BOOK.cover?.path ?? '/raghav-ebook-cover.jpg'}`;
