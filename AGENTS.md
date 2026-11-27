@@ -21,7 +21,7 @@
 - Order statuses (pending_verification/paid/cancelled), ID format and owner-code comparison live in `src/lib/orderStatus.js`; the order log and status changes are served only by owner-gated `api/owner-orders.js`. Why: order data must never reach a public endpoint and counts must exclude unpaid orders.
 - `/signed-copy` and `/signed-copy-story` are noindex ad pages without shared navigation or OrderBar; it and BuySection reuse SignedCopyOrderFlow with explicit tracking placements, while VisitorCounter logs silently. Why: keep ad ordering compact without duplicating payment logic or changing homepage events.
 
-- `npm run build` prerenders every sitemap route (plus noindex ad pages and 404.html) via `src/entry-server.tsx` and `scripts/prerender.mjs`; owner routes and unresolved LPH aliases use the empty `app.html` shell. vercel.json maps clean URLs to prerendered files, 301s duplicate forms and returns 404 otherwise; per-page head tags go through `SeoHead`. Why: crawlers need per-page HTML and real 404s on a static Vercel build.
+- Build prerenders sitemap routes via `scripts/prerender.mjs`; vercel.json serves them, 301s duplicates, 404s the rest; head tags use `SeoHead`. Why: per-page crawlable HTML and real 404s.
 - Public page structure and presentation rules live in `src/AGENTS.md`. Why: keep scoped guidance beside the frontend.
 
 <!-- LOVABLE:BEGIN -->
