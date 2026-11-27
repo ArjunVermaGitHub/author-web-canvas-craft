@@ -25,7 +25,7 @@ export default function Index() {
       {[
         ['Rooted in a real mystery', 'The Indus Valley script has never been deciphered. Raghav is the first person who can read it.'],
         ['A hero kids recognise', 'Not a chosen prince — a sickly nine-year-old from Mumbai who has to be brave anyway.'],
-        ['Gods as friends, not statues', 'His best friend is Little Yama, the child god of death. Together they head into Pakistan to find the tablets of Dharma.'],
+        ['Gods as friends, not statues', 'His closest friend after Priya is Little Yama, the child god of death. Together they head into Pakistan to find the tablets of Dharma.'],
       ].map(([title, text]) => <article key={title} className="content-panel p-6"><h2 className="font-serif text-xl mb-4">{title}</h2><p className="text-secondary leading-relaxed">{text}</p></article>)}
     </div><p className="text-lg text-secondary mt-7">For fans of Percy Jackson and Amish — and for parents who want their kids reading Indian myth.</p></div></section>
     <HomeReaderFit /><HomeGift name={giftName} onNameChange={setGiftName} /><HomeOrder giftName={giftName} /><SampleSection conversion /><HomeFaq /><NearViewport fallback={<div className="min-h-[600px]" aria-busy="true" />}><Suspense fallback={<div className="min-h-[600px]" aria-busy="true" />}><OtherBooksSection /></Suspense></NearViewport>

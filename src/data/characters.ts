@@ -1,3 +1,72 @@
-export interface Character { name: string; role: string; description: string; image?: string }
-// Only author-supplied characters belong here.
-export const CHARACTERS: Character[] = [];
+export interface Character { name: string; role: string; description: string; quote?: string; image?: string; imageWidth?: number; imageHeight?: number }
+// Only author-supplied characters belong here. Every word below was written and approved by the author.
+export const CHARACTERS_INTRO = 'Raghav Kartikeya and the Tablets of Dharma moves between a Mumbai classroom, a secret academy in the Himalayas and the lost cities of the Indus Valley. These are the people, gods and enemies Raghav meets on the way.';
+export const CHARACTERS: Character[] = [
+  {
+    name: 'Raghav',
+    role: 'The hero',
+    description: 'Raghav is nine, lives in Mumbai and gets bullied at school, where they call him Zero Confidence. He is sickly and often out of breath. He is also the only person alive who can read the Indus Valley script, which no scholar has ever deciphered. That gift leads him to Shambhala, a secret academy hidden in the Himalayas.',
+    quote: 'They call me Zero Confidence. Then I read a word nobody has read in seven thousand years.',
+    image: '/characters/raghav.webp',
+    imageWidth: 640,
+    imageHeight: 604,
+  },
+  {
+    name: 'Tarak',
+    role: 'The last savage of the mountain',
+    description: 'Tarak is an immortal warlord who wants humanity gone. For seven thousand years he has hunted the Indus script, and the tablets of Dharma written in it. A sickly nine-year-old reads the script like a comic book, and that puts Raghav squarely in his way.',
+    quote: 'For seven thousand years I hunted that script. And a sickly child reads it like a comic book.',
+    image: '/characters/tarak.webp',
+    imageWidth: 512,
+    imageHeight: 640,
+  },
+  {
+    name: 'Little Yama',
+    role: 'The child god of death',
+    description: "Little Yama is the child god of death, and Raghav's closest friend after Priya. He is also his strangest. Given the choice, he would much rather play hopscotch.",
+    quote: "Play hopscotch with me, and I'll tell you a secret. Tonight, you will see who you are.",
+    image: '/characters/little-yama.webp',
+    imageWidth: 618,
+    imageHeight: 640,
+  },
+  {
+    name: 'Parashuram',
+    role: 'The immortal warrior-sage',
+    description: 'Parashuram is the warrior-sage with the axe, and one of the teachers at Shambhala.',
+    quote: 'I have waited longer than your cities have stood. On your feet, boy.',
+    image: '/characters/parashuram.webp',
+    imageWidth: 512,
+    imageHeight: 640,
+  },
+  {
+    name: 'Priya',
+    role: 'His best friend',
+    description: "Priya is Raghav's best friend and classmate in Mumbai, and the one person who notices what everyone else misses. Where others see a quiet, sickly boy, she sees a mystery worth solving.",
+    quote: "Pranav's not a monster. Just loud, lost and allergic to mystery. Raghav? He is the mystery.",
+    image: '/characters/priya.webp',
+    imageWidth: 639,
+    imageHeight: 640,
+  },
+  {
+    name: 'Dobhal',
+    role: 'National Security Adviser',
+    description: "Dobhal is India's top security official. When a schoolboy reads a script that every cryptographer in the country has failed to crack, Raghav becomes a matter of national security, and Dobhal wants him found quietly.",
+    quote: "A nine-year-old just did what every cryptographer in the country couldn't. Find him. Quietly.",
+    image: '/characters/dobhal.webp',
+    imageWidth: 618,
+    imageHeight: 640,
+  },
+  {
+    name: 'Maya',
+    role: 'The illusionist',
+    description: 'Maya is nine, and an illusionist. During Ganpati she can make the Ganesha idols dance. Her illusions are real enough for everyone to see, and no one watching realises they are illusions.',
+  },
+  {
+    name: 'Anna',
+    role: 'Head nurse and bereavement counsellor',
+    description: 'Anna is the head nurse at Northwood Hospital. She is also its bereavement counsellor, the person families turn to when they lose someone.',
+    image: '/characters/anna.webp',
+    imageWidth: 640,
+    imageHeight: 637,
+  },
+];
