@@ -7,8 +7,8 @@ const canonical = (source) => source.match(/rel="canonical" href="([^"]+)"/)?.[1
 const jsonLdBlocks = (source) => [...source.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m => m[1]);
 
 const seoValues = [
-  ['/', 'Raghav Kartikeya and the Tablets of Dharma | Rituraj Verma', 'A nine-year-old from Mumbai can read the undeciphered Indus Valley script, and an immortal warlord hunts him for it. Order a signed copy of Book 1 from the author.'],
-  ['/shop', 'Buy Raghav Kartikeya and the Tablets of Dharma – ₹449', 'Order a copy signed by author Rituraj Verma for ₹449, delivered in India within 5 days. Or buy on Amazon, Flipkart or Kindle, or read the first two chapters free.'],
+  ['/', 'Raghav Kartikeya and the Tablets of Dharma | Rituraj Verma', 'A nine-year-old from Mumbai can read the undeciphered Indus Valley script, and an immortal warlord hunts him for it. Order a signed copy from the author.'],
+  ['/shop', 'Buy Raghav Kartikeya and the Tablets of Dharma – ₹449', 'Order a copy signed by Rituraj Verma for ₹449, delivered in India within 5 days. Or buy on Amazon, Flipkart or Kindle, or read the first two chapters free.'],
   ['/books', 'Raghav Kartikeya and the Tablets of Dharma – Book 1'],
   ['/author', 'Rituraj Verma – Author of the Raghav Kartikeya Series', 'Rituraj Verma is a Mumbai-based debut novelist and the author of Raghav Kartikeya, a mythological fantasy series rooted in the Indus Valley civilisation.'],
   ['/characters', 'Characters of Raghav Kartikeya and the Tablets of Dharma', 'Meet Raghav, Little Yama, Maya, Tarak and the other characters of the Raghav Kartikeya mythological fantasy series by Rituraj Verma.'],

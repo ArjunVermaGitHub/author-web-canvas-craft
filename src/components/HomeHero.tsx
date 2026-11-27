@@ -14,7 +14,7 @@ const mediaUrl = (asset: { url: string }) => `https://author-web-canvas-craft.lo
 
 export default function HomeHero() {
   return <section id="top" className="home-hero conversion-hero scroll-mt-24">
-    <div className="hero-bg"><img src={mediaUrl(backgroundMobile)} srcSet={`${mediaUrl(backgroundMobile)} 768w, ${mediaUrl(backgroundDesktop)} 1200w`} sizes="100vw" alt="Blurred cover art of Raghav Kartikeya and the Tablets of Dharma" decoding="async" /></div>
+    <div className="hero-bg"><img src={mediaUrl(backgroundMobile)} srcSet={`${mediaUrl(backgroundMobile)} 768w, ${mediaUrl(backgroundDesktop)} 1200w`} sizes="100vw" width={768} height={1229} alt="Blurred cover art of Raghav Kartikeya and the Tablets of Dharma" decoding="async" /></div>
     <div className="site-container conversion-hero-grid">
     <div className="conversion-hook"><p className="text-accent text-sm font-semibold mb-3" title={BOOK_TITLE}>Book 1 · Mythological fantasy · Ages 10+</p>
       <h1 className="conversion-title">He's nine. He can read a script no scholar ever has. Now an immortal warlord is hunting him.</h1>
