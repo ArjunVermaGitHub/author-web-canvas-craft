@@ -97,6 +97,8 @@ test('webhook verifies raw bytes and secret; both captured events mark once, oth
 test('order endpoint rejects the old ₹335 amount', async () => {
   const store = database(); const r = res();
   await orderHandler({ method: 'POST' }, r, { env: { MONGODB_URI: env.MONGODB_URI }, db: store.db, rawBody: JSON.stringify({ ...buyer, amount: 335 }) });
+  expect(r.code).toBe(400); expect(store.rows.length).toBe(0);
+});
 test('order endpoint rejects the old ₹449 amount', async () => {
   const store = database(); const r = res();
   await orderHandler({ method: 'POST' }, r, { env: { MONGODB_URI: env.MONGODB_URI }, db: store.db, rawBody: JSON.stringify({ ...buyer, amount: 449 }) });
